@@ -5,8 +5,12 @@ import {
   CalendarOutlined,
   BankOutlined,
   RiseOutlined,
-  PlayCircleOutlined
+  PlayCircleOutlined,
+  DashboardOutlined,
+  MobileOutlined,
+  StockOutlined
 } from '@ant-design/icons';
+import { FaGooglePlay, FaAppStore, FaChartLine, FaCoins, FaArrowTrendUp } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../constants';
 import { useIPOsByStatus, useBrokers } from '../hooks';
@@ -66,17 +70,17 @@ const HomePage: React.FC = () => {
                   <Link to={ROUTES.CURRENT_IPO}>
                     <Button
                       type="primary"
-                      size="large"
-                      className="w-full sm:w-auto bg-white text-blue-600 border-white hover:bg-blue-50 hover:border-blue-50 font-semibold px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-all duration-300"
+                      size="middle"
+                      className="w-full sm:w-auto bg-white text-blue-600 border-white hover:bg-blue-50 hover:border-blue-50 font-semibold px-6 py-4 sm:px-8 sm:py-6 h-auto shadow-lg hover:shadow-xl transition-all duration-300 mobile-button"
                     >
                       Explore Current IPOs
                     </Button>
                   </Link>
                   <Button
                     type="default"
-                    size="large"
+                    size="middle"
                     icon={<PlayCircleOutlined />}
-                    className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-blue-600 hover:border-white font-semibold px-8 py-6 h-auto backdrop-blur-sm bg-white/10 transition-all duration-300"
+                    className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-blue-600 hover:border-white font-semibold px-6 py-4 sm:px-8 sm:py-6 h-auto backdrop-blur-sm bg-white/10 transition-all duration-300 mobile-button"
                   >
                     Watch Demo
                   </Button>
@@ -105,13 +109,60 @@ const HomePage: React.FC = () => {
                 <div className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl opacity-20 animate-pulse"></div>
                 <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
 
-                {/* Main image container */}
+                {/* Animated Dashboard Container */}
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
-                  <img
-                    src="/api/placeholder/500/400"
-                    alt="IPO Dashboard"
-                    className="w-full h-auto rounded-2xl shadow-2xl"
-                  />
+                  <div className="w-full h-80 rounded-2xl shadow-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 flex flex-col justify-between">
+                    {/* Dashboard Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-2">
+                        <DashboardOutlined className="text-2xl text-blue-600 animate-pulse" />
+                        <span className="text-lg font-bold text-gray-800">IPO Edge</span>
+                      </div>
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-200"></div>
+                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse delay-500"></div>
+                      </div>
+                    </div>
+
+                    {/* Animated Chart Area */}
+                    <div className="flex-1 bg-white/50 rounded-xl p-4 relative overflow-hidden">
+                      <div className="flex items-end justify-between h-32 space-x-2">
+                        {[40, 65, 45, 80, 55, 90, 70].map((height, index) => (
+                          <div
+                            key={index}
+                            className="bg-gradient-to-t from-blue-500 to-blue-300 rounded-t-sm animate-pulse"
+                            style={{
+                              height: `${height}%`,
+                              width: '12%',
+                              animationDelay: `${index * 200}ms`,
+                              animationDuration: '2s'
+                            }}
+                          ></div>
+                        ))}
+                      </div>
+                      <FaChartLine className="absolute top-2 right-2 text-blue-500 animate-bounce" />
+                    </div>
+
+                    {/* Dashboard Stats */}
+                    <div className="grid grid-cols-3 gap-4 mt-4">
+                      <div className="text-center">
+                        <FaArrowTrendUp className="text-green-500 mx-auto mb-1 animate-bounce" />
+                        <div className="text-xs text-gray-600">Active IPOs</div>
+                        <div className="text-sm font-bold text-green-600">12+</div>
+                      </div>
+                      <div className="text-center">
+                        <FaCoins className="text-yellow-500 mx-auto mb-1 animate-spin" style={{ animationDuration: '3s' }} />
+                        <div className="text-xs text-gray-600">Total Value</div>
+                        <div className="text-sm font-bold text-yellow-600">₹25K Cr</div>
+                      </div>
+                      <div className="text-center">
+                        <StockOutlined className="text-purple-500 mx-auto mb-1 animate-pulse" />
+                        <div className="text-xs text-gray-600">Success Rate</div>
+                        <div className="text-sm font-bold text-purple-600">85%</div>
+                      </div>
+                    </div>
+                  </div>
 
                   {/* Floating cards */}
                   <div className="absolute -top-6 -right-6 bg-white rounded-lg p-3 shadow-lg animate-bounce">
@@ -232,10 +283,10 @@ const HomePage: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button
                         type="default"
-                        size="large"
-                        className="w-full sm:w-auto bg-white text-gray-900 border-white hover:bg-gray-50 hover:border-gray-50 font-semibold px-8 py-6 h-auto flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
+                        size="middle"
+                        className="w-full sm:w-auto bg-white text-gray-900 border-white hover:bg-gray-50 hover:border-gray-50 font-semibold px-6 py-4 sm:px-8 sm:py-6 h-auto flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 mobile-button"
                       >
-                        <img src="/api/placeholder/24/24" alt="Google Play" className="mr-3" />
+                        <FaGooglePlay className="mr-3 text-green-600" size={20} />
                         <div className="text-left">
                           <div className="text-xs text-gray-600">Get it on</div>
                           <div className="text-sm font-bold">Google Play</div>
@@ -243,10 +294,10 @@ const HomePage: React.FC = () => {
                       </Button>
                       <Button
                         type="default"
-                        size="large"
-                        className="w-full sm:w-auto bg-white text-gray-900 border-white hover:bg-gray-50 hover:border-gray-50 font-semibold px-8 py-6 h-auto flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
+                        size="middle"
+                        className="w-full sm:w-auto bg-white text-gray-900 border-white hover:bg-gray-50 hover:border-gray-50 font-semibold px-6 py-4 sm:px-8 sm:py-6 h-auto flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 mobile-button"
                       >
-                        <img src="/api/placeholder/24/24" alt="App Store" className="mr-3" />
+                        <FaAppStore className="mr-3 text-blue-600" size={20} />
                         <div className="text-left">
                           <div className="text-xs text-gray-600">Download on the</div>
                           <div className="text-sm font-bold">App Store</div>
@@ -291,13 +342,79 @@ const HomePage: React.FC = () => {
                       <div className="absolute -top-8 -left-8 w-16 h-16 bg-yellow-400 rounded-2xl opacity-20 animate-pulse"></div>
                       <div className="absolute -bottom-8 -right-8 w-20 h-20 bg-green-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
 
-                      {/* Phone container */}
+                      {/* Animated Phone Container */}
                       <div className="relative bg-white/10 backdrop-blur-sm rounded-[3rem] p-4 border border-white/20">
-                        <img
-                          src="/api/placeholder/280/500"
-                          alt="Mobile App"
-                          className="w-full h-auto rounded-[2.5rem] shadow-2xl"
-                        />
+                        <div className="w-full h-96 rounded-[2.5rem] shadow-2xl bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+                          {/* Phone Screen */}
+                          <div className="absolute inset-4 bg-white rounded-[2rem] overflow-hidden">
+                            {/* Status Bar */}
+                            <div className="bg-blue-600 text-white p-2 flex justify-between items-center text-xs">
+                              <span className="font-bold">IPO Edge</span>
+                              <div className="flex space-x-1">
+                                <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                                <div className="w-1 h-1 bg-white rounded-full animate-pulse delay-200"></div>
+                                <div className="w-1 h-1 bg-white rounded-full animate-pulse delay-500"></div>
+                              </div>
+                            </div>
+
+                            {/* App Content */}
+                            <div className="p-4 space-y-3">
+                              {/* Header */}
+                              <div className="flex items-center justify-between">
+                                <MobileOutlined className="text-2xl text-blue-600 animate-pulse" />
+                                <div className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full animate-bounce">
+                                  Live
+                                </div>
+                              </div>
+
+                              {/* IPO Cards */}
+                              {[1, 2, 3].map((item, index) => (
+                                <div
+                                  key={item}
+                                  className="bg-gray-50 rounded-lg p-3 animate-pulse"
+                                  style={{ animationDelay: `${index * 300}ms` }}
+                                >
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-8 h-8 bg-blue-200 rounded-lg animate-pulse"></div>
+                                    <div className="flex-1">
+                                      <div className="h-2 bg-gray-200 rounded animate-pulse mb-1"></div>
+                                      <div className="h-1.5 bg-gray-100 rounded animate-pulse w-2/3"></div>
+                                    </div>
+                                    <div className="text-xs text-green-600 font-bold animate-bounce">
+                                      {index === 0 ? '+15%' : index === 1 ? '+8%' : '+22%'}
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+
+                              {/* Action Buttons */}
+                              <div className="grid grid-cols-2 gap-2 mt-4">
+                                <div className="bg-blue-500 text-white text-xs py-2 px-3 rounded-lg text-center animate-pulse">
+                                  Apply Now
+                                </div>
+                                <div className="bg-gray-200 text-gray-600 text-xs py-2 px-3 rounded-lg text-center animate-pulse delay-300">
+                                  View Details
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Bottom Navigation */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-2">
+                              <div className="flex justify-around">
+                                {[BankOutlined, LineChartOutlined, CalendarOutlined, RiseOutlined].map((Icon, index) => (
+                                  <Icon
+                                    key={index}
+                                    className={`text-lg ${index === 0 ? 'text-blue-600' : 'text-gray-400'} animate-pulse`}
+                                    style={{ animationDelay: `${index * 200}ms` }}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Phone Notch */}
+                          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-600 rounded-full"></div>
+                        </div>
 
                         {/* Floating notification */}
                         <div className="absolute -top-4 -right-4 bg-white rounded-xl p-3 shadow-lg animate-bounce">
@@ -370,8 +487,8 @@ const HomePage: React.FC = () => {
                     <Button
                       type="primary"
                       block
-                      size="large"
-                      className="font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                      size="middle"
+                      className="font-semibold shadow-md hover:shadow-lg transition-all duration-300 mobile-button"
                     >
                       Open Account
                     </Button>
@@ -385,8 +502,8 @@ const HomePage: React.FC = () => {
             <Link to={ROUTES.BROKERS}>
               <Button
                 type="primary"
-                size="large"
-                className="px-8 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                size="middle"
+                className="px-6 py-4 sm:px-8 sm:py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 mobile-button"
               >
                 View All Brokers
               </Button>

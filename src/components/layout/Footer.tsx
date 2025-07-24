@@ -25,8 +25,8 @@ const Footer: React.FC = () => {
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/5 rounded-full translate-x-40 translate-y-40"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-8">
@@ -172,30 +172,42 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-700/50 mt-16 pt-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-            <div className="text-center lg:text-left">
+          <div className="flex flex-col space-y-6">
+            {/* Copyright */}
+            <div className="text-center">
               <Text className="text-gray-400 text-base">
                 © {currentYear} IPO Edge. All rights reserved.
               </Text>
             </div>
-            <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-6">
-              <Link to="/privacy-policy" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">
+
+            {/* Legal Links - Mobile Optimized */}
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
+              <Link
+                to="/privacy-policy"
+                className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
+              >
                 Privacy Policy
               </Link>
-              <span className="text-gray-600">•</span>
-              <Link to="/terms-conditions" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">
+              <span className="text-gray-600 hidden sm:inline">•</span>
+              <Link
+                to="/terms-conditions"
+                className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
+              >
                 Terms & Conditions
               </Link>
-              <span className="text-gray-600">•</span>
-              <Link to="/disclaimer" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm">
+              <span className="text-gray-600 hidden sm:inline">•</span>
+              <Link
+                to="/disclaimer"
+                className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
+              >
                 Disclaimer
               </Link>
             </div>
           </div>
 
           <div className="mt-8 pt-8 border-t border-gray-700/30">
-            <div className="bg-gray-800/50 rounded-2xl p-6">
-              <Text className="text-gray-400 text-sm leading-relaxed">
+            <div className="bg-gray-800/50 rounded-2xl p-4 sm:p-6">
+              <Text className="text-gray-400 text-xs sm:text-sm leading-relaxed text-center sm:text-left">
                 <strong className="text-yellow-400">Disclaimer:</strong> IPO Edge is an information platform and does not provide investment advice.
                 All information is for educational purposes only. Please consult with qualified financial advisors
                 before making investment decisions. We are not SEBI registered analysts.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Row,
@@ -22,7 +22,8 @@ import {
   FileTextOutlined,
   ShareAltOutlined,
   HeartOutlined,
-  HeartFilled
+  HeartFilled,
+  BuildOutlined
 } from '@ant-design/icons';
 import { useIPO } from '../hooks';
 import { Loading } from '../components/common';
@@ -36,6 +37,7 @@ const IPODetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { ipo, loading, error } = useIPO(id || '');
   const [isFavorite, setIsFavorite] = React.useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   React.useEffect(() => {
     if (id) {
@@ -109,14 +111,25 @@ const IPODetailPage: React.FC = () => {
         <Card className="mb-6">
           <Row gutter={[24, 24]} align="middle">
             <Col xs={24} md={4}>
-              <img
-                src={ipo.logo}
-                alt={ipo.name}
-                className="w-20 h-20 rounded-lg object-cover mx-auto md:mx-0"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/api/placeholder/80/80';
-                }}
-              />
+              {logoError ? (
+                <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-blue-100 to-indigo-200 border-2 border-dashed border-blue-300 flex items-center justify-center mx-auto md:mx-0">
+                  <div className="text-center">
+                    <BuildOutlined
+                      className="text-2xl text-blue-500 animate-pulse mb-1"
+                    />
+                    <div className="text-xs text-blue-600 animate-pulse delay-300 font-medium">
+                      IPO
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={ipo.logo}
+                  alt={ipo.name}
+                  className="w-20 h-20 rounded-lg object-cover mx-auto md:mx-0 transition-all duration-300 hover:shadow-lg"
+                  onError={() => setLogoError(true)}
+                />
+              )}
             </Col>
             <Col xs={24} md={12}>
               <Title level={2} className="mb-2">{ipo.name}</Title>
@@ -151,9 +164,9 @@ const IPODetailPage: React.FC = () => {
                   >
                     {isFavorite ? 'Favorited' : 'Add to Favorites'}
                   </Button>
-                  <Button icon={<ShareAltOutlined />}>Share</Button>
+                  <Button icon={<ShareAltOutlined />} size="middle" className="mobile-button">Share</Button>
                   {ipo.status === 'current' && (
-                    <Button type="primary" size="large">
+                    <Button type="primary" size="middle" className="mobile-button">
                       Apply Now
                     </Button>
                   )}

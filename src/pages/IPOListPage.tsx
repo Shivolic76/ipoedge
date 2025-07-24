@@ -154,7 +154,8 @@ const IPOListPage: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
                 allowClear
-                size="large"
+                size="middle"
+                className="mobile-input"
               />
             </Col>
 
@@ -167,8 +168,9 @@ const IPOListPage: React.FC = () => {
                 onChange={(value) => handleFilterChange('status', value)}
                 mode="multiple"
                 allowClear
-                size="large"
+                size="middle"
                 maxTagCount="responsive"
+                className="mobile-select"
               >
                 <Option value="current">Current</Option>
                 <Option value="upcoming">Upcoming</Option>
@@ -186,8 +188,9 @@ const IPOListPage: React.FC = () => {
                 onChange={(value) => handleFilterChange('category', value)}
                 mode="multiple"
                 allowClear
-                size="large"
+                size="middle"
                 maxTagCount="responsive"
+                className="mobile-select"
               >
                 <Option value="mainboard">Mainboard</Option>
                 <Option value="sme">SME</Option>
@@ -203,8 +206,9 @@ const IPOListPage: React.FC = () => {
                 onChange={(value) => handleFilterChange('exchange', value)}
                 mode="multiple"
                 allowClear
-                size="large"
+                size="middle"
                 maxTagCount="responsive"
+                className="mobile-select"
               >
                 <Option value="NSE">NSE</Option>
                 <Option value="BSE">BSE</Option>
@@ -226,8 +230,9 @@ const IPOListPage: React.FC = () => {
                   icon={<SortAscendingOutlined />}
                   onClick={() => handleSortChange('date')}
                   type={sortBy === 'date' ? 'primary' : 'default'}
-                  size="large"
-                  style={{ minWidth: '80px' }}
+                  size="middle"
+                  className="mobile-button"
+                  style={{ minWidth: '70px' }}
                 >
                   Date
                 </Button>
@@ -235,8 +240,9 @@ const IPOListPage: React.FC = () => {
                   icon={<SortAscendingOutlined />}
                   onClick={() => handleSortChange('subscription')}
                   type={sortBy === 'subscription' ? 'primary' : 'default'}
-                  size="large"
-                  style={{ minWidth: '120px' }}
+                  size="middle"
+                  className="mobile-button"
+                  style={{ minWidth: '100px' }}
                 >
                   Subscription
                 </Button>

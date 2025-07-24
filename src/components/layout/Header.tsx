@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu, Button, Drawer, Avatar, Dropdown } from 'antd';
-import { 
-  MenuOutlined, 
-  HomeOutlined, 
-  StockOutlined, 
-  SwapOutlined, 
+import {
+  MenuOutlined,
+  HomeOutlined,
+  StockOutlined,
   BankOutlined,
   CalendarOutlined,
   UserOutlined,
@@ -64,35 +63,35 @@ const Header: React.FC = () => {
         },
       ],
     },
-    {
-      key: 'buyback',
-      icon: <SwapOutlined />,
-      label: 'Buyback',
-      children: [
-        {
-          key: 'current-buyback',
-          label: <Link to={ROUTES.CURRENT_BUYBACK}>Current</Link>,
-        },
-        {
-          key: 'upcoming-buyback',
-          label: <Link to={ROUTES.UPCOMING_BUYBACK}>Upcoming</Link>,
-        },
-        {
-          key: 'closed-buyback',
-          label: <Link to={ROUTES.CLOSED_BUYBACK}>Closed</Link>,
-        },
-      ],
-    },
+    // {
+    //   key: 'buyback',
+    //   icon: <SwapOutlined />,
+    //   label: 'Buyback',
+    //   children: [
+    //     {
+    //       key: 'current-buyback',
+    //       label: <Link to={ROUTES.CURRENT_BUYBACK}>Current</Link>,
+    //     },
+    //     {
+    //       key: 'upcoming-buyback',
+    //       label: <Link to={ROUTES.UPCOMING_BUYBACK}>Upcoming</Link>,
+    //     },
+    //     {
+    //       key: 'closed-buyback',
+    //       label: <Link to={ROUTES.CLOSED_BUYBACK}>Closed</Link>,
+    //     },
+    //   ],
+    // },
     {
       key: 'brokers',
       icon: <BankOutlined />,
       label: <Link to={ROUTES.BROKERS}>Brokers</Link>,
     },
-    {
-      key: 'bids',
-      icon: <FileTextOutlined />,
-      label: <Link to={ROUTES.BIDS}>Orders/Bids</Link>,
-    },
+    // {
+    //   key: 'bids',
+    //   icon: <FileTextOutlined />,
+    //   label: <Link to={ROUTES.BIDS}>Orders/Bids</Link>,
+    // },
     {
       key: 'allotment',
       icon: <ProfileOutlined />,
