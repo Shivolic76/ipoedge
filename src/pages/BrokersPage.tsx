@@ -196,7 +196,7 @@ const BrokersPage: React.FC = () => {
             {filteredBrokers.map((broker) => (
               <Col xs={24} sm={12} lg={8} xl={6} key={broker.id}>
                 <Card
-                  className="card-hover h-full animate-fadeIn"
+                  className="card-hover h-full animate-fadeIn shadow-xl"
                   cover={
                     <div className="p-4 bg-gray-50 text-center">
                       <ResponsiveImage

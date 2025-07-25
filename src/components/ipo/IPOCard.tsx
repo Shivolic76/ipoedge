@@ -56,7 +56,7 @@ const IPOCard: React.FC<IPOCardProps> = ({
 
   return (
     <Card
-      className="card-hover h-full animate-fadeIn"
+      className="card-hover h-full animate-fadeIn shadow-xl"
       cover={
         <div className="p-4 bg-gray-50 relative">
           <div className="flex items-center space-x-3">
