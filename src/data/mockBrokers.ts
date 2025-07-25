@@ -94,7 +94,7 @@ export const mockBrokers: Broker[] = [
   {
     id: '6',
     name: 'ICICI Direct',
-    logo: 'https://media.ipoji.com/broker/images/icici-direct-logo.jpeg',
+    logo: 'https://media.ipoji.com/broker/images/icici-sec-logo.jpeg',
     accountOpening: 'Free',
     accountMaintenance: 500,
     equityDelivery: 0,
@@ -130,7 +130,7 @@ export const mockBrokers: Broker[] = [
   {
     id: '8',
     name: 'Groww',
-    logo: 'https://media.ipoji.com/broker/images/groww-logo.jpeg',
+    logo: 'https://media.ipoji.com/broker/images/groww.jpeg',
     accountOpening: 'Free',
     accountMaintenance: 0,
     equityDelivery: 'Zero',

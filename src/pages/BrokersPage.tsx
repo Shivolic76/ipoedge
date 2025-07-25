@@ -216,7 +216,7 @@ const BrokersPage: React.FC = () => {
                       Open Account
                     </Button>,
                     <Button type="link" key="compare">
-                      Compare
+                      view details
                     </Button>
                   ]}
                 >
