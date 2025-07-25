@@ -40,8 +40,8 @@ const CalendarPage: React.FC = () => {
       setIsVerySmall(window.innerWidth < 425);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Calculate statistics
@@ -108,10 +108,12 @@ const CalendarPage: React.FC = () => {
 
     if (isMobile) {
       // Mobile: Show only count with color indicator
-      const eventTypes = events.map(event => {
-        const dateStr = value.format("YYYY-MM-DD");
-        return getEventInfo(event, dateStr);
-      }).filter(Boolean);
+      const eventTypes = events
+        .map((event) => {
+          const dateStr = value.format("YYYY-MM-DD");
+          return getEventInfo(event, dateStr);
+        })
+        .filter(Boolean);
 
       const primaryEvent = eventTypes[0];
 
@@ -119,7 +121,9 @@ const CalendarPage: React.FC = () => {
         <Tooltip
           title={
             <div className="space-y-2">
-              <div className="font-semibold">{events.length} IPO Event{events.length > 1 ? 's' : ''}</div>
+              <div className="font-semibold">
+                {events.length} IPO Event{events.length > 1 ? "s" : ""}
+              </div>
               {events.map((ipo, idx) => {
                 const info = getEventInfo(ipo, value.format("YYYY-MM-DD"));
                 return info ? (
@@ -136,8 +140,8 @@ const CalendarPage: React.FC = () => {
           <div
             className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold cursor-pointer mx-auto"
             style={{
-              backgroundColor: primaryEvent?.color || '#1890ff',
-              fontSize: '10px'
+              backgroundColor: primaryEvent?.color || "#1890ff",
+              fontSize: "10px",
             }}
           >
             {events.length}
@@ -163,7 +167,8 @@ const CalendarPage: React.FC = () => {
               <div className="font-semibold">{firstEvent.name}</div>
               <div className="text-xs">{eventInfo.type}</div>
               <div className="text-xs opacity-75">
-                Price: ₹{typeof firstEvent.offerPrice === 'number'
+                Price: ₹
+                {typeof firstEvent.offerPrice === "number"
                   ? firstEvent.offerPrice
                   : `${firstEvent.offerPrice.min}-${firstEvent.offerPrice.max}`}
               </div>
@@ -179,12 +184,10 @@ const CalendarPage: React.FC = () => {
               color: eventInfo.color,
             }}
           >
-            <div className="font-medium truncate" style={{ maxWidth: '100px' }}>
+            <div className="font-medium truncate" style={{ maxWidth: "100px" }}>
               {firstEvent.name}
             </div>
-            <div className="text-xs opacity-75 truncate">
-              {eventInfo.type}
-            </div>
+            <div className="text-xs opacity-75 truncate">{eventInfo.type}</div>
           </div>
         </Tooltip>
 
@@ -193,7 +196,9 @@ const CalendarPage: React.FC = () => {
           <Tooltip
             title={
               <div className="space-y-2">
-                <div className="font-semibold">Additional Events ({remainingCount})</div>
+                <div className="font-semibold">
+                  Additional Events ({remainingCount})
+                </div>
                 {events.slice(1).map((ipo, idx) => {
                   const info = getEventInfo(ipo, dateStr);
                   return info ? (
@@ -318,32 +323,60 @@ const CalendarPage: React.FC = () => {
           </div>
 
           {/* Title */}
-          <Title level={1} className={`mb-4 text-white ${isVerySmall ? 'text-2xl' : 'text-3xl md:text-6xl'} font-bold tracking-tight`}>
+          <Title
+            level={1}
+            className={`mb-4 text-white ${
+              isVerySmall ? "text-2xl" : "text-3xl md:text-6xl"
+            } font-bold tracking-tight`}
+          >
             <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-              {isVerySmall ? 'IPO Calendar' : 'IPO Event Calendar'}
+              {isVerySmall ? "IPO Calendar" : "IPO Event Calendar"}
             </span>
           </Title>
 
           {/* Description */}
-          <Text className={`text-white/90 ${isVerySmall ? 'text-sm' : 'text-base md:text-xl'} block max-w-4xl mx-auto leading-relaxed ${isVerySmall ? 'mb-6' : 'mb-8 md:mb-16'}`}>
+          <Text
+            className={`text-white/90 ${
+              isVerySmall ? "text-sm" : "text-base md:text-xl"
+            } block max-w-4xl mx-auto leading-relaxed ${
+              isVerySmall ? "mb-6" : "mb-8 md:mb-16"
+            }`}
+          >
             {isVerySmall
-              ? 'Track IPO dates and never miss opportunities.'
-              : 'Track important IPO dates including opening, closing, and listing dates. Never miss an investment opportunity with our comprehensive calendar view.'
-            }
+              ? "Track IPO dates and never miss opportunities."
+              : "Track important IPO dates including opening, closing, and listing dates. Never miss an investment opportunity with our comprehensive calendar view."}
           </Text>
 
           {/* Stats Cards - Modern Design */}
-          <div className={`grid grid-cols-2 lg:grid-cols-4 ${isVerySmall ? 'gap-2' : 'gap-3 md:gap-6'} max-w-7xl mx-auto`}>
+          <div
+            className={`grid grid-cols-2 lg:grid-cols-4 ${
+              isVerySmall ? "gap-2" : "gap-3 md:gap-6"
+            } max-w-7xl mx-auto`}
+          >
             {/* Total IPOs */}
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
-                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-center relative z-10 ${
+                    isVerySmall ? "py-1" : "py-2 md:py-4"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      isVerySmall ? "text-lg" : "text-2xl md:text-4xl"
+                    } font-bold text-white ${
+                      isVerySmall ? "mb-0" : "mb-1 md:mb-2"
+                    } group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {stats.total}
                   </div>
-                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
-                    {isVerySmall ? 'Total' : 'Total IPOs'}
+                  <div
+                    className={`${
+                      isVerySmall ? "text-xs" : "text-xs md:text-base"
+                    } text-white/90 font-medium`}
+                  >
+                    {isVerySmall ? "Total" : "Total IPOs"}
                   </div>
                 </div>
               </Card>
@@ -353,11 +386,25 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-green-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
-                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-center relative z-10 ${
+                    isVerySmall ? "py-1" : "py-2 md:py-4"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      isVerySmall ? "text-lg" : "text-2xl md:text-4xl"
+                    } font-bold text-white ${
+                      isVerySmall ? "mb-0" : "mb-1 md:mb-2"
+                    } group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {stats.current}
                   </div>
-                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
+                  <div
+                    className={`${
+                      isVerySmall ? "text-xs" : "text-xs md:text-base"
+                    } text-white/90 font-medium`}
+                  >
                     Current
                   </div>
                 </div>
@@ -368,11 +415,25 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
-                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-center relative z-10 ${
+                    isVerySmall ? "py-1" : "py-2 md:py-4"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      isVerySmall ? "text-lg" : "text-2xl md:text-4xl"
+                    } font-bold text-white ${
+                      isVerySmall ? "mb-0" : "mb-1 md:mb-2"
+                    } group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {stats.upcoming}
                   </div>
-                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
+                  <div
+                    className={`${
+                      isVerySmall ? "text-xs" : "text-xs md:text-base"
+                    } text-white/90 font-medium`}
+                  >
                     Upcoming
                   </div>
                 </div>
@@ -383,11 +444,25 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
-                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`text-center relative z-10 ${
+                    isVerySmall ? "py-1" : "py-2 md:py-4"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      isVerySmall ? "text-lg" : "text-2xl md:text-4xl"
+                    } font-bold text-white ${
+                      isVerySmall ? "mb-0" : "mb-1 md:mb-2"
+                    } group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {stats.listed}
                   </div>
-                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
+                  <div
+                    className={`${
+                      isVerySmall ? "text-xs" : "text-xs md:text-base"
+                    } text-white/90 font-medium`}
+                  >
                     Listed
                   </div>
                 </div>
@@ -396,8 +471,11 @@ const CalendarPage: React.FC = () => {
           </div>
         </div>
 
-        <div className={`${isVerySmall ? 'px-1' : 'px-1 md:px-4'}`}>
-          <Row gutter={[isMobile ? 4 : 8, isMobile ? 8 : 12]} className={`${isMobile ? 'min-h-[500px]' : 'min-h-[600px]'}`}>
+        <div className={`${isVerySmall ? "px-1" : "px-1 md:px-4"}`}>
+          <Row
+            gutter={[isMobile ? 4 : 8, isMobile ? 8 : 12]}
+            className={`${isMobile ? "min-h-[500px]" : "min-h-[600px]"}`}
+          >
             {/* Enhanced Calendar */}
             <Col xs={24} lg={16}>
               <Card
@@ -405,21 +483,53 @@ const CalendarPage: React.FC = () => {
                 style={{
                   background: "rgba(255, 255, 255, 0.98)",
                   backdropFilter: "blur(20px)",
-                  borderRadius: isVerySmall ? "12px" : isMobile ? "16px" : "24px",
-                  minHeight: isVerySmall ? "450px" : isMobile ? "500px" : "870px",
+                  borderRadius: isVerySmall
+                    ? "12px"
+                    : isMobile
+                    ? "16px"
+                    : "24px",
+                  minHeight: isVerySmall
+                    ? "450px"
+                    : isMobile
+                    ? "500px"
+                    : "870px",
                   height: isMobile ? "auto" : "600px",
                 }}
                 title={
-                  <div className={`flex items-center ${isVerySmall ? 'space-x-2 py-1' : 'space-x-2 md:space-x-4 py-2 md:py-3'}`}>
-                    <div className={`${isVerySmall ? 'w-6 h-6' : 'w-8 h-8 md:w-12 md:h-12'} bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg`}>
-                      <CalendarOutlined className={`text-white ${isVerySmall ? 'text-xs' : 'text-sm md:text-xl'}`} />
+                  <div
+                    className={`flex items-center ${
+                      isVerySmall
+                        ? "space-x-2 py-1"
+                        : "space-x-2 md:space-x-4 py-2 md:py-3"
+                    }`}
+                  >
+                    <div
+                      className={`${
+                        isVerySmall ? "w-6 h-6" : "w-8 h-8 md:w-12 md:h-12"
+                      } bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg`}
+                    >
+                      <CalendarOutlined
+                        className={`text-white ${
+                          isVerySmall ? "text-xs" : "text-sm md:text-xl"
+                        }`}
+                      />
                     </div>
                     <div>
-                      <div className={`${isVerySmall ? 'text-sm' : 'text-lg md:text-2xl'} font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}>
+                      <div
+                        className={`${
+                          isVerySmall ? "text-sm" : "text-lg md:text-2xl"
+                        } font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}
+                      >
                         IPO Calendar
                       </div>
-                      <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-sm'} text-gray-500`}>
-                        {isVerySmall ? 'Track IPO dates' : 'Track important IPO dates • Click dates to view details'}
+                      <div
+                        className={`${
+                          isVerySmall ? "text-xs" : "text-xs md:text-sm"
+                        } text-gray-500`}
+                      >
+                        {isVerySmall
+                          ? "Track IPO dates"
+                          : "Track important IPO dates • Click dates to view details"}
                       </div>
                     </div>
                   </div>
@@ -430,22 +540,36 @@ const CalendarPage: React.FC = () => {
                     height: isMobile ? "auto" : "calc(100% - 100px)",
                     overflow: isMobile ? "visible" : "hidden",
                     padding: isVerySmall ? "8px" : isMobile ? "12px" : "16px",
-                    minHeight: isVerySmall ? "400px" : isMobile ? "450px" : "auto",
+                    minHeight: isVerySmall
+                      ? "400px"
+                      : isMobile
+                      ? "450px"
+                      : "auto",
                   },
                 }}
               >
-                <div className={`calendar-container ${isMobile ? 'h-auto overflow-visible' : '!h-full'}`}>
+                <div
+                  className={`calendar-container ${
+                    isMobile ? "h-auto overflow-visible" : "!h-full"
+                  }`}
+                >
                   {loading ? (
                     <CalendarSkeleton />
                   ) : (
                     <Calendar
                       cellRender={dateCellRender}
                       onSelect={onDateSelect}
-                      className={`enhanced-ipo-calendar compact-calendar ${isMobile ? 'mobile-calendar' : ''}`}
+                      className={`enhanced-ipo-calendar compact-calendar ${
+                        isMobile ? "mobile-calendar" : ""
+                      }`}
                       style={{
                         background: "transparent",
                         height: isMobile ? "auto" : "100%",
-                        minHeight: isVerySmall ? "350px" : isMobile ? "400px" : "auto",
+                        minHeight: isVerySmall
+                          ? "350px"
+                          : isMobile
+                          ? "400px"
+                          : "auto",
                         width: "100%",
                         overflow: isMobile ? "visible" : "hidden",
                         fontSize: isVerySmall ? "11px" : "inherit",
@@ -456,244 +580,244 @@ const CalendarPage: React.FC = () => {
               </Card>
             </Col>
 
-          {/* Enhanced Events for Selected Date */}
-          <Col xs={24} lg={8} className="flex flex-col">
-            <Card
-              className="shadow-2xl border-0 mb-4 md:mb-6 flex-1"
-              style={{
-                background: "rgba(255, 255, 255, 0.95)",
-                backdropFilter: "blur(20px)",
-                borderRadius: isMobile ? "16px" : "20px",
-                height: isMobile ? "auto" : "400px",
-                maxHeight: isMobile ? "none" : "400px",
-                minHeight: isMobile ? "200px" : "400px",
-              }}
-              title={
-                <div className="flex items-center space-x-2 md:space-x-3 py-2">
-                  <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center">
-                    <StarOutlined className="text-white text-sm md:text-lg" />
-                  </div>
-                  <div>
-                    <div className="text-sm md:text-lg font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                      {selectedDate
-                        ? `Events on ${selectedDate.format("MMM DD, YYYY")}`
-                        : "Select a date to view events"}
+            {/* Enhanced Events for Selected Date */}
+            <Col xs={24} lg={8} className="flex flex-col">
+              <Card
+                className="shadow-2xl border-0 mb-4 md:mb-6 flex-1"
+                style={{
+                  background: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: isMobile ? "16px" : "20px",
+                  height: isMobile ? "auto" : "400px",
+                  maxHeight: isMobile ? "none" : "400px",
+                  minHeight: isMobile ? "200px" : "400px",
+                }}
+                title={
+                  <div className="flex items-center space-x-2 md:space-x-3 py-2">
+                    <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center">
+                      <StarOutlined className="text-white text-sm md:text-lg" />
                     </div>
-                    <div className="text-xs md:text-sm text-gray-500">
-                      {selectedDate && selectedDateEvents.length > 0
-                        ? `${selectedDateEvents.length} event${
-                            selectedDateEvents.length > 1 ? "s" : ""
-                          } found`
-                        : "Click on calendar dates"}
+                    <div>
+                      <div className="text-sm md:text-lg font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                        {selectedDate
+                          ? `Events on ${selectedDate.format("MMM DD, YYYY")}`
+                          : "Select a date to view events"}
+                      </div>
+                      <div className="text-xs md:text-sm text-gray-500">
+                        {selectedDate && selectedDateEvents.length > 0
+                          ? `${selectedDateEvents.length} event${
+                              selectedDateEvents.length > 1 ? "s" : ""
+                            } found`
+                          : "Click on calendar dates"}
+                      </div>
                     </div>
                   </div>
-                </div>
-              }
-              styles={{
-                body: {
-                  height: "calc(100% - 80px)",
-                  overflow: "auto",
-                  padding: "16px",
-                },
-              }}
-            >
-              {selectedDate && selectedDateEvents.length > 0 ? (
-                <List
-                  dataSource={selectedDateEvents}
-                  renderItem={(ipo) => {
-                    const dateStr = selectedDate.format("YYYY-MM-DD");
-                    const eventInfo = getEventInfo(ipo, dateStr);
+                }
+                styles={{
+                  body: {
+                    height: "calc(100% - 80px)",
+                    overflow: "auto",
+                    padding: "16px",
+                  },
+                }}
+              >
+                {selectedDate && selectedDateEvents.length > 0 ? (
+                  <List
+                    dataSource={selectedDateEvents}
+                    renderItem={(ipo) => {
+                      const dateStr = selectedDate.format("YYYY-MM-DD");
+                      const eventInfo = getEventInfo(ipo, dateStr);
 
-                    if (!eventInfo) return null;
+                      if (!eventInfo) return null;
 
-                    return (
-                      <List.Item className="border-0 px-0">
-                        <div
-                          className="event-item w-full p-4 rounded-xl cursor-pointer"
-                          style={{
-                            background: eventInfo.bgColor,
-                            border: `1px solid ${eventInfo.color}20`,
-                          }}
-                        >
-                          <div className="flex justify-between items-start mb-3">
-                            <div className="flex items-center space-x-3">
-                              <div
-                                className="w-10 h-10 rounded-full flex items-center justify-center text-white"
-                                style={{ background: eventInfo.gradient }}
+                      return (
+                        <List.Item className="border-0 px-0">
+                          <div
+                            className="event-item w-full p-4 rounded-xl cursor-pointer"
+                            style={{
+                              background: eventInfo.bgColor,
+                              border: `1px solid ${eventInfo.color}20`,
+                            }}
+                          >
+                            <div className="flex justify-between items-start mb-3">
+                              <div className="flex items-center space-x-3">
+                                <div
+                                  className="w-10 h-10 rounded-full flex items-center justify-center text-white"
+                                  style={{ background: eventInfo.gradient }}
+                                >
+                                  {eventInfo.icon}
+                                </div>
+                                <div>
+                                  <Text strong className="text-lg block">
+                                    {ipo.name}
+                                  </Text>
+                                  <Text className="text-sm text-gray-600">
+                                    {ipo.exchange}
+                                  </Text>
+                                </div>
+                              </div>
+                              <Tag
+                                style={{
+                                  background: eventInfo.gradient,
+                                  border: "none",
+                                  color: "white",
+                                  fontWeight: "bold",
+                                  borderRadius: "20px",
+                                  padding: "4px 12px",
+                                }}
                               >
-                                {eventInfo.icon}
+                                {eventInfo.type}
+                              </Tag>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div className="flex items-center space-x-2">
+                                <DollarOutlined className="text-green-600" />
+                                <span className="text-gray-700">
+                                  ₹
+                                  {typeof ipo.offerPrice === "number"
+                                    ? ipo.offerPrice.toLocaleString()
+                                    : `${ipo.offerPrice.min}-${ipo.offerPrice.max}`}
+                                </span>
                               </div>
-                              <div>
-                                <Text strong className="text-lg block">
-                                  {ipo.name}
-                                </Text>
-                                <Text className="text-sm text-gray-600">
+                              <div className="flex items-center space-x-2">
+                                <TrophyOutlined className="text-purple-600" />
+                                <span className="text-gray-700">
                                   {ipo.exchange}
-                                </Text>
+                                </span>
                               </div>
                             </div>
-                            <Tag
-                              style={{
-                                background: eventInfo.gradient,
-                                border: "none",
-                                color: "white",
-                                fontWeight: "bold",
-                                borderRadius: "20px",
-                                padding: "4px 12px",
-                              }}
-                            >
-                              {eventInfo.type}
-                            </Tag>
                           </div>
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div className="flex items-center space-x-2">
-                              <DollarOutlined className="text-green-600" />
-                              <span className="text-gray-700">
-                                ₹
-                                {typeof ipo.offerPrice === "number"
-                                  ? ipo.offerPrice.toLocaleString()
-                                  : `${ipo.offerPrice.min}-${ipo.offerPrice.max}`}
-                              </span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <TrophyOutlined className="text-purple-600" />
-                              <span className="text-gray-700">
-                                {ipo.exchange}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </List.Item>
-                    );
-                  }}
-                />
-              ) : selectedDate ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CalendarOutlined className="text-2xl text-gray-400" />
-                  </div>
-                  <Text className="text-gray-500 text-lg">
-                    No IPO events on this date
-                  </Text>
-                  <Text className="text-gray-400 text-sm block mt-2">
-                    Try selecting another date
-                  </Text>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CalendarOutlined className="text-2xl text-blue-500" />
-                  </div>
-                  <Text className="text-gray-600 text-lg">
-                    Click on a date to view events
-                  </Text>
-                  <Text className="text-gray-400 text-sm block mt-2">
-                    Select any date on the calendar above
-                  </Text>
-                </div>
-              )}
-            </Card>
-
-            {/* Enhanced Legend */}
-            <Card
-              className="shadow-2xl border-0"
-              style={{
-                background: "rgba(255, 255, 255, 0.95)",
-                backdropFilter: "blur(20px)",
-                borderRadius: "20px",
-                height: "450px",
-              }}
-              title={
-                <div className="flex items-center space-x-3 py-2">
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-                    <StarOutlined className="text-white text-lg" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                      Event Legend
+                        </List.Item>
+                      );
+                    }}
+                  />
+                ) : selectedDate ? (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CalendarOutlined className="text-2xl text-gray-400" />
                     </div>
-                    <div className="text-sm text-gray-500">
-                      Event types and meanings
+                    <Text className="text-gray-500 text-lg">
+                      No IPO events on this date
+                    </Text>
+                    <Text className="text-gray-400 text-sm block mt-2">
+                      Try selecting another date
+                    </Text>
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CalendarOutlined className="text-2xl text-blue-500" />
+                    </div>
+                    <Text className="text-gray-600 text-lg">
+                      Click on a date to view events
+                    </Text>
+                    <Text className="text-gray-400 text-sm block mt-2">
+                      Select any date on the calendar above
+                    </Text>
+                  </div>
+                )}
+              </Card>
+
+              {/* Enhanced Legend */}
+              <Card
+                className="shadow-2xl border-0"
+                style={{
+                  background: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "20px",
+                  height: "450px",
+                }}
+                title={
+                  <div className="flex items-center space-x-3 py-2">
+                    <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                      <StarOutlined className="text-white text-lg" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Event Legend
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        Event types and meanings
+                      </div>
                     </div>
                   </div>
-                </div>
-              }
-              styles={{
-                body: {
-                  height: "calc(100% - 80px)",
-                  overflow: "hidden",
-                  padding: "16px",
-                },
-              }}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100 border border-green-200">
-                  <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3">
-                    <RocketOutlined className="text-white text-sm" />
+                }
+                styles={{
+                  body: {
+                    height: "calc(100% - 80px)",
+                    overflow: "hidden",
+                    padding: "16px",
+                  },
+                }}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-green-50 to-green-100 border border-green-200">
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3">
+                      <RocketOutlined className="text-white text-sm" />
+                    </div>
+                    <div>
+                      <Text className="font-semibold text-green-800">
+                        IPO Opens
+                      </Text>
+                      <Text className="text-green-600 text-sm block">
+                        Subscription starts
+                      </Text>
+                    </div>
                   </div>
-                  <div>
-                    <Text className="font-semibold text-green-800">
-                      IPO Opens
-                    </Text>
-                    <Text className="text-green-600 text-sm block">
-                      Subscription starts
-                    </Text>
+
+                  <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-red-50 to-red-100 border border-red-200">
+                    <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mr-3">
+                      <CloseCircleOutlined className="text-white text-sm" />
+                    </div>
+                    <div>
+                      <Text className="font-semibold text-red-800">
+                        IPO Closes
+                      </Text>
+                      <Text className="text-red-600 text-sm block">
+                        Last day to apply
+                      </Text>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3">
+                      <TrophyOutlined className="text-white text-sm" />
+                    </div>
+                    <div>
+                      <Text className="font-semibold text-blue-800">
+                        Listing Date
+                      </Text>
+                      <Text className="text-blue-600 text-sm block">
+                        Trading begins
+                      </Text>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-red-50 to-red-100 border border-red-200">
-                  <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mr-3">
-                    <CloseCircleOutlined className="text-white text-sm" />
-                  </div>
-                  <div>
-                    <Text className="font-semibold text-red-800">
-                      IPO Closes
-                    </Text>
-                    <Text className="text-red-600 text-sm block">
-                      Last day to apply
-                    </Text>
-                  </div>
+                <Divider />
+
+                <div className="text-center">
+                  <Button
+                    type="primary"
+                    size="large"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 border-0 rounded-full px-8 font-semibold"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)",
+                      boxShadow: "0 4px 15px rgba(59, 130, 246, 0.4)",
+                    }}
+                    onClick={() => (window.location.href = "/ipo")}
+                  >
+                    View All IPOs
+                  </Button>
                 </div>
-
-                <div className="flex items-center p-3 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3">
-                    <TrophyOutlined className="text-white text-sm" />
-                  </div>
-                  <div>
-                    <Text className="font-semibold text-blue-800">
-                      Listing Date
-                    </Text>
-                    <Text className="text-blue-600 text-sm block">
-                      Trading begins
-                    </Text>
-                  </div>
-                </div>
-              </div>
-
-              <Divider />
-
-              <div className="text-center">
-                <Button
-                  type="primary"
-                  size="large"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 border-0 rounded-full px-8 font-semibold"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)",
-                    boxShadow: "0 4px 15px rgba(59, 130, 246, 0.4)",
-                  }}
-                  onClick={() => (window.location.href = "/ipo")}
-                >
-                  View All IPOs
-                </Button>
-              </div>
-            </Card>
-          </Col>
+              </Card>
+            </Col>
           </Row>
         </div>
 
         {/* Floating Action Buttons */}
-        <div className="fixed bottom-8 right-8 z-50 space-y-4">
+        <div className="fixed bottom-8 right-8 index-cls space-y-4">
           <Tooltip title="Go to Today" placement="left">
             <Button
               type="primary"

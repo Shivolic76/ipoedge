@@ -94,7 +94,9 @@
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     font-size: 14px !important;
     min-width: 80px !important;
     height: 36px !important;
@@ -106,15 +108,25 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select:hover,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select:hover {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select:hover,
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select:hover {
     border-color: #1890ff !important;
     box-shadow: 0 1px 4px rgba(24, 144, 255, 0.2) !important;
   }
 
   /* Mobile selector dropdown styling */
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selector,
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selector {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
@@ -122,8 +134,14 @@
     padding: 0 8px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selection-item,
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selection-item {
     line-height: 34px !important;
     font-weight: 500 !important;
     color: #333 !important;
@@ -194,7 +212,8 @@
 
 /* Background Gradient Animation */
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -264,18 +283,25 @@
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     min-width: 75px !important;
     font-size: 13px !important;
     height: 34px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch {
     font-size: 13px !important;
     height: 34px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper {
     height: 34px !important;
     line-height: 32px !important;
     min-width: 50px !important;
@@ -305,8 +331,14 @@
   }
 
   /* Additional mobile calendar improvements */
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selector,
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selector {
     border-radius: 6px !important;
     height: 32px !important;
     padding: 0 8px !important;
@@ -324,12 +356,17 @@
   }
 
   /* Mobile calendar mode switch styling */
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch {
     display: flex !important;
     gap: 4px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper {
     border-radius: 6px !important;
     font-size: 14px !important;
     padding: 0 12px !important;
@@ -345,20 +382,29 @@
     margin: 0 2px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper:hover {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper:hover {
     border-color: #1890ff !important;
     color: #1890ff !important;
     box-shadow: 0 1px 4px rgba(24, 144, 255, 0.2) !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper-checked {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper-checked {
     background: #1890ff !important;
     color: white !important;
     border-color: #1890ff !important;
     box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3) !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper-checked:hover {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper-checked:hover {
     background: #1890ff !important;
     color: white !important;
     box-shadow: 0 2px 6px rgba(24, 144, 255, 0.4) !important;
@@ -376,13 +422,17 @@
     min-height: 30px !important;
     padding: 0px !important;
   }
-
+  .index-cls {
+    z-index: 9999 !important;
+  }
   .mobile-calendar .ant-picker-calendar-date-value {
     font-size: 10px !important;
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     font-size: 12px !important;
     min-width: 80px !important;
   }
@@ -391,7 +441,11 @@
 /* Geometric Shapes */
 .geometric-shape {
   position: absolute;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -428,7 +482,16 @@
   height: 120px;
   bottom: 30%;
   left: 15%;
-  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
   animation: geometricFloat4 22s ease-in-out infinite;
 }
 
@@ -437,7 +500,18 @@
   height: 90px;
   top: 25%;
   left: 60%;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
   animation: geometricFloat5 16s ease-in-out infinite;
 }
 
@@ -451,36 +525,87 @@
 }
 
 @keyframes geometricFloat1 {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.6; }
-  33% { transform: translateY(-30px) translateX(20px) rotate(120deg); opacity: 0.8; }
-  66% { transform: translateY(20px) translateX(-15px) rotate(240deg); opacity: 0.4; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) rotate(120deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(20px) translateX(-15px) rotate(240deg);
+    opacity: 0.4;
+  }
 }
 
 @keyframes geometricFloat2 {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.5; }
-  50% { transform: translateY(-40px) translateX(-25px) rotate(180deg); opacity: 0.7; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-25px) rotate(180deg);
+    opacity: 0.7;
+  }
 }
 
 @keyframes geometricFloat3 {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); opacity: 0.7; }
-  25% { transform: translateY(-20px) translateX(30px) rotate(90deg) scale(1.2); opacity: 0.9; }
-  75% { transform: translateY(25px) translateX(-20px) rotate(270deg) scale(0.8); opacity: 0.5; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-20px) translateX(30px) rotate(90deg) scale(1.2);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(25px) translateX(-20px) rotate(270deg) scale(0.8);
+    opacity: 0.5;
+  }
 }
 
 @keyframes geometricFloat4 {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.4; }
-  50% { transform: translateY(-35px) translateX(40px) rotate(180deg); opacity: 0.8; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-35px) translateX(40px) rotate(180deg);
+    opacity: 0.8;
+  }
 }
 
 @keyframes geometricFloat5 {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); opacity: 0.6; }
-  33% { transform: translateY(-25px) translateX(-30px) rotate(144deg) scale(1.1); opacity: 0.8; }
-  66% { transform: translateY(30px) translateX(25px) rotate(288deg) scale(0.9); opacity: 0.4; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-25px) translateX(-30px) rotate(144deg) scale(1.1);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(30px) translateX(25px) rotate(288deg) scale(0.9);
+    opacity: 0.4;
+  }
 }
 
 @keyframes geometricFloat6 {
-  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
-  50% { transform: translateY(-45px) translateX(-35px) scale(1.3); opacity: 0.9; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-45px) translateX(-35px) scale(1.3);
+    opacity: 0.9;
+  }
 }
 
 /* Animated Particles */
@@ -572,7 +697,8 @@
 }
 
 @keyframes wave {
-  0%, 100% {
+  0%,
+  100% {
     clip-path: polygon(0 20%, 100% 30%, 100% 80%, 0 70%);
   }
   50% {
@@ -599,7 +725,11 @@
 .floating-circle {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   backdrop-filter: blur(10px);
   animation: float 20s ease-in-out infinite;
 }
@@ -650,7 +780,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) rotate(0deg);
     opacity: 0.3;
   }
@@ -688,7 +819,8 @@
 }
 
 @keyframes pulseSlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
   }
   50% {
@@ -745,7 +877,9 @@
   line-height: 1.2 !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-cell-selected .ant-picker-calendar-date-value {
+.enhanced-ipo-calendar
+  .ant-picker-cell-selected
+  .ant-picker-calendar-date-value {
   color: #3b82f6 !important;
 }
 
@@ -792,8 +926,12 @@
 }
 
 /* Year and Month Selectors */
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select {
   font-size: 15px !important;
   font-weight: 600 !important;
   color: #374151 !important;
@@ -806,16 +944,26 @@
   transition: all 0.2s ease !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select:hover,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select:hover {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select:hover,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select:hover {
   border-color: #3b82f6 !important;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
   transform: translateY(-1px) !important;
 }
 
 /* Selector dropdown styling */
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select
+  .ant-select-selector,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select
+  .ant-select-selector {
   border: none !important;
   box-shadow: none !important;
   background: transparent !important;
@@ -825,8 +973,14 @@
   align-items: center !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select
+  .ant-select-selection-item,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select
+  .ant-select-selection-item {
   line-height: 1 !important;
   font-weight: 600 !important;
   color: #374151 !important;
@@ -835,8 +989,14 @@
   height: 100% !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-arrow,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-arrow {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select
+  .ant-select-arrow,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select
+  .ant-select-arrow {
   color: #6b7280 !important;
   font-size: 12px !important;
 }
@@ -861,7 +1021,9 @@
   overflow: hidden !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:hover {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper:hover {
   border-color: #3b82f6 !important;
   color: #3b82f6 !important;
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
@@ -869,7 +1031,9 @@
   transform: translateY(-1px) !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper-checked {
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
   color: white !important;
   border-color: #3b82f6 !important;
@@ -877,7 +1041,9 @@
   transform: translateY(-1px) !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked:hover {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper-checked:hover {
   background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
   color: white !important;
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5) !important;
@@ -896,15 +1062,21 @@
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:first-child {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper:first-child {
   border-radius: 8px !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:last-child {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper:last-child {
   border-radius: 8px !important;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper::before {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper::before {
   display: none !important;
 }
 
@@ -961,7 +1133,9 @@
   }
 
   /* Year selector positioning */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select {
     grid-column: 1 !important;
     grid-row: 1 !important;
     justify-self: end !important;
@@ -969,7 +1143,9 @@
   }
 
   /* Month selector positioning */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     grid-column: 2 !important;
     grid-row: 1 !important;
     justify-self: start !important;
@@ -993,24 +1169,40 @@
   }
 
   /* Selector sizing and alignment */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     min-width: 100px !important;
     width: auto !important;
     max-width: 130px !important;
   }
 
   /* Mobile dropdown text alignment */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selector,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selector {
     height: 40px !important;
     display: flex !important;
     align-items: center !important;
     padding: 0 12px !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selection-item,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selection-item {
     line-height: 1 !important;
     display: flex !important;
     align-items: center !important;
@@ -1035,7 +1227,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:hover {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-radio-button-wrapper:hover {
     border-color: #3b82f6 !important;
     color: #3b82f6 !important;
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
@@ -1043,7 +1237,9 @@
     transform: translateY(-1px) !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-radio-button-wrapper-checked {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
     color: white !important;
     border-color: #3b82f6 !important;
@@ -1051,14 +1247,18 @@
     transform: translateY(-1px) !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked:hover {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-radio-button-wrapper-checked:hover {
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
     color: white !important;
     box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5) !important;
     transform: translateY(-2px) !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper::before {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-radio-button-wrapper::before {
     display: none !important;
   }
 }
@@ -1070,8 +1270,12 @@
   }
 
   /* Smaller sizing for very small screens */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     height: 38px !important;
     font-size: 14px !important;
     min-width: 85px !important;
@@ -1079,16 +1283,28 @@
   }
 
   /* Small mobile dropdown text alignment */
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selector,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selector {
     height: 36px !important;
     display: flex !important;
     align-items: center !important;
     padding: 0 10px !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select
+    .ant-select-selection-item,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select
+    .ant-select-selection-item {
     line-height: 1 !important;
     display: flex !important;
     align-items: center !important;
@@ -1096,11 +1312,15 @@
     font-size: 14px !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select {
     margin-right: 4px !important;
   }
 
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     margin-left: 4px !important;
   }
 
@@ -1124,12 +1344,16 @@
   align-items: center !important;
 }
 
-.mobile-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:first-child {
+.mobile-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper:first-child {
   border-radius: 6px !important;
   border-right: 1px solid #d9d9d9 !important;
 }
 
-.mobile-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:last-child {
+.mobile-calendar
+  .ant-picker-calendar-header
+  .ant-radio-button-wrapper:last-child {
   border-radius: 6px !important;
 }
 
@@ -1187,7 +1411,10 @@
 }
 
 /* Week Header */
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-date-panel .ant-picker-cell {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-date-panel
+  .ant-picker-cell {
   background: linear-gradient(135deg, #f8faff 0%, #e6f7ff 100%) !important;
   border-radius: 8px !important;
   font-weight: 600 !important;
@@ -1228,17 +1455,21 @@
   .enhanced-ipo-calendar .ant-picker-calendar-header {
     padding: 10px 0 !important;
   }
-  
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-year-select,
+  .enhanced-ipo-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     font-size: 14px !important;
   }
-  
+
   .enhanced-ipo-calendar .ant-picker-calendar-date-content {
     min-height: 40px !important;
     padding: 2px !important;
   }
-  
+
   .enhanced-ipo-calendar .ant-picker-cell {
     margin: 1px !important;
   }
@@ -1246,7 +1477,8 @@
 
 /* Animation for event items */
 @keyframes eventPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -1291,13 +1523,18 @@
 }
 
 .calendar-loading::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(24, 144, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(24, 144, 255, 0.1),
+    transparent
+  );
   animation: shimmer 1.5s infinite;
   z-index: 1;
 }
@@ -1347,7 +1584,8 @@
 }
 
 @keyframes floatingPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
   }
@@ -1371,7 +1609,8 @@
 
 /* Gradient Background Animation */
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -1395,13 +1634,18 @@
 }
 
 .stats-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
   transition: left 0.6s ease;
 }
 
@@ -1428,13 +1672,18 @@
 }
 
 .event-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.6s ease;
 }
 
@@ -1686,7 +1935,8 @@
 
 /* Allotment-Style Animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
   }
   50% {
@@ -1695,7 +1945,8 @@
 }
 
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -1704,7 +1955,8 @@
 }
 
 @keyframes breathe {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
@@ -1715,7 +1967,8 @@
 }
 
 @keyframes wiggle {
-  0%, 7% {
+  0%,
+  7% {
     transform: rotateZ(0);
   }
   15% {
@@ -1733,7 +1986,8 @@
   35% {
     transform: rotateZ(-4deg);
   }
-  40%, 100% {
+  40%,
+  100% {
     transform: rotateZ(0);
   }
 }
@@ -1773,7 +2027,8 @@
 }
 
 @keyframes calendarPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
   }
   25% {
@@ -1795,13 +2050,18 @@
 }
 
 .calendar-card-animate::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   animation: cardShimmer 3s ease-in-out infinite;
   z-index: 1;
 }
@@ -1836,13 +2096,18 @@
 }
 
 .calendar-header-icon::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: iconShimmer 2s ease-in-out infinite;
 }
 
@@ -1857,10 +2122,15 @@
 
 /* Bounce Slow Animation */
 @keyframes bounce-slow {
-  0%, 20%, 53%, 80%, 100% {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
     transform: translate3d(0, 0, 0);
   }
-  40%, 43% {
+  40%,
+  43% {
     transform: translate3d(0, -8px, 0);
   }
   70% {
@@ -1902,13 +2172,17 @@
 }
 
 .enhanced-ipo-calendar .ant-picker-cell::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(24, 144, 255, 0.1), rgba(64, 169, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(24, 144, 255, 0.1),
+    rgba(64, 169, 255, 0.1)
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 12px;
@@ -1936,8 +2210,12 @@
 }
 
 /* Simplified Calendar Selectors - No Animations */
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-year-select,
+.enhanced-ipo-calendar
+  .ant-picker-calendar-header
+  .ant-picker-calendar-month-select {
   position: relative;
 }
 
@@ -1949,13 +2227,18 @@
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     min-width: 70px !important;
     font-size: 13px !important;
     height: 32px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper {
     font-size: 11px !important;
     padding: 4px 8px !important;
     height: 28px !important;
@@ -2050,18 +2333,25 @@
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-month-select {
     min-width: 65px !important;
     max-width: 80px !important;
     font-size: 12px !important;
     height: 30px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch {
     margin-top: 4px !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+  .mobile-calendar
+    .ant-picker-calendar-header
+    .ant-picker-calendar-mode-switch
+    .ant-radio-button-wrapper {
     font-size: 10px !important;
     padding: 2px 6px !important;
     height: 26px !important;
