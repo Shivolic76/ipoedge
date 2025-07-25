@@ -32,10 +32,12 @@ const CalendarPage: React.FC = () => {
   const { ipos, loading } = useIPOs();
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isVerySmall, setIsVerySmall] = useState(window.innerWidth < 425);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
+      setIsVerySmall(window.innerWidth < 425);
     };
 
     window.addEventListener('resize', handleResize);
@@ -316,30 +318,32 @@ const CalendarPage: React.FC = () => {
           </div>
 
           {/* Title */}
-          <Title level={1} className="mb-4 text-white text-3xl md:text-6xl font-bold tracking-tight">
+          <Title level={1} className={`mb-4 text-white ${isVerySmall ? 'text-2xl' : 'text-3xl md:text-6xl'} font-bold tracking-tight`}>
             <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-              IPO Event Calendar
+              {isVerySmall ? 'IPO Calendar' : 'IPO Event Calendar'}
             </span>
           </Title>
 
           {/* Description */}
-          <Text className="text-white/90 text-base md:text-xl block max-w-4xl mx-auto leading-relaxed mb-8 md:mb-16">
-            Track important IPO dates including opening, closing, and listing dates. Never
-            miss an investment opportunity with our comprehensive calendar view.
+          <Text className={`text-white/90 ${isVerySmall ? 'text-sm' : 'text-base md:text-xl'} block max-w-4xl mx-auto leading-relaxed ${isVerySmall ? 'mb-6' : 'mb-8 md:mb-16'}`}>
+            {isVerySmall
+              ? 'Track IPO dates and never miss opportunities.'
+              : 'Track important IPO dates including opening, closing, and listing dates. Never miss an investment opportunity with our comprehensive calendar view.'
+            }
           </Text>
 
           {/* Stats Cards - Modern Design */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-7xl mx-auto">
+          <div className={`grid grid-cols-2 lg:grid-cols-4 ${isVerySmall ? 'gap-2' : 'gap-3 md:gap-6'} max-w-7xl mx-auto`}>
             {/* Total IPOs */}
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="text-center relative z-10 py-2 md:py-4">
-                  <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
+                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
                     {stats.total}
                   </div>
-                  <div className="text-xs md:text-base text-white/90 font-medium">
-                    Total IPOs
+                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
+                    {isVerySmall ? 'Total' : 'Total IPOs'}
                   </div>
                 </div>
               </Card>
@@ -349,11 +353,11 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-green-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="text-center relative z-10 py-2 md:py-4">
-                  <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
+                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
                     {stats.current}
                   </div>
-                  <div className="text-xs md:text-base text-white/90 font-medium">
+                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
                     Current
                   </div>
                 </div>
@@ -364,11 +368,11 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="text-center relative z-10 py-2 md:py-4">
-                  <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
+                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
                     {stats.upcoming}
                   </div>
-                  <div className="text-xs md:text-base text-white/90 font-medium">
+                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
                     Upcoming
                   </div>
                 </div>
@@ -379,11 +383,11 @@ const CalendarPage: React.FC = () => {
             <div className="group">
               <Card className="bg-white/10 border-0 backdrop-blur-md hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="text-center relative z-10 py-2 md:py-4">
-                  <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-center relative z-10 ${isVerySmall ? 'py-1' : 'py-2 md:py-4'}`}>
+                  <div className={`${isVerySmall ? 'text-lg' : 'text-2xl md:text-4xl'} font-bold text-white ${isVerySmall ? 'mb-0' : 'mb-1 md:mb-2'} group-hover:scale-110 transition-transform duration-300`}>
                     {stats.listed}
                   </div>
-                  <div className="text-xs md:text-base text-white/90 font-medium">
+                  <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-base'} text-white/90 font-medium`}>
                     Listed
                   </div>
                 </div>
@@ -392,8 +396,8 @@ const CalendarPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="px-1 md:px-4">
-          <Row gutter={[8, 12]} className={`${isMobile ? 'min-h-[350px]' : 'min-h-[600px]'}`}>
+        <div className={`${isVerySmall ? 'px-1' : 'px-1 md:px-4'}`}>
+          <Row gutter={[isMobile ? 4 : 8, isMobile ? 8 : 12]} className={`${isMobile ? 'min-h-[500px]' : 'min-h-[600px]'}`}>
             {/* Enhanced Calendar */}
             <Col xs={24} lg={16}>
               <Card
@@ -401,21 +405,21 @@ const CalendarPage: React.FC = () => {
                 style={{
                   background: "rgba(255, 255, 255, 0.98)",
                   backdropFilter: "blur(20px)",
-                  borderRadius: isMobile ? "16px" : "24px",
-                  minHeight: isMobile ? "400px" : "870px",
+                  borderRadius: isVerySmall ? "12px" : isMobile ? "16px" : "24px",
+                  minHeight: isVerySmall ? "450px" : isMobile ? "500px" : "870px",
                   height: isMobile ? "auto" : "600px",
                 }}
                 title={
-                  <div className="flex items-center space-x-2 md:space-x-4 py-2 md:py-3">
-                    <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                      <CalendarOutlined className="text-white text-sm md:text-xl" />
+                  <div className={`flex items-center ${isVerySmall ? 'space-x-2 py-1' : 'space-x-2 md:space-x-4 py-2 md:py-3'}`}>
+                    <div className={`${isVerySmall ? 'w-6 h-6' : 'w-8 h-8 md:w-12 md:h-12'} bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg`}>
+                      <CalendarOutlined className={`text-white ${isVerySmall ? 'text-xs' : 'text-sm md:text-xl'}`} />
                     </div>
                     <div>
-                      <div className="text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      <div className={`${isVerySmall ? 'text-sm' : 'text-lg md:text-2xl'} font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}>
                         IPO Calendar
                       </div>
-                      <div className="text-xs md:text-sm text-gray-500">
-                        Track important IPO dates • Click dates to view details
+                      <div className={`${isVerySmall ? 'text-xs' : 'text-xs md:text-sm'} text-gray-500`}>
+                        {isVerySmall ? 'Track IPO dates' : 'Track important IPO dates • Click dates to view details'}
                       </div>
                     </div>
                   </div>
@@ -425,11 +429,12 @@ const CalendarPage: React.FC = () => {
                   body: {
                     height: isMobile ? "auto" : "calc(100% - 100px)",
                     overflow: isMobile ? "visible" : "hidden",
-                    padding: isMobile ? "8px" : "16px",
+                    padding: isVerySmall ? "8px" : isMobile ? "12px" : "16px",
+                    minHeight: isVerySmall ? "400px" : isMobile ? "450px" : "auto",
                   },
                 }}
               >
-                <div className={`calendar-container ${isMobile ? 'h-auto' : '!h-full'}`}>
+                <div className={`calendar-container ${isMobile ? 'h-auto overflow-visible' : '!h-full'}`}>
                   {loading ? (
                     <CalendarSkeleton />
                   ) : (
@@ -440,7 +445,10 @@ const CalendarPage: React.FC = () => {
                       style={{
                         background: "transparent",
                         height: isMobile ? "auto" : "100%",
-                        minHeight: isMobile ? "450px" : "auto",
+                        minHeight: isVerySmall ? "350px" : isMobile ? "400px" : "auto",
+                        width: "100%",
+                        overflow: isMobile ? "visible" : "hidden",
+                        fontSize: isVerySmall ? "11px" : "inherit",
                       }}
                     />
                   )}

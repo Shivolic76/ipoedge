@@ -15,17 +15,29 @@
 
 /* Compact Calendar Styles */
 .compact-calendar .ant-picker-calendar-date-content {
-  min-height: 60px !important;
-  padding: 4px !important;
+  min-height: 65px !important;
+  padding: 6px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  overflow: visible !important;
 }
 
 .compact-calendar .ant-picker-cell {
-  height: 65px !important;
-  border: 1px solid #f0f0f0 !important;
+  height: 70px !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 12px !important;
-  margin: 2px !important;
-  transition: all 0.3s ease !important;
+  margin: 3px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   background: white !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.compact-calendar .ant-picker-cell:hover {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+  transform: translateY(-1px) !important;
 }
 
 .compact-calendar .ant-picker-cell:hover {
@@ -68,30 +80,76 @@
   }
 
   .mobile-calendar .ant-picker-calendar-header {
-    padding: 8px 0 !important;
-    margin-bottom: 8px !important;
+    padding: 12px !important;
+    margin-bottom: 16px !important;
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
+    align-items: center !important;
     gap: 8px !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    min-height: 56px !important;
   }
 
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
   .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
     font-size: 14px !important;
-    padding: 4px 8px !important;
     min-width: 80px !important;
+    height: 36px !important;
+    border-radius: 6px !important;
+    border: 1px solid #d9d9d9 !important;
+    background: white !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
   }
 
-  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
-    font-size: 12px !important;
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select:hover,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select:hover {
+    border-color: #1890ff !important;
+    box-shadow: 0 1px 4px rgba(24, 144, 255, 0.2) !important;
+  }
+
+  /* Mobile selector dropdown styling */
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    height: 34px !important;
+    padding: 0 8px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+    line-height: 34px !important;
+    font-weight: 500 !important;
+    color: #333 !important;
   }
 
   /* Mobile calendar body */
   .mobile-calendar .ant-picker-body {
-    padding: 4px !important;
+    padding: 8px !important;
     width: 100% !important;
-    overflow-x: auto !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar {
+    width: 100% !important;
+    min-height: 400px !important;
+    height: auto !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-date-panel {
+    width: 100% !important;
+  }
+
+  .mobile-calendar .ant-picker-content {
+    width: 100% !important;
+    overflow: visible !important;
   }
 
   .mobile-calendar .ant-picker-content {
@@ -190,16 +248,120 @@
   /* Force mobile calendar to be responsive */
   .mobile-calendar {
     width: 100% !important;
-    overflow-x: auto !important;
+    overflow: visible !important;
+    max-width: 100% !important;
   }
 
   .mobile-calendar .ant-picker-calendar-header {
     flex-wrap: wrap !important;
     gap: 8px !important;
+    padding: 12px 8px !important;
+    justify-content: center !important;
   }
 
   .mobile-calendar .ant-picker-calendar-header > * {
     flex-shrink: 0 !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    min-width: 75px !important;
+    font-size: 13px !important;
+    height: 34px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+    font-size: 13px !important;
+    height: 34px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+    height: 34px !important;
+    line-height: 32px !important;
+    min-width: 50px !important;
+    font-size: 13px !important;
+  }
+
+  /* Ensure calendar table fits properly */
+  .mobile-calendar .ant-picker-calendar-date-panel {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .mobile-calendar table {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .mobile-calendar .ant-picker-cell {
+    min-width: 35px !important;
+    height: 35px !important;
+    padding: 1px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-date-content {
+    min-height: 30px !important;
+    font-size: 12px !important;
+  }
+
+  /* Additional mobile calendar improvements */
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+    border-radius: 6px !important;
+    height: 32px !important;
+    padding: 0 8px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-select-selection-item {
+    line-height: 30px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+
+  /* Ensure proper spacing between header elements */
+  .mobile-calendar .ant-picker-calendar-header > div {
+    margin: 2px !important;
+  }
+
+  /* Mobile calendar mode switch styling */
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+    display: flex !important;
+    gap: 4px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
+    height: 36px !important;
+    line-height: 34px !important;
+    border: 1px solid #d9d9d9 !important;
+    background: white !important;
+    color: #666 !important;
+    font-weight: 500 !important;
+    min-width: 55px !important;
+    text-align: center !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    margin: 0 2px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper:hover {
+    border-color: #1890ff !important;
+    color: #1890ff !important;
+    box-shadow: 0 1px 4px rgba(24, 144, 255, 0.2) !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper-checked {
+    background: #1890ff !important;
+    color: white !important;
+    border-color: #1890ff !important;
+    box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3) !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper-checked:hover {
+    background: #1890ff !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(24, 144, 255, 0.4) !important;
   }
 }
 
@@ -537,6 +699,76 @@
 .enhanced-ipo-calendar .ant-picker-calendar {
   background: transparent !important;
   border: none !important;
+  padding: 8px !important;
+}
+
+/* Calendar body improvements */
+.enhanced-ipo-calendar .ant-picker-body {
+  padding: 12px 8px !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-content {
+  width: 100% !important;
+  overflow-x: auto !important;
+  border-radius: 12px !important;
+}
+
+/* Calendar table header styling */
+.enhanced-ipo-calendar .ant-picker-content thead th {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  color: #374151 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  padding: 12px 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px 8px 0 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  position: relative !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-content thead th:first-child {
+  border-radius: 8px 0 0 0 !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-content thead th:last-child {
+  border-radius: 0 8px 0 0 !important;
+}
+
+/* Calendar date number styling */
+.enhanced-ipo-calendar .ant-picker-calendar-date-value {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 4px !important;
+  line-height: 1.2 !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-cell-selected .ant-picker-calendar-date-value {
+  color: #3b82f6 !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-cell-today .ant-picker-calendar-date-value {
+  color: #059669 !important;
+  font-weight: 700 !important;
+}
+
+/* Calendar cell improvements */
+.enhanced-ipo-calendar .ant-picker-cell-in-view {
+  border-color: #e2e8f0 !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-cell-selected {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2) !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-cell-today {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2) !important;
 }
 
 .enhanced-ipo-calendar .ant-picker-panel {
@@ -545,55 +777,360 @@
 }
 
 .enhanced-ipo-calendar .ant-picker-calendar-header {
-  padding: 20px 0 !important;
-  border-bottom: 2px solid #f0f0f0 !important;
-  margin-bottom: 20px !important;
+  padding: 20px 24px !important;
+  margin-bottom: 24px !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  min-height: 70px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
+/* Year and Month Selectors */
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
-  font-size: 18px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
-  color: #1890ff !important;
-  border: 2px solid #e6f7ff !important;
-  border-radius: 12px !important;
-  background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%) !important;
-  transition: all 0.3s ease !important;
+  color: #374151 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  background: white !important;
+  min-width: 100px !important;
+  height: 42px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease !important;
 }
 
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select:hover,
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select:hover {
-  border-color: #1890ff !important;
-  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2) !important;
-  transform: translateY(-2px) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+  transform: translateY(-1px) !important;
 }
 
+/* Selector dropdown styling */
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  height: 40px !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-arrow,
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-arrow {
+  color: #6b7280 !important;
+  font-size: 12px !important;
+}
+
+/* Month/Year Toggle Buttons */
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper {
-  border: 2px solid #e6f7ff !important;
-  border-radius: 12px !important;
-  background: linear-gradient(135deg, #f8faff 0%, #e6f7ff 100%) !important;
-  color: #1890ff !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  margin: 0 4px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  background: white !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  margin: 0 3px !important;
+  height: 42px !important;
+  line-height: 40px !important;
+  padding: 0 20px !important;
+  min-width: 70px !important;
+  text-align: center !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:hover {
-  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%) !important;
-  color: white !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3) !important;
+  border-color: #3b82f6 !important;
+  color: #3b82f6 !important;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+  transform: translateY(-1px) !important;
 }
 
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked {
-  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%) !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
   color: white !important;
-  border-color: #1890ff !important;
-  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-1px) !important;
 }
 
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked:hover {
-  background: linear-gradient(135deg, #0050b3 0%, #1890ff 100%) !important;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Radio group container styling */
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-group {
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  background: #f8fafc !important;
+  padding: 6px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:first-child {
+  border-radius: 8px !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:last-child {
+  border-radius: 8px !important;
+}
+
+.enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper::before {
+  display: none !important;
+}
+
+/* Calendar Card Title Styling */
+.ant-card-head-title {
+  padding: 0 !important;
+}
+
+.ant-card-head-title > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  padding: 16px 0 !important;
+}
+
+.ant-card-head-title .w-8.h-8,
+.ant-card-head-title .w-12.h-12 {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.ant-card-head-title .w-8.h-8:hover,
+.ant-card-head-title .w-12.h-12:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+.ant-card-head-title .text-lg,
+.ant-card-head-title .text-2xl {
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  margin-bottom: 2px !important;
+}
+
+.ant-card-head-title .text-xs,
+.ant-card-head-title .text-sm {
+  font-weight: 500 !important;
+  opacity: 0.8 !important;
+  line-height: 1.4 !important;
+}
+
+/* Mobile calendar header improvements */
+@media (max-width: 768px) {
+  .enhanced-ipo-calendar .ant-picker-calendar-header {
+    padding: 16px 12px !important;
+    gap: 16px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    grid-gap: 12px !important;
+    justify-items: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Year selector positioning */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    margin-right: 6px !important;
+  }
+
+  /* Month selector positioning */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: start !important;
+    margin-left: 6px !important;
+  }
+
+  /* Radio group positioning - Clean desktop-like styling */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-group {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-self: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    gap: 8px !important;
+  }
+
+  /* Selector sizing and alignment */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    min-width: 100px !important;
+    width: auto !important;
+    max-width: 130px !important;
+  }
+
+  /* Mobile dropdown text alignment */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 12px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper {
+    flex: 1 !important;
+    min-width: 80px !important;
+    height: 42px !important;
+    line-height: 40px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    background: white !important;
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    text-align: center !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:hover {
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: white !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper-checked:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: white !important;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .enhanced-ipo-calendar .ant-picker-calendar-header {
+    padding: 12px 8px !important;
+    grid-gap: 10px !important;
+  }
+
+  /* Smaller sizing for very small screens */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    height: 38px !important;
+    font-size: 14px !important;
+    min-width: 85px !important;
+    max-width: 110px !important;
+  }
+
+  /* Small mobile dropdown text alignment */
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selector,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selector {
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 10px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select .ant-select-selection-item,
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select .ant-select-selection-item {
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    font-size: 14px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select {
+    margin-right: 4px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    margin-left: 4px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-group {
+    max-width: 260px !important;
+    gap: 6px !important;
+  }
+
+  .enhanced-ipo-calendar .ant-picker-calendar-header .ant-radio-button-wrapper {
+    height: 38px !important;
+    line-height: 36px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+    min-width: 70px !important;
+  }
+}
+/* Mobile radio group styling */
+.mobile-calendar .ant-picker-calendar-header .ant-radio-group {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
+.mobile-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:first-child {
+  border-radius: 6px !important;
+  border-right: 1px solid #d9d9d9 !important;
+}
+
+.mobile-calendar .ant-picker-calendar-header .ant-radio-button-wrapper:last-child {
+  border-radius: 6px !important;
 }
 
 /* Calendar Date Cells */
@@ -695,7 +1232,6 @@
   .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
   .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
     font-size: 14px !important;
-    padding: 4px 8px !important;
   }
   
   .enhanced-ipo-calendar .ant-picker-calendar-date-content {
@@ -1033,14 +1569,43 @@
     margin-bottom: 10px !important;
   }
 
+  /* Mobile calendar container adjustments */
+  .calendar-container {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Ensure calendar header is always visible and properly styled */
+  .mobile-calendar .ant-picker-calendar-header {
+    position: relative !important;
+    z-index: 10 !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    margin: 0 0 16px 0 !important;
+    padding: 12px 8px !important;
+  }
+
   /* Adjust card heights for mobile */
   .ant-card {
     height: auto !important;
   }
 
   .ant-card-body {
-    max-height: 300px !important;
-    overflow-y: auto !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Mobile calendar specific adjustments */
+  .mobile-calendar {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar {
+    overflow: visible !important;
+    height: auto !important;
   }
 }
 
@@ -1370,28 +1935,209 @@
   position: relative;
 }
 
-/* Calendar Month/Year Selector Animations */
+/* Simplified Calendar Selectors - No Animations */
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
 .enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
   position: relative;
-  overflow: hidden;
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select::before,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
+/* Additional responsive improvements */
+@media (max-width: 480px) {
+  .mobile-calendar .ant-picker-calendar-header {
+    padding: 8px 4px !important;
+    gap: 6px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    min-width: 70px !important;
+    font-size: 13px !important;
+    height: 32px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    height: 28px !important;
+    line-height: 18px !important;
+  }
 }
 
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select:hover::before,
-.enhanced-ipo-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select:hover::before {
-  left: 100%;
+/* Extra small screens - below 425px */
+@media (max-width: 425px) {
+  /* IPO Calendar Card Title Optimizations */
+  .ant-card-head {
+    padding: 8px 12px !important;
+    min-height: auto !important;
+  }
+
+  .ant-card-head-title {
+    padding: 4px 0 !important;
+    font-size: 14px !important;
+  }
+
+  /* Calendar title section improvements */
+  .ant-card-head-title .flex {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  /* Icon container adjustments */
+  .ant-card-head-title .w-8 {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+  }
+
+  .ant-card-head-title .md\\:w-12 {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Title text adjustments */
+  .ant-card-head-title .text-lg {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+  }
+
+  .ant-card-head-title .md\\:text-2xl {
+    font-size: 14px !important;
+  }
+
+  /* Subtitle text adjustments */
+  .ant-card-head-title .text-xs {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    margin-top: 2px !important;
+  }
+
+  .ant-card-head-title .md\\:text-sm {
+    font-size: 10px !important;
+  }
+
+  /* Calendar icon size */
+  .ant-card-head-title .text-sm {
+    font-size: 12px !important;
+  }
+
+  .ant-card-head-title .md\\:text-xl {
+    font-size: 12px !important;
+  }
+
+  /* Card body padding adjustments */
+  .ant-card-body {
+    padding: 8px !important;
+  }
+
+  /* Calendar container adjustments */
+  .calendar-container {
+    padding: 4px !important;
+  }
+
+  /* Mobile calendar specific adjustments for very small screens */
+  .mobile-calendar {
+    font-size: 11px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header {
+    padding: 6px 4px !important;
+    gap: 4px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-year-select,
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+    min-width: 65px !important;
+    max-width: 80px !important;
+    font-size: 12px !important;
+    height: 30px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+    margin-top: 4px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch .ant-radio-button-wrapper {
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+    height: 26px !important;
+    line-height: 20px !important;
+  }
+
+  /* Calendar cells for very small screens */
+  .mobile-calendar .ant-picker-cell {
+    height: 32px !important;
+    min-width: 32px !important;
+    font-size: 10px !important;
+    padding: 0px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-date-content {
+    min-height: 28px !important;
+    padding: 0px !important;
+    font-size: 10px !important;
+  }
+
+  .mobile-calendar .ant-picker-calendar-date-value {
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Event indicators for very small screens */
+  .mobile-calendar .w-6 {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 8px !important;
+  }
+
+  /* Stats cards adjustments for very small screens */
+  .stats-card {
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .stats-card .text-2xl {
+    font-size: 1.1rem !important;
+  }
+
+  .stats-card .md\\:text-4xl {
+    font-size: 1.1rem !important;
+  }
+
+  .stats-card .text-xs {
+    font-size: 0.65rem !important;
+  }
+
+  .stats-card .md\\:text-base {
+    font-size: 0.65rem !important;
+  }
+
+  /* Row and column spacing adjustments */
+  .ant-row {
+    margin-left: -2px !important;
+    margin-right: -2px !important;
+  }
+
+  .ant-col {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+
+  /* Container padding adjustments */
+  .px-1 {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  /* Ensure proper text wrapping */
+  .ant-card-head-title div {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
 }
 
 /* Dark mode support (future enhancement) */
