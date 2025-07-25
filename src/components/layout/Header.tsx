@@ -132,12 +132,12 @@ const Header: React.FC = () => {
   const getSelectedKeys = () => {
     const path = location.pathname;
     if (path === ROUTES.HOME) return ['home'];
+    if (path === ROUTES.ALLOTMENT || path.startsWith('/ipo-allotment-status')) return ['allotment'];
+    if (path === ROUTES.CALENDAR) return ['calendar'];
     if (path.startsWith('/ipo')) return ['ipo'];
     if (path.startsWith('/buyback')) return ['buyback'];
     if (path === ROUTES.BROKERS) return ['brokers'];
     if (path === ROUTES.BIDS) return ['bids'];
-    if (path === ROUTES.ALLOTMENT) return ['allotment'];
-    if (path === ROUTES.CALENDAR) return ['calendar'];
     return [];
   };
 
