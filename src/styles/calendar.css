@@ -1853,10 +1853,6 @@
     right: 16px !important;
   }
 
-  /* Add safe area for floating buttons */
-  .floating-safe-area {
-    padding-bottom: 120px !important;
-  }
 }
 
 /* Tablet specific adjustments */
@@ -1963,11 +1959,6 @@
   .index-cls {
     z-index: 10000 !important;
     position: fixed !important;
-  }
-
-  /* Add margin bottom to page content to prevent overlap with floating buttons */
-  .min-h-screen {
-    padding-bottom: 120px !important;
   }
 
   /* Ensure footer doesn't interfere with floating buttons */

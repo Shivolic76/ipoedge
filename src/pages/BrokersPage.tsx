@@ -271,9 +271,11 @@ const BrokersPage: React.FC = () => {
               pagination={{
                 pageSize: 10,
                 showSizeChanger: true,
-                showQuickJumper: true,
+                showQuickJumper: window.innerWidth >= 768,
+                simple: window.innerWidth < 768,
                 showTotal: (total, range) =>
-                  `${range[0]}-${range[1]} of ${total} brokers`
+                  `${range[0]}-${range[1]} of ${total} brokers`,
+                className: "pagination-center"
               }}
             />
           </Card>

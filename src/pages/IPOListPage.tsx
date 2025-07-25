@@ -281,19 +281,72 @@ const IPOListPage: React.FC = () => {
 
             {/* Pagination */}
             {pagination && pagination.totalPages > 1 && (
-              <div className="text-center">
-                <Pagination
-                  current={currentPage}
-                  total={pagination.total}
-                  pageSize={pageSize}
-                  showSizeChanger
-                  showQuickJumper
-                  showTotal={(total, range) =>
-                    `${range[0]}-${range[1]} of ${total} IPOs`
-                  }
-                  onChange={handlePageChange}
-                  pageSizeOptions={['12', '24', '48']}
-                />
+              <div className="flex flex-col items-center space-y-4 mt-8">
+                {/* Desktop Pagination */}
+                <div className="hidden md:flex justify-center">
+                  <Pagination
+                    current={currentPage}
+                    total={pagination.total}
+                    pageSize={pageSize}
+                    showSizeChanger
+                    showQuickJumper
+                    showTotal={(total, range) =>
+                      `${range[0]}-${range[1]} of ${total} IPOs`
+                    }
+                    onChange={handlePageChange}
+                    pageSizeOptions={['12', '24', '48']}
+                    className="pagination-center"
+                  />
+                </div>
+
+                {/* Mobile Pagination */}
+                <div className="flex md:hidden items-center justify-center space-x-3">
+                  <Button
+                    type="default"
+                    disabled={currentPage === 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    className="mobile-pagination-btn flex items-center justify-center"
+                  >
+                    <span>← Previous</span>
+                  </Button>
+
+                  <div className="flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg min-w-[120px] justify-center">
+                    <span className="text-sm font-medium text-blue-700">
+                      {currentPage} / {pagination.totalPages}
+                    </span>
+                  </div>
+
+                  <Button
+                    type="default"
+                    disabled={currentPage === pagination.totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    className="mobile-pagination-btn flex items-center justify-center"
+                  >
+                    <span>Next →</span>
+                  </Button>
+                </div>
+
+                {/* Mobile Page Size Selector */}
+                <div className="flex md:hidden items-center justify-center space-x-2">
+                  <span className="text-sm text-gray-600">Items per page:</span>
+                  <Select
+                    value={pageSize}
+                    onChange={(value) => handlePageChange(1, value)}
+                    size="small"
+                    className="w-20"
+                  >
+                    <Option value={12}>12</Option>
+                    <Option value={24}>24</Option>
+                    <Option value={48}>48</Option>
+                  </Select>
+                </div>
+
+                {/* Mobile Total Count */}
+                <div className="flex md:hidden justify-center">
+                  <span className="text-sm text-gray-500">
+                    {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, pagination.total)} of {pagination.total} IPOs
+                  </span>
+                </div>
               </div>
             )}
           </>
