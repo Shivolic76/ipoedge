@@ -401,3 +401,41 @@
 .floating-button-container .pointer-events-none {
   pointer-events: none;
 }
+
+/* Mobile floating button enhancements */
+@media (max-width: 768px) {
+  .floating-button-container {
+    z-index: 10000 !important;
+    position: fixed !important;
+  }
+
+  .floating-button-container button {
+    z-index: 10001 !important;
+  }
+
+  /* Ensure floating buttons are always visible */
+  .floating-action-button {
+    z-index: 10001 !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  /* Add subtle animation for better UX */
+  .floating-action-button:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2), 0 6px 18px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* Very small screens adjustments */
+@media (max-width: 480px) {
+  .floating-button-container {
+    bottom: 16px !important;
+    right: 12px !important;
+  }
+
+  .floating-action-button {
+    width: 48px !important;
+    height: 48px !important;
+  }
+}

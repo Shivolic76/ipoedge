@@ -817,13 +817,13 @@ const CalendarPage: React.FC = () => {
         </div>
 
         {/* Floating Action Buttons */}
-        <div className="fixed bottom-8 right-8 index-cls space-y-4">
+        <div className="fixed bottom-8 right-8 index-cls mobile-floating-fix floating-container-fix space-y-4">
           <Tooltip title="Go to Today" placement="left">
             <Button
               type="primary"
               shape="circle"
               size="large"
-              className="floating-action-btn w-14 h-14 shadow-2xl border-0 flex items-center justify-center"
+              className="floating-action-btn mobile-floating-button w-14 h-14 shadow-2xl border-0 flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
                 boxShadow: "0 8px 25px rgba(255, 107, 107, 0.4)",
@@ -841,7 +841,7 @@ const CalendarPage: React.FC = () => {
               type="primary"
               shape="circle"
               size="large"
-              className="floating-action-btn w-14 h-14 shadow-2xl border-0 flex items-center justify-center"
+              className="floating-action-btn mobile-floating-button w-14 h-14 shadow-2xl border-0 flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, #52c41a 0%, #73d13d 100%)",
                 boxShadow: "0 8px 25px rgba(82, 196, 26, 0.4)",

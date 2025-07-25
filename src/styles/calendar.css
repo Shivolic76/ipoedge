@@ -411,6 +411,33 @@
   }
 }
 
+/* Mobile floating button fixes - Apply to all mobile screens */
+@media (max-width: 768px) {
+  .index-cls {
+    z-index: 9999 !important;
+    position: fixed !important;
+  }
+
+  /* Ensure floating buttons are always visible above footer */
+  .floating-action-btn {
+    z-index: 9999 !important;
+    position: relative !important;
+  }
+
+  /* Mobile-specific floating button positioning */
+  .index-cls {
+    bottom: 20px !important;
+    right: 16px !important;
+  }
+
+  /* Adjust floating button size for better mobile UX */
+  .floating-action-btn {
+    width: 56px !important;
+    height: 56px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
 /* Extra small screens */
 @media (max-width: 480px) {
   .mobile-calendar .ant-picker-cell {
@@ -422,9 +449,7 @@
     min-height: 30px !important;
     padding: 0px !important;
   }
-  .index-cls {
-    z-index: 9999 !important;
-  }
+
   .mobile-calendar .ant-picker-calendar-date-value {
     font-size: 10px !important;
   }
@@ -435,6 +460,17 @@
     .ant-picker-calendar-month-select {
     font-size: 12px !important;
     min-width: 80px !important;
+  }
+
+  /* Smaller floating buttons for very small screens */
+  .index-cls {
+    bottom: 16px !important;
+    right: 12px !important;
+  }
+
+  .floating-action-btn {
+    width: 48px !important;
+    height: 48px !important;
   }
 }
 
@@ -1555,6 +1591,36 @@
   border-radius: 12px;
 }
 
+/* Critical mobile floating button fixes */
+@media screen and (max-width: 768px) {
+  /* Force floating buttons to stay on top */
+  .index-cls,
+  .mobile-floating-fix {
+    z-index: 10000 !important;
+    position: fixed !important;
+    pointer-events: auto !important;
+  }
+
+  .floating-action-btn,
+  .mobile-floating-button {
+    z-index: 10001 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure no interference from other elements */
+  .ant-layout-footer,
+  .ant-footer {
+    z-index: 1 !important;
+    position: relative !important;
+  }
+
+  /* Safe area for floating buttons */
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+  }
+}
+
 /* Print styles */
 @media print {
   .enhanced-ipo-calendar {
@@ -1568,6 +1634,13 @@
 
   .enhanced-ipo-calendar .ant-picker-cell-selected {
     background: #f0f0f0 !important;
+  }
+
+  /* Hide floating buttons in print */
+  .index-cls,
+  .floating-action-btn,
+  .mobile-floating-fix {
+    display: none !important;
   }
 }
 
@@ -1755,10 +1828,13 @@
 /* Mobile Enhancements */
 @media (max-width: 768px) {
   .floating-action-btn {
-    width: 50px !important;
-    height: 50px !important;
+    width: 56px !important;
+    height: 56px !important;
     bottom: 20px !important;
     right: 20px !important;
+    z-index: 10000 !important;
+    position: fixed !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
   }
 
   .stats-card {
@@ -1767,6 +1843,32 @@
 
   .event-item {
     margin-bottom: 8px;
+  }
+
+  /* Ensure floating buttons container is properly positioned */
+  .index-cls {
+    z-index: 10000 !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 16px !important;
+  }
+
+  /* Add safe area for floating buttons */
+  .floating-safe-area {
+    padding-bottom: 120px !important;
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .floating-action-btn {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .index-cls {
+    bottom: 24px !important;
+    right: 24px !important;
   }
 }
 
@@ -1855,6 +1957,23 @@
   .mobile-calendar .ant-picker-calendar {
     overflow: visible !important;
     height: auto !important;
+  }
+
+  /* Ensure floating buttons stay above footer and other content */
+  .index-cls {
+    z-index: 10000 !important;
+    position: fixed !important;
+  }
+
+  /* Add margin bottom to page content to prevent overlap with floating buttons */
+  .min-h-screen {
+    padding-bottom: 120px !important;
+  }
+
+  /* Ensure footer doesn't interfere with floating buttons */
+  .ant-layout-footer {
+    z-index: 1 !important;
+    position: relative !important;
   }
 }
 

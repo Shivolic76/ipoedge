@@ -677,9 +677,52 @@ html {
   will-change: transform;
 }
 
+/* Mobile floating button utility classes */
+.mobile-floating-fix {
+  z-index: 10000 !important;
+  position: fixed !important;
+}
+
+.mobile-floating-button {
+  z-index: 10001 !important;
+  position: relative !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Ensure proper stacking context */
+.floating-container-fix {
+  isolation: isolate;
+  z-index: 10000;
+}
+
 /* Smooth scrolling for mobile */
 @media (max-width: 768px) {
   html {
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Global floating button fixes for mobile */
+  .index-cls,
+  .floating-button-container {
+    z-index: 10000 !important;
+    position: fixed !important;
+  }
+
+  /* Ensure floating buttons are always above footer and other content */
+  .floating-action-btn,
+  .floating-action-button {
+    z-index: 10001 !important;
+    position: relative !important;
+  }
+
+  /* Prevent footer from interfering with floating buttons */
+  .ant-layout-footer {
+    z-index: 1 !important;
+  }
+
+  /* Add bottom padding to prevent content overlap with floating buttons */
+  .min-h-screen {
+    padding-bottom: 100px !important;
   }
 }
