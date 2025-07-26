@@ -257,11 +257,26 @@ export const brokerAPI = {
     await delay(400);
 
     try {
+      // Import validation utilities
+      const { validateBrokers, sanitizeBroker } = await import('../utils/brokerValidation');
+
+      // Validate and sanitize broker data
+      const { invalidBrokers } = validateBrokers(mockBrokers);
+
+      // Log validation issues in development
+      if (typeof window !== 'undefined' && invalidBrokers.length > 0) {
+        console.warn('Invalid brokers found:', invalidBrokers);
+      }
+
+      // Sanitize all brokers to ensure consistency
+      const sanitizedBrokers = mockBrokers.map(sanitizeBroker);
+
       return {
-        data: mockBrokers,
+        data: sanitizedBrokers,
         success: true
       };
-    } catch {
+    } catch (error) {
+      console.error('Error fetching brokers:', error);
       return {
         data: [],
         success: false,
@@ -274,13 +289,27 @@ export const brokerAPI = {
     await delay(300);
 
     try {
+      const { sanitizeBroker } = await import('../utils/brokerValidation');
+
       const broker = mockBrokers.find(broker => broker.id === id);
+
+      if (!broker) {
+        return {
+          data: null,
+          success: true,
+          message: 'Broker not found'
+        };
+      }
+
+      // Sanitize broker data before returning
+      const sanitizedBroker = sanitizeBroker(broker);
+
       return {
-        data: broker || null,
-        success: true,
-        message: broker ? undefined : 'Broker not found'
+        data: sanitizedBroker,
+        success: true
       };
-    } catch {
+    } catch (error) {
+      console.error('Error fetching broker details:', error);
       return {
         data: null,
         success: false,

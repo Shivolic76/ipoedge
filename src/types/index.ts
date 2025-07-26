@@ -51,17 +51,98 @@ export interface Buyback {
 }
 
 // Broker related types
+export interface BrokerageCharges {
+  equityDelivery: string;
+  equityIntraday: string;
+  equityFutures: string;
+  equityOptions: string;
+  currencyFutures: string;
+  currencyOptions: string;
+  commodityFutures: string;
+  commodityOptions: string;
+}
+
+export interface MarginInfo {
+  equityDelivery: string;
+  equityIntraday: string;
+  equityFutures: string;
+  equityOptions: string;
+  currencyFutures: string;
+  currencyOptions: string;
+  commodityFutures: string;
+  commodityOptions: string;
+}
+
+export interface ChargeBreakdown {
+  transactionCharges: { BSE?: string; NSE?: string };
+  clearingCharges: string | { BSE?: string; NSE?: string };
+  dpCharges?: string;
+  dpCharge?: string;
+  gst: string;
+  stt: string;
+  sebiCharges: string;
+}
+
+export interface DetailedCharges {
+  delivery: ChargeBreakdown;
+  intraday: ChargeBreakdown;
+  futures: ChargeBreakdown;
+  options: ChargeBreakdown;
+}
+
+export interface AdditionalFeatures {
+  '3in1Account': boolean;
+  'freeTradingCalls': boolean;
+  'freeResearch': boolean;
+  'smsAlerts': boolean;
+  'marginFunding': boolean;
+  'marginAgainstShare': boolean;
+}
+
 export interface Broker {
   id: string;
   name: string;
   logo: string;
-  accountOpening: number | 'Free';
-  accountMaintenance: number | 'Free';
-  equityDelivery: number | 'Zero';
-  equityIntraday: number | string;
+  type: string;
+  activeClients: string;
+  about: string;
+
+  // Basic charges
+  accountOpening: number | string;
+  accountMaintenance: number | string;
+  callTrade: number | string;
+  planCharges?: number;
+
+  // Brokerage charges
+  brokerage: BrokerageCharges;
+
+  // Margins
+  margins: MarginInfo;
+
+  // Services and platforms
   services: string[];
+  platforms: string[];
+
+  // Pros and cons
+  pros: string[];
+  cons: string[];
+
+  // Additional features
+  additionalFeatures: AdditionalFeatures;
+
+  // Other investment options
+  otherInvestments: string[];
+
+  // Detailed charges breakdown
+  charges: DetailedCharges;
+
+  // Rating and features
   rating: number;
   features: string[];
+
+  // Legacy fields for backward compatibility
+  equityDelivery?: number | string;
+  equityIntraday?: number | string;
 }
 
 // User related types

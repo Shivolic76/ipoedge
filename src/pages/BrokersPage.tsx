@@ -10,31 +10,42 @@ import {
   Table,
   Tag,
   Input,
-  Select
+  Select,
+  Space,
+  Alert
 } from 'antd';
 import {
   HomeOutlined,
-  SearchOutlined
+  SearchOutlined,
+  ReloadOutlined
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useBrokers } from '../hooks';
 import { ROUTES } from '../constants';
 import { SkeletonCard, EmptyState, ResponsiveImage } from '../components/common';
+import { formatBrokerValue, getBrokerStatusColor } from '../utils/brokerValidation';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const BrokersPage: React.FC = () => {
-  const { brokers, loading } = useBrokers();
+  const { brokers, loading, error, refetch } = useBrokers();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('rating');
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
   // Filter and sort brokers
   const filteredBrokers = brokers
-    .filter(broker =>
-      broker.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+    .filter(broker => {
+      const query = searchQuery.toLowerCase();
+      return (
+        broker.name.toLowerCase().includes(query) ||
+        broker.type.toLowerCase().includes(query) ||
+        broker.services.some(service => service.toLowerCase().includes(query)) ||
+        broker.platforms.some(platform => platform.toLowerCase().includes(query)) ||
+        broker.features?.some(feature => feature.toLowerCase().includes(query))
+      );
+    })
     .sort((a, b) => {
       switch (sortBy) {
         case 'rating':
@@ -45,6 +56,11 @@ const BrokersPage: React.FC = () => {
           const aOpening = a.accountOpening === 'Free' ? 0 : Number(a.accountOpening);
           const bOpening = b.accountOpening === 'Free' ? 0 : Number(b.accountOpening);
           return aOpening - bOpening;
+        }
+        case 'accountMaintenance': {
+          const aMaintenance = a.accountMaintenance === 'Free' ? 0 : Number(a.accountMaintenance);
+          const bMaintenance = b.accountMaintenance === 'Free' ? 0 : Number(b.accountMaintenance);
+          return aMaintenance - bMaintenance;
         }
         default:
           return 0;
@@ -78,8 +94,8 @@ const BrokersPage: React.FC = () => {
       dataIndex: 'accountOpening',
       key: 'accountOpening',
       render: (value: string | number) => (
-        <Tag color={value === 'Free' ? 'green' : 'blue'}>
-          {value === 'Free' ? 'Free' : `₹${value}`}
+        <Tag color={getBrokerStatusColor(value)}>
+          {formatBrokerValue(value)}
         </Tag>
       ),
     },
@@ -88,30 +104,45 @@ const BrokersPage: React.FC = () => {
       dataIndex: 'accountMaintenance',
       key: 'accountMaintenance',
       render: (value: string | number) => (
-        <Text>{value === 'Free' || value === 0 ? 'Free' : `₹${value}`}</Text>
+        <Tag color={getBrokerStatusColor(value)}>
+          {formatBrokerValue(value)}
+        </Tag>
       ),
     },
     {
       title: 'Equity Delivery',
-      dataIndex: 'equityDelivery',
+      dataIndex: ['brokerage', 'equityDelivery'],
       key: 'equityDelivery',
       render: (value: string | number) => (
-        <Text>{value === 'Zero' || value === 0 ? 'Zero' : `₹${value}`}</Text>
+        <Tag color={getBrokerStatusColor(value)}>
+          {formatBrokerValue(value)}
+        </Tag>
       ),
     },
     {
       title: 'Equity Intraday',
-      dataIndex: 'equityIntraday',
+      dataIndex: ['brokerage', 'equityIntraday'],
       key: 'equityIntraday',
-      render: (value: string) => <Text>{value}</Text>,
+      render: (value: string) => (
+        <Tag color={getBrokerStatusColor(value)}>
+          {formatBrokerValue(value)}
+        </Tag>
+      ),
     },
     {
       title: 'Action',
       key: 'action',
-      render: () => (
-        <Button type="primary" size="small">
-          Open Account
-        </Button>
+      render: (_: any, record: any) => (
+        <Space>
+          <Link to={`/broker/${record.id}`}>
+            <Button type="link" size="small">
+              Details
+            </Button>
+          </Link>
+          <Button type="primary" size="small">
+            Open Account
+          </Button>
+        </Space>
       ),
     },
   ];
@@ -137,6 +168,22 @@ const BrokersPage: React.FC = () => {
           </Text>
         </div>
 
+        {/* Error State */}
+        {error && (
+          <Alert
+            message="Error Loading Brokers"
+            description={error}
+            type="error"
+            showIcon
+            action={
+              <Button size="small" icon={<ReloadOutlined />} onClick={refetch}>
+                Retry
+              </Button>
+            }
+            className="mb-6"
+          />
+        )}
+
         {/* Filters and Controls */}
         <Card className="mb-6">
           <Row gutter={[16, 16]} align="middle">
@@ -160,6 +207,7 @@ const BrokersPage: React.FC = () => {
                 <Option value="rating">Rating</Option>
                 <Option value="name">Name</Option>
                 <Option value="accountOpening">Account Opening</Option>
+                <Option value="accountMaintenance">Account Maintenance</Option>
               </Select>
             </Col>
 
@@ -215,40 +263,40 @@ const BrokersPage: React.FC = () => {
                     <Button type="primary" key="open">
                       Open Account
                     </Button>,
-                    <Button type="link" key="compare">
-                      view details
-                    </Button>
+                    <Link to={`/broker/${broker.id}`} key="details">
+                      <Button type="link">
+                        View Details
+                      </Button>
+                    </Link>
                   ]}
                 >
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <Text strong>Account Opening:</Text>
-                      <Tag color={broker.accountOpening === 'Free' ? 'green' : 'blue'}>
-                        {broker.accountOpening === 'Free' ? 'Free' : `₹${broker.accountOpening}`}
+                      <Tag color={getBrokerStatusColor(broker.accountOpening)}>
+                        {formatBrokerValue(broker.accountOpening)}
                       </Tag>
                     </div>
 
                     <div className="flex justify-between">
                       <Text strong>AMC:</Text>
-                      <Text>
-                        {broker.accountMaintenance === 'Free' || broker.accountMaintenance === 0
-                          ? 'Free'
-                          : `₹${broker.accountMaintenance}`}
-                      </Text>
+                      <Tag color={getBrokerStatusColor(broker.accountMaintenance)}>
+                        {formatBrokerValue(broker.accountMaintenance)}
+                      </Tag>
                     </div>
 
                     <div className="flex justify-between">
                       <Text strong>Equity Delivery:</Text>
-                      <Text className="font-medium text-green-600">
-                        {broker.equityDelivery === 'Zero' || broker.equityDelivery === 0
-                          ? 'Zero'
-                          : `₹${broker.equityDelivery}`}
-                      </Text>
+                      <Tag color={getBrokerStatusColor(broker.brokerage?.equityDelivery)}>
+                        {formatBrokerValue(broker.brokerage?.equityDelivery)}
+                      </Tag>
                     </div>
 
                     <div className="flex justify-between">
                       <Text strong>Equity Intraday:</Text>
-                      <Text>{broker.equityIntraday}</Text>
+                      <Tag color={getBrokerStatusColor(broker.brokerage?.equityIntraday)}>
+                        {formatBrokerValue(broker.brokerage?.equityIntraday)}
+                      </Tag>
                     </div>
 
                     <div className="pt-2 border-t border-gray-100">
