@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   Row,
@@ -9,7 +9,6 @@ import {
   Rate,
   Breadcrumb,
   Tag,
-  Divider,
   Descriptions,
   Table,
   Tabs,
@@ -18,7 +17,9 @@ import {
   Statistic,
   Alert,
   Badge,
-  Avatar
+  Avatar,
+  Skeleton,
+  FloatButton
 } from 'antd';
 import {
   HomeOutlined,
@@ -36,25 +37,84 @@ import {
   GlobalOutlined,
   LineChartOutlined,
   WalletOutlined,
-  PercentageOutlined
+  PercentageOutlined,
+  ArrowUpOutlined,
+  ShareAltOutlined,
+  HeartOutlined,
+  EyeOutlined
 } from '@ant-design/icons';
 import { ROUTES } from '../constants';
 import { getBrokerById } from '../utils/brokerUtils';
+import '../styles/broker-details.css';
 
 const { Title, Text, Paragraph } = Typography;
-const { TabPane } = Tabs;
 
 const BrokerDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const broker = getBrokerById(id || '');
+  const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading for better UX
+    const timer = setTimeout(() => setLoading(false), 800);
+
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-4 md:p-6">
+        <div className="max-w-7xl mx-auto">
+          <Skeleton.Button active size="small" style={{ marginBottom: 24 }} />
+          <Card className="mb-6">
+            <Skeleton avatar active paragraph={{ rows: 3 }} />
+          </Card>
+          <Row gutter={[16, 16]} className="mb-6">
+            {[1, 2, 3, 4].map(i => (
+              <Col xs={12} sm={6} key={i}>
+                <Card>
+                  <Skeleton active paragraph={{ rows: 1 }} />
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          <Card>
+            <Skeleton active paragraph={{ rows: 8 }} />
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   if (!broker) {
     return (
-      <div style={{ padding: '50px', textAlign: 'center' }}>
-        <Title level={3}>Broker not found</Title>
-        <Link to={ROUTES.BROKERS}>
-          <Button type="primary">Back to Brokers</Button>
-        </Link>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center p-4">
+        <Card className="text-center max-w-md w-full">
+          <div className="mb-6">
+            <div className="w-20 h-20 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <BankOutlined className="text-3xl text-gray-400" />
+            </div>
+            <Title level={3} className="mb-2">Broker not found</Title>
+            <Text type="secondary">The broker you're looking for doesn't exist or has been removed.</Text>
+          </div>
+          <Link to={ROUTES.BROKERS}>
+            <Button type="primary" size="large" className="w-full">
+              Back to Brokers
+            </Button>
+          </Link>
+        </Card>
       </div>
     );
   }
@@ -118,648 +178,919 @@ const BrokerDetailPage: React.FC = () => {
 
 
   return (
-    <div style={{ padding: '24px', background: '#f5f5f5', minHeight: '100vh' }}>
-      {/* Breadcrumb */}
-      <Breadcrumb style={{ marginBottom: '24px' }}>
-        <Breadcrumb.Item>
-          <Link to={ROUTES.HOME}>
-            <HomeOutlined /> Home
-          </Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to={ROUTES.BROKERS}>Brokers</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>{broker.name}</Breadcrumb.Item>
-      </Breadcrumb>
-
-      {/* Header Section */}
-      <Card
-        style={{
-          marginBottom: '24px',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          border: 'none',
-          borderRadius: '12px'
-        }}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+      {/* Floating Action Buttons */}
+      <FloatButton.Group
+        trigger={isMobile ? "click" : "hover"}
+        type="primary"
+        style={{ right: isMobile ? 16 : 24 }}
+        icon={<ShareAltOutlined />}
       >
-        <Row gutter={[24, 24]} align="middle">
-          <Col xs={24} sm={6} md={4}>
-            <div style={{ textAlign: 'center' }}>
-              <Avatar
-                src={broker.logo}
-                alt={broker.name}
-                size={100}
-                style={{
-                  backgroundColor: '#fff',
-                  padding: '8px',
-                  border: '3px solid rgba(255,255,255,0.3)'
-                }}
-              />
-            </div>
-          </Col>
-          <Col xs={24} sm={18} md={14}>
-            <Title level={2} style={{ margin: 0, marginBottom: '8px', color: '#fff' }}>
-              {broker.name}
-              {broker.type === 'Discount Broker' && (
-                <Badge
-                  count="Discount"
-                  style={{
-                    backgroundColor: '#52c41a',
-                    marginLeft: '12px',
-                    fontSize: '12px'
-                  }}
-                />
-              )}
-              {broker.type === 'Full Service Broker' && (
-                <Badge
-                  count="Full Service"
-                  style={{
-                    backgroundColor: '#1890ff',
-                    marginLeft: '12px',
-                    fontSize: '12px'
-                  }}
-                />
-              )}
-            </Title>
-            <Text style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)' }}>
-              {broker.type || 'Stockbroker'}
-            </Text>
-            {broker.activeClients && (
-              <div style={{ marginTop: '12px' }}>
-                <UserOutlined style={{ marginRight: '8px', color: '#fff' }} />
-                <Text strong style={{ color: '#fff' }}>{broker.activeClients}</Text>
-                <Text style={{ color: 'rgba(255,255,255,0.8)', marginLeft: '4px' }}>Active Clients</Text>
-              </div>
-            )}
-          </Col>
-          <Col xs={24} sm={24} md={6}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: '12px',
-                padding: '16px',
-                backdropFilter: 'blur(10px)'
-              }}>
-                <Statistic
-                  title={<span style={{ color: 'rgba(255,255,255,0.8)' }}>Rating</span>}
-                  value={broker.rating}
-                  precision={1}
-                  valueStyle={{ color: '#fff', fontSize: '28px', fontWeight: 'bold' }}
-                  prefix={<StarOutlined style={{ color: '#ffd700' }} />}
-                  suffix={<span style={{ color: 'rgba(255,255,255,0.8)' }}>/ 5</span>}
-                />
-                <Rate disabled value={broker.rating} style={{ fontSize: '16px', marginTop: '8px' }} />
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Card>
+        <FloatButton
+          icon={<HeartOutlined />}
+          tooltip="Add to Favorites"
+          className="focus-ring"
+          aria-label="Add to Favorites"
+        />
+        <FloatButton
+          icon={<ShareAltOutlined />}
+          tooltip="Share Broker"
+          className="focus-ring"
+          aria-label="Share Broker"
+        />
+        <FloatButton
+          icon={<EyeOutlined />}
+          tooltip="Compare"
+          className="focus-ring"
+          aria-label="Compare Brokers"
+        />
+      </FloatButton.Group>
 
-      {/* Quick Stats */}
-      <Row gutter={[16, 16]} style={{ marginBottom: '24px' }}>
-        <Col xs={12} sm={6}>
-          <Card
-            hoverable
-            style={{
-              borderRadius: '12px',
-              border: '1px solid #f0f0f0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}
-          >
-            <Statistic
-              title={
-                <span style={{ color: '#666', fontSize: '14px' }}>
-                  <WalletOutlined style={{ marginRight: '6px' }} />
-                  Account Opening
-                </span>
-              }
-              value={broker.accountOpening}
-              valueStyle={{
-                color: broker.accountOpening === 'Free' || broker.accountOpening === 0 ? '#52c41a' : '#1890ff',
-                fontSize: '20px',
-                fontWeight: 'bold'
-              }}
-            />
-          </Card>
-        </Col>
-        <Col xs={12} sm={6}>
-          <Card
-            hoverable
-            style={{
-              borderRadius: '12px',
-              border: '1px solid #f0f0f0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}
-          >
-            <Statistic
-              title={
-                <span style={{ color: '#666', fontSize: '14px' }}>
-                  <BankOutlined style={{ marginRight: '6px' }} />
-                  Annual Maintenance
-                </span>
-              }
-              value={broker.accountMaintenance}
-              valueStyle={{
-                color: broker.accountMaintenance === 'Free' || broker.accountMaintenance === 0 ? '#52c41a' : '#1890ff',
-                fontSize: '20px',
-                fontWeight: 'bold'
-              }}
-            />
-          </Card>
-        </Col>
-        <Col xs={12} sm={6}>
-          <Card
-            hoverable
-            style={{
-              borderRadius: '12px',
-              border: '1px solid #f0f0f0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}
-          >
-            <Statistic
-              title={
-                <span style={{ color: '#666', fontSize: '14px' }}>
-                  <PhoneOutlined style={{ marginRight: '6px' }} />
-                  Call & Trade
-                </span>
-              }
-              value={broker.callTrade || 'N/A'}
-              valueStyle={{
-                color: broker.callTrade === 'Free' || broker.callTrade === 0 ? '#52c41a' : '#1890ff',
-                fontSize: '20px',
-                fontWeight: 'bold'
-              }}
-            />
-          </Card>
-        </Col>
-        <Col xs={12} sm={6}>
-          <Card
-            hoverable
-            style={{
-              borderRadius: '12px',
-              border: '1px solid #f0f0f0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }}
-          >
-            <Statistic
-              title={
-                <span style={{ color: '#666', fontSize: '14px' }}>
-                  <TrophyOutlined style={{ marginRight: '6px' }} />
-                  Trading Segments
-                </span>
-              }
-              value={broker.services.length}
-              valueStyle={{ color: '#1890ff', fontSize: '20px', fontWeight: 'bold' }}
-              suffix={<span style={{ fontSize: '14px', color: '#666' }}>segments</span>}
-            />
-          </Card>
-        </Col>
-      </Row>
+      <FloatButton.BackTop
+        style={{ right: isMobile ? 16 : 80 }}
+        icon={<ArrowUpOutlined />}
+        className="focus-ring"
+        aria-label="Back to Top"
+      />
 
-      {/* Main Content Tabs */}
-      <Card style={{ borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-        <Tabs
-          defaultActiveKey="overview"
-          size="large"
-          style={{ minHeight: '500px' }}
-          tabBarStyle={{
-            borderBottom: '2px solid #f0f0f0',
-            marginBottom: '24px'
+      <div className="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+        {/* Breadcrumb */}
+        <Breadcrumb className="mb-6 bg-white/70 backdrop-blur-sm rounded-lg px-4 py-2 shadow-sm animate-fadeInUp">
+          <Breadcrumb.Item>
+            <Link to={ROUTES.HOME} className="flex items-center gap-1 hover:text-blue-600 transition-colors">
+              <HomeOutlined /> Home
+            </Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to={ROUTES.BROKERS} className="hover:text-blue-600 transition-colors">Brokers</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item className="font-medium">{broker.name}</Breadcrumb.Item>
+        </Breadcrumb>
+
+        {/* Enhanced Header Section */}
+        <Card
+          className="mb-6 overflow-hidden border-0 shadow-2xl animate-fadeInUp animate-delay-100"
+          style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            borderRadius: '20px'
           }}
         >
-          <TabPane tab="Overview" key="overview">
-            <Row gutter={[24, 24]}>
-              <Col xs={24} lg={16}>
-                {broker.about && (
-                  <>
-                    <Title level={4}>About {broker.name}</Title>
-                    <Paragraph style={{ fontSize: '16px', lineHeight: '1.6' }}>
-                      {broker.about}
-                    </Paragraph>
-                    <Divider />
-                  </>
-                )}
-                
-                <Title level={4}>
-                  <TrophyOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
-                  Services Offered
-                </Title>
-                <Space wrap style={{ marginBottom: '24px' }}>
-                  {broker.services.map((service, index) => (
-                    <Tag
-                      key={index}
-                      color="blue"
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
+          </div>
+
+          <div className="relative z-10">
+            <Row gutter={[24, 24]} align="middle">
+              <Col xs={24} sm={8} md={6} lg={4}>
+                <div className="text-center">
+                  <div className="relative inline-block">
+                    <Avatar
+                      src={broker.logo}
+                      alt={broker.name}
+                      size={isMobile ? 80 : 120}
+                      className="shadow-2xl border-4 border-white/30 backdrop-blur-sm"
                       style={{
-                        padding: '6px 16px',
-                        fontSize: '14px',
-                        borderRadius: '20px',
-                        fontWeight: '500'
+                        backgroundColor: '#fff',
+                        padding: '8px'
                       }}
-                    >
-                      {service}
-                    </Tag>
-                  ))}
-                </Space>
-
-                <Title level={4}>
-                  <StarOutlined style={{ marginRight: '8px', color: '#faad14' }} />
-                  Key Features
-                </Title>
-                <List
-                  dataSource={broker.features}
-                  renderItem={(feature) => (
-                    <List.Item style={{ padding: '8px 0', borderBottom: '1px solid #f0f0f0' }}>
-                      <CheckCircleOutlined style={{ color: '#52c41a', marginRight: '12px', fontSize: '16px' }} />
-                      <Text style={{ fontSize: '15px' }}>{feature}</Text>
-                    </List.Item>
-                  )}
-                />
-              </Col>
-              
-              <Col xs={24} lg={8}>
-                <Card title="Quick Info" size="small">
-                  <Descriptions column={1} size="small">
-                    <Descriptions.Item label="Broker Type">
-                      <Tag color={broker.type === 'Discount Broker' ? 'green' : 'blue'}>
-                        {broker.type || 'Stockbroker'}
-                      </Tag>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Account Opening">
-                      <Text strong style={{ color: broker.accountOpening === 'Free' ? '#52c41a' : '#1890ff' }}>
-                        {broker.accountOpening}
-                      </Text>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="AMC">
-                      <Text strong style={{ color: broker.accountMaintenance === 'Free' || broker.accountMaintenance === 0 ? '#52c41a' : '#1890ff' }}>
-                        {broker.accountMaintenance}
-                      </Text>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Rating">
-                      <Rate disabled value={broker.rating} style={{ fontSize: '14px' }} />
-                    </Descriptions.Item>
-                  </Descriptions>
-                </Card>
-
-                {broker.platforms && broker.platforms.length > 0 && (
-                  <Card title="Trading Platforms" size="small" style={{ marginTop: '16px' }}>
-                    <List
-                      size="small"
-                      dataSource={broker.platforms}
-                      renderItem={(platform) => (
-                        <List.Item>
-                          <DesktopOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
-                          {platform}
-                        </List.Item>
-                      )}
                     />
-                  </Card>
-                )}
+                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
+                      <CheckCircleOutlined className="text-white text-xs" />
+                    </div>
+                  </div>
+                </div>
               </Col>
-            </Row>
-          </TabPane>
 
-          <TabPane tab="Brokerage & Charges" key="charges">
-            <Row gutter={[24, 24]}>
-              <Col xs={24} lg={12}>
-                <Title level={4}>Brokerage Charges</Title>
-                <Table
-                  dataSource={brokerageData}
-                  columns={brokerageColumns}
-                  pagination={false}
-                  size="middle"
-                />
-              </Col>
-              {broker.margins && (
-                <Col xs={24} lg={12}>
-                  <Title level={4}>Margin Information</Title>
-                  <Table
-                    dataSource={marginData}
-                    columns={marginColumns}
-                    pagination={false}
-                    size="middle"
-                  />
-                </Col>
-              )}
-            </Row>
-          </TabPane>
-
-          {(broker.pros || broker.cons) && (
-            <TabPane tab="Pros & Cons" key="proscons">
-              <Row gutter={[24, 24]}>
-                {broker.pros && broker.pros.length > 0 && (
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={
-                        <span style={{ color: '#52c41a' }}>
-                          <CheckCircleOutlined style={{ marginRight: '8px' }} />
-                          Advantages
-                        </span>
-                      }
-                      style={{ height: '100%' }}
-                    >
-                      <List
-                        dataSource={broker.pros}
-                        renderItem={(pro) => (
-                          <List.Item>
-                            <CheckCircleOutlined style={{ color: '#52c41a', marginRight: '8px' }} />
-                            <Text>{pro}</Text>
-                          </List.Item>
-                        )}
+              <Col xs={24} sm={16} md={12} lg={14}>
+                <div className={isMobile ? 'text-center' : ''}>
+                  <Title
+                    level={isMobile ? 3 : 2}
+                    className="!text-white !mb-2 flex items-center gap-3"
+                    style={{ margin: 0 }}
+                  >
+                    {broker.name}
+                    {broker.type === 'Discount Broker' && (
+                      <Badge
+                        count="Discount"
+                        style={{
+                          backgroundColor: '#10b981',
+                          fontSize: '11px',
+                          fontWeight: '600',
+                          borderRadius: '12px',
+                          padding: '0 8px'
+                        }}
                       />
-                    </Card>
-                  </Col>
-                )}
-
-                {broker.cons && broker.cons.length > 0 && (
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={
-                        <span style={{ color: '#f5222d' }}>
-                          <CloseCircleOutlined style={{ marginRight: '8px' }} />
-                          Disadvantages
-                        </span>
-                      }
-                      style={{ height: '100%' }}
-                    >
-                      <List
-                        dataSource={broker.cons}
-                        renderItem={(con) => (
-                          <List.Item>
-                            <CloseCircleOutlined style={{ color: '#f5222d', marginRight: '8px' }} />
-                            <Text>{con}</Text>
-                          </List.Item>
-                        )}
-                      />
-                    </Card>
-                  </Col>
-                )}
-              </Row>
-            </TabPane>
-          )}
-
-          {broker.charges && (
-            <TabPane tab="Detailed Charges" key="detailedcharges">
-              <Alert
-                message="Detailed Charges Breakdown"
-                description="Complete breakdown of all charges including transaction charges, GST, STT, and SEBI charges for different trading segments."
-                type="info"
-                showIcon
-                style={{ marginBottom: '24px' }}
-              />
-
-              <Row gutter={[24, 24]}>
-                <Col xs={24} lg={12}>
-                  <Card
-                    title={
-                      <span>
-                        <LineChartOutlined style={{ marginRight: '8px', color: '#52c41a' }} />
-                        Delivery Trading Charges
-                      </span>
-                    }
-                    size="small"
-                  >
-                    <Descriptions column={1} size="small" bordered>
-                      <Descriptions.Item label="Transaction Charges (BSE)">
-                        {broker.charges.delivery.transactionCharges.BSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Transaction Charges (NSE)">
-                        {broker.charges.delivery.transactionCharges.NSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="DP Charges">
-                        {broker.charges.delivery.dpCharges || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="GST">
-                        {broker.charges.delivery.gst}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="STT">
-                        {broker.charges.delivery.stt}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="SEBI Charges">
-                        {broker.charges.delivery.sebiCharges}
-                      </Descriptions.Item>
-                    </Descriptions>
-                  </Card>
-                </Col>
-
-                <Col xs={24} lg={12}>
-                  <Card
-                    title={
-                      <span>
-                        <ThunderboltOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
-                        Intraday Trading Charges
-                      </span>
-                    }
-                    size="small"
-                  >
-                    <Descriptions column={1} size="small" bordered>
-                      <Descriptions.Item label="Transaction Charges (BSE)">
-                        {broker.charges.intraday.transactionCharges.BSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Transaction Charges (NSE)">
-                        {broker.charges.intraday.transactionCharges.NSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="DP Charges">
-                        {broker.charges.intraday.dpCharge || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="GST">
-                        {broker.charges.intraday.gst}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="STT">
-                        {broker.charges.intraday.stt}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="SEBI Charges">
-                        {broker.charges.intraday.sebiCharges}
-                      </Descriptions.Item>
-                    </Descriptions>
-                  </Card>
-                </Col>
-
-                <Col xs={24} lg={12}>
-                  <Card
-                    title={
-                      <span>
-                        <FireOutlined style={{ marginRight: '8px', color: '#fa8c16' }} />
-                        Futures Trading Charges
-                      </span>
-                    }
-                    size="small"
-                  >
-                    <Descriptions column={1} size="small" bordered>
-                      <Descriptions.Item label="Transaction Charges (BSE)">
-                        {broker.charges.futures.transactionCharges.BSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Transaction Charges (NSE)">
-                        {broker.charges.futures.transactionCharges.NSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Clearing Charges">
-                        {typeof broker.charges.futures.clearingCharges === 'object'
-                          ? (broker.charges.futures.clearingCharges.NSE || broker.charges.futures.clearingCharges.BSE || 'N/A')
-                          : broker.charges.futures.clearingCharges || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="GST">
-                        {broker.charges.futures.gst}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="STT">
-                        {broker.charges.futures.stt}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="SEBI Charges">
-                        {broker.charges.futures.sebiCharges}
-                      </Descriptions.Item>
-                    </Descriptions>
-                  </Card>
-                </Col>
-
-                <Col xs={24} lg={12}>
-                  <Card
-                    title={
-                      <span>
-                        <PercentageOutlined style={{ marginRight: '8px', color: '#722ed1' }} />
-                        Options Trading Charges
-                      </span>
-                    }
-                    size="small"
-                  >
-                    <Descriptions column={1} size="small" bordered>
-                      <Descriptions.Item label="Transaction Charges (BSE)">
-                        {broker.charges.options.transactionCharges.BSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Transaction Charges (NSE)">
-                        {broker.charges.options.transactionCharges.NSE || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Clearing Charges">
-                        {typeof broker.charges.options.clearingCharges === 'object'
-                          ? (broker.charges.options.clearingCharges.NSE || broker.charges.options.clearingCharges.BSE || 'N/A')
-                          : broker.charges.options.clearingCharges || 'N/A'}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="GST">
-                        {broker.charges.options.gst}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="STT">
-                        {broker.charges.options.stt}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="SEBI Charges">
-                        {broker.charges.options.sebiCharges}
-                      </Descriptions.Item>
-                    </Descriptions>
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
-          )}
-
-          {broker.additionalFeatures && (
-            <TabPane tab="Features & Services" key="features">
-              <Row gutter={[24, 24]}>
-                <Col xs={24} lg={12}>
-                  <Title level={4}>Additional Features</Title>
-                  <List
-                    dataSource={Object.entries(broker.additionalFeatures)}
-                    renderItem={([feature, available]) => (
-                      <List.Item>
-                        {available ? (
-                          <CheckCircleOutlined style={{ color: '#52c41a', marginRight: '8px' }} />
-                        ) : (
-                          <CloseCircleOutlined style={{ color: '#f5222d', marginRight: '8px' }} />
-                        )}
-                        <Text style={{ color: available ? '#000' : '#999' }}>
-                          {feature.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                        </Text>
-                      </List.Item>
                     )}
-                  />
-                </Col>
+                    {broker.type === 'Full Service Broker' && (
+                      <Badge
+                        count="Full Service"
+                        style={{
+                          backgroundColor: '#3b82f6',
+                          fontSize: '11px',
+                          fontWeight: '600',
+                          borderRadius: '12px',
+                          padding: '0 8px'
+                        }}
+                      />
+                    )}
+                  </Title>
 
-                {broker.otherInvestments && broker.otherInvestments.length > 0 && (
-                  <Col xs={24} lg={12}>
-                    <Title level={4}>Other Investment Options</Title>
-                    <Space wrap>
-                      {broker.otherInvestments.map((investment, index) => (
-                        <Tag key={index} color="purple" style={{ padding: '4px 12px', fontSize: '14px' }}>
-                          {investment.charAt(0).toUpperCase() + investment.slice(1)}
-                        </Tag>
-                      ))}
-                    </Space>
+                  <Text className="text-white/90 text-lg font-medium block mb-3">
+                    {broker.type || 'Stockbroker'}
+                  </Text>
+
+                  {broker.activeClients && (
+                    <div className="flex items-center gap-2 text-white/90">
+                      <UserOutlined className="text-lg" />
+                      <Text strong className="text-white text-lg">{broker.activeClients}</Text>
+                      <Text className="text-white/80">Active Clients</Text>
+                    </div>
+                  )}
+                </div>
+              </Col>
+
+              <Col xs={24} sm={24} md={6} lg={6}>
+                <div className="text-center">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <Statistic
+                      title={<span className="text-white/90 font-medium">Overall Rating</span>}
+                      value={broker.rating}
+                      precision={1}
+                      valueStyle={{
+                        color: '#fff',
+                        fontSize: isMobile ? '24px' : '32px',
+                        fontWeight: 'bold',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                      }}
+                      prefix={<StarOutlined className="text-yellow-400 mr-2" />}
+                      suffix={<span className="text-white/80 text-lg">/ 5</span>}
+                    />
+                    <Rate
+                      disabled
+                      value={broker.rating}
+                      className="mt-3"
+                      style={{ fontSize: isMobile ? '14px' : '16px' }}
+                    />
+                    <div className="mt-2 text-white/80 text-sm">
+                      Based on user reviews
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Card>
+
+        {/* Enhanced Quick Stats */}
+        <Row gutter={[16, 16]} className="mb-8">
+          <Col xs={12} sm={6}>
+            <Card
+              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-emerald-50 to-green-100 animate-slideInLeft animate-delay-200"
+              style={{ borderRadius: '16px' }}
+            >
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <WalletOutlined className="text-white text-lg" />
+                </div>
+                <Text className="text-gray-600 text-sm font-medium block mb-1">Account Opening</Text>
+                <div className={`text-2xl font-bold ${
+                  broker.accountOpening === 'Free' || broker.accountOpening === 0
+                    ? 'text-emerald-600'
+                    : 'text-blue-600'
+                }`}>
+                  {broker.accountOpening}
+                </div>
+              </div>
+            </Card>
+          </Col>
+
+          <Col xs={12} sm={6}>
+            <Card
+              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-blue-50 to-indigo-100 animate-slideInLeft animate-delay-300"
+              style={{ borderRadius: '16px' }}
+            >
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <BankOutlined className="text-white text-lg" />
+                </div>
+                <Text className="text-gray-600 text-sm font-medium block mb-1">Annual Maintenance</Text>
+                <div className={`text-2xl font-bold ${
+                  broker.accountMaintenance === 'Free' || broker.accountMaintenance === 0
+                    ? 'text-emerald-600'
+                    : 'text-blue-600'
+                }`}>
+                  {broker.accountMaintenance}
+                </div>
+              </div>
+            </Card>
+          </Col>
+
+          <Col xs={12} sm={6}>
+            <Card
+              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-purple-50 to-violet-100 animate-slideInRight animate-delay-300"
+              style={{ borderRadius: '16px' }}
+            >
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <PhoneOutlined className="text-white text-lg" />
+                </div>
+                <Text className="text-gray-600 text-sm font-medium block mb-1">Call & Trade</Text>
+                <div className={`text-2xl font-bold ${
+                  broker.callTrade === 'Free' || broker.callTrade === 0
+                    ? 'text-emerald-600'
+                    : 'text-purple-600'
+                }`}>
+                  {broker.callTrade || 'N/A'}
+                </div>
+              </div>
+            </Card>
+          </Col>
+
+          <Col xs={12} sm={6}>
+            <Card
+              className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-orange-50 to-amber-100 animate-slideInRight animate-delay-400"
+              style={{ borderRadius: '16px' }}
+            >
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <TrophyOutlined className="text-white text-lg" />
+                </div>
+                <Text className="text-gray-600 text-sm font-medium block mb-1">Trading Segments</Text>
+                <div className="text-2xl font-bold text-orange-600">
+                  {broker.services.length}
+                  <span className="text-sm text-gray-500 ml-1">segments</span>
+                </div>
+              </div>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Enhanced Main Content Tabs */}
+        <Card
+          className="border-0 shadow-xl overflow-hidden animate-fadeInUp animate-delay-200"
+          style={{ borderRadius: '20px' }}
+        >
+          <Tabs
+            defaultActiveKey="overview"
+            size={isMobile ? 'middle' : 'large'}
+            className="custom-tabs"
+            style={{ minHeight: '500px' }}
+            tabBarStyle={{
+              borderBottom: '2px solid #f1f5f9',
+              marginBottom: '32px',
+              paddingLeft: isMobile ? '16px' : '24px',
+              paddingRight: isMobile ? '16px' : '24px'
+            }}
+          >
+            <Tabs.TabPane
+              tab={
+                <span className="flex items-center gap-2 font-medium">
+                  <EyeOutlined />
+                  Overview
+                </span>
+              }
+              key="overview"
+            >
+              <div className="px-4 md:px-6">
+                <Row gutter={[24, 24]}>
+                  <Col xs={24} lg={16}>
+                    {broker.about && (
+                      <Card className="mb-6 border-0 bg-gradient-to-r from-blue-50 to-indigo-50" style={{ borderRadius: '16px' }}>
+                        <Title level={4} className="flex items-center gap-2 text-gray-800 mb-4">
+                          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <BankOutlined className="text-white text-sm" />
+                          </div>
+                          About {broker.name}
+                        </Title>
+                        <Paragraph className="text-gray-700 text-base leading-relaxed">
+                          {broker.about}
+                        </Paragraph>
+                      </Card>
+                    )}
+
+                    <Card className="mb-6 border-0 bg-gradient-to-r from-emerald-50 to-green-50" style={{ borderRadius: '16px' }}>
+                      <Title level={4} className="flex items-center gap-2 text-gray-800 mb-4">
+                        <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                          <TrophyOutlined className="text-white text-sm" />
+                        </div>
+                        Services Offered
+                      </Title>
+                      <Space wrap className="mb-4">
+                        {broker.services.map((service, index) => (
+                          <Tag
+                            key={index}
+                            className="px-4 py-2 text-sm font-medium border-0 shadow-sm"
+                            style={{
+                              background: 'linear-gradient(135deg, #10b981, #059669)',
+                              color: 'white',
+                              borderRadius: '20px'
+                            }}
+                          >
+                            {service}
+                          </Tag>
+                        ))}
+                      </Space>
+                    </Card>
+
+                    <Card className="border-0 bg-gradient-to-r from-amber-50 to-orange-50" style={{ borderRadius: '16px' }}>
+                      <Title level={4} className="flex items-center gap-2 text-gray-800 mb-4">
+                        <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+                          <StarOutlined className="text-white text-sm" />
+                        </div>
+                        Key Features
+                      </Title>
+                      <List
+                        dataSource={broker.features}
+                        renderItem={(feature) => (
+                          <List.Item className="py-3 border-b border-gray-100 last:border-b-0">
+                            <div className="flex items-start gap-3">
+                              <CheckCircleOutlined className="text-emerald-500 text-lg mt-0.5 flex-shrink-0" />
+                              <Text className="text-gray-700 text-base">{feature}</Text>
+                            </div>
+                          </List.Item>
+                        )}
+                      />
+                    </Card>
                   </Col>
-                )}
-              </Row>
-            </TabPane>
-          )}
-        </Tabs>
-      </Card>
 
-      {/* Action Buttons */}
-      <Row gutter={[16, 16]} style={{ marginTop: '32px' }}>
-        <Col xs={24} sm={12}>
+                  <Col xs={24} lg={8}>
+                    <Card
+                      title={
+                        <span className="flex items-center gap-2 text-gray-800">
+                          <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center">
+                            <UserOutlined className="text-white text-xs" />
+                          </div>
+                          Quick Info
+                        </span>
+                      }
+                      className="mb-4 border-0 shadow-lg"
+                      style={{ borderRadius: '16px' }}
+                    >
+                      <Descriptions column={1} size="small">
+                        <Descriptions.Item label="Broker Type">
+                          <Tag
+                            color={broker.type === 'Discount Broker' ? 'green' : 'blue'}
+                            className="px-3 py-1 rounded-full font-medium"
+                          >
+                            {broker.type || 'Stockbroker'}
+                          </Tag>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Account Opening">
+                          <Text strong className={broker.accountOpening === 'Free' ? 'text-emerald-600' : 'text-blue-600'}>
+                            {broker.accountOpening}
+                          </Text>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="AMC">
+                          <Text strong className={broker.accountMaintenance === 'Free' || broker.accountMaintenance === 0 ? 'text-emerald-600' : 'text-blue-600'}>
+                            {broker.accountMaintenance}
+                          </Text>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Rating">
+                          <Rate disabled value={broker.rating} style={{ fontSize: '14px' }} />
+                        </Descriptions.Item>
+                      </Descriptions>
+                    </Card>
+
+                    {broker.platforms && broker.platforms.length > 0 && (
+                      <Card
+                        title={
+                          <span className="flex items-center gap-2 text-gray-800">
+                            <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center">
+                              <DesktopOutlined className="text-white text-xs" />
+                            </div>
+                            Trading Platforms
+                          </span>
+                        }
+                        className="border-0 shadow-lg"
+                        style={{ borderRadius: '16px' }}
+                      >
+                        <List
+                          size="small"
+                          dataSource={broker.platforms}
+                          renderItem={(platform) => (
+                            <List.Item className="py-2">
+                              <div className="flex items-center gap-2">
+                                <DesktopOutlined className="text-purple-500" />
+                                <Text className="text-gray-700">{platform}</Text>
+                              </div>
+                            </List.Item>
+                          )}
+                        />
+                      </Card>
+                    )}
+                  </Col>
+                </Row>
+              </div>
+            </Tabs.TabPane>
+
+            <Tabs.TabPane
+              tab={
+                <span className="flex items-center gap-2 font-medium">
+                  <WalletOutlined />
+                  Brokerage & Charges
+                </span>
+              }
+              key="charges"
+            >
+                  <div className="px-4 md:px-6">
+                    <Row gutter={[24, 24]}>
+                      <Col xs={24} lg={12}>
+                        <Card className="border-0 shadow-lg" style={{ borderRadius: '16px' }}>
+                          <Title level={4} className="flex items-center gap-2 text-gray-800 mb-4">
+                            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                              <WalletOutlined className="text-white text-sm" />
+                            </div>
+                            Brokerage Charges
+                          </Title>
+                          {isMobile ? (
+                            <div className="space-y-3">
+                              {brokerageData.map((item) => (
+                                <Card key={item.key} size="small" className="bg-gray-50">
+                                  <div className="flex justify-between items-center">
+                                    <Text strong className="text-gray-700">{item.segment}</Text>
+                                    <Tag color={item.charges === 'Zero' || item.charges === 'Free' ? 'green' : 'blue'}>
+                                      {item.charges}
+                                    </Tag>
+                                  </div>
+                                </Card>
+                              ))}
+                            </div>
+                          ) : (
+                            <Table
+                              dataSource={brokerageData}
+                              columns={brokerageColumns}
+                              pagination={false}
+                              size="middle"
+                              className="custom-table"
+                            />
+                          )}
+                        </Card>
+                      </Col>
+                      {broker.margins && (
+                        <Col xs={24} lg={12}>
+                          <Card className="border-0 shadow-lg" style={{ borderRadius: '16px' }}>
+                            <Title level={4} className="flex items-center gap-2 text-gray-800 mb-4">
+                              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                                <LineChartOutlined className="text-white text-sm" />
+                              </div>
+                              Margin Information
+                            </Title>
+                            {isMobile ? (
+                              <div className="space-y-3">
+                                {marginData.map((item) => (
+                                  <Card key={item.key} size="small" className="bg-gray-50">
+                                    <div className="flex justify-between items-center">
+                                      <Text strong className="text-gray-700">{item.segment}</Text>
+                                      <Tag color="blue">{item.margin}</Tag>
+                                    </div>
+                                  </Card>
+                                ))}
+                              </div>
+                            ) : (
+                              <Table
+                                dataSource={marginData}
+                                columns={marginColumns}
+                                pagination={false}
+                                size="middle"
+                                className="custom-table"
+                              />
+                            )}
+                          </Card>
+                        </Col>
+                      )}
+                    </Row>
+              </div>
+            </Tabs.TabPane>
+
+            {(broker.pros || broker.cons) && (
+              <Tabs.TabPane
+                tab={
+                  <span className="flex items-center gap-2 font-medium">
+                    <CheckCircleOutlined />
+                    Pros & Cons
+                  </span>
+                }
+                key="proscons"
+              >
+                  <div className="px-4 md:px-6">
+                    <Row gutter={[24, 24]}>
+                      {broker.pros && broker.pros.length > 0 && (
+                        <Col xs={24} lg={12}>
+                          <Card
+                            title={
+                              <span className="flex items-center gap-2 text-emerald-600">
+                                <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center">
+                                  <CheckCircleOutlined className="text-white text-xs" />
+                                </div>
+                                Advantages
+                              </span>
+                            }
+                            className="h-full border-0 shadow-lg bg-gradient-to-br from-emerald-50 to-green-50"
+                            style={{ borderRadius: '16px' }}
+                          >
+                            <List
+                              dataSource={broker.pros}
+                              renderItem={(pro) => (
+                                <List.Item className="py-3 border-b border-emerald-100 last:border-b-0">
+                                  <div className="flex items-start gap-3">
+                                    <CheckCircleOutlined className="text-emerald-500 text-lg mt-0.5 flex-shrink-0" />
+                                    <Text className="text-gray-700">{pro}</Text>
+                                  </div>
+                                </List.Item>
+                              )}
+                            />
+                          </Card>
+                        </Col>
+                      )}
+
+                      {broker.cons && broker.cons.length > 0 && (
+                        <Col xs={24} lg={12}>
+                          <Card
+                            title={
+                              <span className="flex items-center gap-2 text-red-600">
+                                <div className="w-6 h-6 bg-red-500 rounded-md flex items-center justify-center">
+                                  <CloseCircleOutlined className="text-white text-xs" />
+                                </div>
+                                Disadvantages
+                              </span>
+                            }
+                            className="h-full border-0 shadow-lg bg-gradient-to-br from-red-50 to-pink-50"
+                            style={{ borderRadius: '16px' }}
+                          >
+                            <List
+                              dataSource={broker.cons}
+                              renderItem={(con) => (
+                                <List.Item className="py-3 border-b border-red-100 last:border-b-0">
+                                  <div className="flex items-start gap-3">
+                                    <CloseCircleOutlined className="text-red-500 text-lg mt-0.5 flex-shrink-0" />
+                                    <Text className="text-gray-700">{con}</Text>
+                                  </div>
+                                </List.Item>
+                              )}
+                            />
+                          </Card>
+                        </Col>
+                      )}
+                    </Row>
+                </div>
+              </Tabs.TabPane>
+            )}
+
+            {broker.charges && (
+              <Tabs.TabPane
+                tab={
+                  <span className="flex items-center gap-2 font-medium">
+                    <PercentageOutlined />
+                    Detailed Charges
+                  </span>
+                }
+                key="detailedcharges"
+              >
+                  <div className="px-4 md:px-6">
+                    <Alert
+                      message="Detailed Charges Breakdown"
+                      description="Complete breakdown of all charges including transaction charges, GST, STT, and SEBI charges for different trading segments."
+                      type="info"
+                      showIcon
+                      className="mb-6 border-0 shadow-sm"
+                      style={{ borderRadius: '12px' }}
+                    />
+
+                    <Row gutter={[24, 24]}>
+                      <Col xs={24} lg={12}>
+                        <Card
+                          title={
+                            <span className="flex items-center gap-2 text-emerald-600">
+                              <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center">
+                                <LineChartOutlined className="text-white text-xs" />
+                              </div>
+                              Delivery Trading Charges
+                            </span>
+                          }
+                          className="border-0 shadow-lg"
+                          style={{ borderRadius: '16px' }}
+                        >
+                          <Descriptions column={1} size="small" bordered className="custom-descriptions">
+                            <Descriptions.Item label="Transaction Charges (BSE)">
+                              {broker.charges.delivery.transactionCharges.BSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Transaction Charges (NSE)">
+                              {broker.charges.delivery.transactionCharges.NSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="DP Charges">
+                              {broker.charges.delivery.dpCharges || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="GST">
+                              {broker.charges.delivery.gst}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="STT">
+                              {broker.charges.delivery.stt}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="SEBI Charges">
+                              {broker.charges.delivery.sebiCharges}
+                            </Descriptions.Item>
+                          </Descriptions>
+                        </Card>
+                      </Col>
+
+                      <Col xs={24} lg={12}>
+                        <Card
+                          title={
+                            <span className="flex items-center gap-2 text-blue-600">
+                              <div className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center">
+                                <ThunderboltOutlined className="text-white text-xs" />
+                              </div>
+                              Intraday Trading Charges
+                            </span>
+                          }
+                          className="border-0 shadow-lg"
+                          style={{ borderRadius: '16px' }}
+                        >
+                          <Descriptions column={1} size="small" bordered className="custom-descriptions">
+                            <Descriptions.Item label="Transaction Charges (BSE)">
+                              {broker.charges.intraday.transactionCharges.BSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Transaction Charges (NSE)">
+                              {broker.charges.intraday.transactionCharges.NSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="DP Charges">
+                              {broker.charges.intraday.dpCharge || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="GST">
+                              {broker.charges.intraday.gst}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="STT">
+                              {broker.charges.intraday.stt}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="SEBI Charges">
+                              {broker.charges.intraday.sebiCharges}
+                            </Descriptions.Item>
+                          </Descriptions>
+                        </Card>
+                      </Col>
+
+                      <Col xs={24} lg={12}>
+                        <Card
+                          title={
+                            <span className="flex items-center gap-2 text-orange-600">
+                              <div className="w-6 h-6 bg-orange-500 rounded-md flex items-center justify-center">
+                                <FireOutlined className="text-white text-xs" />
+                              </div>
+                              Futures Trading Charges
+                            </span>
+                          }
+                          className="border-0 shadow-lg"
+                          style={{ borderRadius: '16px' }}
+                        >
+                          <Descriptions column={1} size="small" bordered className="custom-descriptions">
+                            <Descriptions.Item label="Transaction Charges (BSE)">
+                              {broker.charges.futures.transactionCharges.BSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Transaction Charges (NSE)">
+                              {broker.charges.futures.transactionCharges.NSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Clearing Charges">
+                              {typeof broker.charges.futures.clearingCharges === 'object'
+                                ? (broker.charges.futures.clearingCharges.NSE || broker.charges.futures.clearingCharges.BSE || 'N/A')
+                                : broker.charges.futures.clearingCharges || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="GST">
+                              {broker.charges.futures.gst}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="STT">
+                              {broker.charges.futures.stt}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="SEBI Charges">
+                              {broker.charges.futures.sebiCharges}
+                            </Descriptions.Item>
+                          </Descriptions>
+                        </Card>
+                      </Col>
+
+                      <Col xs={24} lg={12}>
+                        <Card
+                          title={
+                            <span className="flex items-center gap-2 text-purple-600">
+                              <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center">
+                                <PercentageOutlined className="text-white text-xs" />
+                              </div>
+                              Options Trading Charges
+                            </span>
+                          }
+                          className="border-0 shadow-lg"
+                          style={{ borderRadius: '16px' }}
+                        >
+                          <Descriptions column={1} size="small" bordered className="custom-descriptions">
+                            <Descriptions.Item label="Transaction Charges (BSE)">
+                              {broker.charges.options.transactionCharges.BSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Transaction Charges (NSE)">
+                              {broker.charges.options.transactionCharges.NSE || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="Clearing Charges">
+                              {typeof broker.charges.options.clearingCharges === 'object'
+                                ? (broker.charges.options.clearingCharges.NSE || broker.charges.options.clearingCharges.BSE || 'N/A')
+                                : broker.charges.options.clearingCharges || 'N/A'}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="GST">
+                              {broker.charges.options.gst}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="STT">
+                              {broker.charges.options.stt}
+                            </Descriptions.Item>
+                            <Descriptions.Item label="SEBI Charges">
+                              {broker.charges.options.sebiCharges}
+                            </Descriptions.Item>
+                          </Descriptions>
+                        </Card>
+                      </Col>
+                    </Row>
+                </div>
+              </Tabs.TabPane>
+            )}
+
+            {broker.additionalFeatures && (
+              <Tabs.TabPane
+                tab={
+                  <span className="flex items-center gap-2 font-medium">
+                    <TrophyOutlined />
+                    Features & Services
+                  </span>
+                }
+                key="features"
+              >
+                  <div className="px-4 md:px-6">
+                    <Row gutter={[24, 24]}>
+                      <Col xs={24} lg={12}>
+                        <Card
+                          title={
+                            <span className="flex items-center gap-2 text-gray-800">
+                              <div className="w-6 h-6 bg-indigo-500 rounded-md flex items-center justify-center">
+                                <TrophyOutlined className="text-white text-xs" />
+                              </div>
+                              Additional Features
+                            </span>
+                          }
+                          className="border-0 shadow-lg"
+                          style={{ borderRadius: '16px' }}
+                        >
+                          <List
+                            dataSource={Object.entries(broker.additionalFeatures)}
+                            renderItem={([feature, available]) => (
+                              <List.Item className="py-3 border-b border-gray-100 last:border-b-0">
+                                <div className="flex items-start gap-3">
+                                  {available ? (
+                                    <CheckCircleOutlined className="text-emerald-500 text-lg mt-0.5 flex-shrink-0" />
+                                  ) : (
+                                    <CloseCircleOutlined className="text-red-500 text-lg mt-0.5 flex-shrink-0" />
+                                  )}
+                                  <Text className={available ? 'text-gray-700' : 'text-gray-400'}>
+                                    {feature.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                                  </Text>
+                                </div>
+                              </List.Item>
+                            )}
+                          />
+                        </Card>
+                      </Col>
+
+                      {broker.otherInvestments && broker.otherInvestments.length > 0 && (
+                        <Col xs={24} lg={12}>
+                          <Card
+                            title={
+                              <span className="flex items-center gap-2 text-gray-800">
+                                <div className="w-6 h-6 bg-purple-500 rounded-md flex items-center justify-center">
+                                  <GlobalOutlined className="text-white text-xs" />
+                                </div>
+                                Other Investment Options
+                              </span>
+                            }
+                            className="border-0 shadow-lg"
+                            style={{ borderRadius: '16px' }}
+                          >
+                            <Space wrap>
+                              {broker.otherInvestments.map((investment, index) => (
+                                <Tag
+                                  key={index}
+                                  className="px-3 py-1 text-sm font-medium border-0 shadow-sm"
+                                  style={{
+                                    background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                                    color: 'white',
+                                    borderRadius: '16px'
+                                  }}
+                                >
+                                  {investment.charAt(0).toUpperCase() + investment.slice(1)}
+                                </Tag>
+                              ))}
+                            </Space>
+                          </Card>
+                        </Col>
+                      )}
+                    </Row>
+                </div>
+              </Tabs.TabPane>
+            )}
+          </Tabs>
+        </Card>
+
+        {/* Enhanced Action Buttons */}
+        <div className="mt-8 space-y-6">
+          {/* Primary CTA */}
           <Card
+            className="border-0 shadow-2xl overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              border: 'none',
-              borderRadius: '12px',
-              textAlign: 'center'
+              borderRadius: '20px'
             }}
           >
-            <Title level={4} style={{ color: '#fff', margin: '0 0 16px 0' }}>
-              Ready to Start Trading?
-            </Title>
-            <Button
-              type="primary"
-              size="large"
-              style={{
-                minWidth: '200px',
-                height: '48px',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                background: '#fff',
-                color: '#667eea',
-                border: 'none',
-                borderRadius: '8px'
-              }}
-              icon={<CrownOutlined />}
-            >
-              Open Account with {broker.name}
-            </Button>
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
+
+              <div className="relative z-10 text-center py-8 px-6">
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CrownOutlined className="text-white text-2xl" />
+                  </div>
+                  <Title level={3} className="!text-white !mb-2">
+                    Ready to Start Trading?
+                  </Title>
+                  <Text className="text-white/90 text-lg">
+                    Join thousands of traders who trust {broker.name}
+                  </Text>
+                </div>
+
+                <Button
+                  type="primary"
+                  size="large"
+                  className="h-14 px-8 text-lg font-semibold border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 focus-ring"
+                  style={{
+                    background: '#fff',
+                    color: '#667eea',
+                    borderRadius: '12px',
+                    minWidth: isMobile ? '100%' : '280px'
+                  }}
+                  icon={<CrownOutlined />}
+                  aria-label={`Open trading account with ${broker.name}`}
+                >
+                  Open Account with {broker.name}
+                </Button>
+              </div>
+            </div>
           </Card>
-        </Col>
-        <Col xs={24} sm={12}>
-          <Card
-            style={{
-              background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-              border: 'none',
-              borderRadius: '12px',
-              textAlign: 'center'
-            }}
-          >
-            <Title level={4} style={{ color: '#fff', margin: '0 0 16px 0' }}>
-              Need More Information?
-            </Title>
-            <Space>
-              <Button
-                size="large"
-                style={{
-                  background: 'rgba(255,255,255,0.2)',
-                  color: '#fff',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  borderRadius: '8px'
-                }}
-                icon={<GlobalOutlined />}
+
+          {/* Secondary Actions */}
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={8}>
+              <Card
+                className="text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                style={{ borderRadius: '16px' }}
               >
-                Visit Website
-              </Button>
-              <Button
-                size="large"
-                style={{
-                  background: 'rgba(255,255,255,0.2)',
-                  color: '#fff',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  borderRadius: '8px'
-                }}
-                icon={<PhoneOutlined />}
+                <div className="py-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <GlobalOutlined className="text-white text-lg" />
+                  </div>
+                  <Text strong className="text-gray-800 block mb-2">Visit Website</Text>
+                  <Text className="text-gray-600 text-sm">Explore official website</Text>
+                </div>
+              </Card>
+            </Col>
+
+            <Col xs={24} sm={8}>
+              <Card
+                className="text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                style={{ borderRadius: '16px' }}
               >
-                Contact Support
-              </Button>
-            </Space>
-          </Card>
-        </Col>
-      </Row>
+                <div className="py-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <PhoneOutlined className="text-white text-lg" />
+                  </div>
+                  <Text strong className="text-gray-800 block mb-2">Contact Support</Text>
+                  <Text className="text-gray-600 text-sm">Get help & assistance</Text>
+                </div>
+              </Card>
+            </Col>
+
+            <Col xs={24} sm={8}>
+              <Card
+                className="text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                style={{ borderRadius: '16px' }}
+              >
+                <div className="py-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <ShareAltOutlined className="text-white text-lg" />
+                  </div>
+                  <Text strong className="text-gray-800 block mb-2">Compare</Text>
+                  <Text className="text-gray-600 text-sm">Compare with others</Text>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      </div>
     </div>
   );
 };
