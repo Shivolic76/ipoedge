@@ -183,65 +183,188 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Professional Financial Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-indigo-50"></div>
+      {/* Dynamic Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-violet-900 to-indigo-900"></div>
 
-      {/* Financial Grid Pattern */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `
-          linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)
-        `,
-        backgroundSize: '40px 40px'
-      }}></div>
+      {/* Animated Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 via-transparent to-pink-600/20 animate-gradientShift"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-violet-500/10 via-transparent to-purple-500/15 animate-gradientShift" style={{ animationDelay: '2s' }}></div>
 
-      {/* Stock Chart Lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* CSS Stock Chart Lines */}
-        <svg className="absolute top-16 right-20 w-56 h-28 opacity-10" viewBox="0 0 180 70">
-          <polyline
-            fill="none"
-            stroke="rgb(139, 92, 246)"
-            strokeWidth="2"
-            points="0,55 18,42 36,48 54,28 72,33 90,18 108,23 126,13 144,18 162,8 180,13"
-            className="animate-pulse"
-          />
-        </svg>
+      {/* Floating Orbs */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/30 to-violet-400/20 rounded-full blur-3xl animate-floatSlow"></div>
+        <div className="absolute top-3/4 left-1/4 w-96 h-96 bg-gradient-to-r from-pink-400/25 to-purple-400/30 rounded-full blur-3xl animate-floatSlow" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-violet-400/20 to-indigo-400/25 rounded-full blur-3xl animate-floatSlow" style={{ animationDelay: '1s' }}></div>
+      </div>
 
-        <svg className="absolute bottom-28 left-16 w-52 h-26 opacity-8" viewBox="0 0 160 65">
-          <polyline
-            fill="none"
-            stroke="rgb(168, 85, 247)"
-            strokeWidth="2"
-            points="0,48 16,38 32,43 48,23 64,28 80,13 96,18 112,8 128,13 144,3 160,8"
-            className="animate-pulse"
-            style={{ animationDelay: '1.5s' }}
-          />
-        </svg>
+      {/* Animated Particles */}
+      <div className="absolute inset-0">
+        <div className="absolute top-16 right-20 w-2 h-2 bg-purple-400/60 rounded-full animate-twinkle"></div>
+        <div className="absolute top-32 left-24 w-1.5 h-1.5 bg-violet-400/70 rounded-full animate-twinkle" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 right-1/4 w-1 h-1 bg-pink-400/80 rounded-full animate-twinkle" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-2.5 h-2.5 bg-indigo-400/50 rounded-full animate-twinkle" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 left-16 w-1.5 h-1.5 bg-purple-300/60 rounded-full animate-twinkle" style={{ animationDelay: '4s' }}></div>
+      </div>
 
-        {/* Financial Data Cards */}
-        <div className="absolute top-1/3 left-20 bg-white/5 backdrop-blur-sm border border-purple-200/20 rounded-lg p-3 shadow-lg animate-gentleFloat" style={{ animationDelay: '1s' }}>
-          <div className="text-purple-600/40 text-xs font-mono">SENSEX</div>
-          <div className="text-green-600/50 text-sm font-bold">+0.89%</div>
+      {/* IPO Themed Animated Elements - Desktop Only */}
+      <div className="hidden md:block absolute inset-0 overflow-hidden">
+        {/* Animated Person with Laptop - Different Position */}
+        <div className="absolute top-20 right-12 animate-floatGentle" style={{ animationDelay: '2s' }}>
+          <div className="relative">
+            {/* Person silhouette */}
+            <div className="w-16 h-20 relative">
+              {/* Head */}
+              <div className="w-4 h-4 bg-white/20 rounded-full mx-auto mb-1"></div>
+              {/* Body */}
+              <div className="w-6 h-8 bg-white/15 rounded-lg mx-auto mb-1"></div>
+              {/* Laptop */}
+              <div className="w-8 h-4 bg-white/25 rounded-sm mx-auto relative">
+                <div className="w-6 h-3 bg-purple-400/30 rounded-sm absolute top-0.5 left-1 animate-pulse"></div>
+                <div className="w-1 h-1 bg-violet-400 rounded-full absolute top-1 left-2 animate-ping"></div>
+              </div>
+            </div>
+            {/* Analysis indicators */}
+            <div className="absolute -top-3 -left-3 flex flex-col space-y-1">
+              <div className="w-2 h-0.5 bg-purple-400 rounded animate-pulse"></div>
+              <div className="w-3 h-0.5 bg-violet-400 rounded animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+              <div className="w-1.5 h-0.5 bg-pink-400 rounded animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+            </div>
+          </div>
         </div>
 
-        <div className="absolute bottom-1/4 right-24 bg-white/5 backdrop-blur-sm border border-violet-200/20 rounded-lg p-3 shadow-lg animate-gentleFloat" style={{ animationDelay: '3s' }}>
-          <div className="text-violet-600/40 text-xs font-mono">BANKEX</div>
-          <div className="text-green-600/50 text-sm font-bold">+3.45%</div>
+        {/* IPO Listing Cards */}
+        <div className="absolute top-12 left-8 w-56 h-40 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl animate-floatGentle transform -rotate-3" style={{ animationDelay: '0s' }}>
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-white/70 text-xs font-semibold">SENSEX</div>
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="text-purple-400 text-xl font-bold">+0.89%</div>
+            <div className="text-white/50 text-xs mb-2">₹65,875.45</div>
+            <div className="w-full h-1.5 bg-white/20 rounded-full mb-2">
+              <div className="w-2/3 h-full bg-gradient-to-r from-purple-400 to-violet-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="flex justify-between text-xs text-white/40">
+              <span>Low: 65,420</span>
+              <span>High: 66,120</span>
+            </div>
+          </div>
         </div>
 
-        {/* Candlestick Chart Elements */}
-        <div className="absolute top-2/3 right-1/3 flex space-x-1 opacity-10">
-          <div className="w-1 h-6 bg-purple-500 rounded-sm animate-pulse"></div>
-          <div className="w-1 h-8 bg-green-500 rounded-sm animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-1 h-5 bg-red-500 rounded-sm animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="w-1 h-9 bg-purple-500 rounded-sm animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-          <div className="w-1 h-7 bg-green-500 rounded-sm animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-16 right-20 w-52 h-36 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl animate-floatGentle transform rotate-6" style={{ animationDelay: '3s' }}>
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-white/70 text-xs font-semibold">BANKEX</div>
+              <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="text-pink-400 text-xl font-bold">+3.45%</div>
+            <div className="text-white/50 text-xs mb-2">₹52,340.20</div>
+            <div className="w-full h-1.5 bg-white/20 rounded-full mb-2">
+              <div className="w-5/6 h-full bg-gradient-to-r from-pink-400 to-purple-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="flex justify-between text-xs text-white/40">
+              <span>Low: 51,890</span>
+              <span>High: 52,450</span>
+            </div>
+          </div>
         </div>
 
-        {/* Subtle Background Orbs */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/8 to-violet-400/5 rounded-full blur-3xl animate-slowPulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-violet-400/6 to-purple-400/8 rounded-full blur-3xl animate-slowPulse" style={{ animationDelay: '4s' }}></div>
+        {/* IPO Registration Form Preview */}
+        <div className="absolute top-1/2 left-12 w-48 h-44 bg-white/8 backdrop-blur-md rounded-2xl border border-white/15 shadow-xl animate-floatGentle transform -rotate-12" style={{ animationDelay: '5s' }}>
+          <div className="p-3">
+            <div className="text-white/60 text-xs font-semibold mb-3">New IPO Registration</div>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="w-3/4 h-1.5 bg-white/20 rounded"></div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                <div className="w-2/3 h-1.5 bg-white/15 rounded"></div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="w-4/5 h-1.5 bg-white/20 rounded"></div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                <div className="w-1/2 h-1.5 bg-white/15 rounded"></div>
+              </div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="text-violet-400 text-xs font-bold">REGISTER</div>
+              <div className="w-4 h-4 border border-violet-400 rounded animate-spin"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Chart Elements */}
+        <div className="absolute bottom-1/3 left-1/3 animate-floatGentle" style={{ animationDelay: '4s' }}>
+          <svg width="70" height="35" viewBox="0 0 70 35" className="opacity-20">
+            <polyline
+              fill="none"
+              stroke="rgb(168, 85, 247)"
+              strokeWidth="2"
+              points="0,30 12,25 24,27 36,18 48,21 60,12 70,15"
+              className="animate-pulse"
+            />
+          </svg>
+        </div>
+
+        {/* IPO Registration Status */}
+        <div className="absolute top-2/3 right-1/4 animate-floatGentle" style={{ animationDelay: '6s' }}>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              <div className="text-white/60 text-xs">REGISTERING</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute top-1/4 left-1/4 animate-floatGentle" style={{ animationDelay: '8s' }}>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+              <div className="text-white/60 text-xs">NEW IPO</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Animated Lines */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-shimmerSlow"></div>
+        <div className="absolute bottom-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-violet-400/30 to-transparent animate-shimmerSlow" style={{ animationDelay: '3s' }}></div>
+      </div>
+
+
+
+      {/* Floating Registration Info - Desktop Only */}
+      <div className="hidden lg:block absolute top-6 right-6 z-20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 px-4 py-2 animate-floatGentle">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-violet-400 rounded-full animate-pulse"></div>
+            <span className="text-white/70 text-xs font-medium">Join IPO Edge Community</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Registration Benefits - Desktop Only */}
+      <div className="hidden lg:block absolute bottom-6 right-6 z-20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-3 animate-floatGentle" style={{ animationDelay: '3s' }}>
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
+              <span className="text-white/70 text-xs">Free IPO Alerts</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <span className="text-white/70 text-xs">Priority Access</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <span className="text-white/70 text-xs">Expert Recommendations</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
@@ -249,9 +372,9 @@ const RegisterPage: React.FC = () => {
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           {/* Main Register Card */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-8 relative overflow-hidden">
             {/* Card Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/20 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/40 rounded-3xl"></div>
 
             <div className="relative z-10">
               {/* Logo and Header */}
@@ -471,6 +594,25 @@ const RegisterPage: React.FC = () => {
                   className="text-purple-600 hover:text-purple-700 font-medium transition-colors duration-300"
                 >
                   Sign in
+                </Link>
+              </div>
+
+              {/* Back to Home Button - All Screens */}
+              <div className="mt-8">
+                <Link
+                  to="/"
+                  className="flex items-center justify-center space-x-3 w-full bg-gradient-to-r from-purple-500 to-violet-500 hover:from-violet-500 hover:to-purple-500 text-white rounded-2xl py-4 px-6 transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl group"
+                >
+                  <svg
+                    className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span className="font-semibold group-hover:text-violet-100 transition-colors duration-300">Back to Home</span>
+                  <div className="w-2 h-2 bg-white/60 rounded-full group-hover:bg-white/80 transition-colors duration-300"></div>
                 </Link>
               </div>
             </div>

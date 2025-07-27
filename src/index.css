@@ -1058,6 +1058,161 @@ html {
   animation: morphBackground 12s ease-in-out infinite;
 }
 
+/* Enhanced Dynamic Animations */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.05);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px) scale(0.95);
+  }
+  75% {
+    transform: translateY(-30px) translateX(-10px) scale(1.02);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes shimmerSlow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-gradientShift {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+.animate-floatSlow {
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.animate-floatGentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-shimmerSlow {
+  animation: shimmerSlow 4s ease-in-out infinite;
+}
+
+/* IPO Specific Animations */
+@keyframes typing {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes dataFlow {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes chartGrow {
+  0% {
+    transform: scaleY(0.8);
+  }
+  50% {
+    transform: scaleY(1.2);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-typing {
+  animation: typing 2s ease-in-out infinite;
+}
+
+.animate-dataFlow {
+  animation: dataFlow 3s ease-in-out infinite;
+}
+
+.animate-chartGrow {
+  animation: chartGrow 2s ease-in-out infinite;
+}
+
+.animate-progressFill {
+  animation: progressFill 3s ease-in-out infinite;
+}
+
+/* Enhanced hover effects for cards */
+.ipo-card {
+  transition: all 0.3s ease;
+}
+
+.ipo-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* Mobile-optimized animations */
 @media (max-width: 768px) {
   .animate-fadeIn,

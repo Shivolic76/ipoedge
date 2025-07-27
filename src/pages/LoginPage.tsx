@@ -39,65 +39,219 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Professional Financial Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"></div>
+      {/* Dynamic Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900"></div>
 
-      {/* Financial Grid Pattern */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `
-          linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px)
-        `,
-        backgroundSize: '40px 40px'
-      }}></div>
+      {/* Animated Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 via-transparent to-purple-600/20 animate-gradientShift"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-cyan-500/10 via-transparent to-indigo-500/15 animate-gradientShift" style={{ animationDelay: '2s' }}></div>
 
-      {/* Stock Chart Lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* CSS Stock Chart Lines */}
-        <svg className="absolute top-20 left-20 w-64 h-32 opacity-10" viewBox="0 0 200 80">
-          <polyline
-            fill="none"
-            stroke="rgb(59, 130, 246)"
-            strokeWidth="2"
-            points="0,60 20,45 40,50 60,30 80,35 100,20 120,25 140,15 160,20 180,10 200,15"
-            className="animate-pulse"
-          />
-        </svg>
+      {/* Floating Orbs */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-400/30 to-cyan-400/20 rounded-full blur-3xl animate-floatSlow"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/25 to-indigo-400/30 rounded-full blur-3xl animate-floatSlow" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-gradient-to-r from-cyan-400/20 to-blue-400/25 rounded-full blur-3xl animate-floatSlow" style={{ animationDelay: '1s' }}></div>
+      </div>
 
-        <svg className="absolute bottom-32 right-24 w-48 h-24 opacity-8" viewBox="0 0 150 60">
-          <polyline
-            fill="none"
-            stroke="rgb(34, 197, 94)"
-            strokeWidth="2"
-            points="0,50 15,40 30,45 45,25 60,30 75,15 90,20 105,10 120,15 135,5 150,10"
-            className="animate-pulse"
-            style={{ animationDelay: '1s' }}
-          />
-        </svg>
+      {/* Animated Particles */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400/60 rounded-full animate-twinkle"></div>
+        <div className="absolute top-40 right-32 w-1.5 h-1.5 bg-cyan-400/70 rounded-full animate-twinkle" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-32 left-1/4 w-1 h-1 bg-purple-400/80 rounded-full animate-twinkle" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-indigo-400/50 rounded-full animate-twinkle" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-1/3 right-20 w-1.5 h-1.5 bg-blue-300/60 rounded-full animate-twinkle" style={{ animationDelay: '4s' }}></div>
+      </div>
 
-        {/* Financial Data Cards */}
-        <div className="absolute top-1/4 right-16 bg-white/5 backdrop-blur-sm border border-blue-200/20 rounded-lg p-3 shadow-lg animate-gentleFloat" style={{ animationDelay: '2s' }}>
-          <div className="text-blue-600/40 text-xs font-mono">NIFTY 50</div>
-          <div className="text-green-600/50 text-sm font-bold">+1.24%</div>
+      {/* IPO Themed Animated Elements - Desktop Only */}
+      <div className="hidden md:block absolute inset-0 overflow-hidden">
+        {/* Animated Person with Laptop */}
+        <div className="absolute bottom-20 left-8 animate-floatGentle" style={{ animationDelay: '1s' }}>
+          <div className="relative">
+            {/* Person silhouette */}
+            <div className="w-16 h-20 relative">
+              {/* Head */}
+              <div className="w-4 h-4 bg-white/20 rounded-full mx-auto mb-1"></div>
+              {/* Body */}
+              <div className="w-6 h-8 bg-white/15 rounded-lg mx-auto mb-1"></div>
+              {/* Laptop */}
+              <div className="w-8 h-4 bg-white/25 rounded-sm mx-auto relative">
+                <div className="w-6 h-3 bg-blue-400/30 rounded-sm absolute top-0.5 left-1 animate-pulse"></div>
+                <div className="w-1 h-1 bg-green-400 rounded-full absolute top-1 left-2 animate-ping"></div>
+              </div>
+            </div>
+            {/* Typing indicator */}
+            <div className="absolute -top-2 -right-2 flex space-x-0.5">
+              <div className="w-1 h-1 bg-cyan-400 rounded-full animate-bounce"></div>
+              <div className="w-1 h-1 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-1 h-1 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+            </div>
+          </div>
         </div>
 
-        <div className="absolute bottom-1/3 left-20 bg-white/5 backdrop-blur-sm border border-indigo-200/20 rounded-lg p-3 shadow-lg animate-gentleFloat" style={{ animationDelay: '4s' }}>
-          <div className="text-indigo-600/40 text-xs font-mono">BANKNIFTY</div>
-          <div className="text-green-600/50 text-sm font-bold">+2.87%</div>
+        {/* IPO Application UI Cards */}
+        <div className="absolute top-16 left-12 w-52 h-36 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl animate-floatGentle transform rotate-3" style={{ animationDelay: '0s' }}>
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-white/70 text-xs font-semibold">NIFTY 50</div>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="text-green-400 text-xl font-bold">+1.24%</div>
+            <div className="text-white/50 text-xs mb-2">₹19,850.25</div>
+            <div className="w-full h-1.5 bg-white/20 rounded-full">
+              <div className="w-3/4 h-full bg-gradient-to-r from-green-400 to-cyan-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="flex justify-between text-xs text-white/40 mt-1">
+              <span>Low: 19,720</span>
+              <span>High: 19,890</span>
+            </div>
+          </div>
         </div>
 
-        {/* Candlestick Chart Elements */}
-        <div className="absolute top-1/2 left-1/3 flex space-x-1 opacity-10">
-          <div className="w-1 h-8 bg-green-500 rounded-sm animate-pulse"></div>
-          <div className="w-1 h-6 bg-red-500 rounded-sm animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-          <div className="w-1 h-10 bg-green-500 rounded-sm animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="w-1 h-4 bg-red-500 rounded-sm animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-          <div className="w-1 h-7 bg-green-500 rounded-sm animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-24 right-16 w-48 h-32 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl animate-floatGentle transform -rotate-6" style={{ animationDelay: '2s' }}>
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-white/70 text-xs font-semibold">BANKNIFTY</div>
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="text-purple-400 text-xl font-bold">+2.87%</div>
+            <div className="text-white/50 text-xs mb-2">₹44,125.80</div>
+            <div className="w-full h-1.5 bg-white/20 rounded-full">
+              <div className="w-4/5 h-full bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full animate-pulse"></div>
+            </div>
+            <div className="flex justify-between text-xs text-white/40 mt-1">
+              <span>Low: 43,890</span>
+              <span>High: 44,250</span>
+            </div>
+          </div>
         </div>
 
-        {/* Subtle Background Orbs */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-400/8 to-indigo-400/5 rounded-full blur-3xl animate-slowPulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-400/6 to-blue-400/8 rounded-full blur-3xl animate-slowPulse" style={{ animationDelay: '3s' }}></div>
+        {/* IPO Application Form Preview */}
+        <div className="absolute top-1/2 right-8 w-44 h-40 bg-white/8 backdrop-blur-md rounded-2xl border border-white/15 shadow-xl animate-floatGentle transform rotate-12" style={{ animationDelay: '4s' }}>
+          <div className="p-3">
+            <div className="text-white/60 text-xs font-semibold mb-2">IPO Application</div>
+            <div className="space-y-2">
+              <div className="w-full h-2 bg-white/20 rounded animate-pulse"></div>
+              <div className="w-3/4 h-2 bg-white/15 rounded animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <div className="w-full h-2 bg-white/20 rounded animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="w-2/3 h-2 bg-white/15 rounded animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+            </div>
+            <div className="mt-3 flex justify-between items-center">
+              <div className="text-green-400 text-xs font-bold">APPLY NOW</div>
+              <div className="w-4 h-4 border border-green-400 rounded animate-spin"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Chart Elements */}
+        <div className="absolute top-1/4 left-1/3 animate-floatGentle" style={{ animationDelay: '3s' }}>
+          <svg width="60" height="30" viewBox="0 0 60 30" className="opacity-20">
+            <polyline
+              fill="none"
+              stroke="rgb(34, 197, 94)"
+              strokeWidth="2"
+              points="0,25 10,20 20,22 30,15 40,18 50,10 60,12"
+              className="animate-pulse"
+            />
+          </svg>
+        </div>
+
+        {/* IPO Status Indicators */}
+        <div className="absolute top-1/3 right-1/4 animate-floatGentle" style={{ animationDelay: '6s' }}>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <div className="text-white/60 text-xs">IPO LIVE</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-1/4 left-1/3 animate-floatGentle" style={{ animationDelay: '7s' }}>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+              <div className="text-white/60 text-xs">UPCOMING</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Animated Lines */}
+        <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent animate-shimmerSlow"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-shimmerSlow" style={{ animationDelay: '3s' }}></div>
+      </div>
+
+
+
+      {/* Floating Navigation Hint - Desktop Only */}
+      <div className="hidden lg:block absolute top-6 right-6 z-20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 px-4 py-2 animate-floatGentle">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+            <span className="text-white/70 text-xs font-medium">Welcome to IPO Edge</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Quick Stats - Desktop Only */}
+      <div className="hidden lg:block absolute bottom-6 left-6 z-20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-4 animate-floatGentle" style={{ animationDelay: '2s' }}>
+          <div className="flex items-center space-x-4">
+            <div className="text-center">
+              <div className="text-green-400 font-bold text-lg">150+</div>
+              <div className="text-white/60 text-xs">Active IPOs</div>
+            </div>
+            <div className="w-px h-8 bg-white/20"></div>
+            <div className="text-center">
+              <div className="text-blue-400 font-bold text-lg">₹2.5L Cr</div>
+              <div className="text-white/60 text-xs">Market Cap</div>
+            </div>
+            <div className="w-px h-8 bg-white/20"></div>
+            <div className="text-center">
+              <div className="text-purple-400 font-bold text-lg">98%</div>
+              <div className="text-white/60 text-xs">Success Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Feature Highlights - Desktop Only */}
+      <div className="hidden lg:block absolute bottom-6 right-6 z-20">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-3 animate-floatGentle" style={{ animationDelay: '4s' }}>
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-white/70 text-xs">Real-time IPO Updates</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <span className="text-white/70 text-xs">Expert Analysis</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <span className="text-white/70 text-xs">Instant Applications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative Corner Elements - Desktop Only */}
+      <div className="hidden lg:block absolute top-0 left-0 w-32 h-32 pointer-events-none">
+        <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-cyan-400/30 rounded-tl-lg animate-pulse"></div>
+        <div className="absolute top-8 left-8 w-4 h-4 border-l border-t border-blue-400/40 rounded-tl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="hidden lg:block absolute top-0 right-0 w-32 h-32 pointer-events-none">
+        <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-purple-400/30 rounded-tr-lg animate-pulse"></div>
+        <div className="absolute top-8 right-8 w-4 h-4 border-r border-t border-violet-400/40 rounded-tr animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="hidden lg:block absolute bottom-0 left-0 w-32 h-32 pointer-events-none">
+        <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-green-400/30 rounded-bl-lg animate-pulse"></div>
+        <div className="absolute bottom-8 left-8 w-4 h-4 border-l border-b border-cyan-400/40 rounded-bl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="hidden lg:block absolute bottom-0 right-0 w-32 h-32 pointer-events-none">
+        <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-indigo-400/30 rounded-br-lg animate-pulse"></div>
+        <div className="absolute bottom-8 right-8 w-4 h-4 border-r border-b border-purple-400/40 rounded-br animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
@@ -105,9 +259,9 @@ const LoginPage: React.FC = () => {
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           {/* Main Login Card */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-8 relative overflow-hidden">
             {/* Card Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/20 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/40 rounded-3xl"></div>
 
             <div className="relative z-10">
               {/* Logo and Header */}
@@ -223,6 +377,25 @@ const LoginPage: React.FC = () => {
                   className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
                 >
                   Sign up
+                </Link>
+              </div>
+
+              {/* Back to Home Button - All Screens */}
+              <div className="mt-8">
+                <Link
+                  to="/"
+                  className="flex items-center justify-center space-x-3 w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-500 hover:to-blue-500 text-white rounded-2xl py-4 px-6 transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl group"
+                >
+                  <svg
+                    className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span className="font-semibold group-hover:text-cyan-100 transition-colors duration-300">Back to Home</span>
+                  <div className="w-2 h-2 bg-white/60 rounded-full group-hover:bg-white/80 transition-colors duration-300"></div>
                 </Link>
               </div>
             </div>
