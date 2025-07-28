@@ -32,6 +32,101 @@ export interface IPO {
   sector?: string;
   registrar?: string;
   leadManagers?: string[];
+
+  // Enhanced IPO Details
+  allotmentDate?: string;
+  faceValue?: number;
+  freshIssue?: {
+    shares: number;
+    amount: string;
+  };
+  ofs?: {
+    shares: number;
+    amount: string;
+  };
+  marketLot?: {
+    retail: {
+      shares: number;
+      amount: number;
+    };
+    sHni: {
+      shares: number;
+      amount: number;
+    };
+    bHni: {
+      shares: number;
+      amount: number;
+    };
+  };
+
+  // Financial Data
+  financials?: {
+    year: string;
+    revenue: number;
+    profit: number;
+    assets: number;
+    netWorth: number;
+    totalBorrowing: number;
+  }[];
+
+  // Valuation Metrics
+  valuations?: {
+    epsPreIpo?: number;
+    epsPostIpo?: number;
+    pePreIpo?: number;
+    pePostIpo?: number;
+    roe?: number;
+    roce?: number;
+    debtEquity?: number;
+    patMargin?: number;
+    priceToBook?: number;
+  };
+
+  // Company Details
+  companyDetails?: {
+    foundedYear?: number;
+    headquarters?: string;
+    employees?: number;
+    website?: string;
+    email?: string;
+    phone?: string;
+  };
+
+  // Promoter Information
+  promoters?: {
+    preIssueHolding: number;
+    postIssueHolding: number;
+    names: string[];
+  };
+
+  // Issue Objectives
+  issueObjectives?: string[];
+
+  // Anchor Investors
+  anchorInvestors?: {
+    totalAmount: string;
+    investors: string[];
+  };
+
+  // Strengths and Weaknesses
+  strengths?: string[];
+  weaknesses?: string[];
+
+  // Peer Comparison
+  peers?: {
+    name: string;
+    pbRatio?: number;
+    peRatio?: number;
+    ronw?: number;
+    netWorth?: number;
+  }[];
+
+  // Documents
+  documents?: {
+    drhp?: string;
+    rhp?: string;
+    anchor?: string;
+  };
 }
 
 // Buyback related types

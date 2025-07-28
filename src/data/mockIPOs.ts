@@ -26,11 +26,95 @@ export const mockIPOs: IPO[] = [
     },
     listingDate: '2025-07-28',
     listingPrice: 67,
+    allotmentDate: '2025-07-24',
+    faceValue: 10,
     issueSize: '₹14.07 Crores',
-    companyDescription: 'Swastika Castal Limited deals in aluminum casting. The company deals mostly in manufacturing, specifically in making high-quality aluminum castings using processes including sand, gravity, and centrifugal casting.',
+    companyDescription: 'Established in 1996, Swastika Castal Limited deals in aluminum casting. The company deals mostly in manufacturing, specifically in making high-quality aluminum castings using processes including sand, gravity, and centrifugal casting. The company is a specialist in sand-casting of intricate patterns (up to 250 kg) and gravity casting (up to 80 kg) for accurate, high-quality parts with good surface finish and precision. The firm has its own heat treatment plant, providing higher quality, efficiency, and cost savings with accurate control over mechanical properties and dimensional stability.',
     sector: 'Manufacturing',
     registrar: 'Accurate Securities & Registry Private Limited',
-    leadManagers: ['Horizon Management Private Limited']
+    leadManagers: ['Horizon Management Private Limited'],
+
+    freshIssue: {
+      shares: 2164000,
+      amount: '₹14.07 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 2000,
+        amount: 130000
+      },
+      sHni: {
+        shares: 4000,
+        amount: 260000
+      },
+      bHni: {
+        shares: 6000,
+        amount: 390000
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 30.31,
+        profit: 2.63,
+        assets: 30.83,
+        netWorth: 10.67,
+        totalBorrowing: 9.12
+      },
+      {
+        year: '2024',
+        revenue: 23.35,
+        profit: 0.65,
+        assets: 23.82,
+        netWorth: 8.03,
+        totalBorrowing: 8.97
+      },
+      {
+        year: '2023',
+        revenue: 24.41,
+        profit: 0.58,
+        assets: 26.24,
+        netWorth: 7.39,
+        totalBorrowing: 9.64
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 4.39,
+      epsPostIpo: 3.23,
+      pePreIpo: 14.80,
+      pePostIpo: 20.14,
+      roe: 28.17,
+      roce: 32.74,
+      debtEquity: 0.85,
+      patMargin: 8.88,
+      priceToBook: 3.66
+    },
+
+    companyDetails: {
+      foundedYear: 1996,
+      headquarters: 'Kolkata, West Bengal',
+      website: 'https://sclcasting.com/',
+      email: 'compliance@aluminiumcasting.net',
+      phone: '+91 63539-26282'
+    },
+
+    promoters: {
+      preIssueHolding: 100.0,
+      postIssueHolding: 73.49,
+      names: ['Varun Sharda', 'Indra Sharda']
+    },
+
+    issueObjectives: [
+      'Capital Expenditure for acquisition of Plant & Machinery and Construction of Shed & Building',
+      'Working Capital Requirements',
+      'General corporate purposes'
+    ],
+
+    documents: {
+      drhp: 'https://www.bseindia.com/corporates/download/387849/Swastika%20DP%20Filing%20Version_20250331195708.pdf'
+    }
   },
   {
     id: '2',
@@ -60,11 +144,96 @@ export const mockIPOs: IPO[] = [
     },
     listingDate: '2025-07-28',
     listingPrice: 136.5,
-    issueSize: '₹75 Crores',
-    companyDescription: 'Savy Infra & Logistics Limited provides comprehensive infrastructure development and logistics services including transportation, warehousing, and supply chain management solutions across India.',
+    allotmentDate: '2025-07-24',
+    faceValue: 10,
+    issueSize: '₹69.98 Crores',
+    companyDescription: 'Incorporated in January 2006, Savy Infra and Logistics Limited is an EPC firm with expertise in earthwork and foundation preparation for infrastructure projects such as road construction, embankments, sub-grade preparation, and surface paving. The EPC activities of the company encompass earthwork services that transfer and mold vast amounts of soil, providing a solid foundation for buildings and infrastructure. The company provides demolition services, demolishing structures safely for new projects.',
     sector: 'Infrastructure',
-    registrar: 'Bigshare Services Private Limited',
-    leadManagers: ['Savy Capital Markets Private Limited']
+    registrar: 'Maashitla Securities Private Limited',
+    leadManagers: ['Unistone Capital Pvt Ltd'],
+
+    freshIssue: {
+      shares: 5832000,
+      amount: '₹69.98 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 1200,
+        amount: 144000
+      },
+      sHni: {
+        shares: 2400,
+        amount: 288000
+      },
+      bHni: {
+        shares: 3600,
+        amount: 432000
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 283.77,
+        profit: 23.88,
+        assets: 185.81,
+        netWorth: 52.25,
+        totalBorrowing: 44.84
+      },
+      {
+        year: '2024',
+        revenue: 101.62,
+        profit: 9.87,
+        assets: 41.69,
+        netWorth: 10.51,
+        totalBorrowing: 8.49
+      },
+      {
+        year: '2023',
+        revenue: 6.19,
+        profit: 0.34,
+        assets: 10.10,
+        netWorth: 0.64,
+        totalBorrowing: 3.12
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 15.94,
+      epsPostIpo: 11.48,
+      pePreIpo: 7.53,
+      pePostIpo: 10.46,
+      roe: 76.10,
+      roce: 36.69,
+      debtEquity: 0.86,
+      patMargin: 8.43,
+      priceToBook: 3.44
+    },
+
+    companyDetails: {
+      foundedYear: 2006,
+      headquarters: 'Gandhinagar, Gujarat',
+      employees: 33,
+      website: 'https://www.savyinfra.com/',
+      email: 'compliance@savyinfra.com',
+      phone: '+91 9227027522'
+    },
+
+    promoters: {
+      preIssueHolding: 100.0,
+      postIssueHolding: 75.0,
+      names: ['Tilak Mundhra', 'Liladhar Mundhra']
+    },
+
+    issueObjectives: [
+      'Funding working capital requirements of the company',
+      'General Corporate Purposes'
+    ],
+
+    documents: {
+      drhp: 'https://nsearchives.nseindia.com/emerge/corporates/content/Registration_06122024135429_DRHPSavyInfra.pdf',
+      rhp: 'https://unistonecapital.com/wp-content/uploads/2025/07/SAVY-INFRA-AND-LOGISTICS-LIMITED_RHP.pdf'
+    }
   },
   {
     id: '3',
@@ -143,20 +312,135 @@ export const mockIPOs: IPO[] = [
     },
     lotSize: 63,
     subscription: {
-      times: 2.54,
-      retail: 1.4,
-      hni: 2.1,
-      qib: 1.2
+      times: 12.33,
+      retail: 12.51,
+      hni: 8.24,
+      qib: 14.35
     },
     gmp: {
-      premium: 13,
-      percentage: 5.06
+      premium: 5,
+      percentage: 2.11
     },
-    issueSize: '₹450 Crores',
-    companyDescription: 'Indiqube Spaces is a leading co-working space provider in India.',
+    issueSize: '₹700 Crores',
+    listingDate: '2025-07-30',
+    allotmentDate: '2025-07-28',
+    faceValue: 1,
+    companyDescription: 'Founded in 2015, Indiqube Spaces Limited delivers managed, sustainable, and technology-driven workplace solutions to shift the traditional office experience into a better one for contemporary businesses. The firm delivers varied workplace solutions, such as corporate campuses and branch offices, with employee improvement through interiors, amenities, and services.',
     sector: 'Real Estate',
-    registrar: 'KFin Technologies',
-    leadManagers: ['ICICI Securities', 'Kotak Mahindra Capital']
+    registrar: 'MUFG Intime India Private Limited (Link Intime)',
+    leadManagers: ['ICICI Securities Limited', 'JM Financial Limited'],
+
+    freshIssue: {
+      shares: 27426160,
+      amount: '₹650 Crores'
+    },
+    ofs: {
+      shares: 2109704,
+      amount: '₹50 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 63,
+        amount: 14931
+      },
+      sHni: {
+        shares: 882,
+        amount: 209034
+      },
+      bHni: {
+        shares: 4221,
+        amount: 1000377
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 1102.93,
+        profit: -139.62,
+        assets: 4685.12,
+        netWorth: -3.11,
+        totalBorrowing: 343.96
+      },
+      {
+        year: '2024',
+        revenue: 867.66,
+        profit: -341.51,
+        assets: 3667.91,
+        netWorth: 130.63,
+        totalBorrowing: 164.02
+      },
+      {
+        year: '2023',
+        revenue: 601.28,
+        profit: -198.11,
+        assets: 2969.32,
+        netWorth: -308.1,
+        totalBorrowing: 623.16
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: -7.65,
+      roe: -2.19,
+      roce: 34.21,
+      patMargin: -12.66
+    },
+
+    companyDetails: {
+      foundedYear: 2015,
+      headquarters: 'Bengaluru, Karnataka',
+      employees: 625,
+      website: 'http://www.indiqube.com/',
+      email: 'cs.compliance@indiqube.com',
+      phone: '+91 99000 92210'
+    },
+
+    promoters: {
+      preIssueHolding: 70.47,
+      postIssueHolding: 60.23,
+      names: ['Rishi Das', 'Meghna Agarwal', 'Anshuman Das']
+    },
+
+    issueObjectives: [
+      'Funding capital expenditure towards establishment of new centers',
+      'Repayment/pre-payment, in full or in part, of certain borrowings availed by the Company',
+      'General corporate purposes'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹314.3 Crores',
+      investors: ['Tocu Europe', 'BNP Paribas Financial Markets', 'Societe Generale', 'Aditya Birla Sun Life AMC', 'Ashoka Whiteoak', 'Invesco', 'Bandhan Mutual Fund', 'Motilal Oswal AMC']
+    },
+
+    strengths: [
+      'Indiqube manages 115 centres across 15 cities, covering 8.40 million sq. ft.',
+      'A strong 64.71% of its properties are full buildings, improving space control and efficiency.',
+      'About 36.44% of its space is certified green, supporting sustainable and eco-friendly offices.',
+      'Bengaluru remains a key market with 65 centres spread over 5.43 million sq. ft'
+    ],
+
+    weaknesses: [
+      '88.84% revenue depends on Bengaluru, Pune, Chennai – limited location diversification.',
+      'Occupancy rate dropped to 80.21% in FY24 from 83.68% in FY23.',
+      'The company reported losses in FY23, FY24, and FY25 despite revenue growth.'
+    ],
+
+    peers: [
+      {
+        name: 'Awfis Space',
+        pbRatio: 10.06,
+        peRatio: 66.66,
+        ronw: 14.78,
+        netWorth: 1260
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/dec-2024/indiqube-spaces-limited_90321.html',
+      rhp: 'https://www.icicisecurities.com/Upload/ArticleAttachments/RHP%20-%20Indiqube%20Spaces%20Limited.pdf',
+      anchor: 'https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20250722-44&attachedId=ad5fefe8-5d12-4779-991c-8dbafae33153'
+    }
   },
   {
     id: '6',
@@ -175,20 +459,137 @@ export const mockIPOs: IPO[] = [
     },
     lotSize: 63,
     subscription: {
-      times: 26.88,
-      retail: 18.2,
-      hni: 25.6,
-      qib: 17.8
+      times: 146.84,
+      retail: 45.21,
+      hni: 226.41,
+      qib: 266.21
     },
     gmp: {
-      premium: 98,
-      percentage: 40.51
+      premium: 95,
+      percentage: 39.66
     },
-    issueSize: '₹320 Crores',
-    companyDescription: 'GNG Electronics manufactures electronic components and devices.',
+    listingDate: '2025-07-30',
+    allotmentDate: '2025-07-28',
+    faceValue: 2,
+    issueSize: '₹460.43 Crores',
+    companyDescription: 'Established in 2006, GNG Electronics Limited provides laptop, desktop and ICT Device refurbishing services both internationally and in India. They have a strong presence within India, USA, Europe, Africa and UAE. They work under the brand name "Electronics Bazaar" providing sourcing to refurbishment to sale to after–sale service and guaranteeing. The organization provides other value–added services including ITAD and e – waste management services, warranties, doorstep service, on-site installation, convenient payment options, simple upgrades, guaranteed buyback programmes and buyback programmes for refurbished ICT Devices.',
     sector: 'Electronics',
-    registrar: 'Link Intime India',
-    leadManagers: ['Axis Capital', 'JM Financial']
+    registrar: 'Bigshare Services Pvt Ltd',
+    leadManagers: ['Motilal Oswal Investment Advisors Limited', 'IIFL Capital Services Limited', 'JM Financial Limited'],
+
+    freshIssue: {
+      shares: 16877637,
+      amount: '₹400.00 Crores'
+    },
+    ofs: {
+      shares: 2550000,
+      amount: '₹60.44 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 63,
+        amount: 14931
+      },
+      sHni: {
+        shares: 882,
+        amount: 209034
+      },
+      bHni: {
+        shares: 4221,
+        amount: 1000377
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 1420.37,
+        profit: 69.03,
+        assets: 719.46,
+        netWorth: 226.46,
+        totalBorrowing: 446.92
+      },
+      {
+        year: '2024',
+        revenue: 1143.80,
+        profit: 52.31,
+        assets: 585.82,
+        netWorth: 163.14,
+        totalBorrowing: 322.33
+      },
+      {
+        year: '2023',
+        revenue: 662.79,
+        profit: 32.43,
+        assets: 285.50,
+        netWorth: 111.60,
+        totalBorrowing: 152.02
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 7.11,
+      epsPostIpo: 6.05,
+      pePreIpo: 33.35,
+      pePostIpo: 39.14,
+      roe: 30.40,
+      roce: 17.31,
+      debtEquity: 1.95,
+      patMargin: 4.89,
+      priceToBook: 10.17
+    },
+
+    companyDetails: {
+      foundedYear: 2006,
+      headquarters: 'Mumbai, Maharashtra',
+      website: 'https://www.electronicsbazaar.com/',
+      email: 'compliance@electronicsbazaar.com',
+      phone: '+91 22 3123 658'
+    },
+
+    promoters: {
+      preIssueHolding: 95.01,
+      postIssueHolding: 75.0,
+      names: ['Sharad Khandelwal', 'Vidhi Sharad Khandelwal', 'Amiable Electronics Private Limited', 'Kay Kay Overseas Corporation']
+    },
+
+    issueObjectives: [
+      'Prepayment and/or repayment, in full or in part, of all or a portion of certain outstanding borrowings availed the Company and the Material Subsidiary namely, Electronics Bazaar FZC',
+      'General corporate purposes'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹138.1 Crores',
+      investors: ['Goldman Sachs', 'Motilal Oswal Mutual Fund', 'Mirae Asset', 'Edelweiss Trusteeship', 'Buoyant Opportunities Strategy', 'Bengal Finance', 'Founders Collective Fund']
+    },
+
+    strengths: [
+      'Market Leadership: India\'s largest refurbisher of laptops and desktops, and among the top refurbishers of ICT devices globally',
+      'Global Operations: Five refurbishing facilities across India, USA, and UAE with a strong international footprint',
+      'Robust Ecosystem: Established global supply chain, deep vendor network, and a wide, diversified customer base'
+    ],
+
+    weaknesses: [
+      'Product Concentration Risk: A significant portion of revenue (over 75%) comes from laptop sales; any decline in demand may adversely affect business performance',
+      'Supply Chain Volatility: Fluctuations in prices and availability of key parts and materials can impact operations and margins',
+      'Distribution Dependency: Heavy reliance on a widespread sales network; any disruption could negatively impact sales and operations'
+    ],
+
+    peers: [
+      {
+        name: 'Newjaisa Technologies',
+        pbRatio: 1.68,
+        peRatio: 21.37,
+        ronw: -1.45,
+        netWorth: 66
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/mar-2025/gng-electronics-limited-drhp_93033.html',
+      rhp: 'https://www.iiflcapital.com/institutional-equities/Upload/InvestmentBanking/Prospects/GNG_Electronics_Limited_-_Red_Herring_Prospectus.pdf',
+      anchor: 'https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20250722-49&attachedId=111fccdf-8391-4946-a816-142887c82159'
+    }
   },
   {
     id: '7',
@@ -207,20 +608,121 @@ export const mockIPOs: IPO[] = [
     },
     lotSize: 166,
     subscription: {
-      times: 0.62,
-      retail: 0.4,
-      hni: 0.6,
-      qib: 0.3
+      times: 1.42,
+      retail: 5.47,
+      hni: 1.22,
+      qib: 0.08
     },
     gmp: {
-      premium: 8,
-      percentage: 7.78
+      premium: 2,
+      percentage: 2.22
     },
-    issueSize: '₹280 Crores',
-    companyDescription: 'Brigade Hotel Ventures operates hotels and hospitality services.',
+    listingDate: '2025-07-31',
+    allotmentDate: '2025-07-29',
+    faceValue: 10,
+    issueSize: '₹759.60 Crores',
+    companyDescription: 'Brigade Hotel Ventures Limited is the owner and builder of hotels in major cities in India, mainly in South India. The company is a fully-owned subsidiary of BEL, one of India\'s top-ranked Indian realty developers. The firm owns chain-branded hotels and rooms in South India among large private hotel asset owners as on June 30, 2024. The hotels offer an integrated customer experience, such as fine dining and specialty restaurants, meeting places for incentives, conferences, and exhibitions (MICE), lounges, swimming pools, open areas, spas, and gymnasiums.',
     sector: 'Hospitality',
-    registrar: 'Integrated Registry Management',
-    leadManagers: ['IIFL Securities', 'Ambit Capital']
+    registrar: 'Kfin Technologies Limited',
+    leadManagers: ['JM Financial Limited', 'ICICI Securities Limited'],
+
+    freshIssue: {
+      shares: 84400000,
+      amount: '₹759.60 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 166,
+        amount: 14940
+      },
+      sHni: {
+        shares: 2324,
+        amount: 209160
+      },
+      bHni: {
+        shares: 11122,
+        amount: 1000980
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 470.68,
+        profit: 23.66,
+        assets: 947.57,
+        netWorth: 78.58,
+        totalBorrowing: 617.32
+      },
+      {
+        year: '2024',
+        revenue: 404.85,
+        profit: 31.14,
+        assets: 886.78,
+        netWorth: 58.74,
+        totalBorrowing: 601.19
+      },
+      {
+        year: '2023',
+        revenue: 356.41,
+        profit: -3.09,
+        assets: 840.67,
+        netWorth: 33.81,
+        totalBorrowing: 632.5
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 0.72,
+      pePreIpo: 125,
+      roce: 13.62,
+      debtEquity: 7.40,
+      roe: 30.11,
+      patMargin: 5.03,
+      priceToBook: 32.26
+    },
+
+    companyDetails: {
+      headquarters: 'Bengaluru, Karnataka',
+      website: 'https://bhvl.in/',
+      email: 'investors@bhvl.in',
+      phone: '+91 80 4137 9200'
+    },
+
+    promoters: {
+      preIssueHolding: 95.26,
+      postIssueHolding: 74.09,
+      names: ['Brigade Enterprises Limited']
+    },
+
+    issueObjectives: [
+      'Repayment/ prepayment, in full or in part, of certain outstanding borrowings availed by the Company and Material Subsidiary, namely, SRP Prosperita Hotel Ventures Limited',
+      'Payment of consideration for buying of undivided share of land from our Promoter, BEL',
+      'Pursuing inorganic growth through unidentified acquisitions, other strategic initiatives, and general corporate purposes'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹325 Crores',
+      investors: ['SBI Mutual Fund', 'Franklin India', '360 ONE Special Opportunities Fund', 'Axis Mutual Fund', 'Motilal Oswal AMC', 'Bandhan Mutual Fund', 'Edelweiss Trusteeship', 'Nuvama', 'Edelweiss Life Insurance Company']
+    },
+
+    strengths: [
+      'Strategically Located Award Winning Hotels with Diversified Offerings in Key Cities: It has a portfolio of nine operating hotels across Bengaluru, Chennai, Kochi, Mysuru, and the GIFT City with 1,604 keys',
+      'Efficient Asset Management: Focus on optimizing operations to drive profitability and operational efficiency',
+      'Commitment to ESG Practices: Emphasis on environmental, social, and governance standards enhances brand value and sustainability'
+    ],
+
+    weaknesses: [
+      'High Dependence on Select Hotels and Operators: Over 60% of revenue comes from a few hotels and Marriott-operated properties, posing concentration and operator dependency risks',
+      'Geographic Concentration in Bengaluru: Bengaluru hotels alone contributed 62.91% of revenue in FY24, making the company vulnerable to regional disruptions',
+      'Operator Agreement Risks: Termination or non-renewal of agreements with Marriott, Accor, or IHG could significantly impact operations and revenues'
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/nov-2024/brigade-hotel-ventures-limited_88270.html',
+      rhp: 'https://live.jmfl.com/od/UploadedFiles/2F50C04C-0E10-44C6-B545-C2A9D9344B54.pdf',
+      anchor: 'https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20250723-48&attachedId=5b5dd40b-f4f1-4886-9dbb-837b366df7c9'
+    }
   },
   {
     id: '8',
@@ -304,7 +806,7 @@ export const mockIPOs: IPO[] = [
       start: '2025-07-25',
       end: '2025-07-29'
     },
-    status: 'upcoming',
+    status: 'current',
     exchange: 'Mainboard',
     category: 'mainboard',
     offerPrice: {
@@ -312,15 +814,153 @@ export const mockIPOs: IPO[] = [
       max: 199
     },
     lotSize: 75,
+    subscription: {
+      times: 2.49,
+      retail: 3.78,
+      hni: 2.79,
+      qib: 0.01
+    },
     gmp: {
-      premium: 35,
+      premium: 36,
       percentage: 17.59
     },
-    issueSize: '₹350 Crores',
-    companyDescription: 'Shanti Gold International is engaged in gold trading and jewelry business.',
+    listingDate: '2025-08-01',
+    allotmentDate: '2025-07-30',
+    faceValue: 10,
+    issueSize: '₹360.11 Crores',
+    companyDescription: 'Shanti Gold International Limited was incorporated in the year 2003 and is a business manufacturer of gold jewelry. The company is involved in the production of high-quality 22kt CZ casting gold jewelry, with specialization in design and manufacture. The company specializes in manufacturing high-quality, ornate-designed jewelry, such as bangles, rings, necklaces, and sets, for special occasions, weddings, festivals, and everyday wear at competitive prices. The company has a in-house manufacturing setup for design, production, and packaging to maintain quality control.',
     sector: 'Precious Metals',
-    registrar: 'Link Intime India',
-    leadManagers: ['Shanti Capital']
+    registrar: 'Bigshare Services Pvt Ltd',
+    leadManagers: ['Choice Capital Advisors Pvt Ltd'],
+
+    freshIssue: {
+      shares: 18096000,
+      amount: '₹360.11 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 75,
+        amount: 14925
+      },
+      sHni: {
+        shares: 1050,
+        amount: 208950
+      },
+      bHni: {
+        shares: 5100,
+        amount: 1014900
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 1112.47,
+        profit: 55.84,
+        assets: 419.83,
+        netWorth: 152.37,
+        totalBorrowing: 233.00
+      },
+      {
+        year: '2024',
+        revenue: 715.04,
+        profit: 26.87,
+        assets: 325.4,
+        netWorth: 96.67,
+        totalBorrowing: 210.68
+      },
+      {
+        year: '2023',
+        revenue: 682.28,
+        profit: 19.82,
+        assets: 256.88,
+        netWorth: 69.81,
+        totalBorrowing: 165.34
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 10.34,
+      epsPostIpo: 7.75,
+      pePreIpo: 19.24,
+      pePostIpo: 25.69,
+      roe: 44.85,
+      roce: 25.70,
+      debtEquity: 1.60,
+      patMargin: 5.05,
+      priceToBook: 7.05
+    },
+
+    companyDetails: {
+      foundedYear: 2003,
+      headquarters: 'Mumbai, Maharashtra',
+      employees: 225,
+      website: 'https://shantigold.in/',
+      email: 'cs@shantigold.in',
+      phone: '+91 22 4824 964'
+    },
+
+    promoters: {
+      preIssueHolding: 99.99,
+      postIssueHolding: 74.89,
+      names: ['Pankajkumar H Jagawat', 'Manojkumar N Jain', 'Shashank Bhawarlal Jagawat']
+    },
+
+    issueObjectives: [
+      'Funding of capital expenditure requirements towards setting up of the Proposed Jaipur Facility',
+      'Funding working capital requirements of the Company',
+      'Repayment and/or pre-payment, in full or part, of certain borrowings availed by the Company',
+      'General corporate purposes'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹108 Crores',
+      investors: ['Societe Generale', 'Wealthwave Capital Fund', 'Vijit Growth Fund', 'Founders Collective Fund', 'Smart Horizon Opportunity Fund', 'Swyom India Alpha Fund', 'Sunrise Investment Opportunities Fund']
+    },
+
+    strengths: [
+      'Experienced Promoters and Management: The promoters and directors have extensive experience in the jewellery industry (16-20+ years)',
+      'Strong Financial Performance: Shanti Gold has demonstrated consistent revenue growth and profitability in recent fiscal years',
+      'Well-established Manufacturing Facility: The company has a modern manufacturing facility with a substantial annual production capacity',
+      'Wide Product Range and Design Capabilities: The company offers a diverse range of 22kt CZ gold jewellery designs'
+    ],
+
+    weaknesses: [
+      'Customer Concentration and Dependence: The company relies on strong relationships with a limited number of clients and lacks long-term contracts',
+      'Geographic Revenue Concentration: A significant portion of revenue comes from South India, exposing the company to regional economic and market risks',
+      'Dependence on 22kt CZ Jewellery: The company primarily focuses on 22kt CZ casting gold jewellery',
+      'Exposure to Gold Price Volatility: As a manufacturer of gold jewellery, Shanti Gold is exposed to fluctuations in gold prices'
+    ],
+
+    peers: [
+      {
+        name: 'Utssav Cz Gold',
+        pbRatio: 0,
+        peRatio: 19.35,
+        ronw: 30.94,
+        netWorth: 646
+      },
+      {
+        name: 'Rbz Jewellers',
+        pbRatio: 2.46,
+        peRatio: 14.42,
+        ronw: 17.15,
+        netWorth: 530
+      },
+      {
+        name: 'Sky Gold',
+        pbRatio: 20.87,
+        peRatio: 34.53,
+        ronw: 28.59,
+        netWorth: 3548
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/jan-2025/shanti-gold-international-limited_91075.html',
+      rhp: 'https://shantigold.in/wp-content/uploads/2025/07/Shanti-Gold-International-Ltd_RHP.pdf',
+      anchor: 'https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20250724-46&attachedId=c2e582b7-3a97-4714-a94c-5c84b0712d03'
+    }
   },
   {
     id: '12',
@@ -629,11 +1269,111 @@ export const mockIPOs: IPO[] = [
     },
     listingDate: '2025-07-23',
     listingPrice: 288.0,
+    allotmentDate: '2025-07-19',
+    faceValue: 10,
     issueSize: '₹65 Crores',
-    companyDescription: 'Monika Alcobev is engaged in manufacturing and distribution of alcoholic beverages.',
+    companyDescription: 'Incorporated in 2009, Monika Alcobev Limited is engaged in manufacturing and trading of alcoholic beverages including Indian Made Foreign Liquor (IMFL), beer, and wine. The company operates manufacturing facilities in Goa and has a strong distribution network across multiple states in India. The company focuses on premium and super-premium segments of alcoholic beverages with brands like Monika Premium Whisky, Monika Gold Beer, and Monika Wine Collection.',
     sector: 'Beverages',
     registrar: 'Bigshare Services',
-    leadManagers: ['Monika Securities']
+    leadManagers: ['Monika Securities'],
+
+    freshIssue: {
+      shares: 2272727,
+      amount: '₹65 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 500,
+        amount: 143000
+      },
+      sHni: {
+        shares: 1000,
+        amount: 286000
+      },
+      bHni: {
+        shares: 1500,
+        amount: 429000
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 245.8,
+        profit: 28.4,
+        assets: 189.7,
+        netWorth: 98.5,
+        totalBorrowing: 65.2
+      },
+      {
+        year: '2024',
+        revenue: 198.6,
+        profit: 22.8,
+        assets: 157.2,
+        netWorth: 70.1,
+        totalBorrowing: 58.9
+      },
+      {
+        year: '2023',
+        revenue: 156.3,
+        profit: 18.9,
+        assets: 134.5,
+        netWorth: 47.3,
+        totalBorrowing: 52.1
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 9.47,
+      epsPostIpo: 7.12,
+      pePreIpo: 30.2,
+      pePostIpo: 40.1,
+      roe: 28.84,
+      roce: 22.15,
+      debtEquity: 0.66,
+      patMargin: 11.56,
+      priceToBook: 2.91
+    },
+
+    companyDetails: {
+      foundedYear: 2009,
+      headquarters: 'Panaji, Goa',
+      employees: 185,
+      website: 'https://www.monikaalcobev.com/',
+      email: 'info@monikaalcobev.com',
+      phone: '+91 832 234 5678'
+    },
+
+    promoters: {
+      preIssueHolding: 100.0,
+      postIssueHolding: 75.0,
+      names: ['Monika Ramesh Patel', 'Ramesh Patel Holdings Pvt Ltd']
+    },
+
+    issueObjectives: [
+      'Working capital requirements',
+      'Purchase of machinery and equipment for expansion',
+      'Marketing and brand promotion',
+      'General corporate purposes'
+    ],
+
+    strengths: [
+      'Strong presence in premium alcoholic beverages segment',
+      'Established manufacturing facilities in Goa',
+      'Diversified product portfolio across IMFL, beer, and wine',
+      'Experienced management team with industry expertise'
+    ],
+
+    weaknesses: [
+      'High dependence on regulatory approvals and licenses',
+      'Intense competition from established players',
+      'Seasonal demand fluctuations',
+      'High excise duty and taxation impact'
+    ],
+
+    documents: {
+      drhp: 'https://www.bseindia.com/corporates/download/monika-alcobev-drhp.pdf'
+    }
   },
   {
     id: '25',
@@ -650,20 +1390,121 @@ export const mockIPOs: IPO[] = [
       min: 90,
       max: 96
     },
-    lotSize: 1500,
+    lotSize: 2400,
     subscription: {
       times: 251.39,
-      retail: 220.5,
-      hni: 285.8,
-      qib: 248.2
+      retail: 251.84,
+      hni: 364.94,
+      qib: 165.43
     },
     listingDate: '2025-07-21',
     listingPrice: 151.0,
-    issueSize: '₹48 Crores',
-    companyDescription: 'Spunweb Nonwoven manufactures nonwoven fabrics and related products.',
+    allotmentDate: '2025-07-17',
+    faceValue: 10,
+    issueSize: '₹60.98 Crores',
+    companyDescription: 'Established in 2015, Spunweb Nonwoven Limited is a manufacturer and seller of non-woven fabric, which is most commonly used for products such as doormats, bags, carpets, and tarpaulins. They are also known for their quality control system, involving testing, inspection, and analysis to deliver high-quality products. The company produces nonwoven fabric, laminated nonwoven, and UV-treated nonwoven.',
     sector: 'Textiles',
-    registrar: 'Skyline Financial Services',
-    leadManagers: ['Spunweb Capital']
+    registrar: 'MUFG Intime India Private Limited (Link Intime)',
+    leadManagers: ['Vivro Financial Services Private Limited'],
+
+    freshIssue: {
+      shares: 6351600,
+      amount: '₹60.98 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 2400,
+        amount: 230400
+      },
+      sHni: {
+        shares: 3600,
+        amount: 345600
+      },
+      bHni: {
+        shares: 7200,
+        amount: 691200
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 227.14,
+        profit: 10.79,
+        assets: 182.76,
+        netWorth: 43.15,
+        totalBorrowing: 91.16
+      },
+      {
+        year: '2024',
+        revenue: 154.24,
+        profit: 5.44,
+        assets: 106.58,
+        netWorth: 25.09,
+        totalBorrowing: 48.33
+      },
+      {
+        year: '2023',
+        revenue: 117.68,
+        profit: 1.13,
+        assets: 93.15,
+        netWorth: 20.15,
+        totalBorrowing: 49.50
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 6.08,
+      epsPostIpo: 4.48,
+      pePreIpo: 15.79,
+      pePostIpo: 21.44,
+      roe: 31.63,
+      roce: 33.66,
+      debtEquity: 2.11,
+      patMargin: 4.75,
+      priceToBook: 3.95
+    },
+
+    companyDetails: {
+      foundedYear: 2015,
+      headquarters: 'Rajkot, Gujarat',
+      employees: 199,
+      website: 'https://www.spunweb.com/',
+      email: 'cs@spunweb.in',
+      phone: '+91-87 5894 4844'
+    },
+
+    promoters: {
+      preIssueHolding: 100.0,
+      postIssueHolding: 75.0,
+      names: ['Jay Dilipbhai Kagathara', 'Kishan Dilipbhai Kagathara']
+    },
+
+    issueObjectives: [
+      'Funding the working capital requirements of the company',
+      'Investment in the wholly owned subsidiary, SIPL, for funding its working capital requirements',
+      'Repayment, in full or in part, of certain borrowings availed by the company',
+      'General Corporate Purposes'
+    ],
+
+    strengths: [
+      'Established manufacturer with 10+ years of experience in non-woven fabric industry',
+      'Advanced testing facilities including Universal Tensile Testing and Rewet Properties Testing',
+      'Strong export presence across Europe, North America, and Middle East markets',
+      'Diversified product portfolio including hydrophobic, hydrophilic, and UV-treated fabrics'
+    ],
+
+    weaknesses: [
+      'High debt-to-equity ratio of 2.11 indicating significant leverage',
+      'Dependence on raw material price fluctuations',
+      'Competition from established players in non-woven fabric industry',
+      'Concentration risk with major clients in hygiene and medical sectors'
+    ],
+
+    documents: {
+      drhp: 'https://nsearchives.nseindia.com/emerge/corporates/content/Registration_28012025220350_SpunwebDRHPFinal28012025.pdf',
+      rhp: 'https://www.sebi.gov.in/filings/public-issues/jul-2025/spunweb-nonwovenlimited_95109.html'
+    }
   },
   {
     id: '26',
@@ -685,15 +1526,143 @@ export const mockIPOs: IPO[] = [
       times: 63.85,
       retail: 45.2,
       hni: 85.6,
-      qib: 60.8
+      qib: 182.65
     },
     listingDate: '2025-07-21',
     listingPrice: 723.05,
-    issueSize: '₹850 Crores',
-    companyDescription: 'Anthem Biosciences is a pharmaceutical company engaged in drug discovery and development.',
+    allotmentDate: '2025-07-17',
+    faceValue: 2,
+    issueSize: '₹3395.00 Crores',
+    companyDescription: 'Founded in 2006, Anthem Biosciences Limited is a technology and innovation-led Contract Research, Development, and Manufacturing Organization (CRDMO) with vertically integrated operations covering drug discovery, development, and manufacturing activities. The company caters to varied customers such as innovative, early-stage biotech companies and big pharma companies globally. The company produces niche fermentation-based APIs, such as probiotics, enzymes, peptides, nutritional actives, vitamin analogues, and biosimilars.',
     sector: 'Pharmaceuticals',
-    registrar: 'Link Intime India',
-    leadManagers: ['ICICI Securities', 'Kotak Mahindra Capital']
+    registrar: 'Kfin Technologies Limited',
+    leadManagers: ['JM Financial Limited', 'Citigroup Global Markets India Private Limited', 'J.P. Morgan India Private Limited', 'Nomura Financial Advisory And Securities (India) Pvt Ltd'],
+
+    ofs: {
+      shares: 59561404,
+      amount: '₹3395.00 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 26,
+        amount: 14820
+      },
+      sHni: {
+        shares: 364,
+        amount: 207480
+      },
+      bHni: {
+        shares: 1768,
+        amount: 1007760
+      }
+    },
+
+    financials: [
+      {
+        year: '2025',
+        revenue: 1930.29,
+        profit: 451.26,
+        assets: 2807.58,
+        netWorth: 2409.86,
+        totalBorrowing: 108.95
+      },
+      {
+        year: '2024',
+        revenue: 1483.07,
+        profit: 367.31,
+        assets: 2398.11,
+        netWorth: 1924.66,
+        totalBorrowing: 232.53
+      },
+      {
+        year: '2023',
+        revenue: 1133.99,
+        profit: 385.19,
+        assets: 2014.46,
+        netWorth: 1740.67,
+        totalBorrowing: 125.06
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 8.07,
+      epsPostIpo: 8.07,
+      pePreIpo: 70.62,
+      pePostIpo: 70.62,
+      roe: 20.82,
+      roce: 26.88,
+      debtEquity: 0.05,
+      patMargin: 23.38,
+      priceToBook: 13.23
+    },
+
+    companyDetails: {
+      foundedYear: 2006,
+      headquarters: 'Bengaluru, Karnataka',
+      employees: 600,
+      website: 'https://www.anthembio.com/',
+      email: 'investors.abl@anthembio.com',
+      phone: '+91 080 6672 400'
+    },
+
+    promoters: {
+      preIssueHolding: 77.23,
+      postIssueHolding: 74.68,
+      names: ['Ajay Bhardwaj', 'Ganesh Sambasivam', 'K Ravindra Chandrappa', 'Ishaan Bhardwaj']
+    },
+
+    issueObjectives: [
+      'The Company will not receive any proceeds from the Offer and all the Offer Proceeds will be received by the Selling Shareholders after deduction of Offer related expenses and relevant taxes thereon'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹1016 Crores',
+      investors: ['Abu Dhabi Investment Authority', 'Government Pension Fund Global', 'Eastspring Investments', 'Amundi Funds', 'HDFC Mutual Fund', 'ICICI Prudential AMC', 'Kotak Mahindra Trustee', 'Nippon Life India Trustee', 'Aditya Birla Sun Life AMC', 'Axis Mutual Fund', 'Franklin', 'Mirae Asset', 'UTI MF', 'Motilal Oswal MF']
+    },
+
+    strengths: [
+      'Fastest Indian CRDMO to cross ₹10,000 million revenue in 14 years',
+      'Offers integrated CRDMO services across both small molecules and biologics',
+      'Serves diverse global clients including Bayer AG and emerging biotech',
+      'Operating India\'s largest fermentation capacity of 142 kL as of Sep 2024'
+    ],
+
+    weaknesses: [
+      'CRDMO services contributed 81.13% revenue; demand decline may hurt',
+      'Top 10 customers contributed 76.75% revenue; loss impacts business',
+      'Regulatory non-compliance may disrupt exports, approvals, and customer confidence',
+      'Underused capacity and poor forecasts could hurt future performance'
+    ],
+
+    peers: [
+      {
+        name: 'Syngene International',
+        pbRatio: 6.21,
+        peRatio: 51.54,
+        ronw: 11.05,
+        netWorth: 4642
+      },
+      {
+        name: 'Sai Life Sciences',
+        pbRatio: 7.45,
+        peRatio: 92.18,
+        ronw: 10.96,
+        netWorth: 1694
+      },
+      {
+        name: 'Divi\'s Lab',
+        pbRatio: 10.24,
+        peRatio: 83.22,
+        ronw: 15.35,
+        netWorth: 9360
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/jan-2025/anthem-biosciences-limited_90546.html',
+      rhp: 'https://www.sebi.gov.in/filings/public-issues/jul-2025/anthem-biosciences-limited-rhp_95139.html',
+      anchor: 'https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20250711-55&attachedId=2d1a9421-10d9-4890-8820-f759256b9d8f'
+    }
   },
   {
     id: '27',
@@ -2748,11 +3717,129 @@ export const mockIPOs: IPO[] = [
       max: 340
     },
     lotSize: 44,
+    allotmentDate: '2025-09-17',
+    listingDate: '2025-09-20',
+    faceValue: 10,
     issueSize: '₹800 Crores',
-    companyDescription: 'Bajaj Housing Finance Limited is a housing finance company providing home loans and related financial services.',
+    companyDescription: 'Bajaj Housing Finance Limited is a subsidiary of Bajaj Finance Limited, engaged in providing housing finance solutions including home loans, loan against property, and construction finance to retail and corporate customers.',
     sector: 'Financial Services',
-    registrar: 'KFin Technologies',
-    leadManagers: ['Bajaj Capital', 'Axis Capital']
+    registrar: 'KFin Technologies Private Limited',
+    leadManagers: ['Kotak Mahindra Capital Company Limited', 'ICICI Securities Limited', 'Axis Capital Limited'],
+
+    freshIssue: {
+      shares: 23529411,
+      amount: '₹800 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 44,
+        amount: 14960
+      },
+      sHni: {
+        shares: 88,
+        amount: 29920
+      },
+      bHni: {
+        shares: 440,
+        amount: 149600
+      }
+    },
+
+    financials: [
+      {
+        year: '2024',
+        revenue: 4250.8,
+        profit: 1245.6,
+        assets: 45678.9,
+        netWorth: 8945.2,
+        totalBorrowing: 35234.7
+      },
+      {
+        year: '2023',
+        revenue: 3456.7,
+        profit: 987.4,
+        assets: 38567.3,
+        netWorth: 7699.8,
+        totalBorrowing: 29123.5
+      },
+      {
+        year: '2022',
+        revenue: 2789.5,
+        profit: 756.8,
+        assets: 31245.6,
+        netWorth: 6712.4,
+        totalBorrowing: 23456.2
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 52.9,
+      roe: 13.92,
+      roce: 3.85,
+      patMargin: 29.31
+    },
+
+    companyDetails: {
+      foundedYear: 2008,
+      headquarters: 'Pune, Maharashtra',
+      employees: 2850,
+      website: 'https://www.bajajhousingfinance.in/',
+      email: 'customercare@bajajhousingfinance.in',
+      phone: '+91 20 3957 4151'
+    },
+
+    promoters: {
+      preIssueHolding: 100.0,
+      postIssueHolding: 88.5,
+      names: ['Bajaj Finance Limited']
+    },
+
+    issueObjectives: [
+      'Augment capital base to meet future capital requirements',
+      'Achieve benefits of listing the equity shares on stock exchanges'
+    ],
+
+    anchorInvestors: {
+      totalAmount: '₹240 Crores',
+      investors: ['SBI Mutual Fund', 'HDFC Mutual Fund', 'ICICI Prudential Mutual Fund', 'Aditya Birla Sun Life Mutual Fund', 'Nippon India Mutual Fund']
+    },
+
+    strengths: [
+      'Strong parentage with Bajaj Finance backing',
+      'Experienced management team',
+      'Robust technology platform',
+      'Diversified product portfolio',
+      'Strong brand recognition'
+    ],
+
+    weaknesses: [
+      'High dependence on parent company',
+      'Intense competition in housing finance sector',
+      'Interest rate sensitivity',
+      'Regulatory compliance requirements'
+    ],
+
+    peers: [
+      {
+        name: 'HDFC Limited',
+        pbRatio: 2.1,
+        peRatio: 18.5,
+        ronw: 11.2,
+        netWorth: 45000
+      },
+      {
+        name: 'LIC Housing Finance',
+        pbRatio: 0.8,
+        peRatio: 12.3,
+        ronw: 6.8,
+        netWorth: 12500
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/aug-2025/bajaj-housing-finance-limited_12345.html',
+      rhp: 'https://www.bajajhousingfinance.in/investor-relations/ipo-documents'
+    }
   },
   {
     id: '103',

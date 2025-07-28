@@ -437,6 +437,16 @@ const IPODetailPage: React.FC = () => {
                     <div className="text-sm font-medium text-blue-700">Offer Price Range</div>
                   </div>
                 </Col>
+                {ipo.faceValue && (
+                  <Col xs={24} sm={8}>
+                    <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 rounded-xl border border-orange-200">
+                      <div className="text-2xl font-bold text-orange-600 mb-1">
+                        ₹{ipo.faceValue}
+                      </div>
+                      <div className="text-sm font-medium text-orange-700">Face Value</div>
+                    </div>
+                  </Col>
+                )}
                 {ipo.listingPrice && (
                   <Col xs={24} sm={8}>
                     <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
@@ -459,6 +469,236 @@ const IPODetailPage: React.FC = () => {
                 )}
               </Row>
             </Card>
+
+            {/* Issue Structure */}
+            {(ipo.freshIssue || ipo.ofs) && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <DollarOutlined className="mr-2 text-blue-600" />
+                    <span className="text-lg font-semibold">Issue Structure</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <Row gutter={[16, 16]}>
+                  {ipo.freshIssue && (
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                        <div className="flex items-center mb-2">
+                          <RiseOutlined className="text-green-600 mr-2" />
+                          <Text strong className="text-gray-700">Fresh Issue</Text>
+                        </div>
+                        <div className="text-lg font-bold text-green-600">{ipo.freshIssue.amount}</div>
+                        <div className="text-sm text-gray-600">{ipo.freshIssue.shares.toLocaleString()} shares</div>
+                      </div>
+                    </Col>
+                  )}
+                  {ipo.ofs && (
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border border-blue-200">
+                        <div className="flex items-center mb-2">
+                          <ShareAltOutlined className="text-blue-600 mr-2" />
+                          <Text strong className="text-gray-700">Offer for Sale (OFS)</Text>
+                        </div>
+                        <div className="text-lg font-bold text-blue-600">{ipo.ofs.amount}</div>
+                        <div className="text-sm text-gray-600">{ipo.ofs.shares.toLocaleString()} shares</div>
+                      </div>
+                    </Col>
+                  )}
+                </Row>
+              </Card>
+            )}
+
+            {/* Market Lot Details */}
+            {ipo.marketLot && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <ShoppingOutlined className="mr-2 text-purple-600" />
+                    <span className="text-lg font-semibold">Market Lot Details</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={8}>
+                    <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
+                      <div className="text-xl font-bold text-green-600 mb-1">
+                        {ipo.marketLot.retail.shares} shares
+                      </div>
+                      <div className="text-lg font-semibold text-green-600">
+                        ₹{ipo.marketLot.retail.amount.toLocaleString()}
+                      </div>
+                      <div className="text-sm font-medium text-green-700">Retail</div>
+                    </div>
+                  </Col>
+                  <Col xs={24} sm={8}>
+                    <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
+                      <div className="text-xl font-bold text-blue-600 mb-1">
+                        {ipo.marketLot.sHni.shares} shares
+                      </div>
+                      <div className="text-lg font-semibold text-blue-600">
+                        ₹{ipo.marketLot.sHni.amount.toLocaleString()}
+                      </div>
+                      <div className="text-sm font-medium text-blue-700">S-HNI</div>
+                    </div>
+                  </Col>
+                  <Col xs={24} sm={8}>
+                    <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200">
+                      <div className="text-xl font-bold text-purple-600 mb-1">
+                        {ipo.marketLot.bHni.shares} shares
+                      </div>
+                      <div className="text-lg font-semibold text-purple-600">
+                        ₹{ipo.marketLot.bHni.amount.toLocaleString()}
+                      </div>
+                      <div className="text-sm font-medium text-purple-700">B-HNI</div>
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
+            )}
+            {/* Financial Data */}
+            {ipo.financials && ipo.financials.length > 0 && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <LineChartOutlined className="mr-2 text-blue-600" />
+                    <span className="text-lg font-semibold">Financial Performance</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-gray-50">
+                        <th className="text-left p-3 font-semibold">Year</th>
+                        <th className="text-right p-3 font-semibold">Revenue (₹Cr)</th>
+                        <th className="text-right p-3 font-semibold">Profit (₹Cr)</th>
+                        <th className="text-right p-3 font-semibold">Assets (₹Cr)</th>
+                        <th className="text-right p-3 font-semibold">Net Worth (₹Cr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ipo.financials.map((financial, index) => (
+                        <tr key={index} className="border-b border-gray-100">
+                          <td className="p-3 font-medium">{financial.year}</td>
+                          <td className="p-3 text-right">{financial.revenue.toFixed(2)}</td>
+                          <td className={`p-3 text-right font-medium ${financial.profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {financial.profit.toFixed(2)}
+                          </td>
+                          <td className="p-3 text-right">{financial.assets.toFixed(2)}</td>
+                          <td className={`p-3 text-right font-medium ${financial.netWorth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {financial.netWorth.toFixed(2)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            )}
+
+            {/* Valuation Metrics */}
+            {ipo.valuations && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <PercentageOutlined className="mr-2 text-green-600" />
+                    <span className="text-lg font-semibold">Valuation Metrics</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <Row gutter={[16, 16]}>
+                  {ipo.valuations.epsPreIpo && (
+                    <Col xs={12} sm={8}>
+                      <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg border border-blue-200">
+                        <div className="text-lg font-bold text-blue-600">₹{ipo.valuations.epsPreIpo}</div>
+                        <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
+                      </div>
+                    </Col>
+                  )}
+                  {ipo.valuations.roe && (
+                    <Col xs={12} sm={8}>
+                      <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
+                        <div className="text-lg font-bold text-green-600">{ipo.valuations.roe}%</div>
+                        <div className="text-xs font-medium text-green-700">ROE</div>
+                      </div>
+                    </Col>
+                  )}
+                  {ipo.valuations.roce && (
+                    <Col xs={12} sm={8}>
+                      <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-3 rounded-lg border border-purple-200">
+                        <div className="text-lg font-bold text-purple-600">{ipo.valuations.roce}%</div>
+                        <div className="text-xs font-medium text-purple-700">ROCE</div>
+                      </div>
+                    </Col>
+                  )}
+                  {ipo.valuations.patMargin && (
+                    <Col xs={12} sm={8}>
+                      <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg border border-orange-200">
+                        <div className="text-lg font-bold text-orange-600">{ipo.valuations.patMargin}%</div>
+                        <div className="text-xs font-medium text-orange-700">PAT Margin</div>
+                      </div>
+                    </Col>
+                  )}
+                </Row>
+              </Card>
+            )}
+
+            {/* Strengths and Weaknesses */}
+            {(ipo.strengths || ipo.weaknesses) && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <SafetyOutlined className="mr-2 text-blue-600" />
+                    <span className="text-lg font-semibold">SWOT Analysis</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <Row gutter={[16, 16]}>
+                  {ipo.strengths && (
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                        <div className="flex items-center mb-3">
+                          <CheckCircleOutlined className="text-green-600 mr-2" />
+                          <Text strong className="text-green-700">Strengths</Text>
+                        </div>
+                        <ul className="space-y-2">
+                          {ipo.strengths.map((strength, index) => (
+                            <li key={index} className="text-sm text-gray-700 flex items-start">
+                              <span className="text-green-500 mr-2 mt-1">•</span>
+                              {strength}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Col>
+                  )}
+                  {ipo.weaknesses && (
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-r from-red-50 to-rose-50 p-4 rounded-lg border border-red-200">
+                        <div className="flex items-center mb-3">
+                          <ExclamationCircleOutlined className="text-red-600 mr-2" />
+                          <Text strong className="text-red-700">Weaknesses</Text>
+                        </div>
+                        <ul className="space-y-2">
+                          {ipo.weaknesses.map((weakness, index) => (
+                            <li key={index} className="text-sm text-gray-700 flex items-start">
+                              <span className="text-red-500 mr-2 mt-1">•</span>
+                              {weakness}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </Col>
+                  )}
+                </Row>
+              </Card>
+            )}
           </Col>
 
           {/* Right Column */}
@@ -561,6 +801,15 @@ const IPODetailPage: React.FC = () => {
                   </div>
                   <Text strong className="text-orange-600">{formatDate(ipo.offerDate.end)}</Text>
                 </div>
+                {ipo.allotmentDate && (
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg border border-purple-200">
+                    <div className="flex items-center">
+                      <BankOutlined className="text-purple-600 mr-2" />
+                      <Text className="font-medium">Allotment Date:</Text>
+                    </div>
+                    <Text strong className="text-purple-600">{formatDate(ipo.allotmentDate)}</Text>
+                  </div>
+                )}
                 {ipo.listingDate && (
                   <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
                     <div className="flex items-center">
@@ -572,7 +821,251 @@ const IPODetailPage: React.FC = () => {
                 )}
               </div>
             </Card>
+
+            {/* Company Information */}
+            {ipo.companyDetails && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <BuildOutlined className="mr-2 text-blue-600" />
+                    <span className="text-lg font-semibold">Company Information</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <div className="space-y-3">
+                  {ipo.companyDetails.foundedYear && (
+                    <div className="flex justify-between items-center">
+                      <Text className="text-gray-600">Founded:</Text>
+                      <Text strong>{ipo.companyDetails.foundedYear}</Text>
+                    </div>
+                  )}
+                  {ipo.companyDetails.headquarters && (
+                    <div className="flex justify-between items-center">
+                      <Text className="text-gray-600">Headquarters:</Text>
+                      <Text strong className="text-right">{ipo.companyDetails.headquarters}</Text>
+                    </div>
+                  )}
+                  {ipo.companyDetails.employees && (
+                    <div className="flex justify-between items-center">
+                      <Text className="text-gray-600">Employees:</Text>
+                      <Text strong>{ipo.companyDetails.employees.toLocaleString()}</Text>
+                    </div>
+                  )}
+                  {ipo.companyDetails.website && (
+                    <div className="flex justify-between items-center">
+                      <Text className="text-gray-600">Website:</Text>
+                      <a href={ipo.companyDetails.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                        Visit Website
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </Card>
+            )}
+
+            {/* Promoter Information */}
+            {ipo.promoters && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <TeamOutlined className="mr-2 text-green-600" />
+                    <span className="text-lg font-semibold">Promoter Details</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <div className="space-y-4">
+                  <Row gutter={[16, 16]}>
+                    <Col xs={12}>
+                      <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg border border-blue-200">
+                        <div className="text-xl font-bold text-blue-600">{ipo.promoters.preIssueHolding}%</div>
+                        <div className="text-xs font-medium text-blue-700">Pre-Issue</div>
+                      </div>
+                    </Col>
+                    <Col xs={12}>
+                      <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
+                        <div className="text-xl font-bold text-green-600">{ipo.promoters.postIssueHolding}%</div>
+                        <div className="text-xs font-medium text-green-700">Post-Issue</div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <div>
+                    <Text strong className="text-gray-700 mb-2 block">Promoters:</Text>
+                    <div className="flex flex-wrap gap-1">
+                      {ipo.promoters.names.map((name, index) => (
+                        <Tag key={index} color="blue" className="mb-1">
+                          {name}
+                        </Tag>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            )}
+
+            {/* Documents */}
+            {ipo.documents && (
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <FileTextOutlined className="mr-2 text-purple-600" />
+                    <span className="text-lg font-semibold">IPO Documents</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <Space direction="vertical" className="w-full" size="middle">
+                  {ipo.documents.drhp && (
+                    <Button
+                      block
+                      icon={<FileTextOutlined />}
+                      href={ipo.documents.drhp}
+                      target="_blank"
+                      className="h-10 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 border-blue-200 hover:from-blue-100 hover:to-cyan-100"
+                    >
+                      Download DRHP
+                    </Button>
+                  )}
+                  {ipo.documents.rhp && (
+                    <Button
+                      block
+                      icon={<FileTextOutlined />}
+                      href={ipo.documents.rhp}
+                      target="_blank"
+                      className="h-10 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 hover:from-green-100 hover:to-emerald-100"
+                    >
+                      Download RHP
+                    </Button>
+                  )}
+                  {ipo.documents.anchor && (
+                    <Button
+                      block
+                      icon={<FileTextOutlined />}
+                      href={ipo.documents.anchor}
+                      target="_blank"
+                      className="h-10 rounded-lg bg-gradient-to-r from-purple-50 to-violet-50 border-purple-200 hover:from-purple-100 hover:to-violet-100"
+                    >
+                      Anchor Investor List
+                    </Button>
+                  )}
+                </Space>
+              </Card>
+            )}
           </Col>
+        </Row>
+
+        {/* Additional Information Sections */}
+        <Row gutter={[24, 24]} className="mt-6">
+          {/* Issue Objectives */}
+          {ipo.issueObjectives && ipo.issueObjectives.length > 0 && (
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <TrophyOutlined className="mr-2 text-blue-600" />
+                    <span className="text-lg font-semibold">Issue Objectives</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <ul className="space-y-3">
+                  {ipo.issueObjectives.map((objective, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-blue-500 mr-3 mt-1 text-lg">•</span>
+                      <Text className="text-gray-700">{objective}</Text>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </Col>
+          )}
+
+          {/* Anchor Investors */}
+          {ipo.anchorInvestors && (
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <BankOutlined className="mr-2 text-green-600" />
+                    <span className="text-lg font-semibold">Anchor Investors</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <div className="mb-4">
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200 text-center">
+                    <div className="text-xl font-bold text-green-600">{ipo.anchorInvestors.totalAmount}</div>
+                    <div className="text-sm font-medium text-green-700">Total Investment</div>
+                  </div>
+                </div>
+                <div>
+                  <Text strong className="text-gray-700 mb-2 block">Key Investors:</Text>
+                  <div className="flex flex-wrap gap-1">
+                    {ipo.anchorInvestors.investors.slice(0, 6).map((investor, index) => (
+                      <Tag key={index} color="green" className="mb-1 text-xs">
+                        {investor}
+                      </Tag>
+                    ))}
+                    {ipo.anchorInvestors.investors.length > 6 && (
+                      <Tag color="gray" className="mb-1 text-xs">
+                        +{ipo.anchorInvestors.investors.length - 6} more
+                      </Tag>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            </Col>
+          )}
+
+          {/* Peer Comparison */}
+          {ipo.peers && ipo.peers.length > 0 && (
+            <Col xs={24}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <LineChartOutlined className="mr-2 text-purple-600" />
+                    <span className="text-lg font-semibold">Peer Comparison</span>
+                  </div>
+                }
+                className="mb-6 shadow-md border-0"
+              >
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-gray-50">
+                        <th className="text-left p-3 font-semibold">Company</th>
+                        <th className="text-right p-3 font-semibold">P/B Ratio</th>
+                        <th className="text-right p-3 font-semibold">P/E Ratio</th>
+                        <th className="text-right p-3 font-semibold">RoNW</th>
+                        <th className="text-right p-3 font-semibold">Net Worth (₹Cr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-gray-100 bg-blue-50">
+                        <td className="p-3 font-medium text-blue-700">{ipo.name}</td>
+                        <td className="p-3 text-right">N/A</td>
+                        <td className="p-3 text-right">N/A</td>
+                        <td className="p-3 text-right">N/A</td>
+                        <td className="p-3 text-right font-medium">
+                          {ipo.financials && ipo.financials[0] ? ipo.financials[0].netWorth.toFixed(0) : 'N/A'}
+                        </td>
+                      </tr>
+                      {ipo.peers.map((peer, index) => (
+                        <tr key={index} className="border-b border-gray-100">
+                          <td className="p-3 font-medium">{peer.name}</td>
+                          <td className="p-3 text-right">{peer.pbRatio || 'N/A'}</td>
+                          <td className="p-3 text-right">{peer.peRatio || 'N/A'}</td>
+                          <td className="p-3 text-right">{peer.ronw ? `${peer.ronw}%` : 'N/A'}</td>
+                          <td className="p-3 text-right font-medium">{peer.netWorth || 'N/A'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            </Col>
+          )}
         </Row>
       </div>
     </div>
