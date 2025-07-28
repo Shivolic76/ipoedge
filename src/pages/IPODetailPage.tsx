@@ -209,7 +209,6 @@ const IPODetailPage: React.FC = () => {
                       <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 mb-4">
                         <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
                           <div className="flex items-center space-x-2.5">
-                            <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
                             {getStatusIcon(ipo.status)}
                             <Text className="font-semibold text-white text-sm tracking-wide">
                               {ipo.status.charAt(0).toUpperCase() + ipo.status.slice(1)}
@@ -403,17 +402,18 @@ const IPODetailPage: React.FC = () => {
                         </div>
                         <div className="flex items-center">
                           <span
-                            className={`inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold shadow-lg transition-all duration-300 hover:scale-105 ${
+                            className={`inline-flex items-center px-5 py-3 rounded-2xl text-sm font-bold shadow-md ${
                               ipo.subscription.times > 1
-                                ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-2 border-green-300'
-                                : 'bg-gradient-to-r from-yellow-100 to-amber-100 text-yellow-800 border-2 border-yellow-300'
+                                ? 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200'
+                                : 'bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 border border-yellow-200'
                             }`}
                             style={{
                               textTransform: 'uppercase',
-                              letterSpacing: '0.5px',
+                              letterSpacing: '1px',
+                              fontFamily: 'Inter, system-ui, sans-serif',
                               boxShadow: ipo.subscription.times > 1
-                                ? '0 4px 12px rgba(34, 197, 94, 0.2)'
-                                : '0 4px 12px rgba(245, 158, 11, 0.2)'
+                                ? '0 2px 8px rgba(34, 197, 94, 0.15)'
+                                : '0 2px 8px rgba(245, 158, 11, 0.15)'
                             }}
                           >
                             {ipo.subscription.times}x Subscribed
@@ -425,7 +425,7 @@ const IPODetailPage: React.FC = () => {
                   >
                     <Row gutter={[20, 20]}>
                       <Col xs={12} sm={12} md={6}>
-                        <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-2xl border border-emerald-200 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                        <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden">
                           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-green-500"></div>
                           <div className="text-3xl font-bold text-emerald-600 mb-2">
                             {ipo.subscription.times}x
@@ -444,7 +444,7 @@ const IPODetailPage: React.FC = () => {
                       </Col>
                       {ipo.subscription.retail !== undefined && (
                         <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                          <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
                             <div className="text-3xl font-bold text-blue-600 mb-2">
                               {ipo.subscription.retail}x
@@ -462,7 +462,7 @@ const IPODetailPage: React.FC = () => {
                       )}
                       {ipo.subscription.hni !== undefined && (
                         <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-2xl border border-purple-200 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                          <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
                             <div className="text-3xl font-bold text-purple-600 mb-2">
                               {ipo.subscription.hni}x
@@ -480,7 +480,7 @@ const IPODetailPage: React.FC = () => {
                       )}
                       {ipo.subscription.qib !== undefined && (
                         <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-2xl border border-orange-200 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                          <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-500"></div>
                             <div className="text-3xl font-bold text-orange-600 mb-2">
                               {ipo.subscription.qib}x

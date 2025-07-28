@@ -1750,30 +1750,8 @@ html {
 
 /* Enhanced subscription cards */
 .subscription-status-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-.subscription-status-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.subscription-status-card:hover::before {
-  left: 100%;
-}
-
-.subscription-status-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Enhanced GMP card animations */
@@ -1823,17 +1801,10 @@ html {
 }
 
 .subscription-card {
-  transition: all 0.3s ease;
-  cursor: pointer;
   min-height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.subscription-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Progress bar enhancements */
@@ -2267,31 +2238,6 @@ html {
 
 .subscription-card {
   transform: translateY(0);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.subscription-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow:
-    0 25px 50px -12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-.subscription-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.subscription-card:hover::after {
-  opacity: 1;
 }
 
 .key-details-card::before, .subscription-card::before {
@@ -2349,12 +2295,6 @@ html {
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.subscription-status-badge:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 /* Progress bar glow effect */
