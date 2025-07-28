@@ -558,6 +558,116 @@ const IPODetailPage: React.FC = () => {
                     )}
                   </Row>
                 </Card>
+
+                {/* Financial Performance */}
+                {ipo.financials && ipo.financials.length > 0 && (
+                  <Card
+                    title={
+                      <div className="flex items-center">
+                        <BarChartOutlined className="mr-3 text-green-600 text-xl" />
+                        <span className="text-xl font-semibold text-gray-800">Financial Performance</span>
+                      </div>
+                    }
+                    className="shadow-lg border-0"
+                  >
+                    <div className="overflow-x-auto">
+                      <Table
+                        dataSource={ipo.financials.map((item, index) => ({ ...item, key: index }))}
+                        pagination={false}
+                        size="small"
+                        className="financial-table"
+                      >
+                        <Table.Column title="Year" dataIndex="year" key="year" />
+                        <Table.Column
+                          title="Revenue (₹Cr)"
+                          dataIndex="revenue"
+                          key="revenue"
+                          render={(value) => `₹${value}`}
+                        />
+                        <Table.Column
+                          title="Profit (₹Cr)"
+                          dataIndex="profit"
+                          key="profit"
+                          render={(value) => (
+                            <span className={value >= 0 ? 'text-green-600' : 'text-red-600'}>
+                              ₹{value}
+                            </span>
+                          )}
+                        />
+                        <Table.Column
+                          title="Net Worth (₹Cr)"
+                          dataIndex="netWorth"
+                          key="netWorth"
+                          render={(value) => `₹${value}`}
+                        />
+                      </Table>
+                    </div>
+                  </Card>
+                )}
+
+                {/* Valuation Metrics */}
+                {ipo.valuations && (
+                  <Card
+                    title={
+                      <div className="flex items-center">
+                        <PieChartOutlined className="mr-3 text-purple-600 text-xl" />
+                        <span className="text-xl font-semibold text-gray-800">Valuation Metrics</span>
+                      </div>
+                    }
+                    className="shadow-lg border-0"
+                  >
+                    <Row gutter={[16, 16]}>
+                      {ipo.valuations.epsPreIpo && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg border border-blue-200">
+                            <div className="text-lg font-bold text-blue-600">₹{ipo.valuations.epsPreIpo}</div>
+                            <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.roe && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
+                            <div className="text-lg font-bold text-green-600">{ipo.valuations.roe}%</div>
+                            <div className="text-xs font-medium text-green-700">ROE</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.roce && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-3 rounded-lg border border-purple-200">
+                            <div className="text-lg font-bold text-purple-600">{ipo.valuations.roce}%</div>
+                            <div className="text-xs font-medium text-purple-700">ROCE</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.patMargin && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg border border-orange-200">
+                            <div className="text-lg font-bold text-orange-600">{ipo.valuations.patMargin}%</div>
+                            <div className="text-xs font-medium text-orange-700">PAT Margin</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.debtEquity && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-3 rounded-lg border border-red-200">
+                            <div className="text-lg font-bold text-red-600">{ipo.valuations.debtEquity}</div>
+                            <div className="text-xs font-medium text-red-700">Debt/Equity</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.pePreIpo && (
+                        <Col xs={12} sm={8}>
+                          <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-3 rounded-lg border border-indigo-200">
+                            <div className="text-lg font-bold text-indigo-600">{ipo.valuations.pePreIpo}</div>
+                            <div className="text-xs font-medium text-indigo-700">P/E Ratio</div>
+                          </div>
+                        </Col>
+                      )}
+                    </Row>
+                  </Card>
+                )}
               </div>
             </Col>
 
@@ -806,122 +916,7 @@ const IPODetailPage: React.FC = () => {
             </Col>
           </Row>
 
-          {/* Additional Information Sections */}
-          <Row gutter={[32, 32]} className="mt-8">
-            {/* Financial Performance */}
-            {ipo.financials && ipo.financials.length > 0 && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <BarChartOutlined className="mr-3 text-green-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Financial Performance</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
-                  <div className="overflow-x-auto">
-                    <Table
-                      dataSource={ipo.financials.map((item, index) => ({ ...item, key: index }))}
-                      pagination={false}
-                      size="small"
-                      className="financial-table"
-                    >
-                      <Table.Column title="Year" dataIndex="year" key="year" />
-                      <Table.Column
-                        title="Revenue (₹Cr)"
-                        dataIndex="revenue"
-                        key="revenue"
-                        render={(value) => `₹${value}`}
-                      />
-                      <Table.Column
-                        title="Profit (₹Cr)"
-                        dataIndex="profit"
-                        key="profit"
-                        render={(value) => (
-                          <span className={value >= 0 ? 'text-green-600' : 'text-red-600'}>
-                            ₹{value}
-                          </span>
-                        )}
-                      />
-                      <Table.Column
-                        title="Net Worth (₹Cr)"
-                        dataIndex="netWorth"
-                        key="netWorth"
-                        render={(value) => `₹${value}`}
-                      />
-                    </Table>
-                  </div>
-                </Card>
-              </Col>
-            )}
 
-            {/* Valuation Metrics */}
-            {ipo.valuations && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <PieChartOutlined className="mr-3 text-purple-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Valuation Metrics</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
-                  <Row gutter={[16, 16]}>
-                    {ipo.valuations.epsPreIpo && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg border border-blue-200">
-                          <div className="text-lg font-bold text-blue-600">₹{ipo.valuations.epsPreIpo}</div>
-                          <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.valuations.roe && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
-                          <div className="text-lg font-bold text-green-600">{ipo.valuations.roe}%</div>
-                          <div className="text-xs font-medium text-green-700">ROE</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.valuations.roce && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-3 rounded-lg border border-purple-200">
-                          <div className="text-lg font-bold text-purple-600">{ipo.valuations.roce}%</div>
-                          <div className="text-xs font-medium text-purple-700">ROCE</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.valuations.patMargin && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg border border-orange-200">
-                          <div className="text-lg font-bold text-orange-600">{ipo.valuations.patMargin}%</div>
-                          <div className="text-xs font-medium text-orange-700">PAT Margin</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.valuations.debtEquity && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-3 rounded-lg border border-red-200">
-                          <div className="text-lg font-bold text-red-600">{ipo.valuations.debtEquity}</div>
-                          <div className="text-xs font-medium text-red-700">Debt/Equity</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.valuations.pePreIpo && (
-                      <Col xs={12} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-3 rounded-lg border border-indigo-200">
-                          <div className="text-lg font-bold text-indigo-600">{ipo.valuations.pePreIpo}</div>
-                          <div className="text-xs font-medium text-indigo-700">P/E Ratio</div>
-                        </div>
-                      </Col>
-                    )}
-                  </Row>
-                </Card>
-              </Col>
-            )}
-          </Row>
 
           {/* Issue Breakdown */}
           <Row gutter={[32, 32]} className="mt-8">
