@@ -1676,32 +1676,136 @@ html {
   }
 }
 
-/* IPO Detail Page Styles */
+/* Enhanced IPO Detail Page Styles */
 .ipo-detail-header {
-  border-radius: 16px;
+  border-radius: 24px;
   overflow: hidden;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .ipo-detail-card {
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #f0f0f0;
+  overflow: hidden;
 }
 
 .ipo-detail-card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  border-color: #e0e0e0;
+}
+
+/* Enhanced Badge Animations */
+.ant-badge-count {
+  animation: badgeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes badgeGlow {
+  0% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Enhanced IPO Logo Container */
+.ipo-logo-container {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ipo-logo-container:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Status Badge Pulse Animation */
+.status-badge-pulse {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
 }
 
 .ipo-detail-card .ant-card-head {
   border-bottom: 2px solid #f0f0f0;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border-radius: 12px 12px 0 0;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 24px;
 }
 
 .ipo-detail-card .ant-card-body {
-  padding: 20px;
+  padding: 24px;
+}
+
+/* Enhanced subscription cards */
+.subscription-status-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.subscription-status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.subscription-status-card:hover::before {
+  left: 100%;
+}
+
+.subscription-status-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced GMP card animations */
+.gmp-card-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.gmp-card-enhanced .gmp-value {
+  position: relative;
+  z-index: 2;
+}
+
+.gmp-card-enhanced::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(82, 196, 26, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .ipo-stat-card {
@@ -1742,58 +1846,711 @@ html {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Mobile responsiveness for IPO detail page */
+/* Enhanced mobile responsiveness for IPO detail page */
 @media (max-width: 768px) {
   .ipo-detail-header .ant-card-body {
-    padding: 16px;
+    padding: 20px;
   }
 
   .ipo-detail-card .ant-card-body {
-    padding: 16px;
+    padding: 20px;
   }
 
   .ipo-stat-card {
-    min-height: 80px;
-    padding: 12px !important;
+    min-height: 100px;
+    padding: 16px !important;
+    margin-bottom: 16px;
   }
 
   .subscription-card {
-    min-height: 100px;
-    padding: 12px !important;
+    min-height: 120px;
+    padding: 16px !important;
+    margin-bottom: 16px;
   }
 
   .ipo-stat-card .text-lg,
   .subscription-card .text-2xl {
-    font-size: 16px !important;
+    font-size: 18px !important;
   }
 
-  .subscription-card .text-3xl {
-    font-size: 20px !important;
+  .subscription-card .text-3xl,
+  .subscription-card .text-4xl {
+    font-size: 24px !important;
+  }
+
+  /* Mobile header improvements */
+  .ipo-detail-header {
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  /* Mobile subscription status improvements */
+  .subscription-status-card {
+    margin-bottom: 20px;
+  }
+
+  .subscription-status-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  /* Mobile GMP card improvements */
+  .gmp-card-enhanced {
+    margin-bottom: 24px;
+  }
+
+  /* Mobile quick actions improvements */
+  .quick-actions-mobile .ant-btn {
+    height: 56px !important;
+    font-size: 16px !important;
+    margin-bottom: 12px;
+  }
+
+  /* Mobile important dates improvements */
+  .important-dates-mobile .date-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    padding: 16px !important;
+  }
+
+  .important-dates-mobile .date-item .date-icon {
+    margin-bottom: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .ipo-detail-header {
-    border-radius: 8px;
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
 
   .ipo-detail-card {
-    border-radius: 8px;
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
 
   .ipo-stat-card,
   .subscription-card {
-    min-height: 70px;
-    padding: 8px !important;
+    min-height: 90px;
+    padding: 12px !important;
+    margin-bottom: 12px;
   }
 
   .ipo-stat-card .text-lg {
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
 
   .subscription-card .text-2xl,
-  .subscription-card .text-3xl {
-    font-size: 18px !important;
+  .subscription-card .text-3xl,
+  .subscription-card .text-4xl {
+    font-size: 20px !important;
+  }
+
+  /* Ultra-mobile specific improvements */
+  .container-mobile {
+    padding: 12px;
+  }
+
+  .card-spacing-mobile {
+    margin-bottom: 16px;
+  }
+
+  .text-responsive-mobile {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+/* Modern glassmorphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(15px);
+  transform: translateY(-2px);
+}
+
+/* Enhanced button hover effects */
+.btn-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-enhanced:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus states for accessibility */
+.enhanced-focus:focus {
+  outline: 3px solid rgba(24, 144, 255, 0.5);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Loading state improvements */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Enhanced card shadows */
+.shadow-enhanced {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06),
+              0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-enhanced:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 10px 10px -5px rgba(0, 0, 0, 0.04),
+              0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Background Pattern */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* IPO Detail Page Modern Layout */
+.ipo-detail-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+  position: relative;
+}
+
+.ipo-detail-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Modern Card Styling */
+.modern-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 32px 64px -12px rgba(0, 0, 0, 0.15),
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced grid layout for key details */
+.key-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.key-detail-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.key-detail-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.key-detail-card:hover::before {
+  opacity: 1;
+}
+
+.key-detail-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow:
+    0 32px 64px -12px rgba(0, 0, 0, 0.15),
+    0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Modern section spacing */
+.section-spacing {
+  margin-bottom: 64px;
+}
+
+.section-spacing:last-child {
+  margin-bottom: 0;
+}
+
+/* Glass morphism effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced responsive layout */
+@media (max-width: 1024px) {
+  .ipo-detail-content {
+    padding: 0 16px;
+  }
+
+  .key-details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .key-detail-card {
+    padding: 24px;
+  }
+
+  .section-spacing {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ipo-detail-content {
+    padding: 0 12px;
+  }
+
+  .key-details-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .key-detail-card {
+    padding: 20px;
+  }
+
+  .section-spacing {
+    margin-bottom: 32px;
+  }
+
+  .modern-card {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .key-detail-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .section-spacing {
+    margin-bottom: 24px;
+  }
+}
+
+/* IPO Detail Page Enhancements */
+.financial-table .ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 2px solid #e2e8f0;
+  font-weight: 600;
+  color: #374151;
+  text-align: center;
+}
+
+.financial-table .ant-table-tbody > tr > td {
+  text-align: center;
+  font-weight: 500;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.financial-table .ant-table-tbody > tr:hover > td {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* Enhanced card hover effects */
+.ant-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Progress bar enhancements */
+.ant-progress-bg {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar for tables */
+.ant-table-body::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ant-table-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Badge enhancements */
+.ant-badge-count {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Tag enhancements */
+.ant-tag {
+  border-radius: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: none;
+}
+
+/* Enhanced Key Details and Subscription Cards */
+.key-details-card, .subscription-card {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.subscription-card {
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.subscription-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.subscription-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.subscription-card:hover::after {
+  opacity: 1;
+}
+
+.key-details-card::before, .subscription-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.key-details-card:hover::before, .subscription-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* Custom progress bar animations */
+.custom-progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Subscription card title styling */
+.ant-card-head-title {
+  padding: 0 !important;
+}
+
+/* Enhanced subscription status badge */
+.subscription-status-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.subscription-status-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Progress bar glow effect */
+.subscription-card .rounded-full > div {
+  position: relative;
+}
+
+.subscription-card .rounded-full > div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  filter: blur(4px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Icon hover effects */
+.icon-container {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon-container:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced hero section styling */
+.hero-section-perfect {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.hero-logo {
+  transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05);
+}
+
+.hero-tags .ant-tag {
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: none;
+  backdrop-filter: blur(10px);
+}
+
+.hero-price-section {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .hero-price-section {
+    text-align: center;
+  }
+}
+
+/* Compact layout improvements */
+.hero-section {
+  padding: 1.5rem 0 !important;
+}
+
+.hero-content {
+  gap: 1.25rem !important;
+}
+
+.action-buttons-section {
+  padding: 0.75rem 0 !important;
+}
+
+/* Enhanced IPO logo styling */
+.ipo-logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.ipo-logo-container::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3), rgba(59, 130, 246, 0.3));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ipo-logo-container:hover::before {
+  opacity: 1;
+}
+
+/* Responsive improvements for mobile */
+@media (max-width: 768px) {
+  .key-details-card, .subscription-card {
+    margin-bottom: 16px;
+  }
+
+  .key-details-card .text-lg {
+    font-size: 1rem;
+  }
+
+  .subscription-card .text-2xl {
+    font-size: 1.5rem;
+  }
+
+  .hero-section {
+    padding: 1rem 0 !important;
+  }
+
+  .ipo-logo-container img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}
+
+/* Card spacing optimization */
+.ant-card {
+  margin-bottom: 1.5rem;
+}
+
+.ant-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Reduce excessive padding in sections */
+.section-content {
+  padding: 1rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-content {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* Ensure consistent card heights */
+.ant-row .ant-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-row .ant-col .ant-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-row .ant-col .ant-card .ant-card-body {
+  flex: 1;
+}
+
+/* Enhanced layout alignment */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px 0;
+}
+
+/* Improved sidebar alignment */
+.sidebar-sticky {
+  position: sticky;
+  top: 24px;
+  align-self: flex-start;
+}
+
+@media (max-width: 992px) {
+  .sidebar-sticky {
+    position: static;
   }
 }
 

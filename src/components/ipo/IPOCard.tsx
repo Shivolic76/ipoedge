@@ -106,7 +106,7 @@ const IPOCard: React.FC<IPOCardProps> = ({
             <ResponsiveImage
               src={ipo.logo || "https://media.ipoji.com/ipo/images/ipo.png"}
               alt={ipo.name}
-              className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
+              className="w-12 h-12 rounded-lg !object-fill flex-shrink-0"
               fallbackSrc="https://media.ipoji.com/ipo/images/ipo.png"
             />
             <div className="flex-1 min-w-0">
