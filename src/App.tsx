@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import AppRouter from './router';
-import { ErrorBoundary } from './components/common';
+import { ErrorBoundary, ScrollToTop } from './components/common';
 
 function App() {
   return (
@@ -57,6 +57,7 @@ function App() {
         }}
       >
         <Router>
+          <ScrollToTop />
           <AppRouter />
         </Router>
       </ConfigProvider>

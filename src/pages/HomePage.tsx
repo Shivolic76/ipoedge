@@ -154,14 +154,14 @@ const HomePage: React.FC = () => {
                       <div className="w-1 h-1 bg-white/50 rounded-full"></div>
                       <div className="flex items-center space-x-2">
                         <TrophyOutlined className="text-green-400 animate-bounce-gentle" />
-                        <span className="text-green-400 font-semibold">
+                        <span className="text-white font-semibold">
                           #1 IPO App
                         </span>
                       </div>
                       <div className="w-1 h-1 bg-white/50 rounded-full"></div>
                       <div className="flex items-center space-x-2">
                         <SafetyOutlined className="text-blue-400 animate-pulse" />
-                        <span className="text-blue-400 font-semibold">
+                        <span className="text-white font-semibold">
                           Trusted
                         </span>
                       </div>
