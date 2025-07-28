@@ -16,8 +16,8 @@ const { Title, Paragraph, Text } = Typography;
 const AboutPage: React.FC = () => {
   const stats = [
     { title: 'IPOs Tracked', value: '100+', icon: <RocketOutlined /> },
-    { title: 'Active Users', value: '10K+', icon: <TeamOutlined /> },
-    { title: 'Months in Market', value: '6+', icon: <TrophyOutlined /> },
+    { title: 'Active Users', value: '2K+', icon: <TeamOutlined /> },
+    { title: 'Months in Market', value: '2+', icon: <TrophyOutlined /> },
     { title: 'Data Accuracy', value: '99%', icon: <SafetyOutlined /> },
   ];
 
