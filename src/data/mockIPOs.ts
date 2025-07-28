@@ -2,6 +2,157 @@ import type { IPO } from '../types';
 
 export const mockIPOs: IPO[] = [
   {
+    id: 'gng-electronics',
+    name: 'GNG Electronics',
+    logo: 'https://media.ipoji.com/ipo/images/gng-electronics-ipo-logo.png',
+    offerDate: {
+      start: '2025-01-29',
+      end: '2025-01-31'
+    },
+    status: 'current',
+    exchange: 'NSE SME',
+    category: 'sme',
+    offerPrice: {
+      min: 85,
+      max: 90
+    },
+    lotSize: 1600,
+    subscription: {
+      times: 2.45,
+      retail: 3.2,
+      hni: 1.8,
+      qib: 2.1
+    },
+    gmp: {
+      premium: 12,
+      percentage: 13.33
+    },
+    issueSize: '₹42.48 Crores',
+    listingDate: '2025-02-05',
+    allotmentDate: '2025-02-03',
+    faceValue: 10,
+    companyDescription: 'GNG Electronics Limited is engaged in manufacturing and trading of electronic components, LED products, and electrical accessories. The company serves various industries including automotive, consumer electronics, and industrial applications.',
+    sector: 'Electronics',
+    registrar: 'Bigshare Services Pvt Ltd',
+    leadManagers: ['Choice Capital Advisors Pvt Ltd'],
+
+    freshIssue: {
+      shares: 4720000,
+      amount: '₹42.48 Crores'
+    },
+    marketLot: {
+      retail: {
+        shares: 1600,
+        amount: 144000
+      },
+      sHni: {
+        shares: 16000,
+        amount: 1440000
+      },
+      bHni: {
+        shares: 80000,
+        amount: 7200000
+      }
+    },
+
+    financials: [
+      {
+        year: '2024',
+        revenue: 125.45,
+        profit: 8.32,
+        assets: 89.67,
+        netWorth: 45.23,
+        totalBorrowing: 32.15
+      },
+      {
+        year: '2023',
+        revenue: 98.76,
+        profit: 6.54,
+        assets: 76.89,
+        netWorth: 38.91,
+        totalBorrowing: 28.43
+      },
+      {
+        year: '2022',
+        revenue: 87.32,
+        profit: 5.21,
+        assets: 65.43,
+        netWorth: 32.37,
+        totalBorrowing: 24.67
+      }
+    ],
+
+    valuations: {
+      epsPreIpo: 1.76,
+      epsPostIpo: 1.45,
+      pePreIpo: 51.14,
+      pePostIpo: 62.07,
+      roe: 18.39,
+      roce: 12.45,
+      debtEquity: 0.71,
+      patMargin: 6.63,
+      priceToBook: 1.99
+    },
+
+    companyDetails: {
+      foundedYear: 2010,
+      headquarters: 'Mumbai, Maharashtra',
+      employees: 245,
+      website: 'www.gngelectronics.com',
+      email: 'info@gngelectronics.com',
+      phone: '+91-22-12345678'
+    },
+
+    promoters: {
+      preIssueHolding: 75.5,
+      postIssueHolding: 65.2,
+      names: ['Ganesh N. Gupta', 'Nisha G. Gupta', 'GNG Electronics Promoter Group']
+    },
+
+    issueObjectives: [
+      'Working capital requirements',
+      'General corporate purposes',
+      'Expansion of manufacturing facilities',
+      'Technology upgradation'
+    ],
+
+    strengths: [
+      'Established presence in electronics manufacturing',
+      'Diversified product portfolio',
+      'Strong relationships with suppliers and customers',
+      'Experienced management team'
+    ],
+
+    weaknesses: [
+      'Small scale of operations',
+      'Dependence on key customers',
+      'Working capital intensive business',
+      'Competition from larger players'
+    ],
+
+    peers: [
+      {
+        name: 'Dixon Technologies',
+        pbRatio: 8.5,
+        peRatio: 45.2,
+        ronw: 18.7,
+        netWorth: 1250
+      },
+      {
+        name: 'Amber Enterprises',
+        pbRatio: 3.2,
+        peRatio: 28.9,
+        ronw: 15.4,
+        netWorth: 890
+      }
+    ],
+
+    documents: {
+      drhp: 'https://www.sebi.gov.in/filings/public-issues/jan-2025/gng-electronics-limited_drhp.html',
+      rhp: 'https://www.gngelectronics.com/investor-relations/ipo-documents'
+    }
+  },
+  {
     id: '1',
     name: 'Swastika Castal',
     logo: 'https://media.ipoji.com/ipo/images/swastika-ipo-logo.png',
