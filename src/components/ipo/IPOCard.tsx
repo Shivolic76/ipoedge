@@ -38,27 +38,68 @@ const IPOCard: React.FC<IPOCardProps> = ({
     return `₹${ipo.offerPrice.min.toLocaleString()}-${ipo.offerPrice.max.toLocaleString()}`;
   };
 
+  const getButtonText = () => {
+    switch (ipo.status) {
+      case "current":
+        return "Apply Now";
+      case "upcoming":
+        return "Coming Soon";
+      case "listed":
+        return "View Results";
+      case "closed":
+        return "View Results";
+      default:
+        return "View Details";
+    }
+  };
+
+  const getButtonType = () => {
+    switch (ipo.status) {
+      case "current":
+        return "primary";
+      case "upcoming":
+        return "default";
+      case "listed":
+        return "default";
+      case "closed":
+        return "default";
+      default:
+        return "default";
+    }
+  };
+
   const cardActions = showActions
     ? [
         <Link to={`/ipo/${ipo.id}`} key="view">
-          <Button type="link" icon={<EyeOutlined />} size="small">
+          <Button
+            type="link"
+            icon={<EyeOutlined />}
+            size="small"
+            className="ipo-view-button"
+          >
             View Details
           </Button>
         </Link>,
         <Button
           key="apply"
-          type="primary"
+          type={getButtonType()}
           size="small"
-          disabled={ipo.status !== "current"}
+          disabled={ipo.status === "upcoming"}
+          className={`ipo-apply-button ${
+            ipo.status === "current" ? "ipo-apply-active" :
+            ipo.status === "upcoming" ? "ipo-apply-upcoming" :
+            ipo.status === "listed" ? "ipo-apply-closed" :
+            "ipo-apply-closed"
+          }`}
         >
-          {ipo.status === "current" ? "Apply" : "View"}
+          {getButtonText()}
         </Button>,
       ]
     : undefined;
 
   return (
     <Card
-      className="card-hover h-full animate-fadeIn shadow-xl"
+      className="ipo-card-container h-full animate-fadeIn shadow-xl"
       cover={
         <div className="p-4 bg-gray-50 relative">
           <div className="flex items-center space-x-3">
@@ -91,53 +132,51 @@ const IPOCard: React.FC<IPOCardProps> = ({
       }
       actions={cardActions}
     >
-      <div className={`space-y-${compact ? "2" : "3"}`}>
-        <div className="flex justify-between items-center">
-          <Text strong>Status:</Text>
-          <StatusIndicator status={ipo.status} showDot />
-        </div>
+      <div className="ipo-card-content">
+        <div className="ipo-card-details">
+          <div className="flex justify-between items-center">
+            <Text strong>Status:</Text>
+            <StatusIndicator status={ipo.status} showDot />
+          </div>
 
-        <div className="flex justify-between">
-          <Text strong>Exchange:</Text>
-          <Text className="text-right">{ipo.exchange}</Text>
-        </div>
+          <div className="flex justify-between">
+            <Text strong>Exchange:</Text>
+            <Text className="text-right">{ipo.exchange}</Text>
+          </div>
 
-        <div className="flex justify-between">
-          <Text strong>Price:</Text>
-          <Text className="text-right font-medium">{getOfferPriceText()}</Text>
-        </div>
+          <div className="flex justify-between">
+            <Text strong>Price:</Text>
+            <Text className="text-right font-medium">{getOfferPriceText()}</Text>
+          </div>
 
-        <div className="flex justify-between">
-          <Text strong>Lot Size:</Text>
-          <Text className="text-right">{ipo.lotSize.toLocaleString()}</Text>
-        </div>
+          <div className="flex justify-between">
+            <Text strong>Lot Size:</Text>
+            <Text className="text-right">{ipo.lotSize.toLocaleString()}</Text>
+          </div>
 
-        {ipo.subscription && (
           <div className="flex justify-between">
             <Text strong>Subscription:</Text>
             <Text className="font-semibold text-green-600 text-right">
-              {ipo.subscription.times}x
+              {ipo.subscription ? `${ipo.subscription.times}x` : "N/A"}
             </Text>
           </div>
-        )}
 
-        {ipo.gmp && (
           <div className="flex justify-between">
             <Text strong>GMP:</Text>
             <Text className="text-blue-600 text-right font-medium">
-              ₹{ipo.gmp.premium} ({ipo.gmp.percentage}%)
+              {ipo.gmp ? `₹${ipo.gmp.premium} (${ipo.gmp.percentage}%)` : "N/A"}
             </Text>
           </div>
-        )}
 
-        {ipo.sector && !compact && (
-          <div className="flex justify-between">
-            <Text strong>Sector:</Text>
-            <Text className="text-right text-gray-600 line-clamp-1">
-              {ipo.sector}
-            </Text>
-          </div>
-        )}
+          {!compact && (
+            <div className="flex justify-between">
+              <Text strong>Sector:</Text>
+              <Text className="text-right text-gray-600 line-clamp-1">
+                {ipo.sector || "N/A"}
+              </Text>
+            </div>
+          )}
+        </div>
       </div>
     </Card>
   );

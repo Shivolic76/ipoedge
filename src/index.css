@@ -1300,6 +1300,162 @@ html {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* IPO Card Container Styles */
+.ipo-card-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.ipo-card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-color: #d9d9d9;
+}
+
+.ipo-card-container .ant-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.ipo-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ipo-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.ipo-card-details > div {
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+/* IPO Card Actions Styling */
+.ipo-card-container .ant-card-actions {
+  border-top: 1px solid #f0f0f0;
+  background: #fafafa;
+  padding: 8px 16px;
+}
+
+.ipo-card-container .ant-card-actions > li {
+  margin: 4px 0;
+}
+
+/* Apply Button Styles */
+.ipo-apply-button {
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  height: 32px;
+  padding: 0 16px;
+}
+
+.ipo-apply-active {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+}
+
+.ipo-apply-active:hover {
+  background: linear-gradient(135deg, #389e0d 0%, #237804 100%);
+  box-shadow: 0 6px 16px rgba(82, 196, 26, 0.4);
+  transform: translateY(-1px);
+}
+
+.ipo-apply-disabled {
+  background: #f5f5f5;
+  color: #8c8c8c;
+  border: 1px solid #d9d9d9;
+}
+
+.ipo-apply-disabled:hover {
+  background: #f5f5f5;
+  color: #8c8c8c;
+  border: 1px solid #d9d9d9;
+  transform: none;
+}
+
+/* Upcoming IPO Button */
+.ipo-apply-upcoming {
+  background: #fff2e8;
+  color: #fa8c16;
+  border: 1px solid #ffbb96;
+  cursor: not-allowed;
+}
+
+.ipo-apply-upcoming:hover {
+  background: #fff2e8;
+  color: #fa8c16;
+  border: 1px solid #ffbb96;
+  transform: none;
+}
+
+.ipo-apply-upcoming:disabled {
+  background: #fff2e8;
+  color: #fa8c16;
+  border: 1px solid #ffbb96;
+  opacity: 0.8;
+}
+
+/* Listed IPO Button */
+.ipo-apply-listed {
+  background: linear-gradient(135deg, #722ed1 0%, #531dab 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(114, 46, 209, 0.3);
+}
+
+.ipo-apply-listed:hover {
+  background: linear-gradient(135deg, #531dab 0%, #391085 100%);
+  box-shadow: 0 6px 16px rgba(114, 46, 209, 0.4);
+  transform: translateY(-1px);
+  color: white;
+}
+
+/* Closed IPO Button */
+.ipo-apply-closed {
+  background: linear-gradient(135deg, #8c8c8c 0%, #595959 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(140, 140, 140, 0.3);
+}
+
+.ipo-apply-closed:hover {
+  background: linear-gradient(135deg, #595959 0%, #434343 100%);
+  box-shadow: 0 6px 16px rgba(140, 140, 140, 0.4);
+  transform: translateY(-1px);
+  color: white;
+}
+
+/* View Button Styles */
+.ipo-view-button {
+  font-weight: 500;
+  color: #1890ff;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.ipo-view-button:hover {
+  color: #40a9ff;
+  background: rgba(24, 144, 255, 0.06);
+}
+
 /* Mobile-optimized animations */
 @media (max-width: 768px) {
   .animate-fadeIn,
@@ -1308,6 +1464,38 @@ html {
   .animate-bounceIn,
   .animate-slideUp {
     animation-duration: 0.3s;
+  }
+
+  /* Mobile IPO Card Adjustments */
+  .ipo-card-container {
+    margin-bottom: 16px;
+  }
+
+  .ipo-card-container .ant-card-body {
+    padding: 12px;
+  }
+
+  .ipo-card-details {
+    gap: 10px;
+  }
+
+  .ipo-card-details > div {
+    min-height: 20px;
+  }
+
+  .ipo-apply-button {
+    height: 36px;
+    font-size: 13px;
+    padding: 0 12px;
+  }
+
+  .ipo-card-container .ant-card-actions {
+    padding: 6px 12px;
+  }
+
+  .ipo-card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -1351,9 +1539,426 @@ html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  .ipo-card-container:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
   button:hover {
     transform: none;
   }
+
+  .ipo-apply-active:hover,
+  .ipo-apply-listed:hover,
+  .ipo-apply-closed:hover {
+    transform: none;
+  }
+
+  .ipo-apply-upcoming:hover {
+    transform: none;
+  }
+}
+
+/* Ensure consistent card heights in grid layouts */
+.ant-row .ant-col {
+  display: flex;
+}
+
+.ant-row .ant-col > div {
+  width: 100%;
+}
+
+/* Grid layout improvements */
+@media (min-width: 576px) {
+  .ipo-card-container {
+    min-height: 420px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ipo-card-container {
+    min-height: 440px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ipo-card-container {
+    min-height: 460px;
+  }
+}
+
+/* Status indicator improvements */
+.ipo-card-details .ant-typography {
+  margin-bottom: 0;
+}
+
+/* Enhanced button focus states */
+.ipo-apply-button:focus,
+.ipo-view-button:focus {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+.ipo-apply-active:focus {
+  outline: 2px solid #52c41a;
+  outline-offset: 2px;
+}
+
+.ipo-apply-upcoming:focus {
+  outline: 2px solid #fa8c16;
+  outline-offset: 2px;
+}
+
+.ipo-apply-listed:focus {
+  outline: 2px solid #722ed1;
+  outline-offset: 2px;
+}
+
+.ipo-apply-closed:focus {
+  outline: 2px solid #8c8c8c;
+  outline-offset: 2px;
+}
+
+/* Loading and skeleton states */
+.ipo-card-container.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Card content spacing improvements */
+.ipo-card-details .ant-typography-caption {
+  color: #8c8c8c;
+  font-size: 12px;
+}
+
+/* Ensure proper text alignment */
+.ipo-card-details .text-right {
+  text-align: right;
+  word-break: break-word;
+  max-width: 60%;
+}
+
+/* Status indicator spacing */
+.ipo-card-details .ant-tag {
+  margin: 0;
+  border-radius: 6px;
+  font-size: 11px;
+  padding: 2px 8px;
+  font-weight: 500;
+}
+
+/* Improve card action button spacing */
+.ipo-card-container .ant-card-actions > li:not(:last-child) {
+  border-right: 1px solid #f0f0f0;
+}
+
+.ipo-card-container .ant-card-actions > li > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 4px 8px;
+}
+
+/* Responsive text sizing */
+@media (max-width: 480px) {
+  .ipo-card-details {
+    font-size: 13px;
+  }
+
+  .ipo-card-details .ant-typography {
+    font-size: 13px;
+  }
+
+  .ipo-apply-button {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+}
+
+/* IPO Detail Page Styles */
+.ipo-detail-header {
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.ipo-detail-card {
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.ipo-detail-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.ipo-detail-card .ant-card-head {
+  border-bottom: 2px solid #f0f0f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px 12px 0 0;
+}
+
+.ipo-detail-card .ant-card-body {
+  padding: 20px;
+}
+
+.ipo-stat-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ipo-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.subscription-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subscription-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Progress bar enhancements */
+.subscription-card .ant-progress-bg {
+  border-radius: 6px;
+}
+
+.subscription-card .ant-progress-inner {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile responsiveness for IPO detail page */
+@media (max-width: 768px) {
+  .ipo-detail-header .ant-card-body {
+    padding: 16px;
+  }
+
+  .ipo-detail-card .ant-card-body {
+    padding: 16px;
+  }
+
+  .ipo-stat-card {
+    min-height: 80px;
+    padding: 12px !important;
+  }
+
+  .subscription-card {
+    min-height: 100px;
+    padding: 12px !important;
+  }
+
+  .ipo-stat-card .text-lg,
+  .subscription-card .text-2xl {
+    font-size: 16px !important;
+  }
+
+  .subscription-card .text-3xl {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ipo-detail-header {
+    border-radius: 8px;
+  }
+
+  .ipo-detail-card {
+    border-radius: 8px;
+  }
+
+  .ipo-stat-card,
+  .subscription-card {
+    min-height: 70px;
+    padding: 8px !important;
+  }
+
+  .ipo-stat-card .text-lg {
+    font-size: 14px !important;
+  }
+
+  .subscription-card .text-2xl,
+  .subscription-card .text-3xl {
+    font-size: 18px !important;
+  }
+}
+
+/* IPO Action Buttons */
+.ipo-action-button {
+  transition: all 0.3s ease;
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+
+.ipo-action-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.ipo-action-button:active {
+  transform: translateY(0);
+}
+
+/* IPO Date Items */
+.ipo-date-item {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.ipo-date-item:hover {
+  transform: translateX(4px);
+}
+
+/* Enhanced table styling for IPO details */
+.ipo-detail-card table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ipo-detail-card table thead tr {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.ipo-detail-card table thead th {
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.ipo-detail-card table tbody tr:hover {
+  background-color: #f9fafb;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+.ipo-detail-card table tbody td {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Breadcrumb enhancements */
+.ant-breadcrumb {
+  font-weight: 500;
+}
+
+.ant-breadcrumb-link {
+  transition: all 0.2s ease;
+}
+
+.ant-breadcrumb-link:hover {
+  color: #1890ff !important;
+}
+
+/* Badge enhancements */
+.ant-badge-count {
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Progress bar enhancements */
+.ant-progress-bg {
+  border-radius: 6px !important;
+}
+
+.ant-progress-inner {
+  border-radius: 6px !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Responsive improvements for mobile */
+@media (max-width: 576px) {
+  .ipo-date-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+
+  .ipo-date-item .flex {
+    margin-bottom: 4px;
+  }
+
+  .ipo-action-button {
+    height: 48px !important;
+    font-size: 14px;
+  }
+}
+
+/* Button text improvements */
+.ipo-apply-upcoming {
+  position: relative;
+}
+
+.ipo-apply-upcoming::before {
+  content: "🕒";
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.ipo-apply-listed::before {
+  content: "📈";
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.ipo-apply-closed::before {
+  content: "📊";
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.ipo-apply-active::before {
+  content: "🚀";
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+/* Tooltip-like effect for disabled upcoming button */
+.ipo-apply-upcoming {
+  position: relative;
+}
+
+.ipo-apply-upcoming:hover::after {
+  content: "IPO opens soon";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 4px;
+}
+
+.ipo-apply-upcoming:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
 }
 
 /* Dark mode support (for future implementation) */

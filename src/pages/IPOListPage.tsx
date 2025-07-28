@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Row,
   Col,
@@ -10,19 +10,19 @@ import {
   Input,
   Pagination,
   Breadcrumb,
-  Card
-} from 'antd';
+  Card,
+} from "antd";
 import {
   SearchOutlined,
   SortAscendingOutlined,
-  HomeOutlined
-} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { useIPOs } from '../hooks';
-import type { IPOFilters } from '../types';
-import { ROUTES } from '../constants';
-import { SkeletonCard, EmptyState } from '../components/common';
-import { IPOCard } from '../components/ipo';
+  HomeOutlined,
+} from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { useIPOs } from "../hooks";
+import type { IPOFilters } from "../types";
+import { ROUTES } from "../constants";
+import { SkeletonCard, EmptyState } from "../components/common";
+import { IPOCard } from "../components/ipo";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -30,23 +30,22 @@ const { Option } = Select;
 const IPOListPage: React.FC = () => {
   const location = useLocation();
 
-
   // State for filters and search
   const [filters, setFilters] = useState<IPOFilters>({});
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('date');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(12);
 
   // Determine page type from URL
   const getPageType = () => {
     const path = location.pathname;
-    if (path.includes('current-ipo')) return 'current';
-    if (path.includes('upcoming-ipo')) return 'upcoming';
-    if (path.includes('listed-ipo')) return 'listed';
-    if (path.includes('sme-ipo')) return 'sme';
-    return 'all';
+    if (path.includes("current-ipo")) return "current";
+    if (path.includes("upcoming-ipo")) return "upcoming";
+    if (path.includes("listed-ipo")) return "listed";
+    if (path.includes("sme-ipo")) return "sme";
+    return "all";
   };
 
   const pageType = getPageType();
@@ -55,14 +54,14 @@ const IPOListPage: React.FC = () => {
   useEffect(() => {
     const initialFilters: IPOFilters = {};
 
-    if (pageType === 'current') {
-      initialFilters.status = ['current'];
-    } else if (pageType === 'upcoming') {
-      initialFilters.status = ['upcoming'];
-    } else if (pageType === 'listed') {
-      initialFilters.status = ['listed'];
-    } else if (pageType === 'sme') {
-      initialFilters.category = ['sme'];
+    if (pageType === "current") {
+      initialFilters.status = ["current"];
+    } else if (pageType === "upcoming") {
+      initialFilters.status = ["upcoming"];
+    } else if (pageType === "listed") {
+      initialFilters.status = ["listed"];
+    } else if (pageType === "sme") {
+      initialFilters.category = ["sme"];
     }
 
     setFilters(initialFilters);
@@ -75,25 +74,33 @@ const IPOListPage: React.FC = () => {
     filters,
     search: searchQuery,
     sortBy,
-    sortOrder
+    sortOrder,
   });
 
   // Get page title
   const getPageTitle = () => {
     switch (pageType) {
-      case 'current': return 'Current IPOs';
-      case 'upcoming': return 'Upcoming IPOs';
-      case 'listed': return 'Listed IPOs';
-      case 'sme': return 'SME IPOs';
-      default: return 'All IPOs';
+      case "current":
+        return "Current IPOs";
+      case "upcoming":
+        return "Upcoming IPOs";
+      case "listed":
+        return "Listed IPOs";
+      case "sme":
+        return "SME IPOs";
+      default:
+        return "All IPOs";
     }
   };
 
   // Handle filter changes
-  const handleFilterChange = (key: keyof IPOFilters, value: string[] | undefined) => {
-    setFilters(prev => ({
+  const handleFilterChange = (
+    key: keyof IPOFilters,
+    value: string[] | undefined
+  ) => {
+    setFilters((prev) => ({
       ...prev,
-      [key]: value
+      [key]: value,
     }));
     setCurrentPage(1); // Reset to first page when filters change
   };
@@ -107,10 +114,10 @@ const IPOListPage: React.FC = () => {
   // Handle sort change
   const handleSortChange = (field: string) => {
     if (sortBy === field) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortBy(field);
-      setSortOrder('desc');
+      setSortOrder("desc");
     }
     setCurrentPage(1);
   };
@@ -137,9 +144,12 @@ const IPOListPage: React.FC = () => {
 
         {/* Page Header */}
         <div className="mb-8">
-          <Title level={1} className="mb-2">{getPageTitle()}</Title>
+          <Title level={1} className="mb-2">
+            {getPageTitle()}
+          </Title>
           <Text className="text-gray-600">
-            Discover and track the latest IPO opportunities in the Indian stock market
+            Discover and track the latest IPO opportunities in the Indian stock
+            market
           </Text>
         </div>
 
@@ -163,9 +173,9 @@ const IPOListPage: React.FC = () => {
             <Col xs={24} sm={12} md={4} lg={4}>
               <Select
                 placeholder="Status"
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 value={filters.status}
-                onChange={(value) => handleFilterChange('status', value)}
+                onChange={(value) => handleFilterChange("status", value)}
                 mode="multiple"
                 allowClear
                 size="middle"
@@ -183,9 +193,9 @@ const IPOListPage: React.FC = () => {
             <Col xs={24} sm={12} md={4} lg={4}>
               <Select
                 placeholder="Category"
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 value={filters.category}
-                onChange={(value) => handleFilterChange('category', value)}
+                onChange={(value) => handleFilterChange("category", value)}
                 mode="multiple"
                 allowClear
                 size="middle"
@@ -197,51 +207,30 @@ const IPOListPage: React.FC = () => {
               </Select>
             </Col>
 
-            {/* Exchange Filter - Full width on mobile, half on tablet */}
-            <Col xs={24} sm={12} md={4} lg={4}>
-              <Select
-                placeholder="Exchange"
-                style={{ width: '100%' }}
-                value={filters.exchange}
-                onChange={(value) => handleFilterChange('exchange', value)}
-                mode="multiple"
-                allowClear
-                size="middle"
-                maxTagCount="responsive"
-                className="mobile-select"
-              >
-                <Option value="NSE">NSE</Option>
-                <Option value="BSE">BSE</Option>
-                <Option value="NSE SME">NSE SME</Option>
-                <Option value="BSE SME">BSE SME</Option>
-                <Option value="Mainboard">Mainboard</Option>
-              </Select>
-            </Col>
-
             {/* Sort Buttons - Full width on mobile, responsive layout */}
             <Col xs={24} sm={12} md={4} lg={4}>
               <Space
                 direction="horizontal"
                 size="small"
-                style={{ width: '100%', justifyContent: 'flex-start' }}
+                style={{ width: "100%", justifyContent: "flex-start" }}
               >
                 <Button
                   icon={<SortAscendingOutlined />}
-                  onClick={() => handleSortChange('date')}
-                  type={sortBy === 'date' ? 'primary' : 'default'}
+                  onClick={() => handleSortChange("date")}
+                  type={sortBy === "date" ? "primary" : "default"}
                   size="middle"
                   className="mobile-button"
-                  style={{ minWidth: '70px' }}
+                  style={{ minWidth: "70px" }}
                 >
                   Date
                 </Button>
                 <Button
                   icon={<SortAscendingOutlined />}
-                  onClick={() => handleSortChange('subscription')}
-                  type={sortBy === 'subscription' ? 'primary' : 'default'}
+                  onClick={() => handleSortChange("subscription")}
+                  type={sortBy === "subscription" ? "primary" : "default"}
                   size="middle"
                   className="mobile-button"
-                  style={{ minWidth: '100px' }}
+                  style={{ minWidth: "100px" }}
                 >
                   Subscription
                 </Button>
@@ -265,7 +254,7 @@ const IPOListPage: React.FC = () => {
             description="Try adjusting your filters or search criteria to find IPOs."
             action={{
               text: "View All IPOs",
-              href: "/ipo"
+              href: "/ipo",
             }}
           />
         ) : (
@@ -293,7 +282,7 @@ const IPOListPage: React.FC = () => {
                       `${range[0]}-${range[1]} of ${total} IPOs`
                     }
                     onChange={handlePageChange}
-                    pageSizeOptions={['12', '24', '48']}
+                    pageSizeOptions={["12", "24", "48"]}
                     className="pagination-center"
                   />
                 </div>
@@ -346,7 +335,9 @@ const IPOListPage: React.FC = () => {
                     </div>
 
                     <span>
-                      {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, pagination.total)} of {pagination.total} IPOs
+                      {(currentPage - 1) * pageSize + 1}-
+                      {Math.min(currentPage * pageSize, pagination.total)} of{" "}
+                      {pagination.total} IPOs
                     </span>
                   </div>
                 </div>
