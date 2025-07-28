@@ -21,7 +21,6 @@ import {
 import {
   FaGooglePlay,
   FaAppStore,
-  FaChartLine,
   FaCoins,
   FaArrowTrendUp,
   FaRocket,
