@@ -1,9 +1,26 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+import { useEffect } from 'react';
 import AppRouter from './router';
 import { ErrorBoundary, ScrollToTop } from './components/common';
+import { initializePerformanceOptimizations } from './utils/performanceUtils';
+import { initializeAnalytics } from './utils/analytics';
 
 function App() {
+  // Initialize performance optimizations and analytics
+  useEffect(() => {
+    const cleanup = initializePerformanceOptimizations();
+
+    // Initialize analytics (replace with your actual codes)
+    initializeAnalytics({
+      // gaId: 'G-XXXXXXXXXX', // Replace with your GA4 ID
+      // searchConsoleCode: 'your-search-console-verification-code',
+      enableConsent: true,
+    });
+
+    return cleanup;
+  }, []);
+
   return (
     <ErrorBoundary>
       <ConfigProvider

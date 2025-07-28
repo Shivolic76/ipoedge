@@ -6,3 +6,4 @@ export { default as EmptyState } from './EmptyState';
 export { default as ResponsiveImage } from './ResponsiveImage';
 export { default as DashboardSkeleton } from './DashboardSkeleton';
 export { default as ScrollToTop } from './ScrollToTop';
+export { default as LazyImage } from './LazyImage';

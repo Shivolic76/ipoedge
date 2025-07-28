@@ -28,15 +28,19 @@ import {
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../constants";
-import { useIPOsByStatus, useBrokers } from "../hooks";
+import { useIPOsByStatus, useBrokers, useSEO } from "../hooks";
 import { SkeletonCard, DashboardSkeleton } from "../components/common";
 import { IPOCard } from "../components/ipo";
+import { getHomePageSEO } from "../utils/seoUtils";
 import "../styles/dashboard-animations.css";
 import "../styles/dashboard-enhancements.css";
 
 const { Title, Paragraph } = Typography;
 
 const HomePage: React.FC = () => {
+  // SEO optimization
+  useSEO(getHomePageSEO());
+
   // Fetch current IPOs and brokers data
   const { ipos: currentIPOs, loading: iposLoading } =
     useIPOsByStatus("current");
@@ -331,13 +335,13 @@ const HomePage: React.FC = () => {
                       {/* Animated Chart Bars */}
                       <div className="flex items-end justify-between h-24 space-x-1 mb-2">
                         {[
-                          { height: 40, color: "from-blue-200 to-blue-300" },
-                          { height: 45, color: "from-blue-200 to-blue-300" },
                           { height: 50, color: "from-blue-200 to-blue-300" },
-                          { height: 55, color: "from-blue-200 to-blue-300" },
                           { height: 60, color: "from-blue-200 to-blue-300" },
                           { height: 70, color: "from-blue-200 to-blue-300" },
                           { height: 80, color: "from-blue-200 to-blue-300" },
+                          { height: 90, color: "from-blue-200 to-blue-300" },
+                          { height: 95, color: "from-blue-200 to-blue-300" },
+                          { height: 100, color: "from-blue-200 to-blue-300" },
                         ].map((bar, index) => (
                           <div
                             key={index}

@@ -46,6 +46,7 @@ import { Loading, ResponsiveImage } from '../components/common';
 import { ROUTES } from '../constants';
 import { formatDate } from '../utils';
 import { favoriteIPOsStorage } from '../services/storage';
+import { getIPODetailPageSEO } from '../utils/seoUtils';
 
 const { Title, Text } = Typography;
 
@@ -53,6 +54,22 @@ const IPODetailPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const { ipo, loading, error } = useIPOByName(name || '');
   const [isFavorite, setIsFavorite] = React.useState(false);
+
+  // SEO optimization
+  React.useEffect(() => {
+    if (ipo) {
+      // Apply SEO when IPO data is loaded
+      const seoData = getIPODetailPageSEO(ipo);
+      // We need to manually update meta tags since we can't use hooks conditionally
+      document.title = seoData.title || '';
+
+      // Update meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', seoData.description || '');
+      }
+    }
+  }, [ipo]);
 
   React.useEffect(() => {
     if (ipo) {

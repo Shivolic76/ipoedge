@@ -18,25 +18,18 @@ import {
   HomeOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useIPOs } from "../hooks";
+import { useIPOs, useSEO } from "../hooks";
 import type { IPOFilters } from "../types";
 import { ROUTES } from "../constants";
 import { SkeletonCard, EmptyState } from "../components/common";
 import { IPOCard } from "../components/ipo";
+import { getIPOListPageSEO } from "../utils/seoUtils";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const IPOListPage: React.FC = () => {
   const location = useLocation();
-
-  // State for filters and search
-  const [filters, setFilters] = useState<IPOFilters>({});
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("date");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(12);
 
   // Determine page type from URL
   const getPageType = () => {
@@ -49,6 +42,17 @@ const IPOListPage: React.FC = () => {
   };
 
   const pageType = getPageType();
+
+  // SEO optimization
+  useSEO(getIPOListPageSEO(pageType));
+
+  // State for filters and search
+  const [filters, setFilters] = useState<IPOFilters>({});
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(12);
 
   // Set initial filters based on page type
   useEffect(() => {
