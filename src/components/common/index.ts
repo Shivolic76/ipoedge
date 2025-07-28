@@ -4,3 +4,4 @@ export { default as SkeletonCard } from './SkeletonCard';
 export { default as StatusIndicator } from './StatusIndicator';
 export { default as EmptyState } from './EmptyState';
 export { default as ResponsiveImage } from './ResponsiveImage';
+export { default as DashboardSkeleton } from './DashboardSkeleton';

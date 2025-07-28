@@ -179,18 +179,18 @@ export const ipoAPI = {
 
       // If not found by slug, try to find by exact name match
       if (!ipo) {
-        ipo = mockIPOs.find(ipo =>
-          ipo.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
-        );
+        ipo = mockIPOs.find(ipoItem =>
+          ipoItem.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
+        ) || null;
       }
 
       // If still not found, try partial name match
       if (!ipo) {
         const searchTerm = name.toLowerCase().replace(/-/g, ' ');
-        ipo = mockIPOs.find(ipo =>
-          ipo.name.toLowerCase().includes(searchTerm) ||
-          searchTerm.includes(ipo.name.toLowerCase())
-        );
+        ipo = mockIPOs.find(ipoItem =>
+          ipoItem.name.toLowerCase().includes(searchTerm) ||
+          searchTerm.includes(ipoItem.name.toLowerCase())
+        ) || null;
       }
 
       return {
@@ -370,18 +370,18 @@ export const brokerAPI = {
 
       // If not found by slug, try to find by exact name match
       if (!broker) {
-        broker = mockBrokers.find(broker =>
-          broker.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
-        );
+        broker = mockBrokers.find(brokerItem =>
+          brokerItem.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
+        ) || null;
       }
 
       // If still not found, try partial name match
       if (!broker) {
         const searchTerm = name.toLowerCase().replace(/-/g, ' ');
-        broker = mockBrokers.find(broker =>
-          broker.name.toLowerCase().includes(searchTerm) ||
-          searchTerm.includes(broker.name.toLowerCase())
-        );
+        broker = mockBrokers.find(brokerItem =>
+          brokerItem.name.toLowerCase().includes(searchTerm) ||
+          searchTerm.includes(brokerItem.name.toLowerCase())
+        ) || null;
       }
 
       if (!broker) {

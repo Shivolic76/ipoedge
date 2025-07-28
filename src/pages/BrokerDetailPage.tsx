@@ -44,7 +44,6 @@ import {
   EyeOutlined
 } from '@ant-design/icons';
 import { ROUTES } from '../constants';
-import { getBrokerById } from '../utils/brokerUtils';
 import { useBrokerByName } from '../hooks/useBrokers';
 import '../styles/broker-details.css';
 
@@ -52,7 +51,7 @@ const { Title, Text, Paragraph } = Typography;
 
 const BrokerDetailPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const { broker, loading: brokerLoading, error } = useBrokerByName(name || '');
+  const { broker, loading: brokerLoading } = useBrokerByName(name || '');
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
