@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {
   FacebookOutlined,
   TwitterOutlined,
-  LinkedinOutlined,
   YoutubeOutlined,
   InstagramOutlined,
   SendOutlined,
