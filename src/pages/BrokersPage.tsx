@@ -24,6 +24,7 @@ import { useBrokers } from '../hooks';
 import { ROUTES } from '../constants';
 import { SkeletonCard, EmptyState, ResponsiveImage } from '../components/common';
 import { formatBrokerValue, getBrokerStatusColor } from '../utils/brokerValidation';
+import { brokerNameToSlug } from '../utils';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -154,7 +155,7 @@ const BrokersPage: React.FC = () => {
       fixed: 'right' as const,
       render: (_: any, record: any) => (
         <Space>
-          <Link to={`/broker/${record.id}`}>
+          <Link to={`/broker/${brokerNameToSlug(record.name)}`}>
             <Button type="link" size="small">
               Details
             </Button>
@@ -290,7 +291,7 @@ const BrokersPage: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="flex space-x-3">
-            <Link to={`/broker/${record.id}`} className="flex-1">
+            <Link to={`/broker/${brokerNameToSlug(record.name)}`} className="flex-1">
               <Button
                 type="default"
                 size="middle"
@@ -455,7 +456,7 @@ const BrokersPage: React.FC = () => {
                     <Button type="primary" key="open">
                       Open Account
                     </Button>,
-                    <Link to={`/broker/${broker.id}`} key="details">
+                    <Link to={`/broker/${brokerNameToSlug(broker.name)}`} key="details">
                       <Button type="link">
                         View Details
                       </Button>

@@ -167,6 +167,46 @@ export const ipoAPI = {
     }
   },
 
+  // Get IPO by name/slug
+  async getIPOByName(name: string): Promise<APIResponse<IPO | null>> {
+    await delay(300);
+
+    try {
+      const { findIPOBySlug } = await import('../utils/slugUtils');
+
+      // First try to find by slug
+      let ipo = findIPOBySlug(name, mockIPOs);
+
+      // If not found by slug, try to find by exact name match
+      if (!ipo) {
+        ipo = mockIPOs.find(ipo =>
+          ipo.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
+        );
+      }
+
+      // If still not found, try partial name match
+      if (!ipo) {
+        const searchTerm = name.toLowerCase().replace(/-/g, ' ');
+        ipo = mockIPOs.find(ipo =>
+          ipo.name.toLowerCase().includes(searchTerm) ||
+          searchTerm.includes(ipo.name.toLowerCase())
+        );
+      }
+
+      return {
+        data: ipo || null,
+        success: true,
+        message: ipo ? undefined : 'IPO not found'
+      };
+    } catch {
+      return {
+        data: null,
+        success: false,
+        message: 'Failed to fetch IPO details'
+      };
+    }
+  },
+
   // Get IPOs by status
   async getIPOsByStatus(status: string): Promise<APIResponse<IPO[]>> {
     await delay(400);
@@ -292,6 +332,57 @@ export const brokerAPI = {
       const { sanitizeBroker } = await import('../utils/brokerValidation');
 
       const broker = mockBrokers.find(broker => broker.id === id);
+
+      if (!broker) {
+        return {
+          data: null,
+          success: true,
+          message: 'Broker not found'
+        };
+      }
+
+      // Sanitize broker data before returning
+      const sanitizedBroker = sanitizeBroker(broker);
+
+      return {
+        data: sanitizedBroker,
+        success: true
+      };
+    } catch (error) {
+      console.error('Error fetching broker details:', error);
+      return {
+        data: null,
+        success: false,
+        message: 'Failed to fetch broker details'
+      };
+    }
+  },
+
+  async getBrokerByName(name: string): Promise<APIResponse<Broker | null>> {
+    await delay(300);
+
+    try {
+      const { sanitizeBroker } = await import('../utils/brokerValidation');
+      const { findBrokerBySlug } = await import('../utils/slugUtils');
+
+      // First try to find by slug
+      let broker = findBrokerBySlug(name, mockBrokers);
+
+      // If not found by slug, try to find by exact name match
+      if (!broker) {
+        broker = mockBrokers.find(broker =>
+          broker.name.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-') === name.toLowerCase()
+        );
+      }
+
+      // If still not found, try partial name match
+      if (!broker) {
+        const searchTerm = name.toLowerCase().replace(/-/g, ' ');
+        broker = mockBrokers.find(broker =>
+          broker.name.toLowerCase().includes(searchTerm) ||
+          searchTerm.includes(broker.name.toLowerCase())
+        );
+      }
 
       if (!broker) {
         return {

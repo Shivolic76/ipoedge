@@ -182,3 +182,6 @@ export const getRandomColor = (): string => {
   const colors = ['#1890ff', '#52c41a', '#722ed1', '#fa8c16', '#eb2f96', '#13c2c2'];
   return colors[Math.floor(Math.random() * colors.length)];
 };
+
+// Re-export slug utilities
+export * from './slugUtils';

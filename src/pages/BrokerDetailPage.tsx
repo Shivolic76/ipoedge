@@ -45,20 +45,26 @@ import {
 } from '@ant-design/icons';
 import { ROUTES } from '../constants';
 import { getBrokerById } from '../utils/brokerUtils';
+import { useBrokerByName } from '../hooks/useBrokers';
 import '../styles/broker-details.css';
 
 const { Title, Text, Paragraph } = Typography;
 
 const BrokerDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const broker = getBrokerById(id || '');
+  const { name } = useParams<{ name: string }>();
+  const { broker, loading: brokerLoading, error } = useBrokerByName(name || '');
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Simulate loading for better UX
-    const timer = setTimeout(() => setLoading(false), 800);
+    // Update loading state based on broker loading
+    if (!brokerLoading) {
+      const timer = setTimeout(() => setLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [brokerLoading]);
 
+  useEffect(() => {
     // Check if mobile
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -68,7 +74,6 @@ const BrokerDetailPage: React.FC = () => {
     window.addEventListener('resize', checkMobile);
 
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
     };
   }, []);

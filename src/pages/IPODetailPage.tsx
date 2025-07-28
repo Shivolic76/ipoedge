@@ -41,7 +41,7 @@ import {
   EnvironmentOutlined,
   UserOutlined
 } from '@ant-design/icons';
-import { useIPO } from '../hooks';
+import { useIPOByName } from '../hooks';
 import { Loading, ResponsiveImage } from '../components/common';
 import { ROUTES } from '../constants';
 import { formatDate } from '../utils';
@@ -50,8 +50,8 @@ import { favoriteIPOsStorage } from '../services/storage';
 const { Title, Text } = Typography;
 
 const IPODetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { ipo, loading, error } = useIPO(id || '');
+  const { name } = useParams<{ name: string }>();
+  const { ipo, loading, error } = useIPOByName(name || '');
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   React.useEffect(() => {

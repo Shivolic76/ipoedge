@@ -4,7 +4,7 @@ import { EyeOutlined, HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import type { IPO } from "../../types";
 import { StatusIndicator, ResponsiveImage } from "../common";
-import { formatDate } from "../../utils";
+import { formatDate, ipoNameToSlug } from "../../utils";
 import { favoriteIPOsStorage } from "../../services/storage";
 
 const { Title, Text } = Typography;
@@ -70,7 +70,7 @@ const IPOCard: React.FC<IPOCardProps> = ({
 
   const cardActions = showActions
     ? [
-        <Link to={`/ipo/${ipo.id}`} key="view">
+        <Link to={`/ipo/${ipoNameToSlug(ipo.name)}`} key="view">
           <Button
             type="link"
             icon={<EyeOutlined />}

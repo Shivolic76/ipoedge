@@ -123,7 +123,7 @@ export const useIPOs = (params: UseIPOsParams = {}): UseIPOsReturn => {
   };
 };
 
-// Hook for getting a single IPO
+// Hook for getting a single IPO by ID
 export const useIPO = (id: string) => {
   const [ipo, setIPO] = useState<IPO | null>(null);
   const [loading, setLoading] = useState(false);
@@ -137,7 +137,7 @@ export const useIPO = (id: string) => {
 
     try {
       const response = await ipoAPI.getIPOById(id);
-      
+
       if (response.success) {
         setIPO(response.data);
       } else {
@@ -149,6 +149,45 @@ export const useIPO = (id: string) => {
       setLoading(false);
     }
   }, [id]);
+
+  useEffect(() => {
+    fetchIPO();
+  }, [fetchIPO]);
+
+  return {
+    ipo,
+    loading,
+    error,
+    refetch: fetchIPO
+  };
+};
+
+// Hook for getting a single IPO by name/slug
+export const useIPOByName = (name: string) => {
+  const [ipo, setIPO] = useState<IPO | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchIPO = useCallback(async () => {
+    if (!name) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await ipoAPI.getIPOByName(name);
+
+      if (response.success) {
+        setIPO(response.data);
+      } else {
+        setError(response.message || 'IPO not found');
+      }
+    } catch {
+      setError('Failed to fetch IPO details');
+    } finally {
+      setLoading(false);
+    }
+  }, [name]);
 
   useEffect(() => {
     fetchIPO();

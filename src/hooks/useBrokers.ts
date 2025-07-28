@@ -51,7 +51,7 @@ export const useBroker = (id: string) => {
 
     try {
       const response = await brokerAPI.getBrokerById(id);
-      
+
       if (response.success) {
         setBroker(response.data);
       } else {
@@ -63,6 +63,44 @@ export const useBroker = (id: string) => {
       setLoading(false);
     }
   }, [id]);
+
+  useEffect(() => {
+    fetchBroker();
+  }, [fetchBroker]);
+
+  return {
+    broker,
+    loading,
+    error,
+    refetch: fetchBroker
+  };
+};
+
+export const useBrokerByName = (name: string) => {
+  const [broker, setBroker] = useState<Broker | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchBroker = useCallback(async () => {
+    if (!name) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await brokerAPI.getBrokerByName(name);
+
+      if (response.success) {
+        setBroker(response.data);
+      } else {
+        setError(response.message || 'Broker not found');
+      }
+    } catch {
+      setError('Failed to fetch broker details');
+    } finally {
+      setLoading(false);
+    }
+  }, [name]);
 
   useEffect(() => {
     fetchBroker();
