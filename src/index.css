@@ -55,7 +55,7 @@ html {
   }
 
   .mobile-table .ant-table-tbody > tr > td {
-    padding: 8px !important;
+    padding: 16px !important;
     border: none !important;
     background: transparent !important;
   }
@@ -63,7 +63,6 @@ html {
   .mobile-table .ant-table-tbody > tr {
     border: none !important;
     background: transparent !important;
-    margin-bottom: 0 !important;
   }
 
   .mobile-table .ant-table-tbody > tr:hover {
@@ -76,57 +75,44 @@ html {
 
   .mobile-table .ant-table-container {
     border: none !important;
-    background: transparent !important;
   }
 
   .mobile-table .ant-table-content {
     background: transparent !important;
   }
 
-  .mobile-table .ant-table-body {
-    background: transparent !important;
-  }
-
   .mobile-table .ant-tag {
     margin: 0;
-    font-size: 12px;
-    padding: 4px 10px;
-    line-height: 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    border: none;
+    font-size: 11px;
+    padding: 2px 8px;
+    line-height: 18px;
+    border-radius: 6px;
+    font-weight: 500;
   }
 
   .mobile-table .ant-btn {
-    border-radius: 12px;
-    font-weight: 600;
+    border-radius: 8px;
+    font-weight: 500;
     transition: all 0.2s ease;
-    border-width: 2px;
-  }
-
-  .mobile-table .ant-btn-lg {
-    height: 48px;
-    padding: 0 24px;
-    font-size: 16px;
   }
 
   .mobile-table .ant-rate {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .mobile-table .ant-rate-star {
-    margin-right: 4px;
+    margin-right: 3px;
   }
 
   /* Card hover animations */
   .mobile-table .ant-table-tbody > tr > td > div {
-    animation: fadeInUp 0.4s ease-out;
+    animation: fadeInUp 0.3s ease-out;
   }
 
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -136,33 +122,16 @@ html {
 
   /* Enhanced button styles */
   .mobile-table .ant-btn-primary {
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
   }
 
   .mobile-table .ant-btn-primary:hover {
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
   }
 
   .mobile-table .ant-btn-default:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-  }
-
-  /* Improved spacing for mobile cards */
-  .mobile-table .ant-table-tbody > tr > td > div {
-    margin: 12px 8px;
-  }
-
-  /* Better pagination styling */
-  .mobile-table + .ant-pagination {
-    text-align: center;
-    margin-top: 24px;
-  }
-
-  .mobile-table .ant-pagination-simple .ant-pagination-simple-pager {
-    color: #1f2937;
-    font-weight: 500;
   }
 }
 
