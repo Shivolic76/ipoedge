@@ -1275,7 +1275,7 @@ export const mockBrokers: Broker[] = [
     accountOpening: 'Free',
     accountMaintenance: 400,
     callTrade: 20,
-    brokerage: { equityDelivery: 'Zero', equityIntraday: '0.01% on order value upto ₹15', equityFutures: '0.01% on order value upto ₹15', equityOptions: '₹15 per order', currencyFutures: '0.01% on order value upto ₹15', currencyOptions: '₹15 per order', commodityFutures: '0.01% on order value upto ₹15', commodityOptions: '₹15 per order' },
+    brokerage: { equityDelivery: 'Zero', equityIntraday: '0.01% upto ₹15', equityFutures: '0.01% upto ₹15', equityOptions: '₹15 per order', currencyFutures: '0.01% upto ₹15', currencyOptions: '₹15 per order', commodityFutures: '0.01% upto ₹15', commodityOptions: '₹15 per order' },
     margins: { equityDelivery: '1x As per exchange', equityIntraday: '5x As per exchange', equityFutures: '1x As per exchange', equityOptions: '1x As per exchange', currencyFutures: '1x As per exchange', currencyOptions: '1x As per exchange', commodityFutures: '1x As per exchange', commodityOptions: '1x As per exchange' },
     services: ['Equity', 'Commodity', 'Currency', 'Futures', 'Options'],
     platforms: ['ANT Mobi', 'ANT Web', 'Trade School'],
