@@ -19,6 +19,13 @@ import ProfilePage from '../pages/ProfilePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import AboutPage from '../pages/AboutPage';
+import FAQsPage from '../pages/FAQsPage';
+import HelpCenterPage from '../pages/HelpCenterPage';
+import ContactPage from '../pages/ContactPage';
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
+import TermsConditionsPage from '../pages/TermsConditionsPage';
+import DisclaimerPage from '../pages/DisclaimerPage';
 
 const AppRouter: React.FC = () => {
   return (
@@ -61,7 +68,16 @@ const AppRouter: React.FC = () => {
         <Route path={ROUTES.ALLOTMENT_CHECK} element={<AllotmentPage />} />
         <Route path={ROUTES.CALENDAR} element={<CalendarPage />} />
         <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-        
+
+        {/* Information pages */}
+        <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+        <Route path={ROUTES.FAQS} element={<FAQsPage />} />
+        <Route path={ROUTES.HELP_CENTER} element={<HelpCenterPage />} />
+        <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+        <Route path={ROUTES.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
+        <Route path={ROUTES.TERMS_CONDITIONS} element={<TermsConditionsPage />} />
+        <Route path={ROUTES.DISCLAIMER} element={<DisclaimerPage />} />
+
         {/* 404 route */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>

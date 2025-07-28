@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <MailOutlined className="text-sm text-white" />
                 </div>
-                <Text className="text-gray-300">support@ipoedge.com</Text>
+                <Text className="text-gray-300">ipoedge@gmail.com</Text>
               </div>
               <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200">
                 <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
@@ -148,19 +148,19 @@ const Footer: React.FC = () => {
               </div>
               <div className="pt-4 space-y-3">
                 <div>
-                  <Link to="/faqs" className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
+                  <Link to={ROUTES.FAQS} className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
                     <span className="w-1 h-1 bg-purple-400 rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
                     FAQs
                   </Link>
                 </div>
                 <div>
-                  <Link to="/support" className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
+                  <Link to={ROUTES.HELP_CENTER} className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
                     <span className="w-1 h-1 bg-purple-400 rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
                     Help Center
                   </Link>
                 </div>
                 <div>
-                  <Link to="/contact" className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
+                  <Link to={ROUTES.CONTACT} className="text-gray-300 hover:text-purple-400 transition-colors duration-200 flex items-center group">
                     <span className="w-1 h-1 bg-purple-400 rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
                     Contact Us
                   </Link>
@@ -183,21 +183,21 @@ const Footer: React.FC = () => {
             {/* Legal Links - Mobile Optimized */}
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6">
               <Link
-                to="/privacy-policy"
+                to={ROUTES.PRIVACY_POLICY}
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
               >
                 Privacy Policy
               </Link>
               <span className="text-gray-600 hidden sm:inline">•</span>
               <Link
-                to="/terms-conditions"
+                to={ROUTES.TERMS_CONDITIONS}
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
               >
                 Terms & Conditions
               </Link>
               <span className="text-gray-600 hidden sm:inline">•</span>
               <Link
-                to="/disclaimer"
+                to={ROUTES.DISCLAIMER}
                 className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-sm px-4 py-2 rounded-lg hover:bg-gray-800/50 w-full sm:w-auto text-center"
               >
                 Disclaimer

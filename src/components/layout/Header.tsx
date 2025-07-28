@@ -102,6 +102,11 @@ const Header: React.FC = () => {
       icon: <CalendarOutlined />,
       label: <Link to={ROUTES.CALENDAR}>IPO Event Calendar</Link>,
     },
+    {
+      key: 'about',
+      icon: <UserOutlined />,
+      label: <Link to={ROUTES.ABOUT}>About Us</Link>,
+    },
   ];
 
   const userMenuItems: MenuProps['items'] = [
@@ -134,6 +139,7 @@ const Header: React.FC = () => {
     if (path === ROUTES.HOME) return ['home'];
     if (path === ROUTES.ALLOTMENT || path.startsWith('/ipo-allotment-status')) return ['allotment'];
     if (path === ROUTES.CALENDAR) return ['calendar'];
+    if (path === ROUTES.ABOUT) return ['about'];
     if (path.startsWith('/ipo')) return ['ipo'];
     if (path.startsWith('/buyback')) return ['buyback'];
     if (path === ROUTES.BROKERS) return ['brokers'];

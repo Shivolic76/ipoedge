@@ -32,6 +32,13 @@ export const ROUTES = {
   PROFILE: '/profile',
   LOGIN: '/login',
   REGISTER: '/register',
+  ABOUT: '/about',
+  FAQS: '/faqs',
+  HELP_CENTER: '/support',
+  CONTACT: '/contact',
+  PRIVACY_POLICY: '/privacy-policy',
+  TERMS_CONDITIONS: '/terms-conditions',
+  DISCLAIMER: '/disclaimer',
 } as const;
 
 // IPO status options
