@@ -304,7 +304,7 @@ const ContactPage: React.FC = () => {
               contact our 24/7 emergency support line.
             </Paragraph>
             <div className="space-x-4">
-              <Button size="large" className="bg-white text-red-600 border-0 hover:bg-gray-100">
+              <Button size="large" className="bg-white text-red-600 border-0 hover:bg-gray-100 mb-4 sm:mb-0">
                 <PhoneOutlined /> Call Emergency Line
               </Button>
               <Button size="large" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-red-600">

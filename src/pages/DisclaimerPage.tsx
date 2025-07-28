@@ -234,7 +234,7 @@ const DisclaimerPage: React.FC = () => {
               please don't hesitate to contact us.
             </Paragraph>
             <div className="space-x-4">
-              <button className="bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
+              <button className="bg-white text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 mb-4 sm:mb-0">
                 Contact Legal Team
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-800 transition-colors duration-200">
