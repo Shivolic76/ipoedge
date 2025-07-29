@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Import mock data (you'll need to adjust paths based on your build setup)
-const BASE_URL = 'https://www.ipoedge.in';
+const BASE_URL = 'https://ipoedge.in';
 
 // Static pages
 const staticPages = [
