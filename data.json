@@ -1,6 +1,4 @@
-import type { IPO } from '../types';
-
-export const mockIPOs: IPO[] = [
+[
 {
   "id": "1",
   "name": "Shanti Gold International",

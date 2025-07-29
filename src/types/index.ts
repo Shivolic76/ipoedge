@@ -8,7 +8,7 @@ export interface IPO {
     end: string;
   };
   status: 'upcoming' | 'current' | 'listed' | 'closed';
-  exchange: 'NSE' | 'BSE' | 'NSE SME' | 'BSE SME' | 'Mainboard';
+  exchange: 'NSE' | 'BSE' | 'NSE SME' | 'BSE SME' | 'Mainboard' | 'BSE, NSE';
   category: 'mainboard' | 'sme';
   offerPrice: {
     min: number;
@@ -16,22 +16,61 @@ export interface IPO {
   } | number;
   lotSize: number;
   subscription?: {
-    times: number;
-    retail?: number;
-    hni?: number;
-    qib?: number;
+    times: number | null;
+    retail?: number | null;
+    hni?: number | null;
+    qib?: number | null;
+    employee?: number | null;
   };
   gmp?: {
-    premium: number;
-    percentage: number;
+    premium: number | null;
+    percentage: number | null;
   };
   listingDate?: string;
   listingPrice?: number;
   issueSize: string;
   companyDescription?: string;
   sector?: string;
-  registrar?: string;
+  registrar?: string | null;
   leadManagers?: string[];
+
+  // Additional fields found in mock data
+  totalShares?: number;
+  retailPortion?: string | null;
+  subscriptionDetails?: {
+    totalApplications?: number;
+    qibApplications?: number | null;
+    niiApplications?: number | null;
+    retailApplications?: number;
+  };
+  sharesOffered?: {
+    qib?: number;
+    nii?: number;
+    bNii?: number;
+    sNii?: number;
+    retail?: number;
+    total?: number;
+  };
+  registrarDetails?: {
+    name: string | null;
+    phone: string | null;
+    email: string | null;
+    website: string | null;
+  };
+  productPortfolio?: {
+    mainProducts?: string[];
+    goldType?: string;
+    occasions?: string[];
+    priceSegments?: string;
+  };
+  bidingTimings?: {
+    hni?: string;
+    retail?: string;
+  };
+  expectedPremium?: {
+    range: string | null;
+    note: string;
+  };
 
   // Enhanced IPO Details
   allotmentDate?: string;
@@ -46,56 +85,66 @@ export interface IPO {
   };
   marketLot?: {
     retail: {
-      shares: number;
-      amount: number;
+      shares: number | null;
+      amount: number | null;
+      applications?: number | null;
     };
     sHni: {
-      shares: number;
-      amount: number;
+      shares: number | null;
+      amount: number | null;
+      applications?: number | null;
     };
     bHni: {
-      shares: number;
-      amount: number;
+      shares: number | null;
+      amount: number | null;
+      applications?: number | null;
     };
   };
 
   // Financial Data
   financials?: {
     year: string;
-    revenue: number;
-    profit: number;
-    assets: number;
-    netWorth: number;
-    totalBorrowing: number;
+    revenue: number | null;
+    profit: number | null;
+    assets: number | null;
+    netWorth: number | null;
+    totalBorrowing: number | null;
   }[];
 
   // Valuation Metrics
   valuations?: {
-    epsPreIpo?: number;
-    epsPostIpo?: number;
-    pePreIpo?: number;
-    pePostIpo?: number;
-    roe?: number;
-    roce?: number;
-    debtEquity?: number;
-    patMargin?: number;
-    priceToBook?: number;
+    epsPreIpo?: number | null;
+    epsPostIpo?: number | null;
+    pePreIpo?: number | null;
+    pePostIpo?: number | null;
+    roe?: number | null;
+    roce?: number | null;
+    debtEquity?: number | null;
+    patMargin?: number | null;
+    priceToBook?: number | null;
+    ronw?: number | null; // Adding missing ronw field
   };
 
   // Company Details
   companyDetails?: {
-    foundedYear?: number;
-    headquarters?: string;
-    employees?: number;
-    website?: string;
-    email?: string;
-    phone?: string;
+    foundedYear?: number | null;
+    headquarters?: string | null;
+    employees?: number | null;
+    contractualWorkers?: number;
+    contractualEmployees?: number;
+    website?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    businessOperations?: Record<string, unknown>;
+    manufacturingUnit?: Record<string, unknown>;
+    businessModel?: Record<string, unknown>;
+    [key: string]: unknown; // Allow additional flexible fields
   };
 
   // Promoter Information
   promoters?: {
-    preIssueHolding: number;
-    postIssueHolding: number;
+    preIssueHolding: number | null;
+    postIssueHolding: number | null;
     names: string[];
   };
 
@@ -104,7 +153,7 @@ export interface IPO {
 
   // Anchor Investors
   anchorInvestors?: {
-    totalAmount: string;
+    totalAmount: string | null;
     investors: string[];
   };
 
@@ -115,7 +164,7 @@ export interface IPO {
   // Peer Comparison
   peers?: {
     name: string;
-    pbRatio?: number;
+    pbRatio?: number | null;
     peRatio?: number;
     ronw?: number;
     netWorth?: number;
@@ -123,9 +172,9 @@ export interface IPO {
 
   // Documents
   documents?: {
-    drhp?: string;
-    rhp?: string;
-    anchor?: string;
+    drhp?: string | null;
+    rhp?: string | null;
+    anchor?: string | null;
   };
 }
 

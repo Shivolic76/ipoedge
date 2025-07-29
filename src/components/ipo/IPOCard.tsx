@@ -86,10 +86,13 @@ const IPOCard: React.FC<IPOCardProps> = ({
           size="small"
           disabled={ipo.status === "upcoming"}
           className={`ipo-apply-button ${
-            ipo.status === "current" ? "ipo-apply-active" :
-            ipo.status === "upcoming" ? "ipo-apply-upcoming" :
-            ipo.status === "listed" ? "ipo-apply-closed" :
-            "ipo-apply-closed"
+            ipo.status === "current"
+              ? "ipo-apply-active"
+              : ipo.status === "upcoming"
+              ? "ipo-apply-upcoming"
+              : ipo.status === "listed"
+              ? "ipo-apply-closed"
+              : "ipo-apply-closed"
           }`}
         >
           {getButtonText()}
@@ -146,7 +149,9 @@ const IPOCard: React.FC<IPOCardProps> = ({
 
           <div className="flex justify-between">
             <Text strong>Price:</Text>
-            <Text className="text-right font-medium">{getOfferPriceText()}</Text>
+            <Text className="text-right font-medium">
+              {getOfferPriceText()}
+            </Text>
           </div>
 
           <div className="flex justify-between">
@@ -157,14 +162,18 @@ const IPOCard: React.FC<IPOCardProps> = ({
           <div className="flex justify-between">
             <Text strong>Subscription:</Text>
             <Text className="font-semibold text-green-600 text-right">
-              {ipo.subscription ? `${ipo.subscription.times}x` : "N/A"}
+              {ipo.subscription?.times != null
+                ? `${ipo.subscription.times}x`
+                : "-"}
             </Text>
           </div>
 
           <div className="flex justify-between">
-            <Text strong>GMP:</Text>
+            <Text strong>Exp. Premium:</Text>
             <Text className="text-blue-600 text-right font-medium">
-              {ipo.gmp ? `₹${ipo.gmp.premium} (${ipo.gmp.percentage}%)` : "N/A"}
+              {ipo.gmp?.premium != null && ipo.gmp?.percentage != null
+                ? `₹${ipo.gmp.premium} (${ipo.gmp.percentage}%)`
+                : "-"}{" "}
             </Text>
           </div>
 
