@@ -371,48 +371,97 @@ const IPODetailPage: React.FC = () => {
                       <span className="text-xl font-semibold text-gray-800">Key Details</span>
                     </div>
                   }
-                  className="shadow-lg border-0"
+                  className="shadow-lg border-0 rounded-2xl"
                 >
-                  <Row gutter={[20, 20]}>
-                    <Col xs={12} sm={12} lg={6}>
-                      <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-5 rounded-2xl border border-emerald-200 hover:shadow-lg transition-all duration-300 group text-center">
-                        <div className="w-14 h-14 bg-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                          <DollarOutlined className="text-white text-xl" />
+                  <Row gutter={[16, 16]}>
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-5 rounded-2xl border border-emerald-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <DollarOutlined className="text-white text-lg lg:text-xl" />
                         </div>
                         <div className="text-xs text-emerald-700 font-medium mb-1">Issue Size</div>
-                        <div className="text-lg font-bold text-emerald-800">{ipo.issueSize}</div>
+                        <div className="text-sm lg:text-lg font-bold text-emerald-800 break-words">{ipo.issueSize}</div>
                       </div>
                     </Col>
 
-                    <Col xs={12} sm={12} lg={6}>
-                      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-5 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300 group text-center">
-                        <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                          <ShoppingOutlined className="text-white text-xl" />
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 lg:p-5 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <ShoppingOutlined className="text-white text-lg lg:text-xl" />
                         </div>
                         <div className="text-xs text-blue-700 font-medium mb-1">Lot Size</div>
-                        <div className="text-lg font-bold text-blue-800">{ipo.lotSize.toLocaleString()}</div>
+                        <div className="text-sm lg:text-lg font-bold text-blue-800">{ipo.lotSize.toLocaleString()}</div>
                       </div>
                     </Col>
 
-                    <Col xs={12} sm={12} lg={6}>
-                      <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-5 rounded-2xl border border-purple-200 hover:shadow-lg transition-all duration-300 group text-center">
-                        <div className="w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                          <GlobalOutlined className="text-white text-xl" />
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-5 rounded-2xl border border-purple-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <GlobalOutlined className="text-white text-lg lg:text-xl" />
                         </div>
                         <div className="text-xs text-purple-700 font-medium mb-1">Exchange</div>
-                        <div className="text-lg font-bold text-purple-800">{ipo.exchange}</div>
+                        <div className="text-sm lg:text-lg font-bold text-purple-800 break-words">{ipo.exchange}</div>
                       </div>
                     </Col>
 
-                    <Col xs={12} sm={12} lg={6}>
-                      <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-5 rounded-2xl border border-orange-200 hover:shadow-lg transition-all duration-300 group text-center">
-                        <div className="w-14 h-14 bg-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                          <BuildOutlined className="text-white text-xl" />
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-5 rounded-2xl border border-orange-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <BuildOutlined className="text-white text-lg lg:text-xl" />
                         </div>
                         <div className="text-xs text-orange-700 font-medium mb-1">Category</div>
-                        <div className="text-lg font-bold text-orange-800">{ipo.category.toUpperCase()}</div>
+                        <div className="text-sm lg:text-lg font-bold text-orange-800">{ipo.category.toUpperCase()}</div>
                       </div>
                     </Col>
+
+                    {/* Additional Key Details */}
+                    {ipo.faceValue && (
+                      <Col xs={12} sm={6} lg={6}>
+                        <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <BankOutlined className="text-white text-lg lg:text-xl" />
+                          </div>
+                          <div className="text-xs text-pink-700 font-medium mb-1">Face Value</div>
+                          <div className="text-sm lg:text-lg font-bold text-pink-800">₹{ipo.faceValue}</div>
+                        </div>
+                      </Col>
+                    )}
+
+                    {ipo.listingDate && (
+                      <Col xs={12} sm={6} lg={6}>
+                        <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-4 lg:p-5 rounded-2xl border border-indigo-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <CalendarOutlined className="text-white text-lg lg:text-xl" />
+                          </div>
+                          <div className="text-xs text-indigo-700 font-medium mb-1">Listing Date</div>
+                          <div className="text-sm lg:text-lg font-bold text-indigo-800">{formatDate(ipo.listingDate)}</div>
+                        </div>
+                      </Col>
+                    )}
+
+                    {ipo.sector && (
+                      <Col xs={12} sm={6} lg={6}>
+                        <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-4 lg:p-5 rounded-2xl border border-teal-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <BuildOutlined className="text-white text-lg lg:text-xl" />
+                          </div>
+                          <div className="text-xs text-teal-700 font-medium mb-1">Sector</div>
+                          <div className="text-sm lg:text-lg font-bold text-teal-800 break-words">{ipo.sector}</div>
+                        </div>
+                      </Col>
+                    )}
+
+                    {ipo.allotmentDate && (
+                      <Col xs={12} sm={6} lg={6}>
+                        <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 lg:p-5 rounded-2xl border border-yellow-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                            <ClockCircleOutlined className="text-white text-lg lg:text-xl" />
+                          </div>
+                          <div className="text-xs text-yellow-700 font-medium mb-1">Allotment Date</div>
+                          <div className="text-sm lg:text-lg font-bold text-yellow-800">{formatDate(ipo.allotmentDate)}</div>
+                        </div>
+                      </Col>
+                    )}
                   </Row>
                 </Card>
 
@@ -420,14 +469,14 @@ const IPODetailPage: React.FC = () => {
                 {ipo.subscription && (
                   <Card
                     title={
-                      <div className="flex items-center justify-between w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full gap-3">
                         <div className="flex items-center">
                           <BarChartOutlined className="mr-3 text-green-600 text-xl" />
                           <span className="text-xl font-semibold text-gray-800">Subscription Status</span>
                         </div>
                         <div className="flex items-center">
                           <span
-                            className={`inline-flex items-center px-5 py-3 rounded-2xl text-sm font-bold shadow-md ${
+                            className={`inline-flex items-center px-4 py-2 lg:px-5 lg:py-3 rounded-2xl text-xs lg:text-sm font-bold shadow-md ${
                               isOversubscribed(ipo.subscription.times)
                                 ? 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200'
                                 : 'bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 border border-yellow-200'
@@ -446,16 +495,16 @@ const IPODetailPage: React.FC = () => {
                         </div>
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
-                    <Row gutter={[20, 20]}>
-                      <Col xs={12} sm={12} md={6}>
-                        <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden">
+                    <Row gutter={[16, 16]}>
+                      <Col xs={24} sm={12} md={6}>
+                        <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-6 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
                           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-green-500"></div>
-                          <div className="text-3xl font-bold text-emerald-600 mb-2">
+                          <div className="text-2xl lg:text-3xl font-bold text-emerald-600 mb-2">
                             {formatSubscriptionTimes(ipo.subscription.times)}
                           </div>
-                          <div className="text-sm text-emerald-700 font-semibold mb-4">Overall</div>
+                          <div className="text-sm text-emerald-700 font-semibold mb-3 lg:mb-4">Overall</div>
                           <div className="w-full bg-emerald-200 rounded-full h-3 mb-2 overflow-hidden">
                             <div
                               className="bg-gradient-to-r from-emerald-500 to-green-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
@@ -468,13 +517,13 @@ const IPODetailPage: React.FC = () => {
                         </div>
                       </Col>
                       {ipo.subscription.retail !== undefined && (
-                        <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden">
+                        <Col xs={24} sm={12} md={6}>
+                          <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 lg:p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
-                            <div className="text-3xl font-bold text-blue-600 mb-2">
+                            <div className="text-2xl lg:text-3xl font-bold text-blue-600 mb-2">
                               {formatSubscriptionTimes(ipo.subscription.retail)}
                             </div>
-                            <div className="text-sm text-blue-700 font-semibold mb-4">Retail</div>
+                            <div className="text-sm text-blue-700 font-semibold mb-3 lg:mb-4">Retail</div>
                             <div className="w-full bg-blue-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-blue-500 to-cyan-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
@@ -486,13 +535,13 @@ const IPODetailPage: React.FC = () => {
                         </Col>
                       )}
                       {ipo.subscription.hni !== undefined && (
-                        <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden">
+                        <Col xs={24} sm={12} md={6}>
+                          <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
-                            <div className="text-3xl font-bold text-purple-600 mb-2">
+                            <div className="text-2xl lg:text-3xl font-bold text-purple-600 mb-2">
                               {formatSubscriptionTimes(ipo.subscription.hni)}
                             </div>
-                            <div className="text-sm text-purple-700 font-semibold mb-4">HNI</div>
+                            <div className="text-sm text-purple-700 font-semibold mb-3 lg:mb-4">HNI</div>
                             <div className="w-full bg-purple-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-purple-500 to-violet-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
@@ -504,13 +553,13 @@ const IPODetailPage: React.FC = () => {
                         </Col>
                       )}
                       {ipo.subscription.qib !== undefined && (
-                        <Col xs={12} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden">
+                        <Col xs={24} sm={12} md={6}>
+                          <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-500"></div>
-                            <div className="text-3xl font-bold text-orange-600 mb-2">
+                            <div className="text-2xl lg:text-3xl font-bold text-orange-600 mb-2">
                               {formatSubscriptionTimes(ipo.subscription.qib)}
                             </div>
-                            <div className="text-sm text-orange-700 font-semibold mb-4">QIB</div>
+                            <div className="text-sm text-orange-700 font-semibold mb-3 lg:mb-4">QIB</div>
                             <div className="w-full bg-orange-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-orange-500 to-amber-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
@@ -518,6 +567,24 @@ const IPODetailPage: React.FC = () => {
                               ></div>
                             </div>
                             <div className="text-xs text-orange-600 font-medium">Institutional</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.subscription.employee !== undefined && (
+                        <Col xs={24} sm={12} md={6}>
+                          <div className="subscription-card text-center bg-gradient-to-br from-gray-50 to-slate-100 p-4 lg:p-6 rounded-2xl border border-gray-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-slate-500"></div>
+                            <div className="text-2xl lg:text-3xl font-bold text-gray-600 mb-2">
+                              {formatSubscriptionTimes(ipo.subscription.employee)}
+                            </div>
+                            <div className="text-sm text-gray-700 font-semibold mb-3 lg:mb-4">Employee</div>
+                            <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
+                              <div
+                                className="bg-gradient-to-r from-gray-500 to-slate-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.employee, 5)}%` }}
+                              ></div>
+                            </div>
+                            <div className="text-xs text-gray-600 font-medium">Employee Quota</div>
                           </div>
                         </Col>
                       )}
@@ -550,21 +617,21 @@ const IPODetailPage: React.FC = () => {
                       <span className="text-xl font-semibold text-gray-800">Issue Details</span>
                     </div>
                   }
-                  className="shadow-lg border-0"
+                  className="shadow-lg border-0 rounded-2xl"
                 >
-                  <Row gutter={[24, 24]}>
-                    <Col xs={24} sm={8}>
-                      <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
-                        <div className="text-2xl font-bold text-blue-600 mb-1">
+                  <Row gutter={[16, 16]}>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 lg:p-5 rounded-xl border border-blue-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-blue-600 mb-1">
                           {getOfferPriceText()}
                         </div>
                         <div className="text-sm font-medium text-blue-700">Offer Price Range</div>
                       </div>
                     </Col>
                     {ipo.faceValue && (
-                      <Col xs={24} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 rounded-xl border border-orange-200">
-                          <div className="text-2xl font-bold text-orange-600 mb-1">
+                      <Col xs={24} sm={12} lg={8}>
+                        <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-5 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
+                          <div className="text-xl lg:text-2xl font-bold text-orange-600 mb-1">
                             ₹{ipo.faceValue}
                           </div>
                           <div className="text-sm font-medium text-orange-700">Face Value</div>
@@ -572,12 +639,42 @@ const IPODetailPage: React.FC = () => {
                       </Col>
                     )}
                     {ipo.listingPrice && (
-                      <Col xs={24} sm={8}>
-                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
-                          <div className="text-2xl font-bold text-green-600 mb-1">
+                      <Col xs={24} sm={12} lg={8}>
+                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 lg:p-5 rounded-xl border border-green-200 h-full flex flex-col justify-center">
+                          <div className="text-xl lg:text-2xl font-bold text-green-600 mb-1">
                             ₹{ipo.listingPrice}
                           </div>
                           <div className="text-sm font-medium text-green-700">Listing Price</div>
+                        </div>
+                      </Col>
+                    )}
+                    {ipo.totalShares && (
+                      <Col xs={24} sm={12} lg={8}>
+                        <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-5 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
+                          <div className="text-xl lg:text-2xl font-bold text-purple-600 mb-1">
+                            {formatSharesCount(ipo.totalShares)}
+                          </div>
+                          <div className="text-sm font-medium text-purple-700">Total Shares</div>
+                        </div>
+                      </Col>
+                    )}
+                    {ipo.freshIssue && (
+                      <Col xs={24} sm={12} lg={8}>
+                        <div className="text-center bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-5 rounded-xl border border-emerald-200 h-full flex flex-col justify-center">
+                          <div className="text-xl lg:text-2xl font-bold text-emerald-600 mb-1">
+                            {ipo.freshIssue.amount}
+                          </div>
+                          <div className="text-sm font-medium text-emerald-700">Fresh Issue</div>
+                        </div>
+                      </Col>
+                    )}
+                    {ipo.ofs && (
+                      <Col xs={24} sm={12} lg={8}>
+                        <div className="text-center bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-xl border border-pink-200 h-full flex flex-col justify-center">
+                          <div className="text-xl lg:text-2xl font-bold text-pink-600 mb-1">
+                            {ipo.ofs.amount}
+                          </div>
+                          <div className="text-sm font-medium text-pink-700">OFS</div>
                         </div>
                       </Col>
                     )}
@@ -593,28 +690,74 @@ const IPODetailPage: React.FC = () => {
                         <span className="text-xl font-semibold text-gray-800">Financial Performance</span>
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
-                    <div className="overflow-x-auto">
+                    {/* Mobile-friendly financial cards */}
+                    <div className="block lg:hidden">
+                      <div className="space-y-4">
+                        {ipo.financials.map((financial, index) => (
+                          <div key={index} className="bg-gradient-to-r from-gray-50 to-blue-50 p-4 rounded-xl border border-gray-200">
+                            <div className="text-center mb-3">
+                              <div className="text-lg font-bold text-gray-800">{financial.year}</div>
+                            </div>
+                            <Row gutter={[8, 8]}>
+                              <Col xs={12}>
+                                <div className="text-center">
+                                  <div className="text-sm text-gray-600 mb-1">Revenue</div>
+                                  <div className="text-base font-semibold text-green-600">₹{financial.revenue}Cr</div>
+                                </div>
+                              </Col>
+                              <Col xs={12}>
+                                <div className="text-center">
+                                  <div className="text-sm text-gray-600 mb-1">Profit</div>
+                                  <div className={`text-base font-semibold ${financial.profit !== null && financial.profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                    ₹{financial.profit}Cr
+                                  </div>
+                                </div>
+                              </Col>
+                              <Col xs={12}>
+                                <div className="text-center">
+                                  <div className="text-sm text-gray-600 mb-1">Net Worth</div>
+                                  <div className="text-base font-semibold text-blue-600">₹{financial.netWorth}Cr</div>
+                                </div>
+                              </Col>
+                              {financial.assets && (
+                                <Col xs={12}>
+                                  <div className="text-center">
+                                    <div className="text-sm text-gray-600 mb-1">Assets</div>
+                                    <div className="text-base font-semibold text-purple-600">₹{financial.assets}Cr</div>
+                                  </div>
+                                </Col>
+                              )}
+                            </Row>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Desktop table */}
+                    <div className="hidden lg:block overflow-x-auto">
                       <Table
                         dataSource={ipo.financials.map((item, index) => ({ ...item, key: index }))}
                         pagination={false}
                         size="small"
                         className="financial-table"
                       >
-                        <Table.Column title="Year" dataIndex="year" key="year" />
+                        <Table.Column title="Year" dataIndex="year" key="year" align="center" />
                         <Table.Column
                           title="Revenue (₹Cr)"
                           dataIndex="revenue"
                           key="revenue"
-                          render={(value) => `₹${value}`}
+                          align="center"
+                          render={(value) => <span className="font-semibold text-green-600">₹{value}</span>}
                         />
                         <Table.Column
                           title="Profit (₹Cr)"
                           dataIndex="profit"
                           key="profit"
+                          align="center"
                           render={(value) => (
-                            <span className={value >= 0 ? 'text-green-600' : 'text-red-600'}>
+                            <span className={`font-semibold ${value !== null && value >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                               ₹{value}
                             </span>
                           )}
@@ -623,7 +766,22 @@ const IPODetailPage: React.FC = () => {
                           title="Net Worth (₹Cr)"
                           dataIndex="netWorth"
                           key="netWorth"
-                          render={(value) => `₹${value}`}
+                          align="center"
+                          render={(value) => <span className="font-semibold text-blue-600">₹{value}</span>}
+                        />
+                        <Table.Column
+                          title="Assets (₹Cr)"
+                          dataIndex="assets"
+                          key="assets"
+                          align="center"
+                          render={(value) => value ? <span className="font-semibold text-purple-600">₹{value}</span> : '-'}
+                        />
+                        <Table.Column
+                          title="Borrowing (₹Cr)"
+                          dataIndex="totalBorrowing"
+                          key="totalBorrowing"
+                          align="center"
+                          render={(value) => value ? <span className="font-semibold text-orange-600">₹{value}</span> : '-'}
                         />
                       </Table>
                     </div>
@@ -639,54 +797,78 @@ const IPODetailPage: React.FC = () => {
                         <span className="text-xl font-semibold text-gray-800">Valuation Metrics</span>
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
                     <Row gutter={[16, 16]}>
                       {ipo.valuations.epsPreIpo && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg border border-blue-200">
-                            <div className="text-lg font-bold text-blue-600">₹{ipo.valuations.epsPreIpo}</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-blue-600 mb-1">₹{ipo.valuations.epsPreIpo}</div>
                             <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
                           </div>
                         </Col>
                       )}
+                      {ipo.valuations.epsPostIpo && (
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-cyan-50 to-blue-100 p-4 rounded-xl border border-cyan-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-cyan-600 mb-1">₹{ipo.valuations.epsPostIpo}</div>
+                            <div className="text-xs font-medium text-cyan-700">EPS Post IPO</div>
+                          </div>
+                        </Col>
+                      )}
                       {ipo.valuations.roe && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
-                            <div className="text-lg font-bold text-green-600">{ipo.valuations.roe}%</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-green-600 mb-1">{ipo.valuations.roe}%</div>
                             <div className="text-xs font-medium text-green-700">ROE</div>
                           </div>
                         </Col>
                       )}
                       {ipo.valuations.roce && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-3 rounded-lg border border-purple-200">
-                            <div className="text-lg font-bold text-purple-600">{ipo.valuations.roce}%</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-purple-600 mb-1">{ipo.valuations.roce}%</div>
                             <div className="text-xs font-medium text-purple-700">ROCE</div>
                           </div>
                         </Col>
                       )}
                       {ipo.valuations.patMargin && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg border border-orange-200">
-                            <div className="text-lg font-bold text-orange-600">{ipo.valuations.patMargin}%</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-orange-600 mb-1">{ipo.valuations.patMargin}%</div>
                             <div className="text-xs font-medium text-orange-700">PAT Margin</div>
                           </div>
                         </Col>
                       )}
                       {ipo.valuations.debtEquity && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-3 rounded-lg border border-red-200">
-                            <div className="text-lg font-bold text-red-600">{ipo.valuations.debtEquity}</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-4 rounded-xl border border-red-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-red-600 mb-1">{ipo.valuations.debtEquity}</div>
                             <div className="text-xs font-medium text-red-700">Debt/Equity</div>
                           </div>
                         </Col>
                       )}
                       {ipo.valuations.pePreIpo && (
-                        <Col xs={12} sm={8}>
-                          <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-3 rounded-lg border border-indigo-200">
-                            <div className="text-lg font-bold text-indigo-600">{ipo.valuations.pePreIpo}</div>
-                            <div className="text-xs font-medium text-indigo-700">P/E Ratio</div>
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-4 rounded-xl border border-indigo-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-indigo-600 mb-1">{ipo.valuations.pePreIpo}</div>
+                            <div className="text-xs font-medium text-indigo-700">P/E Pre IPO</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.pePostIpo && (
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-violet-50 to-purple-100 p-4 rounded-xl border border-violet-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-violet-600 mb-1">{ipo.valuations.pePostIpo}</div>
+                            <div className="text-xs font-medium text-violet-700">P/E Post IPO</div>
+                          </div>
+                        </Col>
+                      )}
+                      {ipo.valuations.priceToBook && (
+                        <Col xs={12} sm={8} lg={6}>
+                          <div className="text-center bg-gradient-to-br from-teal-50 to-cyan-100 p-4 rounded-xl border border-teal-200 h-full flex flex-col justify-center">
+                            <div className="text-lg lg:text-xl font-bold text-teal-600 mb-1">{ipo.valuations.priceToBook}</div>
+                            <div className="text-xs font-medium text-teal-700">P/B Ratio</div>
                           </div>
                         </Col>
                       )}
@@ -700,50 +882,65 @@ const IPODetailPage: React.FC = () => {
             <Col xs={24} lg={8}>
               <div className="space-y-8">
                 {/* Important Dates */}
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200/50 p-6">
-                  <div className="flex items-center mb-6">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200/50 p-4 lg:p-6">
+                  <div className="flex items-center mb-4 lg:mb-6">
                     <CalendarOutlined className="mr-3 text-purple-600 text-xl" />
-                    <h2 className="text-xl font-semibold text-gray-800">Important Dates</h2>
+                    <h2 className="text-lg lg:text-xl font-semibold text-gray-800">Important Dates</h2>
                   </div>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                  <div className="space-y-3 lg:space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 gap-2 sm:gap-0">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
-                          <CheckCircleOutlined className="text-white" />
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          <CheckCircleOutlined className="text-white text-sm lg:text-base" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-700">Issue Opens</div>
-                          <div className="text-sm text-gray-500">Subscription starts</div>
+                          <div className="font-semibold text-gray-700 text-sm lg:text-base">Issue Opens</div>
+                          <div className="text-xs lg:text-sm text-gray-500">Subscription starts</div>
                         </div>
                       </div>
-                      <div className="text-blue-600 font-bold">{formatDate(ipo.offerDate.start)}</div>
+                      <div className="text-blue-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.offerDate.start)}</div>
                     </div>
 
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200 gap-2 sm:gap-0">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
-                          <ClockCircleOutlined className="text-white" />
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          <ClockCircleOutlined className="text-white text-sm lg:text-base" />
                         </div>
                         <div>
-                          <div className="font-semibold text-gray-700">Issue Closes</div>
-                          <div className="text-sm text-gray-500">Last day to apply</div>
+                          <div className="font-semibold text-gray-700 text-sm lg:text-base">Issue Closes</div>
+                          <div className="text-xs lg:text-sm text-gray-500">Last day to apply</div>
                         </div>
                       </div>
-                      <div className="text-orange-600 font-bold">{formatDate(ipo.offerDate.end)}</div>
+                      <div className="text-orange-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.offerDate.end)}</div>
                     </div>
 
                     {ipo.listingDate && (
-                      <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 gap-2 sm:gap-0">
                         <div className="flex items-center">
-                          <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                            <RiseOutlined className="text-white" />
+                          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                            <RiseOutlined className="text-white text-sm lg:text-base" />
                           </div>
                           <div>
-                            <div className="font-semibold text-gray-700">Listing Date</div>
-                            <div className="text-sm text-gray-500">Trading begins</div>
+                            <div className="font-semibold text-gray-700 text-sm lg:text-base">Listing Date</div>
+                            <div className="text-xs lg:text-sm text-gray-500">Trading begins</div>
                           </div>
                         </div>
-                        <div className="text-green-600 font-bold">{formatDate(ipo.listingDate)}</div>
+                        <div className="text-green-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.listingDate)}</div>
+                      </div>
+                    )}
+
+                    {ipo.allotmentDate && (
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200 gap-2 sm:gap-0">
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                            <UserOutlined className="text-white text-sm lg:text-base" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-700 text-sm lg:text-base">Allotment Date</div>
+                            <div className="text-xs lg:text-sm text-gray-500">Share allocation</div>
+                          </div>
+                        </div>
+                        <div className="text-purple-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.allotmentDate)}</div>
                       </div>
                     )}
                   </div>
@@ -753,19 +950,19 @@ const IPODetailPage: React.FC = () => {
                 {ipo.gmp && (
                   <Card
                     title={
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                         <div className="flex items-center">
                           <TrophyOutlined className="mr-3 text-green-600 text-xl" />
-                          <span className="text-xl font-semibold text-gray-800">Grey Market Premium</span>
+                          <span className="text-lg lg:text-xl font-semibold text-gray-800">Grey Market Premium</span>
                         </div>
                         <Badge
                           count="Live"
                           style={{
                             backgroundColor: '#10b981',
-                            fontSize: '11px',
+                            fontSize: '10px',
                             fontWeight: 'bold',
-                            padding: '4px 10px',
-                            borderRadius: '10px',
+                            padding: '3px 8px',
+                            borderRadius: '8px',
                             border: '2px solid white',
                             boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)',
                             textTransform: 'uppercase',
@@ -774,12 +971,12 @@ const IPODetailPage: React.FC = () => {
                         />
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-2xl border border-green-200 text-center">
-                      <div className="text-4xl font-bold text-green-600 mb-2">₹{ipo.gmp.premium}</div>
-                      <div className="text-lg text-green-600 mb-4 font-semibold">{ipo.gmp.percentage}% Premium</div>
-                      <div className="text-sm text-gray-600">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 lg:p-6 rounded-2xl border border-green-200 text-center">
+                      <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">₹{ipo.gmp.premium}</div>
+                      <div className="text-base lg:text-lg text-green-600 mb-3 lg:mb-4 font-semibold">{ipo.gmp.percentage}% Premium</div>
+                      <div className="text-xs lg:text-sm text-gray-600 leading-relaxed">
                         Grey market premium indicates expected listing gains based on unofficial trading.
                       </div>
                     </div>
@@ -792,36 +989,36 @@ const IPODetailPage: React.FC = () => {
                     title={
                       <div className="flex items-center">
                         <ShoppingOutlined className="mr-3 text-purple-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">Market Lot Details</span>
+                        <span className="text-lg lg:text-xl font-semibold text-gray-800">Market Lot Details</span>
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
-                    <Row gutter={[16, 16]}>
+                    <Row gutter={[12, 12]}>
                       <Col xs={24}>
-                        <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
+                        <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-3 lg:p-4 rounded-xl border border-green-200">
                           <div className="text-center">
-                            <div className="text-xl font-bold text-green-600">{formatSharesCount(ipo.marketLot.retail?.shares)}</div>
-                            <div className="text-sm font-medium text-green-700 mb-2">Retail Shares</div>
-                            <div className="text-lg font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.retail?.amount)}</div>
+                            <div className="text-lg lg:text-xl font-bold text-green-600">{formatSharesCount(ipo.marketLot.retail?.shares)}</div>
+                            <div className="text-xs lg:text-sm font-medium text-green-700 mb-1 lg:mb-2">Retail Shares</div>
+                            <div className="text-sm lg:text-lg font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.retail?.amount)}</div>
                           </div>
                         </div>
                       </Col>
                       <Col xs={12}>
-                        <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
+                        <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-3 lg:p-4 rounded-xl border border-blue-200 h-full flex flex-col justify-center">
                           <div className="text-center">
-                            <div className="text-lg font-bold text-blue-600">{formatSharesCount(ipo.marketLot.sHni?.shares)}</div>
+                            <div className="text-sm lg:text-lg font-bold text-blue-600">{formatSharesCount(ipo.marketLot.sHni?.shares)}</div>
                             <div className="text-xs font-medium text-blue-700 mb-1">S-HNI</div>
-                            <div className="text-sm font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.sHni?.amount)}</div>
+                            <div className="text-xs lg:text-sm font-semibold text-gray-700 break-words">{formatCurrencyValue(ipo.marketLot.sHni?.amount)}</div>
                           </div>
                         </div>
                       </Col>
                       <Col xs={12}>
-                        <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200">
+                        <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-3 lg:p-4 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
                           <div className="text-center">
-                            <div className="text-lg font-bold text-purple-600">{formatSharesCount(ipo.marketLot.bHni?.shares)}</div>
+                            <div className="text-sm lg:text-lg font-bold text-purple-600">{formatSharesCount(ipo.marketLot.bHni?.shares)}</div>
                             <div className="text-xs font-medium text-purple-700 mb-1">B-HNI</div>
-                            <div className="text-sm font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.bHni?.amount)}</div>
+                            <div className="text-xs lg:text-sm font-semibold text-gray-700 break-words">{formatCurrencyValue(ipo.marketLot.bHni?.amount)}</div>
                           </div>
                         </div>
                       </Col>
@@ -835,30 +1032,39 @@ const IPODetailPage: React.FC = () => {
                     title={
                       <div className="flex items-center">
                         <BuildOutlined className="mr-3 text-indigo-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">Company Information</span>
+                        <span className="text-lg lg:text-xl font-semibold text-gray-800">Company Information</span>
                       </div>
                     }
-                    className="shadow-lg border-0"
+                    className="shadow-lg border-0 rounded-2xl"
                   >
-                    <div className="space-y-4">
+                    <div className="space-y-3 lg:space-y-4">
                       {ipo.companyDetails.foundedYear && (
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-gray-600 font-medium">Founded</span>
-                          <span className="font-semibold text-gray-800">{ipo.companyDetails.foundedYear}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                          <span className="text-gray-600 font-medium text-sm lg:text-base">Founded</span>
+                          <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.foundedYear}</span>
+                        </div>
+                      )}
+                      {ipo.companyDetails.employees && (
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
+                            <TeamOutlined className="mr-2" />
+                            Employees
+                          </span>
+                          <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.employees.toLocaleString()}</span>
                         </div>
                       )}
                       {ipo.companyDetails.headquarters && (
-                        <div className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-gray-600 font-medium flex items-center">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-2">
+                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base flex-shrink-0">
                             <EnvironmentOutlined className="mr-2" />
                             Headquarters
                           </span>
-                          <span className="font-semibold text-gray-800 text-right">{ipo.companyDetails.headquarters}</span>
+                          <span className="font-semibold text-gray-800 text-right text-sm lg:text-base break-words">{ipo.companyDetails.headquarters}</span>
                         </div>
                       )}
                       {ipo.companyDetails.website && (
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-gray-600 font-medium flex items-center">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
                             <LinkOutlined className="mr-2" />
                             Website
                           </span>
@@ -866,35 +1072,35 @@ const IPODetailPage: React.FC = () => {
                             href={ipo.companyDetails.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-semibold text-blue-600 hover:text-blue-800"
+                            className="font-semibold text-blue-600 hover:text-blue-800 text-sm lg:text-base transition-colors duration-200"
                           >
-                            Visit
+                            Visit Website
                           </a>
                         </div>
                       )}
                       {ipo.companyDetails.email && (
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-gray-600 font-medium flex items-center">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
                             <MailOutlined className="mr-2" />
                             Email
                           </span>
                           <a
                             href={`mailto:${ipo.companyDetails.email}`}
-                            className="font-semibold text-blue-600 hover:text-blue-800"
+                            className="font-semibold text-blue-600 hover:text-blue-800 text-sm lg:text-base transition-colors duration-200 break-all"
                           >
-                            Contact
+                            {ipo.companyDetails.email}
                           </a>
                         </div>
                       )}
                       {ipo.companyDetails.phone && (
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <span className="text-gray-600 font-medium flex items-center">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
                             <PhoneOutlined className="mr-2" />
                             Phone
                           </span>
                           <a
                             href={`tel:${ipo.companyDetails.phone}`}
-                            className="font-semibold text-blue-600 hover:text-blue-800"
+                            className="font-semibold text-blue-600 hover:text-blue-800 text-sm lg:text-base transition-colors duration-200"
                           >
                             {ipo.companyDetails.phone}
                           </a>

@@ -9,6 +9,7 @@ import {
   SendOutlined,
   MailOutlined,
   PhoneOutlined,
+  MessageOutlined
 } from "@ant-design/icons";
 import { ROUTES } from "../../constants";
 
@@ -314,6 +315,19 @@ const Footer: React.FC = () => {
               <SendOutlined className="text-sm sm:text-lg text-white group-hover:scale-110 transition-transform duration-200" />
             </a>
             <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-blue-300 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
+          </div>
+
+          {/* Instagram Threads */}
+          <div className="group relative">
+            <a
+              href="https://www.threads.net/@ipo.edge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-black to-gray-800 hover:from-gray-900 hover:to-black rounded-lg sm:rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-gray-500/25"
+            >
+              <MessageOutlined className="text-sm sm:text-lg text-white group-hover:scale-110 transition-transform duration-200" />
+            </a>
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-800 to-gray-600 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10"></div>
           </div>
         </div>
 

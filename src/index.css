@@ -1820,114 +1820,256 @@ html {
 /* Enhanced mobile responsiveness for IPO detail page */
 @media (max-width: 768px) {
   .ipo-detail-header .ant-card-body {
-    padding: 20px;
+    padding: 16px;
   }
 
   .ipo-detail-card .ant-card-body {
-    padding: 20px;
+    padding: 16px;
   }
 
   .ipo-stat-card {
     min-height: 100px;
-    padding: 16px !important;
-    margin-bottom: 16px;
+    padding: 12px !important;
+    margin-bottom: 12px;
   }
 
   .subscription-card {
     min-height: 120px;
-    padding: 16px !important;
-    margin-bottom: 16px;
+    padding: 12px !important;
+    margin-bottom: 12px;
   }
 
   .ipo-stat-card .text-lg,
   .subscription-card .text-2xl {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
 
   .subscription-card .text-3xl,
   .subscription-card .text-4xl {
-    font-size: 24px !important;
+    font-size: 20px !important;
   }
 
   /* Mobile header improvements */
   .ipo-detail-header {
     border-radius: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   /* Mobile subscription status improvements */
   .subscription-status-card {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .subscription-status-card:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: translateY(-2px) scale(1.01);
   }
 
   /* Mobile GMP card improvements */
   .gmp-card-enhanced {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   /* Mobile quick actions improvements */
   .quick-actions-mobile .ant-btn {
-    height: 56px !important;
-    font-size: 16px !important;
-    margin-bottom: 12px;
+    height: 48px !important;
+    font-size: 14px !important;
+    margin-bottom: 8px;
   }
 
   /* Mobile important dates improvements */
   .important-dates-mobile .date-item {
     flex-direction: column;
     align-items: flex-start !important;
-    padding: 16px !important;
+    padding: 12px !important;
   }
 
   .important-dates-mobile .date-item .date-icon {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+  }
+
+  /* IPO Detail Page Mobile Specific */
+  .ant-card {
+    margin-bottom: 16px !important;
+  }
+
+  .ant-card .ant-card-head {
+    padding: 12px 16px !important;
+  }
+
+  .ant-card .ant-card-body {
+    padding: 16px !important;
+  }
+
+  /* Mobile responsive grid improvements */
+  .ant-row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+  }
+
+  .ant-col {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  /* Mobile text sizing */
+  .text-xl {
+    font-size: 1.125rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  .text-4xl {
+    font-size: 1.75rem !important;
+  }
+
+  /* Mobile button improvements */
+  .ant-btn {
+    min-height: 40px !important;
+    font-size: 14px !important;
+  }
+
+  .ant-btn-lg {
+    min-height: 44px !important;
+    font-size: 15px !important;
+  }
+
+  /* Mobile table improvements */
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .ant-table {
+    min-width: 600px;
+  }
+
+  /* Mobile breadcrumb improvements */
+  .ant-breadcrumb {
+    font-size: 13px !important;
+  }
+
+  .ant-breadcrumb-link {
+    font-size: 13px !important;
   }
 }
 
 @media (max-width: 480px) {
   .ipo-detail-header {
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .ipo-detail-card {
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .ipo-stat-card,
   .subscription-card {
-    min-height: 90px;
-    padding: 12px !important;
-    margin-bottom: 12px;
+    min-height: 80px;
+    padding: 10px !important;
+    margin-bottom: 10px;
   }
 
   .ipo-stat-card .text-lg {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
 
   .subscription-card .text-2xl,
   .subscription-card .text-3xl,
   .subscription-card .text-4xl {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
 
   /* Ultra-mobile specific improvements */
   .container-mobile {
-    padding: 12px;
+    padding: 8px;
   }
 
   .card-spacing-mobile {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .text-responsive-mobile {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.4;
+  }
+
+  /* Ultra-mobile IPO detail improvements */
+  .ant-card .ant-card-head {
+    padding: 8px 12px !important;
+  }
+
+  .ant-card .ant-card-body {
+    padding: 12px !important;
+  }
+
+  .ant-card {
+    margin-bottom: 12px !important;
+  }
+
+  /* Ultra-mobile text sizing */
+  .text-xl {
+    font-size: 1rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.125rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.25rem !important;
+  }
+
+  .text-4xl {
+    font-size: 1.5rem !important;
+  }
+
+  /* Ultra-mobile spacing */
+  .space-y-8 > * + * {
+    margin-top: 1rem !important;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.5rem !important;
+  }
+
+  /* Ultra-mobile button improvements */
+  .ant-btn {
+    min-height: 36px !important;
+    font-size: 13px !important;
+    padding: 4px 12px !important;
+  }
+
+  .ant-btn-lg {
+    min-height: 40px !important;
+    font-size: 14px !important;
+    padding: 6px 16px !important;
+  }
+
+  /* Ultra-mobile hero section */
+  .hero-section {
+    padding: 12px !important;
+  }
+
+  /* Ultra-mobile grid improvements */
+  .ant-row {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
+  }
+
+  .ant-col {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
   }
 }
 
