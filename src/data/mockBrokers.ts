@@ -1155,8 +1155,8 @@ export const mockBrokers: Broker[] = [
       equityOptions: '₹5',
       currencyFutures: '₹5',
       currencyOptions: '₹5',
-      commodityFutures: 'N/A',
-      commodityOptions: 'N/A'
+      commodityFutures: '-',
+      commodityOptions: '-'
     },
     margins: {
       equityDelivery: '₹5 As per exchange',
@@ -1165,8 +1165,8 @@ export const mockBrokers: Broker[] = [
       equityOptions: '₹5 As per exchange',
       currencyFutures: '₹5 As per exchange',
       currencyOptions: '₹5 As per exchange',
-      commodityFutures: 'N/A',
-      commodityOptions: 'N/A'
+      commodityFutures: '-',
+      commodityOptions: '-'
     },
     services: ['Equity', 'Currency', 'Futures', 'Options'],
     platforms: ['Web Portal', 'Share Market App'],

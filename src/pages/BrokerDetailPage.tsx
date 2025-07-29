@@ -42,6 +42,7 @@ import {
 } from "@ant-design/icons";
 import { ROUTES } from "../constants";
 import { useBrokerByName } from "../hooks/useBrokers";
+import { formatDisplayValue } from "../utils/formatUtils";
 import "../styles/broker-details.css";
 
 const { Title, Text, Paragraph } = Typography;
@@ -147,44 +148,46 @@ const BrokerDetailPage: React.FC = () => {
     {
       key: "1",
       segment: "Equity Delivery",
-      charges:
-        broker.brokerage?.equityDelivery || broker.equityDelivery || "N/A",
+      charges: formatDisplayValue(
+        broker.brokerage?.equityDelivery || broker.equityDelivery
+      ),
     },
     {
       key: "2",
       segment: "Equity Intraday",
-      charges:
-        broker.brokerage?.equityIntraday || broker.equityIntraday || "N/A",
+      charges: formatDisplayValue(
+        broker.brokerage?.equityIntraday || broker.equityIntraday
+      ),
     },
     {
       key: "3",
       segment: "Equity Futures",
-      charges: broker.brokerage?.equityFutures || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.equityFutures),
     },
     {
       key: "4",
       segment: "Equity Options",
-      charges: broker.brokerage?.equityOptions || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.equityOptions),
     },
     {
       key: "5",
       segment: "Currency Futures",
-      charges: broker.brokerage?.currencyFutures || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.currencyFutures),
     },
     {
       key: "6",
       segment: "Currency Options",
-      charges: broker.brokerage?.currencyOptions || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.currencyOptions),
     },
     {
       key: "7",
       segment: "Commodity Futures",
-      charges: broker.brokerage?.commodityFutures || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.commodityFutures),
     },
     {
       key: "8",
       segment: "Commodity Options",
-      charges: broker.brokerage?.commodityOptions || "N/A",
+      charges: formatDisplayValue(broker.brokerage?.commodityOptions),
     },
   ];
 
@@ -193,42 +196,42 @@ const BrokerDetailPage: React.FC = () => {
         {
           key: "1",
           segment: "Equity Delivery",
-          margin: broker.margins.equityDelivery,
+          margin: formatDisplayValue(broker.margins.equityDelivery),
         },
         {
           key: "2",
           segment: "Equity Intraday",
-          margin: broker.margins.equityIntraday,
+          margin: formatDisplayValue(broker.margins.equityIntraday),
         },
         {
           key: "3",
           segment: "Equity Futures",
-          margin: broker.margins.equityFutures,
+          margin: formatDisplayValue(broker.margins.equityFutures),
         },
         {
           key: "4",
           segment: "Equity Options",
-          margin: broker.margins.equityOptions,
+          margin: formatDisplayValue(broker.margins.equityOptions),
         },
         {
           key: "5",
           segment: "Currency Futures",
-          margin: broker.margins.currencyFutures,
+          margin: formatDisplayValue(broker.margins.currencyFutures),
         },
         {
           key: "6",
           segment: "Currency Options",
-          margin: broker.margins.currencyOptions,
+          margin: formatDisplayValue(broker.margins.currencyOptions),
         },
         {
           key: "7",
           segment: "Commodity Futures",
-          margin: broker.margins.commodityFutures,
+          margin: formatDisplayValue(broker.margins.commodityFutures),
         },
         {
           key: "8",
           segment: "Commodity Options",
-          margin: broker.margins.commodityOptions,
+          margin: formatDisplayValue(broker.margins.commodityOptions),
         },
       ]
     : [];
@@ -471,7 +474,7 @@ const BrokerDetailPage: React.FC = () => {
                       : "text-purple-600"
                   }`}
                 >
-                  {broker.callTrade || "N/A"}
+                  {formatDisplayValue(broker.callTrade)}
                 </div>
               </div>
             </Card>
@@ -927,15 +930,13 @@ const BrokerDetailPage: React.FC = () => {
                           className="custom-descriptions"
                         >
                           <Descriptions.Item label="Transaction Charges (BSE)">
-                            {broker.charges.delivery.transactionCharges.BSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.delivery.transactionCharges.BSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Transaction Charges (NSE)">
-                            {broker.charges.delivery.transactionCharges.NSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.delivery.transactionCharges.NSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="DP Charges">
-                            {broker.charges.delivery.dpCharges || "N/A"}
+                            {formatDisplayValue(broker.charges.delivery.dpCharges)}
                           </Descriptions.Item>
                           <Descriptions.Item label="GST">
                             {broker.charges.delivery.gst}
@@ -970,15 +971,13 @@ const BrokerDetailPage: React.FC = () => {
                           className="custom-descriptions"
                         >
                           <Descriptions.Item label="Transaction Charges (BSE)">
-                            {broker.charges.intraday.transactionCharges.BSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.intraday.transactionCharges.BSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Transaction Charges (NSE)">
-                            {broker.charges.intraday.transactionCharges.NSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.intraday.transactionCharges.NSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="DP Charges">
-                            {broker.charges.intraday.dpCharge || "N/A"}
+                            {formatDisplayValue(broker.charges.intraday.dpCharge)}
                           </Descriptions.Item>
                           <Descriptions.Item label="GST">
                             {broker.charges.intraday.gst}
@@ -1013,20 +1012,17 @@ const BrokerDetailPage: React.FC = () => {
                           className="custom-descriptions"
                         >
                           <Descriptions.Item label="Transaction Charges (BSE)">
-                            {broker.charges.futures.transactionCharges.BSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.futures.transactionCharges.BSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Transaction Charges (NSE)">
-                            {broker.charges.futures.transactionCharges.NSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.futures.transactionCharges.NSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Clearing Charges">
                             {typeof broker.charges.futures.clearingCharges ===
                             "object"
-                              ? broker.charges.futures.clearingCharges.NSE ||
-                                broker.charges.futures.clearingCharges.BSE ||
-                                "N/A"
-                              : broker.charges.futures.clearingCharges || "N/A"}
+                              ? formatDisplayValue(broker.charges.futures.clearingCharges.NSE ||
+                                broker.charges.futures.clearingCharges.BSE)
+                              : formatDisplayValue(broker.charges.futures.clearingCharges)}
                           </Descriptions.Item>
                           <Descriptions.Item label="GST">
                             {broker.charges.futures.gst}
@@ -1061,20 +1057,17 @@ const BrokerDetailPage: React.FC = () => {
                           className="custom-descriptions"
                         >
                           <Descriptions.Item label="Transaction Charges (BSE)">
-                            {broker.charges.options.transactionCharges.BSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.options.transactionCharges.BSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Transaction Charges (NSE)">
-                            {broker.charges.options.transactionCharges.NSE ||
-                              "N/A"}
+                            {formatDisplayValue(broker.charges.options.transactionCharges.NSE)}
                           </Descriptions.Item>
                           <Descriptions.Item label="Clearing Charges">
                             {typeof broker.charges.options.clearingCharges ===
                             "object"
-                              ? broker.charges.options.clearingCharges.NSE ||
-                                broker.charges.options.clearingCharges.BSE ||
-                                "N/A"
-                              : broker.charges.options.clearingCharges || "N/A"}
+                              ? formatDisplayValue(broker.charges.options.clearingCharges.NSE ||
+                                broker.charges.options.clearingCharges.BSE)
+                              : formatDisplayValue(broker.charges.options.clearingCharges)}
                           </Descriptions.Item>
                           <Descriptions.Item label="GST">
                             {broker.charges.options.gst}

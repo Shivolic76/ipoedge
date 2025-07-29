@@ -47,6 +47,14 @@ import { ROUTES } from '../constants';
 import { formatDate } from '../utils';
 import { favoriteIPOsStorage } from '../services/storage';
 import { getIPODetailPageSEO } from '../utils/seoUtils';
+import {
+  formatCurrencyValue,
+  formatSubscriptionTimes,
+  formatSharesCount,
+  calculateSubscriptionWidth,
+  isOversubscribed,
+  formatSubscriptionStatus
+} from '../utils/formatUtils';
 
 const { Title, Text } = Typography;
 
@@ -420,7 +428,7 @@ const IPODetailPage: React.FC = () => {
                         <div className="flex items-center">
                           <span
                             className={`inline-flex items-center px-5 py-3 rounded-2xl text-sm font-bold shadow-md ${
-                              ipo.subscription.times > 1
+                              isOversubscribed(ipo.subscription.times)
                                 ? 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border border-green-200'
                                 : 'bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-700 border border-yellow-200'
                             }`}
@@ -428,12 +436,12 @@ const IPODetailPage: React.FC = () => {
                               textTransform: 'uppercase',
                               letterSpacing: '1px',
                               fontFamily: 'Inter, system-ui, sans-serif',
-                              boxShadow: ipo.subscription.times > 1
+                              boxShadow: isOversubscribed(ipo.subscription.times)
                                 ? '0 2px 8px rgba(34, 197, 94, 0.15)'
                                 : '0 2px 8px rgba(245, 158, 11, 0.15)'
                             }}
                           >
-                            {ipo.subscription.times}x Subscribed
+                            {formatSubscriptionTimes(ipo.subscription.times)} Subscribed
                           </span>
                         </div>
                       </div>
@@ -445,17 +453,17 @@ const IPODetailPage: React.FC = () => {
                         <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden">
                           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-green-500"></div>
                           <div className="text-3xl font-bold text-emerald-600 mb-2">
-                            {ipo.subscription.times}x
+                            {formatSubscriptionTimes(ipo.subscription.times)}
                           </div>
                           <div className="text-sm text-emerald-700 font-semibold mb-4">Overall</div>
                           <div className="w-full bg-emerald-200 rounded-full h-3 mb-2 overflow-hidden">
                             <div
                               className="bg-gradient-to-r from-emerald-500 to-green-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                              style={{ width: `${Math.min(ipo.subscription.times * 20, 100)}%` }}
+                              style={{ width: `${calculateSubscriptionWidth(ipo.subscription.times, 20)}%` }}
                             ></div>
                           </div>
                           <div className="text-xs text-emerald-600 font-medium">
-                            {ipo.subscription.times > 1 ? 'Oversubscribed' : 'Undersubscribed'}
+                            {formatSubscriptionStatus(ipo.subscription.times)}
                           </div>
                         </div>
                       </Col>
@@ -464,13 +472,13 @@ const IPODetailPage: React.FC = () => {
                           <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
                             <div className="text-3xl font-bold text-blue-600 mb-2">
-                              {ipo.subscription.retail}x
+                              {formatSubscriptionTimes(ipo.subscription.retail)}
                             </div>
                             <div className="text-sm text-blue-700 font-semibold mb-4">Retail</div>
                             <div className="w-full bg-blue-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-blue-500 to-cyan-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${Math.min(ipo.subscription.retail * 8, 100)}%` }}
+                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.retail, 8)}%` }}
                               ></div>
                             </div>
                             <div className="text-xs text-blue-600 font-medium">Individual Investors</div>
@@ -482,13 +490,13 @@ const IPODetailPage: React.FC = () => {
                           <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
                             <div className="text-3xl font-bold text-purple-600 mb-2">
-                              {ipo.subscription.hni}x
+                              {formatSubscriptionTimes(ipo.subscription.hni)}
                             </div>
                             <div className="text-sm text-purple-700 font-semibold mb-4">HNI</div>
                             <div className="w-full bg-purple-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-purple-500 to-violet-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${Math.min(ipo.subscription.hni * 12, 100)}%` }}
+                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.hni, 12)}%` }}
                               ></div>
                             </div>
                             <div className="text-xs text-purple-600 font-medium">High Net Worth</div>
@@ -500,13 +508,13 @@ const IPODetailPage: React.FC = () => {
                           <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-500"></div>
                             <div className="text-3xl font-bold text-orange-600 mb-2">
-                              {ipo.subscription.qib}x
+                              {formatSubscriptionTimes(ipo.subscription.qib)}
                             </div>
                             <div className="text-sm text-orange-700 font-semibold mb-4">QIB</div>
                             <div className="w-full bg-orange-200 rounded-full h-3 mb-2 overflow-hidden">
                               <div
                                 className="bg-gradient-to-r from-orange-500 to-amber-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${Math.min(ipo.subscription.qib * 7, 100)}%` }}
+                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.qib, 7)}%` }}
                               ></div>
                             </div>
                             <div className="text-xs text-orange-600 font-medium">Institutional</div>
@@ -793,27 +801,27 @@ const IPODetailPage: React.FC = () => {
                       <Col xs={24}>
                         <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
                           <div className="text-center">
-                            <div className="text-xl font-bold text-green-600">{ipo.marketLot.retail.shares.toLocaleString()}</div>
+                            <div className="text-xl font-bold text-green-600">{formatSharesCount(ipo.marketLot.retail?.shares)}</div>
                             <div className="text-sm font-medium text-green-700 mb-2">Retail Shares</div>
-                            <div className="text-lg font-semibold text-gray-700">₹{ipo.marketLot.retail.amount.toLocaleString()}</div>
+                            <div className="text-lg font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.retail?.amount)}</div>
                           </div>
                         </div>
                       </Col>
                       <Col xs={12}>
                         <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
                           <div className="text-center">
-                            <div className="text-lg font-bold text-blue-600">{ipo.marketLot.sHni.shares.toLocaleString()}</div>
+                            <div className="text-lg font-bold text-blue-600">{formatSharesCount(ipo.marketLot.sHni?.shares)}</div>
                             <div className="text-xs font-medium text-blue-700 mb-1">S-HNI</div>
-                            <div className="text-sm font-semibold text-gray-700">₹{ipo.marketLot.sHni.amount.toLocaleString()}</div>
+                            <div className="text-sm font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.sHni?.amount)}</div>
                           </div>
                         </div>
                       </Col>
                       <Col xs={12}>
                         <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200">
                           <div className="text-center">
-                            <div className="text-lg font-bold text-purple-600">{ipo.marketLot.bHni.shares.toLocaleString()}</div>
+                            <div className="text-lg font-bold text-purple-600">{formatSharesCount(ipo.marketLot.bHni?.shares)}</div>
                             <div className="text-xs font-medium text-purple-700 mb-1">B-HNI</div>
-                            <div className="text-sm font-semibold text-gray-700">₹{ipo.marketLot.bHni.amount.toLocaleString()}</div>
+                            <div className="text-sm font-semibold text-gray-700">{formatCurrencyValue(ipo.marketLot.bHni?.amount)}</div>
                           </div>
                         </div>
                       </Col>

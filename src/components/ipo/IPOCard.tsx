@@ -181,7 +181,7 @@ const IPOCard: React.FC<IPOCardProps> = ({
             <div className="flex justify-between">
               <Text strong>Sector:</Text>
               <Text className="text-right text-gray-600 line-clamp-1">
-                {ipo.sector || "N/A"}
+                {ipo.sector || "-"}
               </Text>
             </div>
           )}

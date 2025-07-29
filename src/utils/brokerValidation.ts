@@ -215,33 +215,33 @@ export const sanitizeBroker = (broker: Broker): Broker => {
     
     // Ensure brokerage charges exist
     brokerage: broker.brokerage || {
-      equityDelivery: 'N/A',
-      equityIntraday: 'N/A',
-      equityFutures: 'N/A',
-      equityOptions: 'N/A',
-      currencyFutures: 'N/A',
-      currencyOptions: 'N/A',
-      commodityFutures: 'N/A',
-      commodityOptions: 'N/A'
+      equityDelivery: '-',
+      equityIntraday: '-',
+      equityFutures: '-',
+      equityOptions: '-',
+      currencyFutures: '-',
+      currencyOptions: '-',
+      commodityFutures: '-',
+      commodityOptions: '-'
     },
-    
+
     // Ensure margins exist
     margins: broker.margins || {
-      equityDelivery: 'N/A',
-      equityIntraday: 'N/A',
-      equityFutures: 'N/A',
-      equityOptions: 'N/A',
-      currencyFutures: 'N/A',
-      currencyOptions: 'N/A',
-      commodityFutures: 'N/A',
-      commodityOptions: 'N/A'
+      equityDelivery: '-',
+      equityIntraday: '-',
+      equityFutures: '-',
+      equityOptions: '-',
+      currencyFutures: '-',
+      currencyOptions: '-',
+      commodityFutures: '-',
+      commodityOptions: '-'
     }
   };
 };
 
 // Format broker value for display
 export const formatBrokerValue = (value: string | number | undefined): string => {
-  if (value === undefined || value === null) return 'N/A';
+  if (value === undefined || value === null) return '-';
   if (value === 'Free' || value === 'Zero' || value === 0) return 'Free';
   if (typeof value === 'number') return `₹${value}`;
   return value.toString();

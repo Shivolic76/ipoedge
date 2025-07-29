@@ -32,7 +32,7 @@ const BackToTop: React.FC = () => {
     <div className="fixed bottom-8 right-8 z-50">
         <button
           onClick={scrollToTop}
-          className="w-14 h-14 bg-white/95 backdrop-blur-sm !border !border-gray-700 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 hover:bg-blue-50 text-gray-700 hover:text-blue-600 flex items-center justify-center"
+          className="w-10 h-10 bg-white/95 backdrop-blur-sm !border !border-gray-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 hover:bg-blue-50 text-gray-700 hover:text-blue-600 flex items-center justify-center"
           type="button"
           aria-label="Scroll to Top"
         >
