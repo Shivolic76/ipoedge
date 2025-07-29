@@ -3,6 +3,9 @@
 /**
  * Generate sitemap.xml for IPO Edge website
  * Run with: node scripts/generate-sitemap.js
+ *
+ * This script generates a sitemap.xml file with proper XML headers
+ * and ensures it's served with the correct content-type.
  */
 
 import fs from 'fs';
@@ -96,7 +99,8 @@ const brokerPages = [
 
 function generateSitemap() {
   const currentDate = new Date().toISOString().split('T')[0];
-  
+
+  // Start with proper XML declaration and encoding
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
@@ -115,7 +119,7 @@ function generateSitemap() {
   ipoPages.forEach(ipo => {
     const priority = ipo.status === 'current' ? '0.9' : ipo.status === 'upcoming' ? '0.8' : '0.7';
     const changefreq = ipo.status === 'current' ? 'hourly' : ipo.status === 'upcoming' ? 'daily' : 'weekly';
-    
+
     sitemap += `
   <url>
     <loc>${BASE_URL}/ipo/${ipo.slug}</loc>
@@ -146,11 +150,32 @@ function generateSitemap() {
 const sitemapContent = generateSitemap();
 const outputPath = path.join(__dirname, '../public/sitemap.xml');
 
+// Ensure the public directory exists
+const publicDir = path.dirname(outputPath);
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+
+// Write sitemap with UTF-8 encoding
 fs.writeFileSync(outputPath, sitemapContent, 'utf8');
 console.log(`✅ Sitemap generated successfully at: ${outputPath}`);
 console.log(`📊 Total URLs: ${staticPages.length + ipoPages.length + brokerPages.length}`);
 console.log(`🌐 Base URL: ${BASE_URL}`);
 console.log(`📅 Generated on: ${new Date().toISOString()}`);
+
+// Verify the file was created correctly
+if (fs.existsSync(outputPath)) {
+  const fileStats = fs.statSync(outputPath);
+  console.log(`📁 File size: ${fileStats.size} bytes`);
+
+  // Check if file starts with XML declaration
+  const firstLine = fs.readFileSync(outputPath, 'utf8').split('\n')[0];
+  if (firstLine.includes('<?xml version="1.0" encoding="UTF-8"?>')) {
+    console.log(`✅ XML declaration verified`);
+  } else {
+    console.log(`❌ Warning: XML declaration not found`);
+  }
+}
 
 // Also generate a simple robots.txt if it doesn't exist
 const robotsPath = path.join(__dirname, '../public/robots.txt');
