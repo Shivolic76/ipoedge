@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Import mock data (you'll need to adjust paths based on your build setup)
-const BASE_URL = 'https://ipoedge.in';
+const BASE_URL = 'https://www.ipoedge.in';
 
 // Static pages
 const staticPages = [
@@ -102,7 +102,10 @@ function generateSitemap() {
 
   // Start with proper XML declaration and encoding
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">`;
 
   // Add static pages
   staticPages.forEach(page => {

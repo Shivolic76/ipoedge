@@ -1,7 +1,7 @@
 import type { IPO, Broker } from '../types';
 
 // Base URL for the website - update this with your actual domain
-export const BASE_URL = 'https://ipoedge.in';
+export const BASE_URL = 'https://www.ipoedge.in';
 
 // Default SEO configuration
 export const DEFAULT_SEO = {
