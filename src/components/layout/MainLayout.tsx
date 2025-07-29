@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import Header from './Header';
 import Footer from './Footer';
+import { BackToTop } from '../common';
 
 const { Content } = Layout;
 
@@ -16,6 +17,7 @@ const MainLayout: React.FC = () => {
       </Content>
 
       <Footer />
+      <BackToTop />
     </Layout>
   );
 };

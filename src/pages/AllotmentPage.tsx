@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, Row, Col, Button } from 'antd';
 import { ArrowDownOutlined, CheckCircleOutlined } from '@ant-design/icons';
-import { LaptopAnimation, IPOProcessTimeline, AllotmentCheckButtons, FloatingActionButton } from '../components/allotment';
+import { LaptopAnimation, IPOProcessTimeline, AllotmentCheckButtons } from '../components/allotment';
 import '../styles/allotment.css';
 
 const AllotmentPage: React.FC = () => {
@@ -213,11 +213,6 @@ const AllotmentPage: React.FC = () => {
           </Button>
         </div>
       </section>
-
-      {/* Floating Action Button */}
-      <FloatingActionButton
-        onCheckAllotment={() => scrollToSection('allotment-check')}
-      />
     </div>
   );
 };
