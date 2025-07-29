@@ -1,7 +1,25 @@
 {
   "rewrites": [
     {
-      "source": "/((?!sitemap\\.xml|robots\\.txt|site\\.webmanifest|vite\\.svg|favicon\\.ico|.*\\.(png|jpg|jpeg|gif|svg|webp|css|js|json|xml|txt)).*)",
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.ico"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-id"
+        }
+      ],
       "destination": "/"
     }
   ],
