@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",
@@ -9,7 +15,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
     },
@@ -25,12 +31,6 @@
           "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/"
     }
   ]
 }
