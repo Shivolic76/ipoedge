@@ -1915,21 +1915,21 @@
 
 .events-scroll-container::-webkit-scrollbar-track,
 .ant-card-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05) !important;
   border-radius: 4px;
   margin: 4px 0;
 }
 
 .events-scroll-container::-webkit-scrollbar-thumb,
 .ant-card-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%) !important;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .events-scroll-container::-webkit-scrollbar-thumb:hover,
 .ant-card-body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #0050b3 0%, #1890ff 100%);
+  background: linear-gradient(135deg, #0050b3 0%, #1890ff 100%) !important;
 }
 
 /* Smooth Scrolling */
@@ -1979,13 +1979,13 @@
   }
 
   /* Mobile Events Card Adjustments */
-  .events-card {
+  /* .events-card {
     height: 400px !important;
     max-height: 400px !important;
     min-height: 300px !important;
     display: flex !important;
     flex-direction: column !important;
-  }
+  } */
 
   .events-card .ant-card-body {
     height: calc(100% - 80px) !important;
@@ -2111,11 +2111,11 @@
   }
 
   /* Very small mobile events card adjustments */
-  .events-card {
+  /* .events-card {
     height: 350px !important;
     max-height: 350px !important;
     min-height: 250px !important;
-  }
+  } */
 
   .events-scroll-container {
     height: 100% !important;
