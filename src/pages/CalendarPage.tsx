@@ -582,14 +582,16 @@ const CalendarPage: React.FC = () => {
             {/* Enhanced Events for Selected Date */}
             <Col xs={24} lg={8} className="flex flex-col">
               <Card
-                className="shadow-2xl border-0 mb-4 md:mb-6 flex-1"
+                className="shadow-2xl border-0 mb-4 md:mb-6 flex-1 events-card"
                 style={{
                   background: "rgba(255, 255, 255, 0.95)",
                   backdropFilter: "blur(20px)",
                   borderRadius: isMobile ? "16px" : "20px",
-                  height: isMobile ? "auto" : "400px",
-                  maxHeight: isMobile ? "none" : "400px",
-                  minHeight: isMobile ? "200px" : "400px",
+                  height: isMobile ? "400px" : "400px",
+                  maxHeight: isMobile ? "400px" : "400px",
+                  minHeight: isMobile ? "300px" : "400px",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
                 title={
                   <div className="flex items-center space-x-2 md:space-x-3 py-2">
@@ -615,29 +617,51 @@ const CalendarPage: React.FC = () => {
                 styles={{
                   body: {
                     height: "calc(100% - 80px)",
-                    overflow: "auto",
+                    overflow: "hidden",
                     padding: "16px",
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: 1,
                   },
                 }}
               >
-                {selectedDate && selectedDateEvents.length > 0 ? (
-                  <List
-                    dataSource={selectedDateEvents}
-                    renderItem={(ipo) => {
-                      const dateStr = selectedDate.format("YYYY-MM-DD");
-                      const eventInfo = getEventInfo(ipo, dateStr);
+                <div
+                  className="events-scroll-container"
+                  style={{
+                    height: "100%",
+                    overflow: "auto",
+                    flex: 1,
+                    WebkitOverflowScrolling: "touch",
+                  }}
+                >
+                  {selectedDate && selectedDateEvents.length > 0 ? (
+                    <List
+                      dataSource={selectedDateEvents}
+                      split={false}
+                      style={{
+                        height: "100%",
+                      }}
+                      renderItem={(ipo) => {
+                        const dateStr = selectedDate.format("YYYY-MM-DD");
+                        const eventInfo = getEventInfo(ipo, dateStr);
 
-                      if (!eventInfo) return null;
+                        if (!eventInfo) return null;
 
-                      return (
-                        <List.Item className="border-0 px-0">
-                          <div
-                            className="event-item w-full p-4 rounded-xl cursor-pointer"
+                        return (
+                          <List.Item
+                            className="border-0 px-0"
                             style={{
-                              background: eventInfo.bgColor,
-                              border: `1px solid ${eventInfo.color}20`,
+                              padding: "0 0 12px 0",
+                              border: "none",
                             }}
                           >
+                            <div
+                              className="event-item w-full p-4 rounded-xl cursor-pointer transition-all duration-200 hover:shadow-lg"
+                              style={{
+                                background: eventInfo.bgColor,
+                                border: `1px solid ${eventInfo.color}20`,
+                              }}
+                            >
                             <div className="flex justify-between items-start mb-3">
                               <div className="flex items-center space-x-3">
                                 <div
@@ -690,31 +714,32 @@ const CalendarPage: React.FC = () => {
                       );
                     }}
                   />
-                ) : selectedDate ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CalendarOutlined className="text-2xl text-gray-400" />
+                  ) : selectedDate ? (
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CalendarOutlined className="text-2xl text-gray-400" />
+                      </div>
+                      <Text className="text-gray-500 text-lg">
+                        No IPO events on this date
+                      </Text>
+                      <Text className="text-gray-400 text-sm block mt-2">
+                        Try selecting another date
+                      </Text>
                     </div>
-                    <Text className="text-gray-500 text-lg">
-                      No IPO events on this date
-                    </Text>
-                    <Text className="text-gray-400 text-sm block mt-2">
-                      Try selecting another date
-                    </Text>
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CalendarOutlined className="text-2xl text-blue-500" />
+                  ) : (
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <CalendarOutlined className="text-2xl text-blue-500" />
+                      </div>
+                      <Text className="text-gray-600 text-lg">
+                        Click on a date to view events
+                      </Text>
+                      <Text className="text-gray-400 text-sm block mt-2">
+                        Select any date on the calendar above
+                      </Text>
                     </div>
-                    <Text className="text-gray-600 text-lg">
-                      Click on a date to view events
-                    </Text>
-                    <Text className="text-gray-400 text-sm block mt-2">
-                      Select any date on the calendar above
-                    </Text>
-                  </div>
-                )}
+                  )}
+                </div>
               </Card>
 
               {/* Enhanced Legend */}
