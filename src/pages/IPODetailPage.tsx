@@ -231,76 +231,76 @@ const IPODetailPage: React.FC = () => {
                       </Title>
 
                       {/* Status and Info Tags */}
-                      <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 mb-4">
-                        <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
-                          <div className="flex items-center space-x-2.5">
+                      <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-3 mb-4">
+                        <div className="bg-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
+                          <div className="flex items-center space-x-1.5 sm:space-x-2.5">
                             {getStatusIcon(ipo.status)}
-                            <Text className="font-semibold text-white text-sm tracking-wide">
+                            <Text className="font-semibold text-white text-xs sm:text-sm tracking-wide">
                               {ipo.status.charAt(0).toUpperCase() + ipo.status.slice(1)}
                             </Text>
                           </div>
                         </div>
-                        <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
-                          <div className="flex items-center space-x-2.5">
-                            <CalendarOutlined className="text-white text-base" />
-                            <Text className="font-semibold text-white text-sm tracking-wide">
+                        <div className="bg-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
+                          <div className="flex items-center space-x-1.5 sm:space-x-2.5">
+                            <CalendarOutlined className="text-white text-sm sm:text-base" />
+                            <Text className="font-semibold text-white text-xs sm:text-sm tracking-wide">
                               {formatDate(ipo.offerDate.start)} - {formatDate(ipo.offerDate.end)}
                             </Text>
                           </div>
                         </div>
-                        <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
-                          <div className="flex items-center space-x-2.5">
-                            <GlobalOutlined className="text-white text-base" />
-                            <Text className="font-semibold text-white text-sm tracking-wide">{ipo.exchange}</Text>
+                        <div className="bg-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
+                          <div className="flex items-center space-x-1.5 sm:space-x-2.5">
+                            <GlobalOutlined className="text-white text-sm sm:text-base" />
+                            <Text className="font-semibold text-white text-xs sm:text-sm tracking-wide">{ipo.exchange}</Text>
                           </div>
                         </div>
-                        <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
-                          <div className="flex items-center space-x-2.5">
-                            <BuildOutlined className="text-white text-base" />
-                            <Text className="font-semibold text-white text-sm tracking-wide">{ipo.sector || 'Sector TBD'}</Text>
+                        <div className="bg-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
+                          <div className="flex items-center space-x-1.5 sm:space-x-2.5">
+                            <BuildOutlined className="text-white text-sm sm:text-base" />
+                            <Text className="font-semibold text-white text-xs sm:text-sm tracking-wide">{ipo.sector || 'Sector TBD'}</Text>
                           </div>
                         </div>
                       </div>
 
                       {/* Key Metrics */}
-                      <Row gutter={[12, 12]}>
-                        <Col xs={12} sm={8} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                      <Row gutter={[8, 8]}>
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
-                              <DollarOutlined className="mr-1 text-white text-lg" />
+                              <DollarOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Issue Size</Text>
                             </div>
-                            <Text className="text-white text-base font-bold">{ipo.issueSize}</Text>
+                            <Text className="text-white text-sm sm:text-base font-bold break-words">{ipo.issueSize}</Text>
                           </div>
                         </Col>
 
-                        <Col xs={12} sm={8} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
-                              <ShoppingOutlined className="mr-1 text-white text-lg" />
+                              <ShoppingOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Lot Size</Text>
                             </div>
-                            <Text className="text-white text-base font-bold">{ipo.lotSize.toLocaleString()}</Text>
+                            <Text className="text-white text-sm sm:text-base font-bold">{ipo.lotSize.toLocaleString()}</Text>
                           </div>
                         </Col>
 
-                        <Col xs={12} sm={8} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
-                              <LineChartOutlined className="mr-1 text-white text-lg" />
+                              <LineChartOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Listed at</Text>
                             </div>
-                            <Text className="text-white text-base font-bold">{ipo.listingPrice ? `₹${ipo.listingPrice}` : 'TBD'}</Text>
+                            <Text className="text-white text-sm sm:text-base font-bold">{ipo.listingPrice ? `₹${ipo.listingPrice}` : 'TBD'}</Text>
                           </div>
                         </Col>
 
-                        <Col xs={12} sm={8} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                        <Col xs={12} sm={6} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
-                              <TrophyOutlined className="mr-1 text-white text-lg" />
+                              <TrophyOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">GMP</Text>
                             </div>
-                            <Text className="text-white text-base font-bold">
+                            <Text className="text-white text-sm sm:text-base font-bold">
                               {ipo.gmp && ipo.gmp.premium != null ? `₹${ipo.gmp.premium}` : 'N/A'}
                             </Text>
                           </div>
@@ -324,29 +324,29 @@ const IPODetailPage: React.FC = () => {
                   </div>
                 </Col>
                 <Col xs={24} sm={12} md={16}>
-                  <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-end">
                     <Button
                       type="primary"
                       size="large"
-                      className="h-12 px-8 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 border-0 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="h-10 sm:h-12 px-4 sm:px-8 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 border-0 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm"
                     >
-                      <RiseOutlined className="mr-2" />
+                      <RiseOutlined className="mr-1 sm:mr-2" />
                       Apply for IPO
                     </Button>
                     <Button
                       icon={isFavorite ? <HeartFilled /> : <HeartOutlined />}
                       onClick={handleFavoriteToggle}
                       size="large"
-                      className="h-12 px-6 rounded-xl font-semibold border-gray-300 hover:border-blue-400 transition-all duration-300"
+                      className="h-10 sm:h-12 px-3 sm:px-6 rounded-xl font-semibold border-gray-300 hover:border-blue-400 transition-all duration-300 text-xs sm:text-sm"
                     >
-                      {isFavorite ? 'Favorited' : 'Favorite'}
+                      <span className="hidden sm:inline">{isFavorite ? 'Favorited' : 'Favorite'}</span>
                     </Button>
                     <Button
                       icon={<ShareAltOutlined />}
                       size="large"
-                      className="h-12 px-6 rounded-xl font-semibold border-gray-300 hover:border-blue-400 transition-all duration-300"
+                      className="h-10 sm:h-12 px-3 sm:px-6 rounded-xl font-semibold border-gray-300 hover:border-blue-400 transition-all duration-300 text-xs sm:text-sm"
                     >
-                      Share
+                      <span className="hidden sm:inline">Share</span>
                     </Button>
                   </div>
                 </Col>
