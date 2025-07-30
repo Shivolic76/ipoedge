@@ -313,7 +313,7 @@ const IPODetailPage: React.FC = () => {
             </div>
 
             {/* Offer Price Section */}
-            <div className="bg-white px-6 sm:px-8 lg:px-12 py-6 border-t border-gray-200/20">
+            <div className="bg-white px-2 sm:px-8 lg:px-12 py-3 border-t border-gray-200/20">
               <Row gutter={[24, 24]} align="middle">
                 <Col xs={24} sm={12} md={8}>
                   <div className="text-center sm:text-left">
