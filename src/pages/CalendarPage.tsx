@@ -587,9 +587,9 @@ const CalendarPage: React.FC = () => {
                   background: "rgba(255, 255, 255, 0.95)",
                   backdropFilter: "blur(20px)",
                   borderRadius: isMobile ? "16px" : "20px",
-                  height: isMobile ? "400px" : "400px",
-                  maxHeight: isMobile ? "400px" : "400px",
-                  minHeight: isMobile ? "300px" : "400px",
+                  height: isMobile ? "600px" : "400px",
+                  maxHeight: isMobile ? "600px" : "400px",
+                  minHeight: isMobile ? "400px" : "400px",
                   display: "flex",
                   flexDirection: "column",
                 }}
