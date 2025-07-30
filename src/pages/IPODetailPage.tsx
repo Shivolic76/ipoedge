@@ -254,14 +254,12 @@ const IPODetailPage: React.FC = () => {
                             <Text className="font-semibold text-white text-sm tracking-wide">{ipo.exchange}</Text>
                           </div>
                         </div>
-                        {ipo.sector && (
-                          <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
-                            <div className="flex items-center space-x-2.5">
-                              <BuildOutlined className="text-white text-base" />
-                              <Text className="font-semibold text-white text-sm tracking-wide">{ipo.sector}</Text>
-                            </div>
+                        <div className="bg-white/25 backdrop-blur-md px-4 py-2.5 rounded-2xl border-2 border-white/40 shadow-lg hover:bg-white/30 transition-all duration-300">
+                          <div className="flex items-center space-x-2.5">
+                            <BuildOutlined className="text-white text-base" />
+                            <Text className="font-semibold text-white text-sm tracking-wide">{ipo.sector || 'Sector TBD'}</Text>
                           </div>
-                        )}
+                        </div>
                       </div>
 
                       {/* Key Metrics */}
@@ -286,29 +284,27 @@ const IPODetailPage: React.FC = () => {
                           </div>
                         </Col>
 
-                        {ipo.listingPrice && (
-                          <Col xs={12} sm={8} md={6}>
-                            <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
-                              <div className="flex items-center justify-center mb-1">
-                                <LineChartOutlined className="mr-1 text-white text-lg" />
-                                <Text className="text-white/80 text-xs font-medium">Listed at</Text>
-                              </div>
-                              <Text className="text-white text-base font-bold">₹{ipo.listingPrice}</Text>
+                        <Col xs={12} sm={8} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                            <div className="flex items-center justify-center mb-1">
+                              <LineChartOutlined className="mr-1 text-white text-lg" />
+                              <Text className="text-white/80 text-xs font-medium">Listed at</Text>
                             </div>
-                          </Col>
-                        )}
+                            <Text className="text-white text-base font-bold">{ipo.listingPrice ? `₹${ipo.listingPrice}` : 'TBD'}</Text>
+                          </div>
+                        </Col>
 
-                        {ipo.gmp && (
-                          <Col xs={12} sm={8} md={6}>
-                            <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
-                              <div className="flex items-center justify-center mb-1">
-                                <TrophyOutlined className="mr-1 text-white text-lg" />
-                                <Text className="text-white/80 text-xs font-medium">GMP</Text>
-                              </div>
-                              <Text className="text-white text-base font-bold">₹{ipo.gmp.premium}</Text>
+                        <Col xs={12} sm={8} md={6}>
+                          <div className="bg-white/15 backdrop-blur-sm p-3 rounded-xl border border-white/20 text-center">
+                            <div className="flex items-center justify-center mb-1">
+                              <TrophyOutlined className="mr-1 text-white text-lg" />
+                              <Text className="text-white/80 text-xs font-medium">GMP</Text>
                             </div>
-                          </Col>
-                        )}
+                            <Text className="text-white text-base font-bold">
+                              {ipo.gmp && ipo.gmp.premium != null ? `₹${ipo.gmp.premium}` : 'N/A'}
+                            </Text>
+                          </div>
+                        </Col>
                       </Row>
                     </div>
                   </Col>
@@ -415,65 +411,57 @@ const IPODetailPage: React.FC = () => {
                     </Col>
 
                     {/* Additional Key Details */}
-                    {ipo.faceValue && (
-                      <Col xs={12} sm={6} lg={6}>
-                        <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
-                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <BankOutlined className="text-white text-lg lg:text-xl" />
-                          </div>
-                          <div className="text-xs text-pink-700 font-medium mb-1">Face Value</div>
-                          <div className="text-sm lg:text-lg font-bold text-pink-800">₹{ipo.faceValue}</div>
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-2xl border border-pink-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <BankOutlined className="text-white text-lg lg:text-xl" />
                         </div>
-                      </Col>
-                    )}
+                        <div className="text-xs text-pink-700 font-medium mb-1">Face Value</div>
+                        <div className="text-sm lg:text-lg font-bold text-pink-800">{ipo.faceValue ? `₹${ipo.faceValue}` : 'N/A'}</div>
+                      </div>
+                    </Col>
 
-                    {ipo.listingDate && (
-                      <Col xs={12} sm={6} lg={6}>
-                        <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-4 lg:p-5 rounded-2xl border border-indigo-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
-                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <CalendarOutlined className="text-white text-lg lg:text-xl" />
-                          </div>
-                          <div className="text-xs text-indigo-700 font-medium mb-1">Listing Date</div>
-                          <div className="text-sm lg:text-lg font-bold text-indigo-800">{formatDate(ipo.listingDate)}</div>
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-4 lg:p-5 rounded-2xl border border-indigo-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <CalendarOutlined className="text-white text-lg lg:text-xl" />
                         </div>
-                      </Col>
-                    )}
+                        <div className="text-xs text-indigo-700 font-medium mb-1">Listing Date</div>
+                        <div className="text-sm lg:text-lg font-bold text-indigo-800">{ipo.listingDate ? formatDate(ipo.listingDate) : 'TBD'}</div>
+                      </div>
+                    </Col>
 
-                    {ipo.sector && (
-                      <Col xs={12} sm={6} lg={6}>
-                        <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-4 lg:p-5 rounded-2xl border border-teal-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
-                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <BuildOutlined className="text-white text-lg lg:text-xl" />
-                          </div>
-                          <div className="text-xs text-teal-700 font-medium mb-1">Sector</div>
-                          <div className="text-sm lg:text-lg font-bold text-teal-800 break-words">{ipo.sector}</div>
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-4 lg:p-5 rounded-2xl border border-teal-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <BuildOutlined className="text-white text-lg lg:text-xl" />
                         </div>
-                      </Col>
-                    )}
+                        <div className="text-xs text-teal-700 font-medium mb-1">Sector</div>
+                        <div className="text-sm lg:text-lg font-bold text-teal-800 break-words">{ipo.sector || 'Sector TBD'}</div>
+                      </div>
+                    </Col>
 
-                    {ipo.allotmentDate && (
-                      <Col xs={12} sm={6} lg={6}>
-                        <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 lg:p-5 rounded-2xl border border-yellow-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
-                          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <ClockCircleOutlined className="text-white text-lg lg:text-xl" />
-                          </div>
-                          <div className="text-xs text-yellow-700 font-medium mb-1">Allotment Date</div>
-                          <div className="text-sm lg:text-lg font-bold text-yellow-800">{formatDate(ipo.allotmentDate)}</div>
+                    <Col xs={12} sm={6} lg={6}>
+                      <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 lg:p-5 rounded-2xl border border-yellow-200 hover:shadow-lg transition-all duration-300 group text-center h-full flex flex-col justify-center">
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                          <ClockCircleOutlined className="text-white text-lg lg:text-xl" />
                         </div>
-                      </Col>
-                    )}
+                        <div className="text-xs text-yellow-700 font-medium mb-1">Allotment Date</div>
+                        <div className="text-sm lg:text-lg font-bold text-yellow-800">{ipo.allotmentDate ? formatDate(ipo.allotmentDate) : 'TBD'}</div>
+                      </div>
+                    </Col>
                   </Row>
                 </Card>
 
                 {/* Subscription Status */}
-                {ipo.subscription && (
-                  <Card
-                    title={
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full gap-3">
-                        <div className="flex items-center">
-                          <BarChartOutlined className="mr-3 text-green-600 text-xl" />
-                          <span className="text-xl font-semibold text-gray-800">Subscription Status</span>
-                        </div>
+                <Card
+                  title={
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full gap-3">
+                      <div className="flex items-center">
+                        <BarChartOutlined className="mr-3 text-green-600 text-xl" />
+                        <span className="text-xl font-semibold text-gray-800">Subscription Status</span>
+                      </div>
+                      {ipo.subscription && (
                         <div className="flex items-center">
                           <span
                             className={`inline-flex items-center px-4 py-2 lg:px-5 lg:py-3 rounded-2xl text-xs lg:text-sm font-bold shadow-md ${
@@ -493,10 +481,12 @@ const IPODetailPage: React.FC = () => {
                             {formatSubscriptionTimes(ipo.subscription.times)} Subscribed
                           </span>
                         </div>
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                      )}
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.subscription ? (
                     <Row gutter={[16, 16]}>
                       <Col xs={24} sm={12} md={6}>
                         <div className="subscription-card text-center bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-6 rounded-2xl border border-emerald-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
@@ -516,98 +506,102 @@ const IPODetailPage: React.FC = () => {
                           </div>
                         </div>
                       </Col>
-                      {ipo.subscription.retail !== undefined && (
-                        <Col xs={24} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 lg:p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
-                            <div className="text-2xl lg:text-3xl font-bold text-blue-600 mb-2">
-                              {formatSubscriptionTimes(ipo.subscription.retail)}
-                            </div>
-                            <div className="text-sm text-blue-700 font-semibold mb-3 lg:mb-4">Retail</div>
-                            <div className="w-full bg-blue-200 rounded-full h-3 mb-2 overflow-hidden">
-                              <div
-                                className="bg-gradient-to-r from-blue-500 to-cyan-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.retail, 8)}%` }}
-                              ></div>
-                            </div>
-                            <div className="text-xs text-blue-600 font-medium">Individual Investors</div>
+                      <Col xs={24} sm={12} md={6}>
+                        <div className="subscription-card text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 lg:p-6 rounded-2xl border border-blue-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
+                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
+                          <div className="text-2xl lg:text-3xl font-bold text-blue-600 mb-2">
+                            {ipo.subscription?.retail !== undefined ? formatSubscriptionTimes(ipo.subscription.retail) : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.subscription.hni !== undefined && (
-                        <Col xs={24} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
-                            <div className="text-2xl lg:text-3xl font-bold text-purple-600 mb-2">
-                              {formatSubscriptionTimes(ipo.subscription.hni)}
-                            </div>
-                            <div className="text-sm text-purple-700 font-semibold mb-3 lg:mb-4">HNI</div>
-                            <div className="w-full bg-purple-200 rounded-full h-3 mb-2 overflow-hidden">
-                              <div
-                                className="bg-gradient-to-r from-purple-500 to-violet-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.hni, 12)}%` }}
-                              ></div>
-                            </div>
-                            <div className="text-xs text-purple-600 font-medium">High Net Worth</div>
+                          <div className="text-sm text-blue-700 font-semibold mb-3 lg:mb-4">Retail</div>
+                          <div className="w-full bg-blue-200 rounded-full h-3 mb-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-blue-500 to-cyan-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+                              style={{ width: `${ipo.subscription?.retail !== undefined ? calculateSubscriptionWidth(ipo.subscription.retail, 8) : 0}%` }}
+                            ></div>
                           </div>
-                        </Col>
-                      )}
-                      {ipo.subscription.qib !== undefined && (
-                        <Col xs={24} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-500"></div>
-                            <div className="text-2xl lg:text-3xl font-bold text-orange-600 mb-2">
-                              {formatSubscriptionTimes(ipo.subscription.qib)}
-                            </div>
-                            <div className="text-sm text-orange-700 font-semibold mb-3 lg:mb-4">QIB</div>
-                            <div className="w-full bg-orange-200 rounded-full h-3 mb-2 overflow-hidden">
-                              <div
-                                className="bg-gradient-to-r from-orange-500 to-amber-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.qib, 7)}%` }}
-                              ></div>
-                            </div>
-                            <div className="text-xs text-orange-600 font-medium">Institutional</div>
+                          <div className="text-xs text-blue-600 font-medium">Individual Investors</div>
+                        </div>
+                      </Col>
+                      <Col xs={24} sm={12} md={6}>
+                        <div className="subscription-card text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-6 rounded-2xl border border-purple-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
+                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
+                          <div className="text-2xl lg:text-3xl font-bold text-purple-600 mb-2">
+                            {ipo.subscription?.hni !== undefined ? formatSubscriptionTimes(ipo.subscription.hni) : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.subscription.employee !== undefined && (
-                        <Col xs={24} sm={12} md={6}>
-                          <div className="subscription-card text-center bg-gradient-to-br from-gray-50 to-slate-100 p-4 lg:p-6 rounded-2xl border border-gray-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-slate-500"></div>
-                            <div className="text-2xl lg:text-3xl font-bold text-gray-600 mb-2">
-                              {formatSubscriptionTimes(ipo.subscription.employee)}
-                            </div>
-                            <div className="text-sm text-gray-700 font-semibold mb-3 lg:mb-4">Employee</div>
-                            <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
-                              <div
-                                className="bg-gradient-to-r from-gray-500 to-slate-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
-                                style={{ width: `${calculateSubscriptionWidth(ipo.subscription.employee, 5)}%` }}
-                              ></div>
-                            </div>
-                            <div className="text-xs text-gray-600 font-medium">Employee Quota</div>
+                          <div className="text-sm text-purple-700 font-semibold mb-3 lg:mb-4">HNI</div>
+                          <div className="w-full bg-purple-200 rounded-full h-3 mb-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-purple-500 to-violet-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+                              style={{ width: `${ipo.subscription?.hni !== undefined ? calculateSubscriptionWidth(ipo.subscription.hni, 12) : 0}%` }}
+                            ></div>
                           </div>
-                        </Col>
-                      )}
+                          <div className="text-xs text-purple-600 font-medium">High Net Worth</div>
+                        </div>
+                      </Col>
+                      <Col xs={24} sm={12} md={6}>
+                        <div className="subscription-card text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-6 rounded-2xl border border-orange-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
+                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-500"></div>
+                          <div className="text-2xl lg:text-3xl font-bold text-orange-600 mb-2">
+                            {ipo.subscription?.qib !== undefined ? formatSubscriptionTimes(ipo.subscription.qib) : 'N/A'}
+                          </div>
+                          <div className="text-sm text-orange-700 font-semibold mb-3 lg:mb-4">QIB</div>
+                          <div className="w-full bg-orange-200 rounded-full h-3 mb-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-orange-500 to-amber-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+                              style={{ width: `${ipo.subscription?.qib !== undefined ? calculateSubscriptionWidth(ipo.subscription.qib, 7) : 0}%` }}
+                            ></div>
+                          </div>
+                          <div className="text-xs text-orange-600 font-medium">Institutional</div>
+                        </div>
+                      </Col>
+                      <Col xs={24} sm={12} md={6}>
+                        <div className="subscription-card text-center bg-gradient-to-br from-gray-50 to-slate-100 p-4 lg:p-6 rounded-2xl border border-gray-200 shadow-sm relative overflow-hidden h-full flex flex-col justify-center">
+                          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-slate-500"></div>
+                          <div className="text-2xl lg:text-3xl font-bold text-gray-600 mb-2">
+                            {ipo.subscription?.employee !== undefined ? formatSubscriptionTimes(ipo.subscription.employee) : 'N/A'}
+                          </div>
+                          <div className="text-sm text-gray-700 font-semibold mb-3 lg:mb-4">Employee</div>
+                          <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-gray-500 to-slate-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-sm"
+                              style={{ width: `${ipo.subscription?.employee !== undefined ? calculateSubscriptionWidth(ipo.subscription.employee, 5) : 0}%` }}
+                            ></div>
+                          </div>
+                          <div className="text-xs text-gray-600 font-medium">Employee Quota</div>
+                        </div>
+                      </Col>
                     </Row>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="text-center py-12">
+                      <BarChartOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Subscription data not available</p>
+                      <p className="text-gray-400 text-sm">Subscription details will be updated once the IPO opens</p>
+                    </div>
+                  )}
+                </Card>
 
                 {/* Company Description */}
-                {ipo.companyDescription && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <BuildOutlined className="mr-3 text-blue-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">About the Company</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0"
-                  >
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
-                      <p className="text-gray-700 leading-relaxed text-base">{ipo.companyDescription}</p>
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <BuildOutlined className="mr-3 text-blue-600 text-xl" />
+                      <span className="text-xl font-semibold text-gray-800">About the Company</span>
                     </div>
-                  </Card>
-                )}
+                  }
+                  className="shadow-lg border-0"
+                >
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+                    {ipo.companyDescription ? (
+                      <p className="text-gray-700 leading-relaxed text-base">{ipo.companyDescription}</p>
+                    ) : (
+                      <div className="text-center py-8">
+                        <InfoCircleOutlined className="text-4xl text-gray-400 mb-3" />
+                        <p className="text-gray-500 text-base">Company description not available</p>
+                        <p className="text-gray-400 text-sm mt-2">Detailed company information will be updated soon</p>
+                      </div>
+                    )}
+                  </div>
+                </Card>
 
                 {/* Issue Details */}
                 <Card
@@ -628,70 +622,61 @@ const IPODetailPage: React.FC = () => {
                         <div className="text-sm font-medium text-blue-700">Offer Price Range</div>
                       </div>
                     </Col>
-                    {ipo.faceValue && (
-                      <Col xs={24} sm={12} lg={8}>
-                        <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-5 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
-                          <div className="text-xl lg:text-2xl font-bold text-orange-600 mb-1">
-                            ₹{ipo.faceValue}
-                          </div>
-                          <div className="text-sm font-medium text-orange-700">Face Value</div>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 lg:p-5 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-orange-600 mb-1">
+                          {ipo.faceValue ? `₹${ipo.faceValue}` : 'N/A'}
                         </div>
-                      </Col>
-                    )}
-                    {ipo.listingPrice && (
-                      <Col xs={24} sm={12} lg={8}>
-                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 lg:p-5 rounded-xl border border-green-200 h-full flex flex-col justify-center">
-                          <div className="text-xl lg:text-2xl font-bold text-green-600 mb-1">
-                            ₹{ipo.listingPrice}
-                          </div>
-                          <div className="text-sm font-medium text-green-700">Listing Price</div>
+                        <div className="text-sm font-medium text-orange-700">Face Value</div>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 lg:p-5 rounded-xl border border-green-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-green-600 mb-1">
+                          {ipo.listingPrice ? `₹${ipo.listingPrice}` : 'TBD'}
                         </div>
-                      </Col>
-                    )}
-                    {ipo.totalShares && (
-                      <Col xs={24} sm={12} lg={8}>
-                        <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-5 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
-                          <div className="text-xl lg:text-2xl font-bold text-purple-600 mb-1">
-                            {formatSharesCount(ipo.totalShares)}
-                          </div>
-                          <div className="text-sm font-medium text-purple-700">Total Shares</div>
+                        <div className="text-sm font-medium text-green-700">Listing Price</div>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 lg:p-5 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-purple-600 mb-1">
+                          {ipo.totalShares ? formatSharesCount(ipo.totalShares) : 'N/A'}
                         </div>
-                      </Col>
-                    )}
-                    {ipo.freshIssue && (
-                      <Col xs={24} sm={12} lg={8}>
-                        <div className="text-center bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-5 rounded-xl border border-emerald-200 h-full flex flex-col justify-center">
-                          <div className="text-xl lg:text-2xl font-bold text-emerald-600 mb-1">
-                            {ipo.freshIssue.amount}
-                          </div>
-                          <div className="text-sm font-medium text-emerald-700">Fresh Issue</div>
+                        <div className="text-sm font-medium text-purple-700">Total Shares</div>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-emerald-50 to-green-100 p-4 lg:p-5 rounded-xl border border-emerald-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-emerald-600 mb-1">
+                          {ipo.freshIssue?.amount || 'N/A'}
                         </div>
-                      </Col>
-                    )}
-                    {ipo.ofs && (
-                      <Col xs={24} sm={12} lg={8}>
-                        <div className="text-center bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-xl border border-pink-200 h-full flex flex-col justify-center">
-                          <div className="text-xl lg:text-2xl font-bold text-pink-600 mb-1">
-                            {ipo.ofs.amount}
-                          </div>
-                          <div className="text-sm font-medium text-pink-700">OFS</div>
+                        <div className="text-sm font-medium text-emerald-700">Fresh Issue</div>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12} lg={8}>
+                      <div className="text-center bg-gradient-to-br from-pink-50 to-rose-100 p-4 lg:p-5 rounded-xl border border-pink-200 h-full flex flex-col justify-center">
+                        <div className="text-xl lg:text-2xl font-bold text-pink-600 mb-1">
+                          {ipo.ofs?.amount || 'N/A'}
                         </div>
-                      </Col>
-                    )}
+                        <div className="text-sm font-medium text-pink-700">OFS</div>
+                      </div>
+                    </Col>
                   </Row>
                 </Card>
 
                 {/* Financial Performance */}
-                {ipo.financials && ipo.financials.length > 0 && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <BarChartOutlined className="mr-3 text-green-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">Financial Performance</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <BarChartOutlined className="mr-3 text-green-600 text-xl" />
+                      <span className="text-xl font-semibold text-gray-800">Financial Performance</span>
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.financials && ipo.financials.length > 0 ? (
+                    <>
                     {/* Mobile-friendly financial cards */}
                     <div className="block lg:hidden">
                       <div className="space-y-4">
@@ -785,96 +770,110 @@ const IPODetailPage: React.FC = () => {
                         />
                       </Table>
                     </div>
-                  </Card>
-                )}
+                    </>
+                  ) : (
+                    <div className="text-center py-12">
+                      <BarChartOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Financial data not available</p>
+                      <p className="text-gray-400 text-sm">Financial performance details will be updated once available</p>
+                    </div>
+                  )}
+                </Card>
 
                 {/* Valuation Metrics */}
-                {ipo.valuations && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <PieChartOutlined className="mr-3 text-purple-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">Valuation Metrics</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <PieChartOutlined className="mr-3 text-purple-600 text-xl" />
+                      <span className="text-xl font-semibold text-gray-800">Valuation Metrics</span>
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.valuations && Object.values(ipo.valuations).some(value => value != null) ? (
                     <Row gutter={[16, 16]}>
-                      {ipo.valuations.epsPreIpo && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-blue-600 mb-1">₹{ipo.valuations.epsPreIpo}</div>
-                            <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-blue-600 mb-1">
+                            {ipo.valuations.epsPreIpo ? `₹${ipo.valuations.epsPreIpo}` : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.epsPostIpo && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-cyan-50 to-blue-100 p-4 rounded-xl border border-cyan-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-cyan-600 mb-1">₹{ipo.valuations.epsPostIpo}</div>
-                            <div className="text-xs font-medium text-cyan-700">EPS Post IPO</div>
+                          <div className="text-xs font-medium text-blue-700">EPS Pre IPO</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-cyan-50 to-blue-100 p-4 rounded-xl border border-cyan-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-cyan-600 mb-1">
+                            {ipo.valuations.epsPostIpo ? `₹${ipo.valuations.epsPostIpo}` : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.roe && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-green-600 mb-1">{ipo.valuations.roe}%</div>
-                            <div className="text-xs font-medium text-green-700">ROE</div>
+                          <div className="text-xs font-medium text-cyan-700">EPS Post IPO</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-green-600 mb-1">
+                            {ipo.valuations.roe ? `${ipo.valuations.roe}%` : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.roce && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-purple-600 mb-1">{ipo.valuations.roce}%</div>
-                            <div className="text-xs font-medium text-purple-700">ROCE</div>
+                          <div className="text-xs font-medium text-green-700">ROE</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-purple-50 to-violet-100 p-4 rounded-xl border border-purple-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-purple-600 mb-1">
+                            {ipo.valuations.roce ? `${ipo.valuations.roce}%` : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.patMargin && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-orange-600 mb-1">{ipo.valuations.patMargin}%</div>
-                            <div className="text-xs font-medium text-orange-700">PAT Margin</div>
+                          <div className="text-xs font-medium text-purple-700">ROCE</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-orange-50 to-amber-100 p-4 rounded-xl border border-orange-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-orange-600 mb-1">
+                            {ipo.valuations.patMargin ? `${ipo.valuations.patMargin}%` : 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.debtEquity && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-4 rounded-xl border border-red-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-red-600 mb-1">{ipo.valuations.debtEquity}</div>
-                            <div className="text-xs font-medium text-red-700">Debt/Equity</div>
+                          <div className="text-xs font-medium text-orange-700">PAT Margin</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-red-50 to-pink-100 p-4 rounded-xl border border-red-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-red-600 mb-1">
+                            {ipo.valuations.debtEquity || 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.pePreIpo && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-4 rounded-xl border border-indigo-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-indigo-600 mb-1">{ipo.valuations.pePreIpo}</div>
-                            <div className="text-xs font-medium text-indigo-700">P/E Pre IPO</div>
+                          <div className="text-xs font-medium text-red-700">Debt/Equity</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-indigo-50 to-blue-100 p-4 rounded-xl border border-indigo-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-indigo-600 mb-1">
+                            {ipo.valuations.pePreIpo || 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.pePostIpo && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-violet-50 to-purple-100 p-4 rounded-xl border border-violet-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-violet-600 mb-1">{ipo.valuations.pePostIpo}</div>
-                            <div className="text-xs font-medium text-violet-700">P/E Post IPO</div>
+                          <div className="text-xs font-medium text-indigo-700">P/E Pre IPO</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-violet-50 to-purple-100 p-4 rounded-xl border border-violet-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-violet-600 mb-1">
+                            {ipo.valuations.pePostIpo || 'N/A'}
                           </div>
-                        </Col>
-                      )}
-                      {ipo.valuations.priceToBook && (
-                        <Col xs={12} sm={8} lg={6}>
-                          <div className="text-center bg-gradient-to-br from-teal-50 to-cyan-100 p-4 rounded-xl border border-teal-200 h-full flex flex-col justify-center">
-                            <div className="text-lg lg:text-xl font-bold text-teal-600 mb-1">{ipo.valuations.priceToBook}</div>
-                            <div className="text-xs font-medium text-teal-700">P/B Ratio</div>
+                          <div className="text-xs font-medium text-violet-700">P/E Post IPO</div>
+                        </div>
+                      </Col>
+                      <Col xs={12} sm={8} lg={6}>
+                        <div className="text-center bg-gradient-to-br from-teal-50 to-cyan-100 p-4 rounded-xl border border-teal-200 h-full flex flex-col justify-center">
+                          <div className="text-lg lg:text-xl font-bold text-teal-600 mb-1">
+                            {ipo.valuations.priceToBook || 'N/A'}
                           </div>
-                        </Col>
-                      )}
+                          <div className="text-xs font-medium text-teal-700">P/B Ratio</div>
+                        </div>
+                      </Col>
+
                     </Row>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="text-center py-12">
+                      <PieChartOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Valuation metrics not available</p>
+                      <p className="text-gray-400 text-sm">Valuation details will be updated once available</p>
+                    </div>
+                  )}
+                </Card>
               </div>
             </Col>
 
@@ -914,47 +913,43 @@ const IPODetailPage: React.FC = () => {
                       <div className="text-orange-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.offerDate.end)}</div>
                     </div>
 
-                    {ipo.listingDate && (
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 gap-2 sm:gap-0">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                            <RiseOutlined className="text-white text-sm lg:text-base" />
-                          </div>
-                          <div>
-                            <div className="font-semibold text-gray-700 text-sm lg:text-base">Listing Date</div>
-                            <div className="text-xs lg:text-sm text-gray-500">Trading begins</div>
-                          </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 gap-2 sm:gap-0">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          <RiseOutlined className="text-white text-sm lg:text-base" />
                         </div>
-                        <div className="text-green-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.listingDate)}</div>
+                        <div>
+                          <div className="font-semibold text-gray-700 text-sm lg:text-base">Listing Date</div>
+                          <div className="text-xs lg:text-sm text-gray-500">Trading begins</div>
+                        </div>
                       </div>
-                    )}
+                      <div className="text-green-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{ipo.listingDate ? formatDate(ipo.listingDate) : 'TBD'}</div>
+                    </div>
 
-                    {ipo.allotmentDate && (
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200 gap-2 sm:gap-0">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                            <UserOutlined className="text-white text-sm lg:text-base" />
-                          </div>
-                          <div>
-                            <div className="font-semibold text-gray-700 text-sm lg:text-base">Allotment Date</div>
-                            <div className="text-xs lg:text-sm text-gray-500">Share allocation</div>
-                          </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 lg:p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200 gap-2 sm:gap-0">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          <UserOutlined className="text-white text-sm lg:text-base" />
                         </div>
-                        <div className="text-purple-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{formatDate(ipo.allotmentDate)}</div>
+                        <div>
+                          <div className="font-semibold text-gray-700 text-sm lg:text-base">Allotment Date</div>
+                          <div className="text-xs lg:text-sm text-gray-500">Share allocation</div>
+                        </div>
                       </div>
-                    )}
+                      <div className="text-purple-600 font-bold text-sm lg:text-base ml-11 sm:ml-0">{ipo.allotmentDate ? formatDate(ipo.allotmentDate) : 'TBD'}</div>
+                    </div>
                   </div>
                 </div>
 
                 {/* GMP Section */}
-                {ipo.gmp && (
-                  <Card
-                    title={
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <div className="flex items-center">
-                          <TrophyOutlined className="mr-3 text-green-600 text-xl" />
-                          <span className="text-lg lg:text-xl font-semibold text-gray-800">Grey Market Premium</span>
-                        </div>
+                <Card
+                  title={
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex items-center">
+                        <TrophyOutlined className="mr-3 text-green-600 text-xl" />
+                        <span className="text-lg lg:text-xl font-semibold text-gray-800">Grey Market Premium</span>
+                      </div>
+                      {ipo.gmp && (
                         <Badge
                           count="Live"
                           style={{
@@ -969,10 +964,12 @@ const IPODetailPage: React.FC = () => {
                             letterSpacing: '0.5px'
                           }}
                         />
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                      )}
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.gmp && ipo.gmp.premium != null && ipo.gmp.percentage != null ? (
                     <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 lg:p-6 rounded-2xl border border-green-200 text-center">
                       <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">₹{ipo.gmp.premium}</div>
                       <div className="text-base lg:text-lg text-green-600 mb-3 lg:mb-4 font-semibold">{ipo.gmp.percentage}% Premium</div>
@@ -980,20 +977,28 @@ const IPODetailPage: React.FC = () => {
                         Grey market premium indicates expected listing gains based on unofficial trading.
                       </div>
                     </div>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 lg:p-6 rounded-2xl border border-gray-200 text-center">
+                      <TrophyOutlined className="text-4xl text-gray-400 mb-3" />
+                      <div className="text-xl lg:text-2xl font-bold text-gray-500 mb-2">No GMP Data</div>
+                      <div className="text-sm text-gray-500 leading-relaxed">
+                        Grey market premium data is not available yet. Check back later for updates.
+                      </div>
+                    </div>
+                  )}
+                </Card>
 
                 {/* Market Lot Information */}
-                {ipo.marketLot && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <ShoppingOutlined className="mr-3 text-purple-600 text-xl" />
-                        <span className="text-lg lg:text-xl font-semibold text-gray-800">Market Lot Details</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <ShoppingOutlined className="mr-3 text-purple-600 text-xl" />
+                      <span className="text-lg lg:text-xl font-semibold text-gray-800">Market Lot Details</span>
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.marketLot ? (
                     <Row gutter={[12, 12]}>
                       <Col xs={24}>
                         <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-3 lg:p-4 rounded-xl border border-green-200">
@@ -1023,51 +1028,51 @@ const IPODetailPage: React.FC = () => {
                         </div>
                       </Col>
                     </Row>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="text-center py-12">
+                      <ShoppingOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Market lot details not available</p>
+                      <p className="text-gray-400 text-sm">Lot size and investment details will be updated soon</p>
+                    </div>
+                  )}
+                </Card>
 
                 {/* Company Details */}
-                {ipo.companyDetails && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <BuildOutlined className="mr-3 text-indigo-600 text-xl" />
-                        <span className="text-lg lg:text-xl font-semibold text-gray-800">Company Information</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0 rounded-2xl"
-                  >
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <BuildOutlined className="mr-3 text-indigo-600 text-xl" />
+                      <span className="text-lg lg:text-xl font-semibold text-gray-800">Company Information</span>
+                    </div>
+                  }
+                  className="shadow-lg border-0 rounded-2xl"
+                >
+                  {ipo.companyDetails ? (
                     <div className="space-y-3 lg:space-y-4">
-                      {ipo.companyDetails.foundedYear && (
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
-                          <span className="text-gray-600 font-medium text-sm lg:text-base">Founded</span>
-                          <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.foundedYear}</span>
-                        </div>
-                      )}
-                      {ipo.companyDetails.employees && (
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
-                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
-                            <TeamOutlined className="mr-2" />
-                            Employees
-                          </span>
-                          <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.employees.toLocaleString()}</span>
-                        </div>
-                      )}
-                      {ipo.companyDetails.headquarters && (
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-2">
-                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base flex-shrink-0">
-                            <EnvironmentOutlined className="mr-2" />
-                            Headquarters
-                          </span>
-                          <span className="font-semibold text-gray-800 text-right text-sm lg:text-base break-words">{ipo.companyDetails.headquarters}</span>
-                        </div>
-                      )}
-                      {ipo.companyDetails.website && (
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
-                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
-                            <LinkOutlined className="mr-2" />
-                            Website
-                          </span>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                        <span className="text-gray-600 font-medium text-sm lg:text-base">Founded</span>
+                        <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.foundedYear || 'N/A'}</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                        <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
+                          <TeamOutlined className="mr-2" />
+                          Employees
+                        </span>
+                        <span className="font-semibold text-gray-800 text-sm lg:text-base">{ipo.companyDetails.employees ? ipo.companyDetails.employees.toLocaleString() : 'N/A'}</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-2">
+                        <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base flex-shrink-0">
+                          <EnvironmentOutlined className="mr-2" />
+                          Headquarters
+                        </span>
+                        <span className="font-semibold text-gray-800 text-right text-sm lg:text-base break-words">{ipo.companyDetails.headquarters || 'N/A'}</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                        <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
+                          <LinkOutlined className="mr-2" />
+                          Website
+                        </span>
+                        {ipo.companyDetails.website ? (
                           <a
                             href={ipo.companyDetails.website}
                             target="_blank"
@@ -1076,73 +1081,91 @@ const IPODetailPage: React.FC = () => {
                           >
                             Visit Website
                           </a>
-                        </div>
-                      )}
-                      {ipo.companyDetails.email && (
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
-                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
-                            <MailOutlined className="mr-2" />
-                            Email
-                          </span>
+                        ) : (
+                          <span className="font-semibold text-gray-800 text-sm lg:text-base">N/A</span>
+                        )}
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                        <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
+                          <MailOutlined className="mr-2" />
+                          Email
+                        </span>
+                        {ipo.companyDetails.email ? (
                           <a
                             href={`mailto:${ipo.companyDetails.email}`}
                             className="font-semibold text-blue-600 hover:text-blue-800 text-sm lg:text-base transition-colors duration-200 break-all"
                           >
                             {ipo.companyDetails.email}
                           </a>
-                        </div>
-                      )}
-                      {ipo.companyDetails.phone && (
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
-                          <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
-                            <PhoneOutlined className="mr-2" />
-                            Phone
-                          </span>
+                        ) : (
+                          <span className="font-semibold text-gray-800 text-sm lg:text-base">N/A</span>
+                        )}
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-gray-50 rounded-lg gap-1 sm:gap-0">
+                        <span className="text-gray-600 font-medium flex items-center text-sm lg:text-base">
+                          <PhoneOutlined className="mr-2" />
+                          Phone
+                        </span>
+                        {ipo.companyDetails.phone ? (
                           <a
                             href={`tel:${ipo.companyDetails.phone}`}
                             className="font-semibold text-blue-600 hover:text-blue-800 text-sm lg:text-base transition-colors duration-200"
                           >
                             {ipo.companyDetails.phone}
                           </a>
-                        </div>
-                      )}
+                        ) : (
+                          <span className="font-semibold text-gray-800 text-sm lg:text-base">N/A</span>
+                        )}
+                      </div>
                     </div>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="text-center py-12">
+                      <BuildOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Company information not available</p>
+                      <p className="text-gray-400 text-sm">Detailed company information will be updated soon</p>
+                    </div>
+                  )}
+                </Card>
 
                 {/* Lead Managers & Registrar */}
-                {(ipo.leadManagers || ipo.registrar) && (
-                  <Card
-                    title={
-                      <div className="flex items-center">
-                        <BankOutlined className="mr-3 text-blue-600 text-xl" />
-                        <span className="text-xl font-semibold text-gray-800">Issue Partners</span>
-                      </div>
-                    }
-                    className="shadow-lg border-0"
-                  >
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <BankOutlined className="mr-3 text-blue-600 text-xl" />
+                      <span className="text-xl font-semibold text-gray-800">Issue Partners</span>
+                    </div>
+                  }
+                  className="shadow-lg border-0"
+                >
+                  {(ipo.leadManagers && ipo.leadManagers.length > 0) || ipo.registrar ? (
                     <div className="space-y-4">
-                      {ipo.registrar && (
-                        <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
-                          <div className="text-sm font-medium text-blue-700 mb-2">Registrar</div>
-                          <div className="font-semibold text-gray-800">{ipo.registrar}</div>
-                        </div>
-                      )}
-                      {ipo.leadManagers && ipo.leadManagers.length > 0 && (
-                        <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                          <div className="text-sm font-medium text-green-700 mb-2">Lead Managers</div>
-                          <div className="space-y-2">
-                            {ipo.leadManagers.map((manager, index) => (
+                      <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                        <div className="text-sm font-medium text-blue-700 mb-2">Registrar</div>
+                        <div className="font-semibold text-gray-800">{ipo.registrar || 'N/A'}</div>
+                      </div>
+                      <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                        <div className="text-sm font-medium text-green-700 mb-2">Lead Managers</div>
+                        <div className="space-y-2">
+                          {ipo.leadManagers && ipo.leadManagers.length > 0 ? (
+                            ipo.leadManagers.map((manager, index) => (
                               <div key={index} className="font-semibold text-gray-800 text-sm">
                                 • {manager}
                               </div>
-                            ))}
-                          </div>
+                            ))
+                          ) : (
+                            <div className="font-semibold text-gray-800 text-sm">N/A</div>
+                          )}
                         </div>
-                      )}
+                      </div>
                     </div>
-                  </Card>
-                )}
+                  ) : (
+                    <div className="text-center py-12">
+                      <BankOutlined className="text-5xl text-gray-400 mb-4" />
+                      <p className="text-gray-500 text-lg mb-2">Issue partners information not available</p>
+                      <p className="text-gray-400 text-sm">Lead managers and registrar details will be updated soon</p>
+                    </div>
+                  )}
+                </Card>
               </div>
             </Col>
           </Row>
@@ -1151,102 +1174,112 @@ const IPODetailPage: React.FC = () => {
 
           {/* Issue Breakdown */}
           <Row gutter={[32, 32]} className="mt-8">
-            {(ipo.freshIssue || ipo.ofs) && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <PieChartOutlined className="mr-3 text-blue-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Issue Breakdown</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <PieChartOutlined className="mr-3 text-blue-600 text-xl" />
+                    <span className="text-xl font-semibold text-gray-800">Issue Breakdown</span>
+                  </div>
+                }
+                className="shadow-lg border-0"
+              >
+                {(ipo.freshIssue || ipo.ofs) ? (
                   <Row gutter={[24, 24]}>
-                    {ipo.freshIssue && (
-                      <Col xs={24} sm={12}>
-                        <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-2xl border border-green-200 text-center">
-                          <div className="text-2xl font-bold text-green-600 mb-2">Fresh Issue</div>
-                          <div className="text-lg font-bold text-green-600">{ipo.freshIssue.amount}</div>
-                          <div className="text-sm text-gray-600">{ipo.freshIssue.shares.toLocaleString()} shares</div>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.ofs && (
-                      <Col xs={24} sm={12}>
-                        <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 text-center">
-                          <div className="text-2xl font-bold text-blue-600 mb-2">OFS</div>
-                          <div className="text-lg font-bold text-blue-600">{ipo.ofs.amount}</div>
-                          <div className="text-sm text-gray-600">{ipo.ofs.shares.toLocaleString()} shares</div>
-                        </div>
-                      </Col>
-                    )}
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-2xl border border-green-200 text-center">
+                        <div className="text-2xl font-bold text-green-600 mb-2">Fresh Issue</div>
+                        <div className="text-lg font-bold text-green-600">{ipo.freshIssue?.amount || 'N/A'}</div>
+                        <div className="text-sm text-gray-600">{ipo.freshIssue?.shares ? `${ipo.freshIssue.shares.toLocaleString()} shares` : 'N/A'}</div>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-6 rounded-2xl border border-blue-200 text-center">
+                        <div className="text-2xl font-bold text-blue-600 mb-2">OFS</div>
+                        <div className="text-lg font-bold text-blue-600">{ipo.ofs?.amount || 'N/A'}</div>
+                        <div className="text-sm text-gray-600">{ipo.ofs?.shares ? `${ipo.ofs.shares.toLocaleString()} shares` : 'N/A'}</div>
+                      </div>
+                    </Col>
                   </Row>
-                </Card>
-              </Col>
-            )}
+                ) : (
+                  <div className="text-center py-12">
+                    <PieChartOutlined className="text-5xl text-gray-400 mb-4" />
+                    <p className="text-gray-500 text-lg mb-2">Issue breakdown not available</p>
+                    <p className="text-gray-400 text-sm">Fresh issue and OFS details will be updated soon</p>
+                  </div>
+                )}
+              </Card>
+            </Col>
 
             {/* Promoter Holdings */}
-            {ipo.promoters && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <TeamOutlined className="mr-3 text-indigo-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Promoter Holdings</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
-                  <Row gutter={[24, 24]} className="mb-6">
-                    <Col xs={12}>
-                      <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
-                        <div className="text-2xl font-bold text-blue-600">{ipo.promoters.preIssueHolding}%</div>
-                        <div className="text-sm font-medium text-blue-700">Pre-Issue</div>
-                      </div>
-                    </Col>
-                    <Col xs={12}>
-                      <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
-                        <div className="text-2xl font-bold text-green-600">{ipo.promoters.postIssueHolding}%</div>
-                        <div className="text-sm font-medium text-green-700">Post-Issue</div>
-                      </div>
-                    </Col>
-                  </Row>
-                  <div>
-                    <div className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
-                      <UserOutlined className="mr-2" />
-                      Promoters:
-                    </div>
-                    <div className="space-y-2">
-                      {ipo.promoters.names.map((name, index) => (
-                        <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                          <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center mr-3">
-                            <UserOutlined className="text-white text-sm" />
-                          </div>
-                          <span className="font-medium text-gray-800">{name}</span>
-                        </div>
-                      ))}
-                    </div>
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <TeamOutlined className="mr-3 text-indigo-600 text-xl" />
+                    <span className="text-xl font-semibold text-gray-800">Promoter Holdings</span>
                   </div>
-                </Card>
-              </Col>
-            )}
+                }
+                className="shadow-lg border-0"
+              >
+                {ipo.promoters ? (
+                  <>
+                    <Row gutter={[24, 24]} className="mb-6">
+                      <Col xs={12}>
+                        <div className="text-center bg-gradient-to-br from-blue-50 to-cyan-100 p-4 rounded-xl border border-blue-200">
+                          <div className="text-2xl font-bold text-blue-600">{ipo.promoters.preIssueHolding}%</div>
+                          <div className="text-sm font-medium text-blue-700">Pre-Issue</div>
+                        </div>
+                      </Col>
+                      <Col xs={12}>
+                        <div className="text-center bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
+                          <div className="text-2xl font-bold text-green-600">{ipo.promoters.postIssueHolding}%</div>
+                          <div className="text-sm font-medium text-green-700">Post-Issue</div>
+                        </div>
+                      </Col>
+                    </Row>
+                    <div>
+                      <div className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                        <UserOutlined className="mr-2" />
+                        Promoters:
+                      </div>
+                      <div className="space-y-2">
+                        {ipo.promoters.names.map((name, index) => (
+                          <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center mr-3">
+                              <UserOutlined className="text-white text-sm" />
+                            </div>
+                            <span className="font-medium text-gray-800">{name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-12">
+                    <TeamOutlined className="text-5xl text-gray-400 mb-4" />
+                    <p className="text-gray-500 text-lg mb-2">Promoter information not available</p>
+                    <p className="text-gray-400 text-sm">Promoter holdings and details will be updated soon</p>
+                  </div>
+                )}
+              </Card>
+            </Col>
           </Row>
 
           {/* Issue Objectives & Analysis */}
           <Row gutter={[32, 32]} className="mt-8">
             {/* Issue Objectives */}
-            {ipo.issueObjectives && ipo.issueObjectives.length > 0 && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <FileTextOutlined className="mr-3 text-blue-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Issue Objectives</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <FileTextOutlined className="mr-3 text-blue-600 text-xl" />
+                    <span className="text-xl font-semibold text-gray-800">Issue Objectives</span>
+                  </div>
+                }
+                className="shadow-lg border-0"
+              >
+                {ipo.issueObjectives && ipo.issueObjectives.length > 0 ? (
                   <div className="space-y-3">
                     {ipo.issueObjectives.map((objective, index) => (
                       <div key={index} className="flex items-start p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
@@ -1257,83 +1290,105 @@ const IPODetailPage: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                </Card>
-              </Col>
-            )}
+                ) : (
+                  <div className="text-center py-12">
+                    <FileTextOutlined className="text-5xl text-gray-400 mb-4" />
+                    <p className="text-gray-500 text-lg mb-2">Issue objectives not available</p>
+                    <p className="text-gray-400 text-sm">Purpose and objectives of the IPO will be updated soon</p>
+                  </div>
+                )}
+              </Card>
+            </Col>
 
             {/* Strengths & Weaknesses */}
-            {(ipo.strengths || ipo.weaknesses) && (
-              <Col xs={24} lg={12}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <SafetyOutlined className="mr-3 text-purple-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Investment Analysis</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
+            <Col xs={24} lg={12}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <SafetyOutlined className="mr-3 text-purple-600 text-xl" />
+                    <span className="text-xl font-semibold text-gray-800">Investment Analysis</span>
+                  </div>
+                }
+                className="shadow-lg border-0"
+              >
+                {(ipo.strengths && ipo.strengths.length > 0) || (ipo.weaknesses && ipo.weaknesses.length > 0) ? (
                   <Row gutter={[16, 16]}>
-                    {ipo.strengths && (
-                      <Col xs={24} sm={12}>
-                        <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
-                          <div className="flex items-center mb-3">
-                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-2">
-                              <CheckCircleOutlined className="text-white text-sm" />
-                            </div>
-                            <span className="font-semibold text-green-700">Strengths</span>
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl border border-green-200">
+                        <div className="flex items-center mb-3">
+                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-2">
+                            <CheckCircleOutlined className="text-white text-sm" />
                           </div>
-                          <ul className="space-y-2">
-                            {ipo.strengths.map((strength, index) => (
+                          <span className="font-semibold text-green-700">Strengths</span>
+                        </div>
+                        <ul className="space-y-2">
+                          {ipo.strengths && ipo.strengths.length > 0 ? (
+                            ipo.strengths.map((strength, index) => (
                               <li key={index} className="text-sm text-gray-700 flex items-start">
                                 <span className="text-green-500 mr-2">•</span>
                                 {strength}
                               </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </Col>
-                    )}
-                    {ipo.weaknesses && (
-                      <Col xs={24} sm={12}>
-                        <div className="bg-gradient-to-br from-red-50 to-pink-100 p-4 rounded-xl border border-red-200">
-                          <div className="flex items-center mb-3">
-                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-2">
-                              <ExclamationCircleOutlined className="text-white text-sm" />
-                            </div>
-                            <span className="font-semibold text-red-700">Concerns</span>
+                            ))
+                          ) : (
+                            <li className="text-sm text-gray-500 flex items-start">
+                              <span className="text-gray-400 mr-2">•</span>
+                              No strengths data available
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <div className="bg-gradient-to-br from-red-50 to-pink-100 p-4 rounded-xl border border-red-200">
+                        <div className="flex items-center mb-3">
+                          <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-2">
+                            <ExclamationCircleOutlined className="text-white text-sm" />
                           </div>
-                          <ul className="space-y-2">
-                            {ipo.weaknesses.map((weakness, index) => (
+                          <span className="font-semibold text-red-700">Concerns</span>
+                        </div>
+                        <ul className="space-y-2">
+                          {ipo.weaknesses && ipo.weaknesses.length > 0 ? (
+                            ipo.weaknesses.map((weakness, index) => (
                               <li key={index} className="text-sm text-gray-700 flex items-start">
                                 <span className="text-red-500 mr-2">•</span>
                                 {weakness}
                               </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </Col>
-                    )}
+                            ))
+                          ) : (
+                            <li className="text-sm text-gray-500 flex items-start">
+                              <span className="text-gray-400 mr-2">•</span>
+                              No concerns data available
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </Col>
                   </Row>
-                </Card>
-              </Col>
-            )}
+                ) : (
+                  <div className="text-center py-12">
+                    <SafetyOutlined className="text-5xl text-gray-400 mb-4" />
+                    <p className="text-gray-500 text-lg mb-2">Investment analysis not available</p>
+                    <p className="text-gray-400 text-sm">Strengths and concerns analysis will be updated soon</p>
+                  </div>
+                )}
+              </Card>
+            </Col>
           </Row>
 
           {/* Peer Comparison & Documents */}
           <Row gutter={[32, 32]} className="mt-8">
             {/* Peer Comparison */}
-            {ipo.peers && ipo.peers.length > 0 && (
-              <Col xs={24} lg={16}>
-                <Card
-                  title={
-                    <div className="flex items-center">
-                      <BarChartOutlined className="mr-3 text-orange-600 text-xl" />
-                      <span className="text-xl font-semibold text-gray-800">Peer Comparison</span>
-                    </div>
-                  }
-                  className="shadow-lg border-0"
-                >
+            <Col xs={24} lg={16}>
+              <Card
+                title={
+                  <div className="flex items-center">
+                    <BarChartOutlined className="mr-3 text-orange-600 text-xl" />
+                    <span className="text-xl font-semibold text-gray-800">Peer Comparison</span>
+                  </div>
+                }
+                className="shadow-lg border-0"
+              >
+                {ipo.peers && ipo.peers.length > 0 ? (
                   <div className="overflow-x-auto">
                     <Table
                       dataSource={[
@@ -1376,27 +1431,32 @@ const IPODetailPage: React.FC = () => {
                       <Table.Column title="Net Worth" dataIndex="netWorth" key="netWorth" />
                     </Table>
                   </div>
-                </Card>
-              </Col>
-            )}
+                ) : (
+                  <div className="text-center py-12">
+                    <BarChartOutlined className="text-5xl text-gray-400 mb-4" />
+                    <p className="text-gray-500 text-lg mb-2">Peer comparison not available</p>
+                    <p className="text-gray-400 text-sm">Comparative analysis with industry peers will be updated soon</p>
+                  </div>
+                )}
+              </Card>
+            </Col>
 
             {/* Documents & Links */}
-            {(ipo.documents || ipo.anchorInvestors) && (
-              <Col xs={24} lg={8}>
-                <div className="space-y-6">
-                  {/* Documents */}
-                  {ipo.documents && (
-                    <Card
-                      title={
-                        <div className="flex items-center">
-                          <FileTextOutlined className="mr-3 text-green-600 text-xl" />
-                          <span className="text-xl font-semibold text-gray-800">Documents</span>
-                        </div>
-                      }
+            <Col xs={24} lg={8}>
+              <div className="space-y-6">
+                {/* Documents */}
+                <Card
+                  title={
+                    <div className="flex items-center">
+                      <FileTextOutlined className="mr-3 text-green-600 text-xl" />
+                      <span className="text-xl font-semibold text-gray-800">Documents</span>
+                    </div>
+                  }
                       className="shadow-lg border-0"
                     >
-                      <div className="space-y-3">
-                        {ipo.documents.drhp && (
+                      {ipo.documents && (ipo.documents.drhp || ipo.documents.rhp || ipo.documents.anchor) ? (
+                        <div className="space-y-3">
+                          {ipo.documents.drhp && (
                           <a
                             href={ipo.documents.drhp}
                             target="_blank"
@@ -1438,42 +1498,55 @@ const IPODetailPage: React.FC = () => {
                             <LinkOutlined className="text-purple-600 group-hover:scale-110 transition-transform duration-300" />
                           </a>
                         )}
-                      </div>
+                        </div>
+                      ) : (
+                        <div className="text-center py-8">
+                          <FileTextOutlined className="text-4xl text-gray-400 mb-3" />
+                          <p className="text-gray-500 text-base">No documents available</p>
+                          <p className="text-gray-400 text-sm mt-2">IPO documents will be updated once available</p>
+                        </div>
+                      )}
                     </Card>
-                  )}
 
                   {/* Anchor Investors */}
-                  {ipo.anchorInvestors && (
-                    <Card
-                      title={
-                        <div className="flex items-center">
-                          <TrophyOutlined className="mr-3 text-yellow-600 text-xl" />
-                          <span className="text-xl font-semibold text-gray-800">Anchor Investors</span>
-                        </div>
-                      }
-                      className="shadow-lg border-0"
-                    >
-                      <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 rounded-xl border border-yellow-200 mb-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-yellow-600 mb-1">{ipo.anchorInvestors.totalAmount}</div>
-                          <div className="text-sm font-medium text-yellow-700">Total Investment</div>
-                        </div>
+                  <Card
+                    title={
+                      <div className="flex items-center">
+                        <TrophyOutlined className="mr-3 text-yellow-600 text-xl" />
+                        <span className="text-xl font-semibold text-gray-800">Anchor Investors</span>
                       </div>
-                      <div className="space-y-2">
-                        {ipo.anchorInvestors.investors.map((investor, index) => (
-                          <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                            <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                              <TrophyOutlined className="text-white text-sm" />
-                            </div>
-                            <span className="font-medium text-gray-800 text-sm">{investor}</span>
+                    }
+                    className="shadow-lg border-0"
+                  >
+                    {ipo.anchorInvestors ? (
+                      <>
+                        <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 rounded-xl border border-yellow-200 mb-4">
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-yellow-600 mb-1">{ipo.anchorInvestors.totalAmount}</div>
+                            <div className="text-sm font-medium text-yellow-700">Total Investment</div>
                           </div>
-                        ))}
+                        </div>
+                        <div className="space-y-2">
+                          {ipo.anchorInvestors.investors.map((investor, index) => (
+                            <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                <TrophyOutlined className="text-white text-sm" />
+                              </div>
+                              <span className="font-medium text-gray-800 text-sm">{investor}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-center py-8">
+                        <TrophyOutlined className="text-4xl text-gray-400 mb-3" />
+                        <p className="text-gray-500 text-base">No anchor investors data</p>
+                        <p className="text-gray-400 text-sm mt-2">Anchor investor information will be updated once available</p>
                       </div>
-                    </Card>
-                  )}
+                    )}
+                  </Card>
                 </div>
               </Col>
-            )}
           </Row>
         </div>
       </div>
