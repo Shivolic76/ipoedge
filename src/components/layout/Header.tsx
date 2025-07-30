@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu, Button, Drawer, Avatar, Dropdown } from 'antd';
 import {
@@ -20,8 +20,19 @@ const { Header: AntHeader } = Layout;
 
 const Header: React.FC = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isLoggedIn = false; // This would come from your auth context
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems: MenuProps['items'] = [
     {
@@ -148,7 +159,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AntHeader className="bg-white shadow-sm border-b px-0 h-16 leading-16">
+    <AntHeader className={`bg-white border-b px-0 h-16 leading-16 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'scrolled shadow-lg' : 'shadow-sm'
+    }`}>
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}

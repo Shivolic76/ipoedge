@@ -98,7 +98,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -208,6 +209,10 @@
     font-size: 14px;
   }
 
+  .ant-breadcrumb ol {
+    display: flex;
+    align-items: center;
+  }
   .ant-breadcrumb-link {
     min-height: 32px;
     display: inline-flex;
@@ -291,7 +296,8 @@
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Focus States for Accessibility */
@@ -305,7 +311,7 @@
   .custom-tabs .ant-tabs-tab-active {
     border: 2px solid #000;
   }
-  
+
   .custom-table .ant-table-tbody > tr:hover > td {
     background-color: #000;
     color: #fff;
@@ -321,7 +327,7 @@
   .animate-pulse {
     animation: none;
   }
-  
+
   .hover-lift:hover {
     transform: none;
   }
@@ -333,7 +339,7 @@
   .ant-back-top {
     display: none !important;
   }
-  
+
   .custom-tabs .ant-tabs-content-holder {
     box-shadow: none;
   }
@@ -344,12 +350,12 @@
   .custom-tabs .ant-tabs-tab {
     color: #e5e7eb;
   }
-  
+
   .custom-tabs .ant-tabs-tab:hover {
     color: #60a5fa;
     background-color: rgba(59, 130, 246, 0.1);
   }
-  
+
   .custom-table .ant-table-thead > tr > th {
     background-color: #374151;
     color: #f9fafb;

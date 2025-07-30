@@ -2696,6 +2696,10 @@ html {
   font-weight: 500;
 }
 
+.ant-breadcrumb ol {
+  display: flex;
+  align-items: center;
+}
 .ant-breadcrumb-link {
   transition: all 0.2s ease;
 }

@@ -12,7 +12,7 @@ const MainLayout: React.FC = () => {
     <Layout className="min-h-screen">
       <Header />
 
-      <Content className="flex-1 bg-gray-50">
+      <Content className="flex-1 bg-gray-50 pt-16">
         <Outlet />
       </Content>
 
