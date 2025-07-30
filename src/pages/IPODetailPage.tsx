@@ -265,7 +265,7 @@ const IPODetailPage: React.FC = () => {
                       {/* Key Metrics */}
                       <Row gutter={[8, 8]}>
                         <Col xs={12} sm={6} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
+                          <div className="bg-white/15 backdrop-blur-sm p-1 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
                               <DollarOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Issue Size</Text>
@@ -275,7 +275,7 @@ const IPODetailPage: React.FC = () => {
                         </Col>
 
                         <Col xs={12} sm={6} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
+                          <div className="bg-white/15 backdrop-blur-sm p-1 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
                               <ShoppingOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Lot Size</Text>
@@ -285,7 +285,7 @@ const IPODetailPage: React.FC = () => {
                         </Col>
 
                         <Col xs={12} sm={6} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
+                          <div className="bg-white/15 backdrop-blur-sm p-1 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
                               <LineChartOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">Listed at</Text>
@@ -295,7 +295,7 @@ const IPODetailPage: React.FC = () => {
                         </Col>
 
                         <Col xs={12} sm={6} md={6}>
-                          <div className="bg-white/15 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/20 text-center">
+                          <div className="bg-white/15 backdrop-blur-sm p-1 sm:p-3 rounded-xl border border-white/20 text-center">
                             <div className="flex items-center justify-center mb-1">
                               <TrophyOutlined className="mr-1 text-white text-sm sm:text-lg" />
                               <Text className="text-white/80 text-xs font-medium">GMP</Text>
