@@ -12,6 +12,7 @@ import IPODetailPage from '../pages/IPODetailPage';
 import BuybackPage from '../pages/BuybackPage';
 import BrokersPage from '../pages/BrokersPage';
 import BrokerDetailPage from '../pages/BrokerDetailPage';
+import BrokerComparisonPage from '../pages/BrokerComparisonPage';
 import BidsPage from '../pages/BidsPage';
 import AllotmentPage from '../pages/AllotmentPage';
 import CalendarPage from '../pages/CalendarPage';
@@ -60,6 +61,7 @@ const AppRouter: React.FC = () => {
         
         {/* Broker routes */}
         <Route path={ROUTES.BROKERS} element={<BrokersPage />} />
+        <Route path={ROUTES.BROKER_COMPARE} element={<BrokerComparisonPage />} />
         <Route path={ROUTES.BROKER_DETAIL} element={<BrokerDetailPage />} />
         
         {/* Other routes */}

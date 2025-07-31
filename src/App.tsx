@@ -5,6 +5,7 @@ import AppRouter from './router';
 import { ErrorBoundary, ScrollToTop } from './components/common';
 import { initializePerformanceOptimizations } from './utils/performanceUtils';
 import { initializeAnalytics } from './utils/analytics';
+import { BrokerComparisonProvider } from './contexts/BrokerComparisonContext';
 
 function App() {
   // Initialize performance optimizations and analytics
@@ -73,10 +74,12 @@ function App() {
           },
         }}
       >
-        <Router>
-          <ScrollToTop />
-          <AppRouter />
-        </Router>
+        <BrokerComparisonProvider>
+          <Router>
+            <ScrollToTop />
+            <AppRouter />
+          </Router>
+        </BrokerComparisonProvider>
       </ConfigProvider>
     </ErrorBoundary>
   );

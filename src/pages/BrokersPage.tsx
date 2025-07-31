@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -12,28 +12,51 @@ import {
   Input,
   Select,
   Space,
-  Alert
-} from 'antd';
+  Alert,
+  Checkbox,
+  Badge,
+  Affix,
+} from "antd";
 import {
   HomeOutlined,
   SearchOutlined,
-  ReloadOutlined
-} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { useBrokers } from '../hooks';
-import { ROUTES } from '../constants';
-import { SkeletonCard, EmptyState, ResponsiveImage } from '../components/common';
-import { formatBrokerValue, getBrokerStatusColor } from '../utils/brokerValidation';
-import { brokerNameToSlug } from '../utils';
+  ReloadOutlined,
+  SwapOutlined,
+  EyeOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { useBrokers } from "../hooks";
+import { ROUTES } from "../constants";
+import {
+  SkeletonCard,
+  EmptyState,
+  ResponsiveImage,
+} from "../components/common";
+import {
+  formatBrokerValue,
+  getBrokerStatusColor,
+} from "../utils/brokerValidation";
+import { brokerNameToSlug } from "../utils";
+import { useBrokerComparison } from "../contexts/BrokerComparisonContext";
+import { trackComparisonEvent } from "../utils/comparisonUtils";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const BrokersPage: React.FC = () => {
   const { brokers, loading, error, refetch } = useBrokers();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('rating');
-  const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+  const {
+    addBroker,
+    removeBroker,
+    isBrokerInComparison,
+    comparisonCount,
+    canAddMoreBrokers,
+    state,
+  } = useBrokerComparison();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("rating");
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   // Handle window resize for responsive behavior
@@ -42,36 +65,65 @@ const BrokersPage: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Handle broker comparison
+  const handleComparisonToggle = (broker: any, checked: boolean) => {
+    if (checked) {
+      const success = addBroker(broker);
+      if (success) {
+        trackComparisonEvent("add_broker", broker.name, {
+          source: "broker_listing",
+          total_count: comparisonCount + 1,
+        });
+      }
+    } else {
+      removeBroker(broker.id);
+      trackComparisonEvent("remove_broker", broker.name, {
+        source: "broker_listing",
+        total_count: comparisonCount - 1,
+      });
+    }
+  };
 
   // Filter and sort brokers
   const filteredBrokers = brokers
-    .filter(broker => {
+    .filter((broker) => {
       const query = searchQuery.toLowerCase();
       return (
         broker.name.toLowerCase().includes(query) ||
         broker.type.toLowerCase().includes(query) ||
-        broker.services.some(service => service.toLowerCase().includes(query)) ||
-        broker.platforms.some(platform => platform.toLowerCase().includes(query)) ||
-        broker.features?.some(feature => feature.toLowerCase().includes(query))
+        broker.services.some((service) =>
+          service.toLowerCase().includes(query)
+        ) ||
+        broker.platforms.some((platform) =>
+          platform.toLowerCase().includes(query)
+        ) ||
+        broker.features?.some((feature) =>
+          feature.toLowerCase().includes(query)
+        )
       );
     })
     .sort((a, b) => {
       switch (sortBy) {
-        case 'rating':
+        case "rating":
           return b.rating - a.rating;
-        case 'name':
+        case "name":
           return a.name.localeCompare(b.name);
-        case 'accountOpening': {
-          const aOpening = a.accountOpening === 'Free' ? 0 : Number(a.accountOpening);
-          const bOpening = b.accountOpening === 'Free' ? 0 : Number(b.accountOpening);
+        case "accountOpening": {
+          const aOpening =
+            a.accountOpening === "Free" ? 0 : Number(a.accountOpening);
+          const bOpening =
+            b.accountOpening === "Free" ? 0 : Number(b.accountOpening);
           return aOpening - bOpening;
         }
-        case 'accountMaintenance': {
-          const aMaintenance = a.accountMaintenance === 'Free' ? 0 : Number(a.accountMaintenance);
-          const bMaintenance = b.accountMaintenance === 'Free' ? 0 : Number(b.accountMaintenance);
+        case "accountMaintenance": {
+          const aMaintenance =
+            a.accountMaintenance === "Free" ? 0 : Number(a.accountMaintenance);
+          const bMaintenance =
+            b.accountMaintenance === "Free" ? 0 : Number(b.accountMaintenance);
           return aMaintenance - bMaintenance;
         }
         default:
@@ -82,12 +134,25 @@ const BrokersPage: React.FC = () => {
   // Desktop table columns
   const desktopTableColumns = [
     {
-      title: 'Broker',
-      dataIndex: 'name',
-      key: 'name',
+      title: "",
+      key: "compare",
+      width: 50,
+      fixed: "left" as const,
+      render: (_: any, record: (typeof brokers)[0]) => (
+        <Checkbox
+          checked={isBrokerInComparison(record.id)}
+          onChange={(e) => handleComparisonToggle(record, e.target.checked)}
+          disabled={!canAddMoreBrokers && !isBrokerInComparison(record.id)}
+        />
+      ),
+    },
+    {
+      title: "Broker",
+      dataIndex: "name",
+      key: "name",
       width: 250,
-      fixed: 'left' as const,
-      render: (text: string, record: typeof brokers[0]) => (
+      fixed: "left" as const,
+      render: (text: string, record: (typeof brokers)[0]) => (
         <div className="flex items-center space-x-3">
           <ResponsiveImage
             src={record.logo}
@@ -97,7 +162,12 @@ const BrokersPage: React.FC = () => {
           <div>
             <Text strong>{text}</Text>
             <div>
-              <Rate disabled defaultValue={record.rating} allowHalf className="text-xs" />
+              <Rate
+                disabled
+                defaultValue={record.rating}
+                allowHalf
+                className="text-xs"
+              />
               <Text className="text-gray-500 ml-2">({record.rating})</Text>
             </div>
           </div>
@@ -105,9 +175,9 @@ const BrokersPage: React.FC = () => {
       ),
     },
     {
-      title: 'Account Opening',
-      dataIndex: 'accountOpening',
-      key: 'accountOpening',
+      title: "Account Opening",
+      dataIndex: "accountOpening",
+      key: "accountOpening",
       width: 140,
       render: (value: string | number) => (
         <Tag color={getBrokerStatusColor(value)}>
@@ -116,9 +186,9 @@ const BrokersPage: React.FC = () => {
       ),
     },
     {
-      title: 'AMC',
-      dataIndex: 'accountMaintenance',
-      key: 'accountMaintenance',
+      title: "AMC",
+      dataIndex: "accountMaintenance",
+      key: "accountMaintenance",
       width: 120,
       render: (value: string | number) => (
         <Tag color={getBrokerStatusColor(value)}>
@@ -127,9 +197,9 @@ const BrokersPage: React.FC = () => {
       ),
     },
     {
-      title: 'Equity Delivery',
-      dataIndex: ['brokerage', 'equityDelivery'],
-      key: 'equityDelivery',
+      title: "Equity Delivery",
+      dataIndex: ["brokerage", "equityDelivery"],
+      key: "equityDelivery",
       width: 140,
       render: (value: string | number) => (
         <Tag color={getBrokerStatusColor(value)}>
@@ -138,9 +208,9 @@ const BrokersPage: React.FC = () => {
       ),
     },
     {
-      title: 'Equity Intraday',
-      dataIndex: ['brokerage', 'equityIntraday'],
-      key: 'equityIntraday',
+      title: "Equity Intraday",
+      dataIndex: ["brokerage", "equityIntraday"],
+      key: "equityIntraday",
       width: 140,
       render: (value: string) => (
         <Tag color={getBrokerStatusColor(value)}>
@@ -149,10 +219,10 @@ const BrokersPage: React.FC = () => {
       ),
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       width: 180,
-      fixed: 'right' as const,
+      fixed: "right" as const,
       render: (_: any, record: any) => (
         <Space>
           <Link to={`/broker/${brokerNameToSlug(record.name)}`}>
@@ -171,10 +241,10 @@ const BrokersPage: React.FC = () => {
   // Mobile table columns (enhanced UI)
   const mobileTableColumns = [
     {
-      title: '',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text: string, record: typeof brokers[0]) => (
+      title: "",
+      dataIndex: "name",
+      key: "name",
+      render: (text: string, record: (typeof brokers)[0]) => (
         <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-blue-200">
           {/* Header Section */}
           <div className="flex items-start justify-between mb-3">
@@ -188,16 +258,40 @@ const BrokersPage: React.FC = () => {
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div>
-                <Text strong className="text-base text-gray-800 block">{text}</Text>
+                <Text strong className="text-base text-gray-800 block">
+                  {text}
+                </Text>
                 <div className="flex items-center mt-1">
-                  <Rate disabled defaultValue={record.rating} allowHalf className="text-sm" />
-                  <Text className="text-gray-500 ml-2 text-sm font-medium">({record.rating})</Text>
+                  <Rate
+                    disabled
+                    defaultValue={record.rating}
+                    allowHalf
+                    className="text-sm"
+                  />
+                  <Text className="text-gray-500 ml-2 text-sm font-medium">
+                    ({record.rating})
+                  </Text>
                 </div>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-xs text-gray-400 uppercase tracking-wide">Rank</div>
-              <div className="text-lg font-bold text-blue-600">#{Math.floor(Math.random() * 10) + 1}</div>
+            <div className="text-right flex flex-col items-end space-y-2">
+              <Checkbox
+                checked={isBrokerInComparison(record.id)}
+                onChange={(e) =>
+                  handleComparisonToggle(record, e.target.checked)
+                }
+                disabled={
+                  !canAddMoreBrokers && !isBrokerInComparison(record.id)
+                }
+              />
+              <div>
+                <div className="text-xs text-gray-400 uppercase tracking-wide">
+                  Rank
+                </div>
+                <div className="text-lg font-bold text-blue-600">
+                  #{Math.floor(Math.random() * 10) + 1}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -206,7 +300,9 @@ const BrokersPage: React.FC = () => {
             <div className="bg-white rounded-lg p-3 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <Text className="text-xs text-gray-500 uppercase tracking-wide">Opening</Text>
+                  <Text className="text-xs text-gray-500 uppercase tracking-wide">
+                    Opening
+                  </Text>
                   <div className="mt-1">
                     <Tag
                       color={getBrokerStatusColor(record.accountOpening)}
@@ -217,8 +313,16 @@ const BrokersPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-green-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
               </div>
@@ -227,7 +331,9 @@ const BrokersPage: React.FC = () => {
             <div className="bg-white rounded-lg p-3 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <Text className="text-xs text-gray-500 uppercase tracking-wide">AMC</Text>
+                  <Text className="text-xs text-gray-500 uppercase tracking-wide">
+                    AMC
+                  </Text>
                   <div className="mt-1">
                     <Tag
                       color={getBrokerStatusColor(record.accountMaintenance)}
@@ -238,9 +344,17 @@ const BrokersPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    className="w-4 h-4 text-blue-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                    <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
               </div>
@@ -249,10 +363,14 @@ const BrokersPage: React.FC = () => {
             <div className="bg-white rounded-lg p-3 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <Text className="text-xs text-gray-500 uppercase tracking-wide">Delivery</Text>
+                  <Text className="text-xs text-gray-500 uppercase tracking-wide">
+                    Delivery
+                  </Text>
                   <div className="mt-1">
                     <Tag
-                      color={getBrokerStatusColor(record.brokerage?.equityDelivery)}
+                      color={getBrokerStatusColor(
+                        record.brokerage?.equityDelivery
+                      )}
                       className="font-semibold border-0 shadow-sm"
                     >
                       {formatBrokerValue(record.brokerage?.equityDelivery)}
@@ -260,8 +378,16 @@ const BrokersPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-purple-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
               </div>
@@ -270,10 +396,14 @@ const BrokersPage: React.FC = () => {
             <div className="bg-white rounded-lg p-3 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <Text className="text-xs text-gray-500 uppercase tracking-wide">Intraday</Text>
+                  <Text className="text-xs text-gray-500 uppercase tracking-wide">
+                    Intraday
+                  </Text>
                   <div className="mt-1">
                     <Tag
-                      color={getBrokerStatusColor(record.brokerage?.equityIntraday)}
+                      color={getBrokerStatusColor(
+                        record.brokerage?.equityIntraday
+                      )}
                       className="font-semibold border-0 shadow-sm"
                     >
                       {formatBrokerValue(record.brokerage?.equityIntraday)}
@@ -281,8 +411,16 @@ const BrokersPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-orange-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
               </div>
@@ -291,14 +429,27 @@ const BrokersPage: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="flex space-x-3">
-            <Link to={`/broker/${brokerNameToSlug(record.name)}`} className="flex-1">
+            <Link
+              to={`/broker/${brokerNameToSlug(record.name)}`}
+              className="flex-1"
+            >
               <Button
                 type="default"
                 size="middle"
                 className="w-full h-10 border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-300 font-medium rounded-lg transition-all duration-200"
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
                 Details
               </Button>
@@ -308,8 +459,18 @@ const BrokersPage: React.FC = () => {
               size="middle"
               className="flex-1 h-10 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 border-0 font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
             >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
               </svg>
               Open Account
             </Button>
@@ -324,8 +485,16 @@ const BrokersPage: React.FC = () => {
                   <span className="text-gray-500">Active</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <svg className="w-3 h-3 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                  <svg
+                    className="w-3 h-3 text-gray-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   <span className="text-gray-500">Est. 2010</span>
                 </div>
@@ -355,11 +524,34 @@ const BrokersPage: React.FC = () => {
 
         {/* Page Header */}
         <div className="mb-8">
-          <Title level={1} className="mb-2">Stock Brokers Comparison</Title>
+          <Title level={1} className="mb-2">
+            Details of India's Top Stock Brokers
+          </Title>
           <Text className="text-gray-600">
-            Compare brokerage charges, features, and services of top stock brokers in India
+            Analyze account charges, AMC, trading fees, and platform services to
+            choose the right broker for you.
           </Text>
         </div>
+
+        {/* Floating Comparison Button */}
+        {comparisonCount > 0 && (
+          <Affix offsetBottom={20}>
+            <div className="fixed bottom-6 right-6 z-50">
+              <Link to={ROUTES.BROKER_COMPARE}>
+                <Badge count={comparisonCount} offset={[-5, 5]}>
+                  <Button
+                    type="primary"
+                    size="large"
+                    icon={<SwapOutlined />}
+                    className="shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    Compare Brokers
+                  </Button>
+                </Badge>
+              </Link>
+            </div>
+          </Affix>
+        )}
 
         {/* Error State */}
         {error && (
@@ -393,7 +585,7 @@ const BrokersPage: React.FC = () => {
             <Col xs={12} sm={6} md={4}>
               <Select
                 placeholder="Sort by"
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 value={sortBy}
                 onChange={setSortBy}
               >
@@ -407,7 +599,7 @@ const BrokersPage: React.FC = () => {
             <Col xs={12} sm={6} md={4}>
               <Select
                 placeholder="View"
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 value={viewMode}
                 onChange={setViewMode}
               >
@@ -432,7 +624,7 @@ const BrokersPage: React.FC = () => {
             title="No brokers found"
             description="Try adjusting your search criteria."
           />
-        ) : viewMode === 'grid' ? (
+        ) : viewMode === "grid" ? (
           <Row gutter={[24, 24]}>
             {filteredBrokers.map((broker) => (
               <Col xs={24} sm={12} lg={8} xl={6} key={broker.id}>
@@ -445,22 +637,109 @@ const BrokersPage: React.FC = () => {
                         alt={broker.name}
                         className="w-16 h-16 mx-auto rounded-lg object-cover mb-3"
                       />
-                      <Title level={4} className="mb-2">{broker.name}</Title>
+                      <Title level={4} className="mb-2">
+                        {broker.name}
+                      </Title>
                       <div className="flex items-center justify-center">
                         <Rate disabled defaultValue={broker.rating} allowHalf />
-                        <Text className="text-gray-500 ml-2">({broker.rating})</Text>
+                        <Text className="text-gray-500 ml-2">
+                          ({broker.rating})
+                        </Text>
                       </div>
                     </div>
                   }
                   actions={[
-                    <Button type="primary" key="open">
-                      Open Account
-                    </Button>,
-                    <Link to={`/broker/${brokerNameToSlug(broker.name)}`} key="details">
-                      <Button type="link">
-                        View Details
+                    <div
+                      key="actions"
+                      className="flex flex-col gap-3 w-full p-2"
+                    >
+                      {/* Primary Action Button */}
+                      <Button
+                        type="primary"
+                        size="middle"
+                        className="w-full h-10 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 border-0 rounded-lg font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+                          boxShadow: "0 4px 15px rgba(59, 130, 246, 0.4)",
+                        }}
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                            />
+                          </svg>
+                          Open Account
+                        </span>
                       </Button>
-                    </Link>
+
+                      {/* Secondary Actions */}
+                      <div className="flex gap-2">
+                        <Link
+                          to={`/broker/${brokerNameToSlug(broker.name)}`}
+                          className="flex-1"
+                        >
+                          <Button className="w-full h-9 bg-white border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg font-medium text-gray-700 hover:text-blue-600 transition-all duration-300 shadow-sm hover:shadow-md">
+                            <span className="flex items-center justify-center gap-1.5">
+                              <EyeOutlined className="text-sm" />
+                              Details
+                            </span>
+                          </Button>
+                        </Link>
+
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleComparisonToggle(
+                              broker,
+                              !isBrokerInComparison(broker.id)
+                            );
+                          }}
+                          disabled={
+                            !canAddMoreBrokers &&
+                            !isBrokerInComparison(broker.id)
+                          }
+                          className={`flex-1 h-9 rounded-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md ${
+                            isBrokerInComparison(broker.id)
+                              ? "bg-gradient-to-r from-green-500 to-emerald-500 border-0 text-white hover:from-green-600 hover:to-emerald-600"
+                              : "bg-white border-2 border-purple-200 hover:border-purple-400 hover:bg-purple-50 text-purple-600 hover:text-purple-700"
+                          }`}
+                          style={
+                            isBrokerInComparison(broker.id)
+                              ? {
+                                  background:
+                                    "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                                  boxShadow:
+                                    "0 2px 10px rgba(16, 185, 129, 0.3)",
+                                }
+                              : {}
+                          }
+                        >
+                          <span className="flex items-center justify-center gap-1.5">
+                            {isBrokerInComparison(broker.id) ? (
+                              <>
+                                <CheckCircleOutlined className="text-sm" />
+                                Added
+                              </>
+                            ) : (
+                              <>
+                                <SwapOutlined className="text-sm" />
+                                Compare
+                              </>
+                            )}
+                          </span>
+                        </Button>
+                      </div>
+                    </div>,
                   ]}
                 >
                   <div className="space-y-3">
@@ -473,29 +752,39 @@ const BrokersPage: React.FC = () => {
 
                     <div className="flex justify-between">
                       <Text strong>AMC:</Text>
-                      <Tag color={getBrokerStatusColor(broker.accountMaintenance)}>
+                      <Tag
+                        color={getBrokerStatusColor(broker.accountMaintenance)}
+                      >
                         {formatBrokerValue(broker.accountMaintenance)}
                       </Tag>
                     </div>
 
                     <div className="flex justify-between">
                       <Text strong>Equity Delivery:</Text>
-                      <Tag color={getBrokerStatusColor(broker.brokerage?.equityDelivery)}>
+                      <Tag
+                        color={getBrokerStatusColor(
+                          broker.brokerage?.equityDelivery
+                        )}
+                      >
                         {formatBrokerValue(broker.brokerage?.equityDelivery)}
                       </Tag>
                     </div>
 
                     <div className="flex justify-between">
                       <Text strong>Equity Intraday:</Text>
-                      <Tag color={getBrokerStatusColor(broker.brokerage?.equityIntraday)}>
+                      <Tag
+                        color={getBrokerStatusColor(
+                          broker.brokerage?.equityIntraday
+                        )}
+                      >
                         {formatBrokerValue(broker.brokerage?.equityIntraday)}
                       </Tag>
                     </div>
 
                     <div className="pt-2 border-t border-gray-100">
                       <Text className="text-gray-600 text-sm">
-                        Services: {broker.services.slice(0, 3).join(', ')}
-                        {broker.services.length > 3 && '...'}
+                        Services: {broker.services.slice(0, 3).join(", ")}
+                        {broker.services.length > 3 && "..."}
                       </Text>
                     </div>
                   </div>
@@ -515,7 +804,7 @@ const BrokersPage: React.FC = () => {
                   pagination={{
                     pageSize: 5,
                     simple: true,
-                    className: "text-center mt-6"
+                    className: "text-center mt-6",
                   }}
                   size="small"
                   className="mobile-table"
@@ -535,7 +824,7 @@ const BrokersPage: React.FC = () => {
                       showQuickJumper: true,
                       showTotal: (total, range) =>
                         `${range[0]}-${range[1]} of ${total} brokers`,
-                      className: "pagination-center"
+                      className: "pagination-center",
                     }}
                   />
                 </div>

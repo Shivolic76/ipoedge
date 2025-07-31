@@ -25,6 +25,7 @@ export const ROUTES = {
   CLOSED_BUYBACK: '/buyback/closed-buyback',
   BROKERS: '/broker',
   BROKER_DETAIL: '/broker/:name',
+  BROKER_COMPARE: '/broker/compare',
   BIDS: '/bids',
   ALLOTMENT: '/ipo-allotment-status',
   ALLOTMENT_CHECK: '/ipo-allotment-status/:name',
@@ -101,6 +102,7 @@ export const STORAGE_KEYS = {
   FAVORITE_IPOS: 'ipo_edge_favorite_ipos',
   THEME: 'ipo_edge_theme',
   AUTH_TOKEN: 'ipo_edge_auth_token',
+  BROKER_COMPARISON: 'ipo_edge_broker_comparison',
 } as const;
 
 // Pagination defaults

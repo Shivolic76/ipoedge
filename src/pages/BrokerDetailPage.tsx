@@ -43,6 +43,8 @@ import {
 import { ROUTES } from "../constants";
 import { useBrokerByName } from "../hooks/useBrokers";
 import { formatDisplayValue } from "../utils/formatUtils";
+import { useBrokerComparison } from "../contexts/BrokerComparisonContext";
+import { trackComparisonEvent } from "../utils/comparisonUtils";
 import "../styles/broker-details.css";
 
 const { Title, Text, Paragraph } = Typography;
@@ -50,6 +52,7 @@ const { Title, Text, Paragraph } = Typography;
 const BrokerDetailPage: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const { broker, loading: brokerLoading } = useBrokerByName(name || "");
+  const { addBroker, removeBroker, isBrokerInComparison } = useBrokerComparison();
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -74,6 +77,24 @@ const BrokerDetailPage: React.FC = () => {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
+
+  const handleComparisonToggle = () => {
+    if (!broker) return;
+
+    if (isBrokerInComparison(broker.id)) {
+      removeBroker(broker.id);
+      trackComparisonEvent('remove_broker', broker.name, {
+        source: 'broker_detail'
+      });
+    } else {
+      const success = addBroker(broker);
+      if (success) {
+        trackComparisonEvent('add_broker', broker.name, {
+          source: 'broker_detail'
+        });
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -1272,18 +1293,32 @@ const BrokerDetailPage: React.FC = () => {
 
             <Col xs={24} sm={8}>
               <Card
-                className="text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                className={`text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer ${
+                  broker && isBrokerInComparison(broker.id) ? 'ring-2 ring-purple-500' : ''
+                }`}
                 style={{ borderRadius: "16px" }}
+                onClick={handleComparisonToggle}
               >
                 <div className="py-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <ShareAltOutlined className="text-white text-lg" />
+                  <div className={`w-12 h-12 bg-gradient-to-r ${
+                    broker && isBrokerInComparison(broker.id)
+                      ? 'from-green-500 to-emerald-600'
+                      : 'from-purple-500 to-violet-600'
+                  } rounded-full flex items-center justify-center mx-auto mb-3`}>
+                    {broker && isBrokerInComparison(broker.id) ? (
+                      <CheckCircleOutlined className="text-white text-lg" />
+                    ) : (
+                      <ShareAltOutlined className="text-white text-lg" />
+                    )}
                   </div>
                   <Text strong className="text-gray-800 block mb-2">
-                    Compare
+                    {broker && isBrokerInComparison(broker.id) ? 'Added to Compare' : 'Add to Compare'}
                   </Text>
                   <Text className="text-gray-600 text-sm">
-                    Compare with others
+                    {broker && isBrokerInComparison(broker.id)
+                      ? 'Click to remove from comparison'
+                      : 'Compare with other brokers'
+                    }
                   </Text>
                 </div>
               </Card>
