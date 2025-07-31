@@ -7,19 +7,14 @@ import {
   Typography,
   Rate,
   Breadcrumb,
-  Table,
   Tag,
   Space,
-  Alert,
   Empty,
-  Divider,
-  Statistic,
 } from 'antd';
 import {
   HomeOutlined,
   DeleteOutlined,
   PlusOutlined,
-  SwapOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
@@ -28,13 +23,7 @@ import { ROUTES } from '../constants';
 import { ResponsiveImage } from '../components/common';
 import { formatBrokerValue, getBrokerStatusColor } from '../utils/brokerValidation';
 import { useBrokerComparison } from '../contexts/BrokerComparisonContext';
-import {
-  calculateComparisonMetrics,
-  getBrokerHighlights,
-  generateComparisonSummary,
-  trackComparisonEvent
-} from '../utils/comparisonUtils';
-import type { Broker } from '../types';
+import { trackComparisonEvent } from '../utils/comparisonUtils';
 
 const { Title, Text } = Typography;
 
@@ -232,7 +221,7 @@ const BrokerComparisonPage: React.FC<BrokerComparisonPageProps> = () => {
                     {comparedBrokers.map(broker => (
                       <td key={broker.id} className="py-3 px-4 text-center">
                         <div className="flex items-center justify-center">
-                          <Rate disabled defaultValue={broker.rating} allowHalf size="small" />
+                          <Rate disabled defaultValue={broker.rating} allowHalf className="text-sm" />
                           <Text className="ml-2">({broker.rating})</Text>
                         </div>
                       </td>
@@ -418,10 +407,10 @@ const BrokerComparisonPage: React.FC<BrokerComparisonPageProps> = () => {
                       <td key={broker.id} className="py-3 px-4 text-center">
                         <div className="flex flex-wrap gap-1 justify-center">
                           {broker.platforms?.slice(0, 3).map((platform, index) => (
-                            <Tag key={index} size="small">{platform}</Tag>
+                            <Tag key={index} className="text-xs">{platform}</Tag>
                           ))}
                           {broker.platforms?.length > 3 && (
-                            <Tag size="small">+{broker.platforms.length - 3} more</Tag>
+                            <Tag className="text-xs">+{broker.platforms.length - 3} more</Tag>
                           )}
                         </div>
                       </td>
@@ -433,10 +422,10 @@ const BrokerComparisonPage: React.FC<BrokerComparisonPageProps> = () => {
                       <td key={broker.id} className="py-3 px-4 text-center">
                         <div className="flex flex-wrap gap-1 justify-center">
                           {broker.services?.slice(0, 3).map((service, index) => (
-                            <Tag key={index} size="small" color="blue">{service}</Tag>
+                            <Tag key={index} className="text-xs" color="blue">{service}</Tag>
                           ))}
                           {broker.services?.length > 3 && (
-                            <Tag size="small" color="blue">+{broker.services.length - 3} more</Tag>
+                            <Tag className="text-xs" color="blue">+{broker.services.length - 3} more</Tag>
                           )}
                         </div>
                       </td>
@@ -448,16 +437,16 @@ const BrokerComparisonPage: React.FC<BrokerComparisonPageProps> = () => {
                       <td key={broker.id} className="py-3 px-4 text-center">
                         <div className="space-y-1">
                           {broker.additionalFeatures?.['3in1Account'] && (
-                            <Tag size="small" color="green">3-in-1 Account</Tag>
+                            <Tag className="text-xs" color="green">3-in-1 Account</Tag>
                           )}
                           {broker.additionalFeatures?.freeTradingCalls && (
-                            <Tag size="small" color="green">Free Trading Calls</Tag>
+                            <Tag className="text-xs" color="green">Free Trading Calls</Tag>
                           )}
                           {broker.additionalFeatures?.freeResearch && (
-                            <Tag size="small" color="green">Free Research</Tag>
+                            <Tag className="text-xs" color="green">Free Research</Tag>
                           )}
                           {broker.additionalFeatures?.marginFunding && (
-                            <Tag size="small" color="green">Margin Funding</Tag>
+                            <Tag className="text-xs" color="green">Margin Funding</Tag>
                           )}
                         </div>
                       </td>

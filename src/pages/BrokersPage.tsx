@@ -52,7 +52,6 @@ const BrokersPage: React.FC = () => {
     isBrokerInComparison,
     comparisonCount,
     canAddMoreBrokers,
-    state,
   } = useBrokerComparison();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("rating");
